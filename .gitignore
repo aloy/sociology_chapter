@@ -1,0 +1,14 @@
+
+*.aux
+
+*.bbl
+
+*.blg
+
+*.log
+
+*.out
+
+hlmviz_model_checking.pdf
+
+hlmviz_model_checking.synctex.gz
