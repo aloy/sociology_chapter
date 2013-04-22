@@ -1,0 +1,100 @@
+\documentclass{article} % JASA requires 12 pt font for manuscripts
+%\usepackage{JASA_manu}        % For JASA manuscript formatting
+
+% for citations
+\usepackage[authoryear]{natbib} % natbib required for JASA
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+
+%\definecolor{Blue}{rgb}{0,0,0.5}
+
+
+% for figures
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
+% help with editing and coauthoring
+\usepackage{todonotes}
+
+% title formatting
+\usepackage[compact,small]{titlesec}
+
+% page formatting
+\usepackage[margin = 1in]{geometry}
+\usepackage[parfill]{parskip}
+
+% line spacing
+\usepackage{setspace}
+\doublespace
+
+% For math typsetting
+\usepackage{bm}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multirow}
+
+% A few commands to make typing less tedious
+\newcommand{\inv}{\ensuremath{^{-1}}}
+\newcommand{\ginv}{\ensuremath{^{-}}}
+\newcommand{\trans}{\ensuremath{^\prime}}
+\newcommand{\var}{\ensuremath{\mathrm{Var}}}
+\newcommand{\cov}{\ensuremath{\mathrm{Cov}}}
+
+
+\title{Simulation-Based Diagnostics in Hierarchical Linear Models: A Graphical Approach}
+
+\author{Adam Loy and Heike Hofmann}
+%	Department of Statistics\\
+%	Iowa State University\\
+%	Ames, IA 50011-1210
+%}
+
+\begin{document}
+\maketitle
+%------------------------------------------------------------------------------------
+\section{Introduction}
+%------------------------------------------------------------------------------------
+
+Potentially useful references:
+\begin{itemize}
+\item \cite{Longford:2001wy} -- simulation-based diagnostics (numeric versions focused on outlier detection)
+\item \cite{Morrell:2000ve} -- discuss lines in plots of random effects (scatter plots mainly) -- lineups would help here!
+
+\end{itemize}
+
+
+%------------------------------------------------------------------------------------
+\section{Visual Inference}\label{sec:vi}
+%------------------------------------------------------------------------------------
+In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we work within a rigorous inferential framework. \cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
+
+Classical statistical inference requires consists of 
+\begin{enumerate}
+	\item formulating a null and alternative hypothesis,
+	\item calculating a test statistic,
+	\item comparing the test statistic to a reference (null) distribution,
+	\item and calculating a $p$-value from on which we base our conclusion.
+\end{enumerate}
+Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference for model diagnostics. The null and alternative hypotheses correspond to the model assumption, such as homogeneity of residual variance, and any violation of this model assumption, respectively. The test statistic corresponds to a plot that displays the model assumption. In visual inference, the reference distribution would consist of the set of all plots generated under the assumed model, called null plots; thus, if the model assumptions are upheld, the plot of the observed data should indistinguishable from the null plots. A lineup of plots consists of displaying a number of null plots within which the true plot, that is, the test statistic, is embedded. Adhering to this lineup protocol allows for the definition of a $p$-value similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
+
+%------------------------------------------------------------------------------------
+\section{Examples}
+%------------------------------------------------------------------------------------
+\begin{itemize}
+\item Applications of hierarchical models
+	\begin{itemize}
+	\item Education -- students nested in classes nested in schools
+	\item Interviewer research -- respondents nested in interviewer (Hox 1994)
+	
+	\end{itemize}
+
+\end{itemize}
+
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+
+\bibliographystyle{apalike}
+\bibliography{hlmviz_bib}
+
+\end{document}
