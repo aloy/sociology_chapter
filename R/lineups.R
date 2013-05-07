@@ -12,6 +12,7 @@
 
 setwd("~/Documents/Thesis/Dissertation/sociology_chapter/")
 
+library(ggplot2)
 library(lme4)
 library(HLMdiag)
 library(foreign)
@@ -20,6 +21,179 @@ library(HLMdiag)
 library(nullabor)
 library(plyr)
 library(reshape2)
+
+data.lineup.explvar1 <- function(null.model, variable, data, nsim = 19, std = FALSE) {
+	mod.sims  <- simulate(null.model, nsim = nsim)
+	mod.refit <- lapply(mod.sims, refit, object = null.model)
+	if(std){
+		mod.sim.resid <- lapply(mod.refit, HLMresid, level = 1, standardize = TRUE)
+	} else{
+		mod.sim.resid <- lapply(mod.refit, resid)
+	}
+
+	mod.sim.resid <- do.call("cbind", mod.sim.resid)
+	mod.sim.resid <- melt(mod.sim.resid)[,-1]
+	names(mod.sim.resid) <- c(".n", "residual")
+	mod.sim.resid$.n <- as.numeric(str_extract(mod.sim.resid $.n, "\\d+"))
+	
+	mod.sim.resid <- cbind(mod.sim.resid, data[, variable])
+	names(mod.sim.resid)[-c(1:2)] <- variable
+	
+	return(mod.sim.resid)
+}
+
+#-------------------------------------------------------------------------------
+# An example of the usefulness of lineups in model exploration/selection 
+#
+# We could use the autism data provided by 
+# West, Welch, and Galecki (2006).
+#   Linear Mixed Models: A Practical Guide Using Statistical Software.
+#
+# Other sources:
+# Anderson, D. K., Oti, R. S., Lord, C., & Welch, K. (2009).
+#     Patterns of Growth in Adaptive Social Abilities Among Children with Autism Spectrum Disorders. 
+#    Journal of Abnormal Child Psychology, 37(7), 1019–1034. doi:10.1007/s10802-009-9326-0
+# 
+# Anderson, D. K., Lord, C., Risi, S., DiLavore, P. S., Shulman, C., Thurm, A., et al. (2007). 
+#    Patterns of growth in verbal abilities among children with autism spectrum disorder. 
+#    Journal of Consulting and Clinical Psychology, 75(4), 594–604. doi:10.1037/0022-006X.75.4.594
+# 
+# Data description: 
+# prospective longitudinal study
+# 158 children who were classified as autism spectrum disorder children.
+# Variables: 
+# *childid - child id
+# *vsae - Vineland socialization age equivalent
+# *sicdegp - Sequenced inventory of communication development expressive group
+#   (1 = low, 2 = medium, 3 = high)
+# *age - ages (2, 3, 5, 9, 13)
+#-------------------------------------------------------------------------------
+library(WWGbook)
+
+# Creating factors where necessary
+autism$sicdegp.f <- factor(autism$sicdegp, labels = c("low", "med", "high"))
+autism$age.f     <- factor(autism$age)
+
+# Dropping 2 missing values from vsae
+autism <- na.omit(autism)
+
+# Making age baseline @ 2 yrs
+autism$age.2 <- autism$age - 2
+
+# Releveling sicdegp - high is now baseline
+autism$sicdegp2 <- relevel(autism$sicdegp.f, ref = 3)
+
+### Initial plot of the growth curves
+qplot(x = age, y = vsae, data = autism, geom = "line", group = childid, alpha = I(0.3))
+qplot(x = age, y = vsae, data = autism, geom = "line", group = childid, facets = ~ sicdegp.f, alpha = I(0.3))
+
+### Initial model
+(mod1 <- lmer(vsae ~ age.2 + (age.2 - 1 | childid), data = autism))
+
+### Question: Do we need a quadratic random effect for age?
+# Conventional LR test says yes.
+mod2 <- lmer(vsae ~ age.2 + (age.2 + I(age.2^2) - 1 | childid), data = autism)
+anova(mod1, mod2)
+
+# Visual inference...
+# Is the linear random component for age enough? Lineup says no.
+mod1.sims  <- simulate(mod1, nsim = 19, seed = 12345)
+mod1.refit <- lapply(mod1.sims, refit, object = mod1)
+mod1.sim.y <- lapply(mod1.refit, function(x) x@y)
+
+mod1.sim.y <- do.call("cbind", mod1.sim.y)
+mod1.sim.y <- melt(mod1.sim.y)[,-1]
+names(mod1.sim.y) <- c(".n", "y")
+mod1.sim.y$y[mod1.sim.y$y < 0] <- 0
+mod1.sim.y$.n <- as.numeric(str_extract(mod1.sim.y$.n, "\\d+"))
+mod1.sim.y$vsae <- rep(autism$vsae, rep = 19)
+mod1.sim.y$childid <- rep(autism$childid, rep = 19)
+mod1.sim.y$age.2 <- rep(autism$age.2, rep = 19)
+
+autism.true.y <- data.frame(y = autism$vsae, age.2 = autism$age.2, childid = autism$childid)
+
+qplot(x = age.2, y = y, data = autism.true.y, group = childid, geom = "line", se=F, alpha = I(0.3)) %+% lineup(true = autism.true.y, samples = mod1.sim.y) + facet_wrap( ~ .sample, ncol=5) + ylab("VSAE") + xlab("age - 2")
+
+
+# What about adding a quadratic random component? I think this was a harder lineup.
+mod2.sims  <- simulate(mod2, nsim = 19)
+mod2.refit <- lapply(mod2.sims, refit, object = mod2)
+mod2.sim.y <- lapply(mod2.refit, function(x) x@y)
+
+mod2.sim.y <- do.call("cbind", mod2.sim.y)
+mod2.sim.y <- melt(mod2.sim.y)[,-1]
+names(mod2.sim.y) <- c(".n", "y")
+mod2.sim.y$y[mod2.sim.y$y < 0] <- 0
+mod2.sim.y$.n <- as.numeric(str_extract(mod2.sim.y$.n, "\\d+"))
+mod2.sim.y$vsae <- rep(autism$vsae, rep = 19)
+mod2.sim.y$childid <- rep(autism$childid, rep = 19)
+mod2.sim.y$age.2 <- rep(autism$age.2, rep = 19)
+
+
+qplot(x = age.2, y = y, data = autism.true.y, group = childid, geom = "line", se=F, alpha = I(0.3)) %+% lineup(true = autism.true.y, samples = mod2.sim.y) + facet_wrap( ~ .sample, ncol=5) + ylab("VSAE") + xlab("age - 2")
+
+
+### Question: Do we need to allow for correlation between the two random effects?
+# Conventional tests say yes, but less convincingly
+mod3 <- lmer(vsae ~ age.2 + (age.2 - 1 | childid) + (I(age.2^2) - 1 | childid), data = autism)
+anova(mod2, mod3)
+
+# What does a lineup say?
+mod3.sims  <- simulate(mod3, nsim = 19)
+mod3.refit <- lapply(mod3.sims, refit, object = mod3)
+mod3.sim.ranef <- lapply(mod3.refit, function(x) ranef(x)[[1]])
+
+mod3.sim.ranef <- do.call("rbind", mod3.sim.ranef)
+mod3.sim.ranef$.n <- rownames(mod3.sim.ranef)
+mod3.sim.ranef$.n <- as.numeric(str_extract(mod3.sim.ranef$.n, "\\d+"))
+
+true.mod2.ranef <- ranef(mod2)$childid # we have to compare simulated ranefs to ranefs of mod2
+
+qplot(x = age.2, y = `I(age.2^2)`, data = true.mod2.ranef, geom = c("point", "smooth"), method = "lm", se = F) %+% lineup(true = true.mod2.ranef, samples = mod3.sim.ranef) + facet_wrap( ~ .sample, ncol=5)
+
+### Model selection using visual inference.
+
+mod4 <- lmer(vsae ~ age.2 + I(age.2^2) + (age.2 + I(age.2^2) - 1 | childid), data = autism)
+
+## Lineup for I(age.2^2)
+
+mod2.sim.age2  <- data.lineup.explvar1(null.model = mod2, variable = "age.2", data = autism, std = TRUE)
+# mod2.true.age2 <- data.frame(residual = resid(mod2), age.2 = autism$age.2)
+mod2.true.age2 <- data.frame(residual = HLMresid(mod2, level = 1, standardize = TRUE), age.2 = autism$age.2)
+
+# Overall little evidence found from the lineup; however, we will retain this 
+# explanatory variable in the model as it makes more sense to have a fixed effect 
+# for each random effect (Snijders and Bosker, 2012 give this advice).
+qplot(x = age.2^2, y = residual, data = mod2.true.age2, geom = c("point", "smooth"), method = "lm", se = F) %+% lineup(true = mod2.true.age2, samples = mod2.sim.age2) + facet_wrap( ~ .sample, ncol=5)
+
+## Lineup for sicdegp2
+
+mod4.sim.sicdegp  <- data.lineup.explvar1(null.model = mod4, variable = "sicdegp.f", data = autism, std = FALSE)
+mod4.sim.sicdegp.std  <- data.lineup.explvar1(null.model = mod4, variable = "sicdegp.f", data = autism, std = TRUE)
+mod4.true.sicdegp <- data.frame(residual = resid(mod4), sicdegp.f = autism$sicdegp.f)
+mod4.true.sicdegp.std <- data.frame(residual = HLMresid(mod4, level = 1, standardize = TRUE), sicdegp.f = autism$sicdegp.f)
+
+# example is hard to see, and the range has to be restricted, but you can detect this one.
+# This aligns with conventional inference.
+qplot(x = sicdegp.f, y = residual, data = mod4.true.sicdegp, geom = "boxplot") %+% lineup(true = mod4.true.sicdegp, samples = mod4.sim.sicdegp) + facet_wrap( ~ .sample, ncol=5) + ylim(-5, 5)
+
+qplot(x = sicdegp.f, y = residual, data = mod4.true.sicdegp.std, geom = "boxplot") %+% lineup(true = mod4.true.sicdegp.std, samples = mod4.sim.sicdegp.std) + facet_wrap( ~ .sample, ncol=5) + ylim(-3, 3)
+
+mod5 <- lmer(vsae ~ age.2 + I(age.2^2) + sicdegp2 + (age.2 + I(age.2^2) - 1 | childid), data = autism)
+anova(mod4, mod5)
+
+## Lineup for age.2 * sicdegp2 -- HOW DO WE PLOT THIS??
+
+mod5.sim.interact <- data.lineup.explvar1(null.model = mod5, variable = c("age.2", "sicdegp.f"), data = autism, std = FALSE)
+mod5.sim.interact <- transform(mod5.sim.interact, int = interaction(age.2, sicdegp.f))
+
+mod5.true.interact <- data.frame(residual = resid(mod5), age.2 = autism$age.2, sicdegp.f = autism$sicdegp.f)
+mod5.true.interact <- transform(mod5.true.interact, int = interaction(age.2, sicdegp.f))
+
+qplot(x = int, y = residual, data = mod5.true.interact, geom = "boxplot") %+% lineup(true = mod5.true.interact, samples = mod5.sim.interact) + facet_wrap( ~ .sample, ncol=5) + ylim(-5,5)
+
+
+final.mod <- lmer(vsae ~ age.2 + I(age.2^2) + sicdegp2 + age.2 * sicdegp2 + (age.2 + I(age.2^2) - 1 | childid), data = autism)
 
 #-------------------------------------------------------------------------------
 # An example of the usefulness of lineups in model exploration/selection we
@@ -347,6 +521,6 @@ qplot(x = standLRT, y = fitted, data = true.fitted5, group = school, geom = "smo
 # An example of the lines on scatterplots of the random effects that are
 # discussed in Morrell and Brant (2000).
 #
-# Data description: (longituginal data would be best here)
+# Data description: (longitudinal data would be best here)
 # 
 #-------------------------------------------------------------------------------

@@ -149,12 +149,45 @@ Visual tests provide an alternative to conventional hypothesis tests that does n
 
 \paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then the predicted random effects associated with that group should be used. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targets, then side-by-side boxplots should be used.
 
-To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
+%To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
 
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions---(1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model---which require the use of different plots to determine an answer. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using linear smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
+
+\paragraph{Example.}
+To illustrate the use of visual inference for tests of the fixed effects and random effects (i.e., covariance parameters) we...
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{autism_ranef1_true11.pdf}
+	\caption{\label{fig:lineup-ranef1} These 20 plots display a child's VSAE trajectory. Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{autism_ranef2_true5.pdf}
+	\caption{\label{fig:lineup-ranef2} These 20 plots display a child's VSAE trajectory. Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{autism_ranef3_true4.pdf}
+	\caption{\label{fig:lineup-ranef3} These 20 plots compare the predicted random intercept and slope from model XX. Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{autism_agesq_true19.pdf}
+	\caption{\label{fig:lineup-agesq} These 20 plots show the level-1 residual against age squared. Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{autism_sicdegp_true13.pdf}
+	\caption{\label{fig:lineup-ranef1} These 20 plots show the level-1 residuals against SICDEGP. Which is the real plot?}
+\end{figure}
 
 \paragraph{Comparing non-nested models.}
 %------------------------------------------------------------------------------------
