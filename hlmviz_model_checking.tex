@@ -70,10 +70,10 @@ Hierarchical linear models (i.e., multilevel models, linear mixed effects models
 In this paper we consider the continuous response hierarchical linear model
 %
 \begin{equation}\label{eq:hlm}
-	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
+	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the covariance structure between groups, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\ \bm{R})$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the covariance structure between groups, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\ \bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
 %
@@ -87,6 +87,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distributi
 \bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \bm{R}_i \right)
 \end{equation}
 %
+
 
 \subsection{Residuals}
 
@@ -139,8 +140,7 @@ In this section we discuss how visual inference can be implemented to conduct co
 
 \subsubsection{Conventional hypothesis tests}
 %------------------------------------------------------------------------------------
-It is standard practice to use a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical model. Similarly, likelihood ratio tests can be used to compare nested models. One statistical model is nested in another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component. For example, the larger model could differ by including additional fixed effects, or by including additional random effects. While statistical software has made performing $t$-tests for fixed effects simple, more thought is required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if the differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test...\todo[inline]{The Brady, West, \& Galecki book have a good lit. review here. Find the book and then return to this section.}
-
+It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested in another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component. For example, the larger model could differ by including additional fixed effects, or by including additional random effects. While statistical software has made performing $t$-tests for fixed effects simple, more thought is required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
 
 
 \subsubsection{Visual hypothesis tests}
