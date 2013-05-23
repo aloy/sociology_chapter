@@ -128,11 +128,27 @@ Classical statistical inference consists of
 	\item comparing the test statistic to a reference (null) distribution,
 	\item and calculating a $p$-value from on which we base our conclusion.
 \end{enumerate}
-Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference for model diagnostics. The null and alternative hypotheses correspond to the model assumption, such as homogeneity of residual variance, and any violation of this model assumption, respectively. The test statistic corresponds to a plot that displays the model assumption. In visual inference, the reference distribution would consist of the set of all plots generated under the assumed model, called null plots. If the model assumptions are upheld, the plot of the observed data should indistinguishable from the null plots. A lineup of plots consists of displaying a number of null plots within which the true plot, that is, the test statistic, is embedded. Adhering to this lineup protocol allows for the \hh{estimation} of a $p$-value %similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
-\hh{based on an assessment of a lineup by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
+Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference. \hh{As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
+while
+the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under null and alternate hypothesis. 
+A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
+If the model assumption holds, i.e.  under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
+In the lineup protocol the true plot is randomly embedded among a number of null plots. 
+This allows for the estimation of a $p$-value associated with a lineup
+%similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
+based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
+Similarly, the lineup protocol also allows for an assessment of the power of a lineup \cite{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
+\begin{equation}\label{eqn:power}
+\widehat{Power} = {Power}_{N} = 1 - F_{X} (x_{\alpha} - 1),
+\end{equation}
+where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X \ge x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
+Assessing an individual's ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha-1)$, where $\widehat{p} = x/N$ is an estimate for the probability that an individual chooses the true plot.
+
+
+
 }
 
 %------------------------------------------------------------------------------------
