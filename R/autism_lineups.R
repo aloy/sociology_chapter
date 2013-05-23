@@ -51,6 +51,46 @@ library(plyr)
 library(reshape2)
 library(stringr)
 
+# Function to make lineups for explanatory variables less tedious - level 1
+data.lineup.explvar1 <- function(null.model, variable, data, nsim = 19, std = FALSE) {
+	mod.sims  <- simulate(null.model, nsim = nsim)
+	mod.refit <- lapply(mod.sims, refit, object = null.model)
+	if(std){
+		mod.sim.resid <- lapply(mod.refit, HLMresid, level = 1, 
+			type = "EB", standardize = TRUE)
+	} else{
+		mod.sim.resid <- lapply(mod.refit, resid)
+	}
+
+	mod.sim.resid <- do.call("cbind", mod.sim.resid)
+	mod.sim.resid <- melt(mod.sim.resid)[,-1]
+	names(mod.sim.resid) <- c(".n", "residual")
+	mod.sim.resid$.n <- as.numeric(str_extract(mod.sim.resid $.n, "\\d+"))
+	
+	mod.sim.resid <- cbind(mod.sim.resid, data[, variable])
+	names(mod.sim.resid)[-c(1:2)] <- variable
+	
+	return(mod.sim.resid)
+}
+
+# Function to make lineups for explanatory variables less tedious - level 2
+data.lineup.explvar2 <- function(null.model, variable, data, nsim = 19) {
+	mod.sims  <- simulate(null.model, nsim = nsim)
+	mod.refit <- lapply(mod.sims, refit, object = null.model)
+	mod.sim.resid <- lapply(mod.refit, HLMresid, level = "childid")
+
+	mod.sim.resid <- do.call("rbind", mod.sim.resid)
+	mod.sim.resid$.n <- as.numeric(str_extract(rownames(mod.sim.resid), "\\d+"))
+	mod.sim.resid$childid <- str_extract(rownames(mod.sim.resid), "[.]\\d+")
+	mod.sim.resid$childid <- as.numeric(str_extract(mod.sim.resid$childid, "\\d+"))
+	
+	mod.sim.resid <- cbind(mod.sim.resid, data[, variable])
+	names(mod.sim.resid)[-c(1:4)] <- variable
+	
+	return(mod.sim.resid)
+}
+
+
 # Reading in more of the autism data set
 demographics <- read.csv("data/autism_demographics.csv")
 
@@ -76,17 +116,20 @@ autism.modframe <- subset(autism.full,
 autism.modframe <- na.omit(autism.modframe)
 
 #-------------------------------------------------------------------------------
-# Model selection/checking: Lineups vs. conventional inference
+# Model selection Lineups vs. conventional inference
+#-------------------------------------------------------------------------------
+
+### Selecting the random effects structure
 #-------------------------------------------------------------------------------
 
 ### Initial model
-(M1 <- lmer(vsae ~ age2 + (age2 - 1 | childid), data = autism.modframe))
+(M1 <- lmer(vsae ~ age2 + I(age2^2) + (age2 - 1 | childid), data = autism.modframe))
 
 
 ### Is the linear random component for age enough?
 
 ## Conventional answer
-M2 <- lmer(vsae ~ age2 + (age2 + I(age2^2) - 1 | childid), data = autism.modframe)
+M2 <- lmer(vsae ~ age2 + I(age2^2) + (age2 + I(age2^2) - 1 | childid), data = autism.modframe)
 anova(M1, M2)
 
 ## Lineup comparing the observed growth curves to versions simulated under M1
@@ -112,10 +155,123 @@ qplot(x = age2, y = y, data = autism.true.y, group = childid,
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylab("VSAE") + 
 	xlab("age - 2")
+	
+### Now we can check the same type of lineup to see if this seems sufficient
+M2.sims  <- simulate(M2, nsim = 19)
+M2.refit <- lapply(M2.sims, refit, object = M2)
+M2.sim.y <- lapply(M2.refit, function(x) x@y)
+
+M2.sim.y <- do.call("cbind", M2.sim.y)
+M2.sim.y <- melt(M2.sim.y)[,-1]
+names(M2.sim.y) <- c(".n", "y")
+M2.sim.y$y[M2.sim.y$y < 0] <- 0
+M2.sim.y$.n <- as.numeric(str_extract(M2.sim.y$.n, "\\d+"))
+M2.sim.y$vsae <- rep(autism.modframe$vsae, rep = 19)
+M2.sim.y$childid <- rep(autism.modframe$childid, rep = 19)
+M2.sim.y$age2 <- rep(autism.modframe$age2, rep = 19)
+
+qplot(x = age2, y = y, data = autism.true.y, group = childid, 
+		geom = "line", se=F, alpha = I(0.3)) %+% 
+	lineup(true = autism.true.y, samples = M2.sim.y) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylab("VSAE") + 
+	xlab("age - 2")
+
 
 ### Do we need to allow for correlation between the two random effects?
 
 ## Conventional tests say yes, but less convincingly
-M3 <- lmer(vsae ~ age2 + (age2 - 1 | childid) + (I(age2^2) - 1 | childid), data = autism.modframe)
+M3 <- lmer(vsae ~ age2 + I(age2^2) + (age2 - 1 | childid) + (I(age2^2) - 1 | childid), data = autism.modframe)
 anova(M2, M3)
 
+## The lineup -need to compare simulated ranefs to ranefs of M2
+M3.sims  <- simulate(M3, nsim = 19)
+M3.refit <- lapply(M3.sims, refit, object = M3)
+M3.sim.ranef <- lapply(M3.refit, function(x) ranef(x)[[1]])
+
+M3.sim.ranef <- do.call("rbind", M3.sim.ranef)
+M3.sim.ranef$.n <- rownames(M3.sim.ranef)
+M3.sim.ranef$.n <- as.numeric(str_extract(M3.sim.ranef$.n, "\\d+"))
+
+true.M2.ranef <- ranef(M2)$childid 
+
+qplot(x = age2, y = `I(age2^2)`, data = true.M2.ranef, 
+	geom = c("point", "smooth"), method = "lm", se = F) %+% 
+	lineup(true = true.M2.ranef, samples = M3.sim.ranef) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	xlab("age - 2") + 
+	ylab(expression(paste((age - 2)^2)))
+
+
+### Selecting the fixed effects structure
+#-------------------------------------------------------------------------------
+
+child.df <- subset(autism.modframe, 
+	select = c(childid, sicdegp, gender, race, bestest2))
+child.df <- unique(child.df)
+
+### sicdegp
+# We can look at the level-1 residuals, though they may be less interesting
+M2.sim.sicdegp  <- data.lineup.explvar1(null.model = M2, variable = "sicdegp", 
+	data = autism.modframe, std = FALSE)
+M2.sim.sicdegp.std  <- data.lineup.explvar1(null.model = M2, variable = "sicdegp",
+	 data = autism.modframe, std = TRUE)
+M2.true.sicdegp <- data.frame(residual = resid(M2), 
+	sicdegp = autism.modframe$sicdegp)
+M2.true.sicdegp.std <- data.frame(residual = HLMresid(M2, level = 1, 
+	standardize = TRUE), sicdegp = autism.modframe$sicdegp)
+
+qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot", 
+	fill = sicdegp, outlier.size = 0) %+% 
+	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10)
+
+qplot(x = sicdegp, y = residual, data = M2.true.sicdegp.std, geom = "boxplot", 
+	fill = sicdegp, outlier.size = 0) %+% 
+	lineup(true = M2.true.sicdegp.std, samples = M2.sim.sicdegp.std) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-4, 4) + 
+	ylab("standardized residual")
+	
+# The level-2 residuals
+M2.sim.sicdegp2  <- data.lineup.explvar2(null.model = M2, variable = "sicdegp", 
+	data = child.df)
+M2.true.sicdegp2 <- data.frame(ranef(M2)[[1]], sicdegp = child.df$sicdegp)
+
+qplot(x = sicdegp, y = age2, data = M2.true.sicdegp2, geom = "boxplot", 
+	fill = sicdegp, outlier.size = 0) %+% 
+	lineup(true = M2.true.sicdegp2, samples = M2.sim.sicdegp2) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10)
+
+
+### gender
+M2.sim.gender  <- data.lineup.explvar1(null.model = M2, variable = "gender", 
+	data = autism.modframe, std = FALSE)
+M2.sim.gender.std  <- data.lineup.explvar1(null.model = M2, variable = "gender",
+	 data = autism.modframe, std = TRUE)
+M2.true.gender <- data.frame(residual = resid(M2), 
+	gender = autism.modframe$gender)
+M2.true.gender.std <- data.frame(residual = HLMresid(M2, level = 1, 
+	standardize = TRUE), gender = autism.modframe$gender)
+
+qplot(x = gender, y = residual, data = M2.true.gender, geom = "boxplot", 
+	fill = gender, outlier.size = 0) %+% 
+	lineup(true = M2.true.gender, samples = M2.sim.gender) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10)
+
+qplot(x = gender, y = residual, data = M2.true.gender.std, geom = "boxplot", 
+	fill = gender, outlier.size = 0) %+% 
+	lineup(true = M2.true.gender.std, samples = M2.sim.gender.std) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-4, 4) + 
+	ylab("standardized residual")
+
+
+### gender
+
+#-------------------------------------------------------------------------------
+# Model checking
+#-------------------------------------------------------------------------------
