@@ -68,7 +68,7 @@ Hierarchical linear models (i.e., multilevel models, linear mixed effects models
 %------------------------------------------------------------------------------------
 
 \subsection{Notation and formulation}
-
+%------------------------------------------------------------------------------------
 In this paper we consider the continuous response hierarchical linear model
 %
 \begin{equation}\label{eq:hlm}
@@ -92,7 +92,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distributi
 
 
 \subsection{Residuals}
-
+%------------------------------------------------------------------------------------
 As with the classical linear model with uncorrelated errors, residuals are central to exploring the fit of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
 %
 \begin{itemize}
@@ -115,6 +115,17 @@ and
 %
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
 
+\subsection{Conventional practices for model selection and model checking}
+%------------------------------------------------------------------------------------
+
+\subsubsection{Model selection}
+%------------------------------------------------------------------------------------
+It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
+
+Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they only differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
+
+\subsubsection{Model checking}
+%------------------------------------------------------------------------------------
 
 
 %------------------------------------------------------------------------------------
@@ -158,17 +169,17 @@ Assessing an individual's ability requires that an individual evaluates multiple
 
 In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots. 
 
-\subsection{Model exploration and specification}
+\subsection{Model selection}
 %------------------------------------------------------------------------------------
 
-\subsubsection{Conventional hypothesis tests}
-%------------------------------------------------------------------------------------
-It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
+%\subsubsection{Conventional hypothesis tests}
+%%------------------------------------------------------------------------------------
+%It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
+%
+%Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they only differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
 
-Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they only differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
 
-
-\subsubsection{Visual hypothesis tests}
+%\subsubsection{Visual hypothesis tests}
 %------------------------------------------------------------------------------------
 Visual tests provide an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since they do not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual tests depend on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss visual tests useful in model selection.
 
