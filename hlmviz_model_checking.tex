@@ -55,11 +55,12 @@
 
 \begin{document}
 \maketitle
+\todo[inline]{What names should we put on this chapter for the dissertation?}
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
 
-Hierarchical linear models (i.e., multilevel models, linear mixed effects models, random coefficient models) are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within stats), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and verification. More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of mode estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
+Hierarchical linear models (i.e., multilevel models, linear mixed effects models, random coefficient models) are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and verification. More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
 
 
 %------------------------------------------------------------------------------------
@@ -74,7 +75,7 @@ In this paper we consider the continuous response hierarchical linear model
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the covariance structure between groups, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\ \bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\ \bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
 %
@@ -92,7 +93,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distributi
 
 \subsection{Residuals}
 
-As with the classical linear model with uncorrelated errors residuals are central to exploring the fit of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
+As with the classical linear model with uncorrelated errors, residuals are central to exploring the fit of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
 %
 \begin{itemize}
 \item the level-1 residuals (i.e., the conditional residuals) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
@@ -112,7 +113,7 @@ and
 	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
 \end{equation}
 %
-In practice $\bm{V}$ is unknown, so we estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
+In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
 
 
 
@@ -155,21 +156,23 @@ Assessing an individual's ability requires that an individual evaluates multiple
 \section{Visual inference for hierarchical linear models}
 %------------------------------------------------------------------------------------
 
-In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots.
+In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots. 
 
 \subsection{Model exploration and specification}
 %------------------------------------------------------------------------------------
 
 \subsubsection{Conventional hypothesis tests}
 %------------------------------------------------------------------------------------
-It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested in another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component. For example, the larger model could differ by including additional fixed effects, or by including additional random effects. While statistical software has made performing $t$-tests for fixed effects simple, more thought is required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
+It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
+
+Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they only differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
 
 
 \subsubsection{Visual hypothesis tests}
 %------------------------------------------------------------------------------------
-Visual tests provide an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since they do not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual tests depend on the plot chosen, the number of alternatives, and the number of viewers. Below we outline visual tests for the fixed and random effects.
+Visual tests provide an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since they do not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual tests depend on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss visual tests useful in model selection.
 
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then the predicted random effects associated with that group should be used. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targets, then side-by-side boxplots should be used.
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then the predicted random effects associated with that group should be used. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targeted, then side-by-side boxplots should be used.
 
 %To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
 
