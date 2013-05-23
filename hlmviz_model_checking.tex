@@ -117,16 +117,30 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 
 \subsection{Conventional practices for model selection and model checking}
 %------------------------------------------------------------------------------------
+ 
 
 \subsubsection{Model selection}
 %------------------------------------------------------------------------------------
+
+\paragraph{Nested models.}
 It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 
-Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they only differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
+Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ only with respect to their random components. This is because the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the asymptotic reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
+
+\paragraph{Non-nested models.}
+If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly better than the other.
+
 
 \subsubsection{Model checking}
 %------------------------------------------------------------------------------------
 
+
+
+\paragraph{Linearity.}
+
+\paragraph{Homoscedasticity.}
+
+\paragraph{Normality.}
 
 %------------------------------------------------------------------------------------
 \section{Visual inference}\label{sec:vi}
