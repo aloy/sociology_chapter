@@ -129,7 +129,8 @@ autism.modframe <- na.omit(autism.modframe)
 ### Is the linear random component for age enough?
 
 ## Conventional answer
-M2 <- lmer(vsae ~ age2 + I(age2^2) + (age2 + I(age2^2) - 1 | childid), data = autism.modframe)
+M2 <- lmer(vsae ~ age2 + I(age2^2) + (age2 + I(age2^2) - 1 | childid), 
+	data = autism.modframe)
 anova(M1, M2)
 
 ## Lineup comparing the observed growth curves to versions simulated under M1
@@ -211,6 +212,10 @@ child.df <- subset(autism.modframe,
 child.df <- unique(child.df)
 
 ### sicdegp
+M2.ml <- update(M2, . ~ ., REML = FALSE)
+M4 <- lmer(vsae ~ age2 + I(age2^2) + sicdegp + (age2 + I(age2^2) - 1 | childid), data = autism.modframe, REML = FALSE)
+anova(M2.ml, M4)
+
 # We can look at the level-1 residuals, though they may be less interesting
 M2.sim.sicdegp  <- data.lineup.explvar1(null.model = M2, variable = "sicdegp", 
 	data = autism.modframe, std = FALSE)
@@ -238,6 +243,7 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp.std, geom = "boxplot",
 M2.sim.sicdegp2  <- data.lineup.explvar2(null.model = M2, variable = "sicdegp", 
 	data = child.df)
 M2.true.sicdegp2 <- data.frame(ranef(M2)[[1]], sicdegp = child.df$sicdegp)
+names(M2.true.sicdegp2)[2] <- "I(age2^2)"
 
 qplot(x = sicdegp, y = age2, data = M2.true.sicdegp2, geom = "boxplot", 
 	fill = sicdegp, outlier.size = 0) %+% 
@@ -245,33 +251,136 @@ qplot(x = sicdegp, y = age2, data = M2.true.sicdegp2, geom = "boxplot",
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylim(-10, 10)
 
+qplot(x = sicdegp, y = `I(age2^2)`, data = M2.true.sicdegp2, geom = "boxplot", 
+	fill = sicdegp, outlier.size = 0) %+% 
+	lineup(true = M2.true.sicdegp2, samples = M2.sim.sicdegp2) + 
+	facet_wrap( ~ .sample, ncol=5)
+
 
 ### gender
-M2.sim.gender  <- data.lineup.explvar1(null.model = M2, variable = "gender", 
+M5 <- lmer(vsae ~ age2 + I(age2^2) + sicdegp + gender + (age2 + I(age2^2) - 1 | childid), data = autism.modframe, REML = FALSE)
+anova(M4, M5)
+
+M4.sim.gender  <- data.lineup.explvar1(null.model = M4, variable = "gender", 
 	data = autism.modframe, std = FALSE)
-M2.sim.gender.std  <- data.lineup.explvar1(null.model = M2, variable = "gender",
+M4.sim.gender.std  <- data.lineup.explvar1(null.model = M4, variable = "gender",
 	 data = autism.modframe, std = TRUE)
-M2.true.gender <- data.frame(residual = resid(M2), 
+M4.true.gender <- data.frame(residual = resid(M4), 
 	gender = autism.modframe$gender)
-M2.true.gender.std <- data.frame(residual = HLMresid(M2, level = 1, 
+M4.true.gender.std <- data.frame(residual = HLMresid(M4, level = 1, 
 	standardize = TRUE), gender = autism.modframe$gender)
 
-qplot(x = gender, y = residual, data = M2.true.gender, geom = "boxplot", 
+qplot(x = gender, y = residual, data = M4.true.gender, geom = "boxplot", 
 	fill = gender, outlier.size = 0) %+% 
-	lineup(true = M2.true.gender, samples = M2.sim.gender) + 
+	lineup(true = M4.true.gender, samples = M4.sim.gender) + 
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylim(-10, 10)
 
-qplot(x = gender, y = residual, data = M2.true.gender.std, geom = "boxplot", 
+qplot(x = gender, y = residual, data = M4.true.gender.std, geom = "boxplot", 
 	fill = gender, outlier.size = 0) %+% 
-	lineup(true = M2.true.gender.std, samples = M2.sim.gender.std) + 
+	lineup(true = M4.true.gender.std, samples = M4.sim.gender.std) + 
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylim(-4, 4) + 
 	ylab("standardized residual")
 
+# The level-2 residuals
+M2.sim.gender2  <- data.lineup.explvar2(null.model = M2, variable = "gender", 
+	data = child.df)
+M2.true.gender2 <- data.frame(ranef(M2)[[1]], gender = child.df$gender)
+names(M2.true.gender2)[2] <- "I(age2^2)"
 
-### gender
+qplot(x = gender, y = age2, data = M2.true.gender2, geom = "boxplot", 
+	fill = gender, outlier.size = 0) %+% 
+	lineup(true = M2.true.gender2, samples = M2.sim.gender2) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10)
+
+qplot(x = gender, y = `I(age2^2)`, data = M2.true.gender2, geom = "boxplot", 
+	fill = gender, outlier.size = 0) %+% 
+	lineup(true = M2.true.gender2, samples = M2.sim.gender2) + 
+	facet_wrap( ~ .sample, ncol=5)
+
+
+### race
+M6 <- lmer(vsae ~ age2 + I(age2^2) + sicdegp + race + (age2 + I(age2^2) - 1 | childid), data = autism.modframe, REML = FALSE)
+anova(M4, M6)
+
+M4.sim.race  <- data.lineup.explvar1(null.model = M4, variable = "race", 
+	data = autism.modframe, std = FALSE)
+M4.sim.race.std  <- data.lineup.explvar1(null.model = M4, variable = "race",
+	 data = autism.modframe, std = TRUE)
+M4.true.race <- data.frame(residual = resid(M4), 
+	race = autism.modframe$race)
+M4.true.race.std <- data.frame(residual = HLMresid(M4, level = 1, 
+	standardize = TRUE), race = autism.modframe$race)
+
+
+qplot(x = race, y = residual, data = M4.true.race.std, geom = "boxplot", 
+	fill = race, outlier.size = 0) %+% 
+	lineup(true = M4.true.race.std, samples = M4.sim.race.std) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-5, 5) + 
+	ylab("standardized residual")
+
+# The level-2 residuals
+M2.sim.race2  <- data.lineup.explvar2(null.model = M2, variable = "race", 
+	data = child.df)
+M2.true.race2 <- data.frame(ranef(M2)[[1]], race = child.df$race)
+names(M2.true.race2)[2] <- "I(age2^2)"
+
+qplot(x = race, y = age2, data = M2.true.race2, geom = "boxplot", 
+	fill = race, outlier.size = 0) %+% 
+	lineup(true = M2.true.race2, samples = M2.sim.race2) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10)
+
+qplot(x = race, y = `I(age2^2)`, data = M2.true.race2, geom = "boxplot", 
+	fill = race, outlier.size = 0) %+% 
+	lineup(true = M2.true.race2, samples = M2.sim.race2) + 
+	facet_wrap( ~ .sample, ncol=5)
+
+### bestest2
+M7 <- lmer(vsae ~ age2 + I(age2^2) + sicdegp + bestest2 + (age2 + I(age2^2) - 1 | childid), data = autism.modframe, REML = FALSE)
+anova(M4, M7)
+
+M4.sim.bestest2  <- data.lineup.explvar1(null.model = M4, variable = "bestest2", 
+	data = autism.modframe, std = FALSE)
+M4.sim.bestest2.std  <- data.lineup.explvar1(null.model = M4, variable = "bestest2",
+	 data = autism.modframe, std = TRUE)
+M4.true.bestest2 <- data.frame(residual = resid(M4), 
+	bestest2 = autism.modframe$bestest2)
+M4.true.bestest2.std <- data.frame(residual = HLMresid(M4, level = 1, 
+	standardize = TRUE), bestest2 = autism.modframe$bestest2)
+
+qplot(x = bestest2, y = residual, data = M4.true.bestest2.std, geom = "boxplot", 
+	fill = bestest2, outlier.size = 0) %+% 
+	lineup(true = M4.true.bestest2.std, samples = M4.sim.bestest2.std) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-5, 5) + 
+	ylab("standardized residual")
+	
+# The level-2 residuals
+M2.sim.bestest22  <- data.lineup.explvar2(null.model = M2, variable = "bestest2", 
+	data = child.df)
+M2.true.bestest22 <- data.frame(ranef(M2)[[1]], bestest2 = child.df$bestest2)
+names(M2.true.bestest22)[2] <- "I(age2^2)"
+
+qplot(x = bestest2, y = age2, data = M2.true.bestest22, geom = "boxplot", 
+	fill = bestest2, outlier.size = 0) %+% 
+	lineup(true = M2.true.bestest22, samples = M2.sim.bestest22) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10)
+
+qplot(x = bestest2, y = `I(age2^2)`, data = M2.true.bestest22, geom = "boxplot", 
+	fill = bestest2, outlier.size = 0) %+% 
+	lineup(true = M2.true.bestest22, samples = M2.sim.bestest22) + 
+	facet_wrap( ~ .sample, ncol=5)
 
 #-------------------------------------------------------------------------------
 # Model checking
 #-------------------------------------------------------------------------------
+
+### Within-group homoscedasticity
+qplot(x = factor(childid), y = resid(M4), geom = "boxplot", data = autism.modframe)
+
+### Normality of the random effects
