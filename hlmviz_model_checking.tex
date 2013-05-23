@@ -6,6 +6,7 @@
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 
 %\definecolor{Blue}{rgb}{0,0,0.5}
+\newcommand{\hh}[1]{{\color{orange} #1}}
 
 % fonts
 %\usepackage{kpfonts}
@@ -127,7 +128,12 @@ Classical statistical inference consists of
 	\item comparing the test statistic to a reference (null) distribution,
 	\item and calculating a $p$-value from on which we base our conclusion.
 \end{enumerate}
-Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference for model diagnostics. The null and alternative hypotheses correspond to the model assumption, such as homogeneity of residual variance, and any violation of this model assumption, respectively. The test statistic corresponds to a plot that displays the model assumption. In visual inference, the reference distribution would consist of the set of all plots generated under the assumed model, called null plots. If the model assumptions are upheld, the plot of the observed data should indistinguishable from the null plots. A lineup of plots consists of displaying a number of null plots within which the true plot, that is, the test statistic, is embedded. Adhering to this lineup protocol allows for the definition of a $p$-value similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
+Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference for model diagnostics. The null and alternative hypotheses correspond to the model assumption, such as homogeneity of residual variance, and any violation of this model assumption, respectively. The test statistic corresponds to a plot that displays the model assumption. In visual inference, the reference distribution would consist of the set of all plots generated under the assumed model, called null plots. If the model assumptions are upheld, the plot of the observed data should indistinguishable from the null plots. A lineup of plots consists of displaying a number of null plots within which the true plot, that is, the test statistic, is embedded. Adhering to this lineup protocol allows for the \hh{estimation} of a $p$-value %similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
+\hh{based on an assessment of a lineup by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
+\begin{equation}\label{eqn.pvalue}
+\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
+\end{equation}
+}
 
 %------------------------------------------------------------------------------------
 \section{Visual inference for hierarchical linear models}
