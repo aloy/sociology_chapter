@@ -209,6 +209,8 @@ Assessing an individual's ability requires that an individual evaluates multiple
 
 In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots. 
 
+\todo[inline]{Should we introduce the autism data here? or should we have a separate section? It seems like it would be natural to interweave the example with the discussion of visual inference here.}
+
 \subsection{Model selection}
 %------------------------------------------------------------------------------------
 
@@ -259,9 +261,13 @@ To illustrate the use of visual inference for tests of the fixed effects and ran
 	\caption{\label{fig:lineup-ranef1} Lineup testing for the significance of a fixed effect for SICDEGP. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Similar plots should also be checked using the level-2 residuals. These 20 plots show the level-1 residuals against SICDEGP. Which is the real plot?}
 \end{figure}
 
-\missingfigure{Simulate a lineup for the Q-Q plots.}
+\missingfigure{
+Simulate lineups for the Q-Q plots.\\
+(1) Find a situation where normality is rejected and the EBLUPS don't look normal.\\
+(2) Find a situation where is not rejected but the EBLUPS don't look normal.
+}
 
-\missingfigure{Simulate a lineup for the cyclone plots.}
+\missingfigure{Simulate a lineup for the cyclone plots. The autism data has 155 groups, which would be way to many to show in the paper, so we need to reduce the number of groups for the illstration.}
 
 \paragraph{Comparing non-nested models.}
 %------------------------------------------------------------------------------------
