@@ -75,7 +75,7 @@ In this paper we consider the continuous response hierarchical linear model
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\ \bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
 %
@@ -91,29 +91,29 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distributi
 %
 
 
-\subsection{Residuals}
-%------------------------------------------------------------------------------------
-As with the classical linear model with uncorrelated errors, residuals are central to exploring the fit of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
+%\subsection{Residuals}
+%%------------------------------------------------------------------------------------
+%As with the classical linear model with uncorrelated errors, residuals are central to exploring the fit of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
+%%
+%\begin{itemize}
+%\item the level-1 residuals (i.e., the conditional residuals) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
 %
-\begin{itemize}
-\item the level-1 residuals (i.e., the conditional residuals) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
-
-\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
-\end{itemize}
-%
-where, assuming $\bm{V}$ is known
-\begin{equation}\label{eq:glsb}
-	\widehat{\bm{\beta}} = 
-	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
-	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
-\end{equation}
-and
-\begin{equation}\label{eq:eb}
-	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
-	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
-\end{equation}
-%
-In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
+%\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
+%\end{itemize}
+%%
+%where, assuming $\bm{V}$ is known
+%\begin{equation}\label{eq:glsb}
+%	\widehat{\bm{\beta}} = 
+%	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
+%	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
+%\end{equation}
+%and
+%\begin{equation}\label{eq:eb}
+%	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
+%	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
+%\end{equation}
+%%
+%In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
 
 \subsection{Conventional practices for model selection and model checking}
 %------------------------------------------------------------------------------------
@@ -134,13 +134,37 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 \subsubsection{Model checking}
 %------------------------------------------------------------------------------------
 
+As with the classical linear model with uncorrelated errors, residuals are central to checking the validity of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
+%
+\begin{itemize}
+\item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
+
+\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
+\end{itemize}
+%
+where, assuming $\bm{V}$ is known,
+\begin{equation}\label{eq:glsb}
+	\widehat{\bm{\beta}} = 
+	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
+	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
+\end{equation}
+and
+\begin{equation}\label{eq:eb}
+	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
+	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
+\end{equation}
+%
+In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
+
+\paragraph{Residual scatterplots.} 
+One of the most common diagnostic plots is a scatterplot of the residuals (either level-1 or -2) against the fitted values or an explanatory variable. Such plots are often used to check linearity of the variables included in the model and homoscedasticity of the level-1 residuals. Patterns in these plots indicate departures from the model assumptions, however, we have found that patterns seem to be detectable in properly specified models more often than in the classical linear model.
+
+\paragraph{Quantile-Quantile plots.}
+Quantile-Quantile (Q-Q) plots are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to the true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, Q-Q plots will often lead to erroneous conclusions about the distributional assumptions.
 
 
-\paragraph{Linearity.}
-
-\paragraph{Homoscedasticity.}
-
-\paragraph{Normality.}
+\paragraph{Testing homooscedasticity across groups.}
+Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. To check this assumption 
 
 %------------------------------------------------------------------------------------
 \section{Visual inference}\label{sec:vi}
