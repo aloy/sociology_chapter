@@ -43,6 +43,7 @@
 \newcommand{\inv}{\ensuremath{^{-1}}}
 \newcommand{\ginv}{\ensuremath{^{-}}}
 \newcommand{\trans}{\ensuremath{^\prime}}
+\newcommand{\E}{\ensuremath{\mathrm{E}}}
 \newcommand{\var}{\ensuremath{\mathrm{Var}}}
 \newcommand{\cov}{\ensuremath{\mathrm{Cov}}}
 
@@ -217,15 +218,27 @@ If two non-nested models are being considered, visual inference can be used to i
 \subsubsection{Conventional practices}
 %------------------------------------------------------------------------------------
 
-\paragraph{Residual scatterplots.} 
-One of the most common diagnostic plots is a scatterplot of the residuals (either level-1 or -2) against the fitted values or an explanatory variable. Such plots are often used to check linearity of the variables included in the model and homoscedasticity of the level-1 residuals. Patterns in these plots indicate departures from the model assumptions, however, we have found that patterns seem to be detectable in properly specified models more often than in the classical linear model.
+\paragraph{Residual scatterplots/boxplots.} 
+One of the most common diagnostic plots is a scatterplot or boxplot of the residuals (either level-1 or -2) against the fitted values or an explanatory variable. Such plots are often used to check linearity of the variables included in the model and homoscedasticity of the level-1 residuals. Patterns in these plots indicate departures from the model assumptions, however, we have found that patterns seem to be detectable in properly specified models more often than in the classical linear model. This problem is more commonly seen in scatterplots.
 
 \paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. 
-\todo[inline]{I will fill in more here later.}
+Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. Side-by-side boxplots of the level-1 residuals can be used to visualize this assumption; however, unbalanced group sizes can cause artificial structure in such plots. This can be seen by considering the sampling distribution of the level-1 residual variance, which has variance $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - p_i)$ which depends on the group size. Alternatively, \cite{Raudenbush:2002} propose using a standardized measure of dispersion given by
+%
+\begin{equation}\label{eq:d}
+	d_i = \frac{\log\left( s_i^2 \right) - \left[ \sum_i (n_i - r_i) \log\left( s_i^2 \right) / \sum_i  (n_i - r_i) \right]}{\left(2 / (n_i - r_i)\right)^{1/2}}
+\end{equation}
+%
+where $s_i^2$ is the residual variance within each group and $r_i = \mathrm{rank}(\bm{X}_i)$. The test statistic is then
+%
+\begin{equation}
+	H = \sum_{i=1}^{m^*} d_i^2
+\end{equation}
+%
+which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $m^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. If the distributional assumptions are violated or we do not have large enough group sizes then the approximation to the $\chi^2$ distribution breaks down.
+
 
 \paragraph{Quantile-Quantile plots.}
-Quantile-Quantile (Q-Q) plots are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to the true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, Q-Q plots will often lead to erroneous conclusions about the distributional assumptions.
+Quantile-Quantile (Q-Q) plots are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, Q-Q plots will often lead to erroneous conclusions about the distributional assumptions.
 
 
 \subsubsection{Proposals for visual inference}
