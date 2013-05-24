@@ -207,6 +207,25 @@ qplot(x = age2, y = `I(age2^2)`, data = true.M2.ranef,
 ### Selecting the fixed effects structure
 #-------------------------------------------------------------------------------
 
+### Let's assume that we had not already hypothesize a quadratic relationship
+### between VSAE and age. Then we may have started with the following model:
+
+M1.alt <- lmer(vsae ~ age2 + ( age2 - 1 | childid ), data = autism.modframe)
+
+M1.alt.sim.age  <- data.lineup.explvar1(null.model = M1.alt, variable = "age2", 
+	data = autism.modframe, std = FALSE)
+M1.alt.true.sim.age <- data.frame(residual = HLMresid(M2, level = 1), 
+	age2 = autism.modframe$age2)
+
+
+qplot(x = age2, y = residual, data = M1.alt.true.sim.age, 
+	geom = c("jitter", "smooth")) %+% 
+	lineup(true = M1.alt.true.sim.age, samples = M1.alt.sim.age) + 
+	facet_wrap( ~ .sample, ncol=5)
+
+
+### Level-2 variables (child-level)
+
 child.df <- subset(autism.modframe, 
 	select = c(childid, sicdegp, gender, race, bestest2))
 child.df <- unique(child.df)
@@ -230,7 +249,8 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	fill = sicdegp, outlier.size = 0) %+% 
 	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp) + 
 	facet_wrap( ~ .sample, ncol=5) + 
-	ylim(-10, 10)
+	ylim(-10, 10) + 
+	ylab("level-1 residuals")
 
 qplot(x = sicdegp, y = residual, data = M2.true.sicdegp.std, geom = "boxplot", 
 	fill = sicdegp, outlier.size = 0) %+% 
@@ -380,7 +400,103 @@ qplot(x = bestest2, y = `I(age2^2)`, data = M2.true.bestest22, geom = "boxplot",
 # Model checking
 #-------------------------------------------------------------------------------
 
+### Normality of the random effects
+
+sim_env <- function(x, conf = .95){
+  n <- length(x)
+  P <- ppoints(x)
+  z <- qnorm(P)
+  a <- as.numeric(HLMdiag:::qqlineInfo(x)[1])
+  b <- as.numeric(HLMdiag:::qqlineInfo(x)[2])
+  zz <- qnorm(1 - (1 - conf)/2)
+  SE <- (b/dnorm(z)) * sqrt(P * (1 - P)/n)
+  fit.value <- a + b * z
+  upper <- fit.value + zz * SE
+  lower <- fit.value - zz * SE
+  return(data.frame(lower, upper))
+}
+
+radon <- read.csv("~/Documents/Thesis/Dissertation/eresids-chapter/minconfounded_chapter/data/radon_for_sims.csv") ## find radon_for_sims.csv
+
+fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = radon)
+
+b <- ranef(fm)[[1]] # notice that this is actually a matrix
+sim.y   <- simulate(fm, nsim = 19)                        
+sim.mod <- apply(sim.y, 2, refit, object = fm)            ## a list of models
+
+sim.b0 <- llply(sim.mod, function(x) ranef(x)[[1]][,1])   ## a list of random slopes
+sim.b0 <- melt( do.call("rbind", sim.b0) )[,-2]           ## changing to a data frame
+names(sim.b0) <- c("sample", "(Intercept)")                 
+sim.b0        <- arrange(sim.b0, sample)                  ## ordering by simulation
+
+sim.b0$.n <- as.numeric( str_extract(sim.b0$sample, "\\d+") )
+sim.b0 <- ddply(sim.b0, .(.n), transform, band = sim_env(`(Intercept)`), 
+	x = sort(qqnorm(`(Intercept)`, plot.it=FALSE)$x))
+
+b0 <- transform(b, band = sim_env(`(Intercept)`), 
+	x = sort(qqnorm(`(Intercept)`, plot.it=FALSE)$x))
+
+
+qplot(sample = X.Intercept., data = b0, stat = "qq") %+%
+	lineup(true = b0, sample = sim.b0) + 
+	facet_wrap(~ .sample, ncol = 5) + 
+	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
+	xlab("Normal Quantiles") + ylab("Sample Quantiles") +  
+	theme(panel.margin = unit(0, "lines"))
+
+
+sim.b1 <- llply(sim.mod, function(x) ranef(x)[[1]][,2])   ## a list of random slopes
+sim.b1 <- melt( do.call("rbind", sim.b1) )[,-2]           ## changing to a data frame
+names(sim.b1) <- c("sample", "basement")                  ## setting colnames for faceting
+sim.b1        <- arrange(sim.b1, sample)                  ## ordering by simulation
+
+sim.b1$.n <- as.numeric( str_extract(sim.b1$sample, "\\d+") )
+sim.b1 <- ddply(sim.b1, .(.n), transform, band = sim_env(basement), 
+	x = sort(qqnorm(basement, plot.it=FALSE)$x))
+
+b1 <- transform(b, band = sim_env(basement), 
+	x = sort(qqnorm(basement, plot.it=FALSE)$x))
+
+qplot(sample = basement, data = b1, stat = "qq") %+%
+	lineup(true = b1, sample = sim.b1) + 
+	facet_wrap(~ .sample, ncol = 5) + 
+	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
+	xlab("Normal Quantiles") + ylab("Sample Quantiles") +  
+	theme(panel.margin = unit(0, "lines"))
+
+
+D <- bdiag( VarCorr(fm) )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+M2.sim.ranef <- lapply(M2.refit, function(x) ranef(x)[[1]]) # M2.refit from above
+
+M2.sim.ranef <- do.call("rbind", M2.sim.ranef)
+M2.sim.ranef$.n <- as.numeric(str_extract(rownames(M2.sim.ranef), "\\d+"))
+M2.sim.ranef$childid <- str_extract(rownames(M2.sim.ranef), "[.]\\d+")
+M2.sim.ranef$childid <- as.numeric(str_extract(M2.sim.ranef$childid, "\\d+"))
+
+M2.true.ranef <- ranef(M2)[[1]]
+
+qplot(sample = age2, data = M2.true.ranef, stat = "qq") %+%
+	lineup(true = M2.true.ranef, sample = M2.sim.ranef) + 
+	facet_wrap(~ .sample, ncol = 5) + 
+	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
+	xlab("Normal Quantiles") + ylab("Sample Quantiles") +  
+	theme_bw() + 
+	theme(panel.margin = unit(0, "lines"))
+
+
 ### Within-group homoscedasticity
 qplot(x = factor(childid), y = resid(M4), geom = "boxplot", data = autism.modframe)
-
-### Normality of the random effects

@@ -164,7 +164,9 @@ Quantile-Quantile (Q-Q) plots are often used as an informal check of the distrib
 
 
 \paragraph{Testing homooscedasticity across groups.}
-Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. To check this assumption 
+Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. 
+
+\todo[inline]{I will fill in more here later.}
 
 %------------------------------------------------------------------------------------
 \section{Visual inference}\label{sec:vi}
@@ -235,33 +237,31 @@ To illustrate the use of visual inference for tests of the fixed effects and ran
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{autism_ranef1_true11.pdf}
-	\caption{\label{fig:lineup-ranef1} These 20 plots display a child's VSAE trajectory. Which is the real plot?}
+	\includegraphics[width=\textwidth]{ranef1_lineup3.pdf}
+	\caption{\label{fig:lineup-ranef1} Lineup testing whether the random slope for $(\text{age} - 2)$ is sufficient, or if additional random effects are needed. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{autism_ranef2_true5.pdf}
-	\caption{\label{fig:lineup-ranef2} These 20 plots display a child's VSAE trajectory. Which is the real plot?}
+	\includegraphics[width=\textwidth]{ranef2_lineup6.pdf}
+	\caption{\label{fig:lineup-ranef2} After adding a random effect for $(\text{age} - 2)^2$ we can construct the same lineup to see if we have a sufficient representation of the relationship between VSAE and age. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{autism_ranef3_true4.pdf}
-	\caption{\label{fig:lineup-ranef3} These 20 plots compare the predicted random intercept and slope from model XX. Which is the real plot?}
+	\includegraphics[width=\textwidth]{ranef3_lineup7.pdf}
+	\caption{\label{fig:lineup-ranef3} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope from model XX. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see false lines in these plots.}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{autism_agesq_true19.pdf}
-	\caption{\label{fig:lineup-agesq} These 20 plots show the level-1 residual against age squared. Which is the real plot?}
+	\includegraphics[width=\textwidth]{sicdegp_level1_lineup9.pdf}
+	\caption{\label{fig:lineup-ranef1} Lineup testing for the significance of a fixed effect for SICDEGP. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Similar plots should also be checked using the level-2 residuals. These 20 plots show the level-1 residuals against SICDEGP. Which is the real plot?}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{autism_sicdegp_true13.pdf}
-	\caption{\label{fig:lineup-ranef1} These 20 plots show the level-1 residuals against SICDEGP. Which is the real plot?}
-\end{figure}
+\missingfigure{Simulate a lineup for the Q-Q plots.}
+
+\missingfigure{Simulate a lineup for the cyclone plots.}
 
 \paragraph{Comparing non-nested models.}
 %------------------------------------------------------------------------------------
