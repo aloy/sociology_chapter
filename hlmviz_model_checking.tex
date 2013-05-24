@@ -1,6 +1,8 @@
 \documentclass{article} % JASA requires 12 pt font for manuscripts
 %\usepackage{JASA_manu}        % For JASA manuscript formatting
 
+%\usepackage{endfloat} % just for while I am writing
+
 % for citations
 \usepackage[authoryear]{natbib} % natbib required for JASA
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
@@ -47,21 +49,61 @@
 
 \title{Simulation-Based Diagnostics for Hierarchical Linear Models: A Graphical Approach}
 
-%\author{Adam Loy and Heike Hofmann}
-%	Department of Statistics\\
-%	Iowa State University\\
-%	Ames, IA 50011-1210
-%}
+\author{Adam Loy, Lendie Follett, Heike Hofmann, Dianne Cook\\
+	Department of Statistics\\
+	Iowa State University\\
+	Ames, IA 50011-1210
+}
 
 \begin{document}
 \maketitle
-\todo[inline]{What names should we put on this chapter for the dissertation?}
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
 
 Hierarchical linear models (i.e., multilevel models, linear mixed effects models, random coefficient models) are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and verification. More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
 
+
+%------------------------------------------------------------------------------------
+\section{Visual inference}\label{sec:vi}
+%------------------------------------------------------------------------------------
+In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we work within a rigorous inferential framework. \cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
+
+Classical statistical inference consists of 
+\begin{enumerate}
+	\item formulating a null and alternative hypothesis,
+	\item calculating a test statistic,
+	\item comparing the test statistic to a reference (null) distribution,
+	\item and calculating a $p$-value from on which we base our conclusion.
+\end{enumerate}
+Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference. \hh{As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
+while
+the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under null and alternate hypothesis. 
+A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
+If the model assumption holds, i.e.  under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
+In the lineup protocol the true plot is randomly embedded among a number of null plots. 
+This allows for the estimation of a $p$-value associated with a lineup
+%similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
+based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
+\begin{equation}\label{eqn.pvalue}
+\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
+\end{equation}
+Similarly, the lineup protocol also allows for an assessment of the power of a lineup \cite{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
+\begin{equation}\label{eqn:power}
+\widehat{Power} = {Power}_{N} = 1 - F_{X} (x_{\alpha} - 1),
+\end{equation}
+where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X \ge x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
+Assessing an individual's ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha-1)$, where $\widehat{p} = x/N$ is an estimate for the probability that an individual chooses the true plot.
+
+}
+
+Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_fanned_lineup19.pdf}
+	\caption{\label{fig:fanned} Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the real plot?}
+\end{figure}
 
 %------------------------------------------------------------------------------------
 \section{Hierarchical linear models}\label{sec:hlms}
@@ -115,11 +157,13 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distributi
 %%
 %In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
 
-\subsection{Conventional practices for model selection and model checking}
 %------------------------------------------------------------------------------------
- 
+\subsection{Model selection}
+%------------------------------------------------------------------------------------
 
-\subsubsection{Model selection}
+\todo[inline]{The subsection headers might need work. I just wanted to put in some guiding names for while I was restructuring.}
+
+\subsubsection{Conventional practices}
 %------------------------------------------------------------------------------------
 
 \paragraph{Nested models.}
@@ -130,8 +174,24 @@ Statistical software has made performing $t$-tests for fixed effects simple, but
 \paragraph{Non-nested models.}
 If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly better than the other.
 
+\subsubsection{Proposals for visual inference}
+%------------------------------------------------------------------------------------
 
-\subsubsection{Model checking}
+Visual inference provides an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since it does not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual inference depends on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss plots for visual inference useful in model selection.
+
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targeted, then side-by-side boxplots should be used.
+
+%To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
+
+
+\paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
+
+\paragraph{Comparing non-nested models.}
+If two non-nested models are being considered, visual inference can be used to investigate the goodness-of-fit of each model (see Section~\ref{sec:checking} for further discussion). If inadequacies are discovered in one model but not in the other, then this support the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model; however, by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why one may be preferred.
+
+
+%------------------------------------------------------------------------------------
+\subsection{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
 As with the classical linear model with uncorrelated errors, residuals are central to checking the validity of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
@@ -156,52 +216,26 @@ and
 %
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
+\subsubsection{Conventional practices}
+%------------------------------------------------------------------------------------
+
 \paragraph{Residual scatterplots.} 
 One of the most common diagnostic plots is a scatterplot of the residuals (either level-1 or -2) against the fitted values or an explanatory variable. Such plots are often used to check linearity of the variables included in the model and homoscedasticity of the level-1 residuals. Patterns in these plots indicate departures from the model assumptions, however, we have found that patterns seem to be detectable in properly specified models more often than in the classical linear model.
+
+\paragraph{Testing homoscedasticity across groups.}
+Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. 
+\todo[inline]{I will fill in more here later.}
 
 \paragraph{Quantile-Quantile plots.}
 Quantile-Quantile (Q-Q) plots are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to the true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, Q-Q plots will often lead to erroneous conclusions about the distributional assumptions.
 
 
-\paragraph{Testing homooscedasticity across groups.}
-Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. 
-
-\todo[inline]{I will fill in more here later.}
-
+\subsubsection{Proposals for visual inference}
 %------------------------------------------------------------------------------------
-\section{Visual inference}\label{sec:vi}
-%------------------------------------------------------------------------------------
-In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we work within a rigorous inferential framework. \cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
-
-Classical statistical inference consists of 
-\begin{enumerate}
-	\item formulating a null and alternative hypothesis,
-	\item calculating a test statistic,
-	\item comparing the test statistic to a reference (null) distribution,
-	\item and calculating a $p$-value from on which we base our conclusion.
-\end{enumerate}
-Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference. \hh{As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
-while
-the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under null and alternate hypothesis. 
-A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
-If the model assumption holds, i.e.  under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
-In the lineup protocol the true plot is randomly embedded among a number of null plots. 
-This allows for the estimation of a $p$-value associated with a lineup
-%similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
-based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
-\begin{equation}\label{eqn.pvalue}
-\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
-\end{equation}
-Similarly, the lineup protocol also allows for an assessment of the power of a lineup \cite{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
-\begin{equation}\label{eqn:power}
-\widehat{Power} = {Power}_{N} = 1 - F_{X} (x_{\alpha} - 1),
-\end{equation}
-where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X \ge x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
-Assessing an individual's ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha-1)$, where $\widehat{p} = x/N$ is an estimate for the probability that an individual chooses the true plot.
 
 
 
-}
+\todo[inline]{The below sections are messed up because I am restructuring again}
 
 %------------------------------------------------------------------------------------
 \section{Visual inference for hierarchical linear models}
@@ -209,42 +243,12 @@ Assessing an individual's ability requires that an individual evaluates multiple
 
 In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots. 
 
-\todo[inline]{Should we introduce the autism data here? or should we have a separate section? It seems like it would be natural to interweave the example with the discussion of visual inference here. For now I will begin to introduce the data here and we can always move it.}
-
-\subsection{Autism data}
-%------------------------------------------------------------------------------------
-
-Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. 
-The Vineland Adaptive Behavior Interview survey was used to assess each child's interpersonal relationships, play time activities, and coping skills. This survey is completed by the parents. From the survey the Vineland Socialization Age Equivalent (VSAE) was computed as overall measure of a child's social skills. Additionally, expressive language development at age 2 was assessed using the Sequenced Inventory of Communication Development (SICD) and the children were classified into three groups (high, medium, or low). Assessments were made on the children ages 2, 3, 5, 9, and 13, however, not all children were assessed at each age. Additional information collected on each child includes: gender, race (white or non-white), and initial diagnosis at age 2 (autism, pervasive development disorder (pdd), or non-spectrum).
-
-To illustrate the use of the visual inference for hierarchical linear models we will restrict attention to modeling the changes in social skills for subjects diagnosed with autism spectrum disorder having complete data. This results in a reduced data set of 155 children. For more detailed analyses we refer the reader to \cite{Anderson:2007cl, Anderson:2009in}.
-
-
 
 \subsection{Model selection}
 %------------------------------------------------------------------------------------
 
-%\subsubsection{Conventional hypothesis tests}
-%%------------------------------------------------------------------------------------
-%It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
-%
-%Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they only differ with respect to their random effects \todo{Would components be more clear?} as the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
 
 
-%\subsubsection{Visual hypothesis tests}
-%------------------------------------------------------------------------------------
-Visual tests provide an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since they do not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual tests depend on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss visual tests useful in model selection.
-
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then the predicted random effects associated with that group should be used. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targeted, then side-by-side boxplots should be used.
-
-%To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
-
-
-\paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions---(1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model---which require the use of different plots to determine an answer. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
-
-
-\paragraph{Example.}
-To illustrate the use of visual inference for tests of the fixed effects and random effects (i.e., covariance parameters) we...
 
 
 \begin{figure}
@@ -261,8 +265,8 @@ To illustrate the use of visual inference for tests of the fixed effects and ran
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{ranef3_lineup7.pdf}
-	\caption{\label{fig:lineup-ranef3} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope from model XX. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see false lines in these plots.}
+	\includegraphics[width=\textwidth]{ranef3_lineup15.pdf}
+	\caption{\label{fig:lineup-ranef3} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope from model XX. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see mroe false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
 \end{figure}
 
 \begin{figure}
@@ -279,12 +283,6 @@ Simulate lineups for the Q-Q plots.\\
 
 \missingfigure{Simulate a lineup for the cyclone plots. The autism data has 155 groups, which would be way to many to show in the paper, so we need to reduce the number of groups for the illstration.}
 
-\paragraph{Comparing non-nested models.}
-%------------------------------------------------------------------------------------
-The conventional hypothesis tests require that the models being compared are nested. If two non-nested models are being considered visual inference can be used to investigate the goodness-of-fit of each model. While this comparison does not directly compare the two models, the results of such an investigation will provide evidence supporting one model over...
-
-\todo[inline]{Does this paragraph belong here? or with model checking?}
-
 \subsection{Model checking}
 %------------------------------------------------------------------------------------
 
@@ -298,7 +296,7 @@ Include:
 
 \todo[inline]{Below is a list of some initial ideas.}
 %------------------------------------------------------------------------------------
-\section{Examples}
+\section{}
 %------------------------------------------------------------------------------------
 Applications of hierarchical models:
 \begin{itemize}
@@ -327,9 +325,26 @@ Situations to consider:
 
 \end{itemize}
 
+
 %------------------------------------------------------------------------------------
-\section{Discussion}
+\section{Experimental section to be named later}
 %------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------
+\section{Discussion and conclusions}
+%------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------
+\section{Appendix: Data sets}
+%------------------------------------------------------------------------------------
+
+\paragraph{The autism data.}
+%------------------------------------------------------------------------------------
+
+Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. 
+The Vineland Adaptive Behavior Interview survey was used to assess each child's interpersonal relationships, play time activities, and coping skills. This survey is completed by the parents. From the survey the Vineland Socialization Age Equivalent (VSAE) was computed as overall measure of a child's social skills. Additionally, expressive language development at age 2 was assessed using the Sequenced Inventory of Communication Development (SICD) and the children were classified into three groups (high, medium, or low). Assessments were made on the children ages 2, 3, 5, 9, and 13, however, not all children were assessed at each age. Additional information collected on each child includes: gender, race (white or non-white), and initial diagnosis at age 2 (autism, pervasive development disorder (pdd), or non-spectrum). We restrict attention to models concerned with the changes in social skills for subjects diagnosed with autism spectrum disorder having complete data. This results in a reduced data set of 155 children. For more detailed analyses we refer the reader to \cite{Anderson:2007cl, Anderson:2009in}.
 
 
 %------------------------------------------------------------------------------------

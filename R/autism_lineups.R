@@ -105,7 +105,7 @@ autism.full$race     <- factor(autism.full$race, labels = c("white", "nonwhite")
 autism.full$bestest2 <- factor(autism.full$bestest2, labels = c("autism", "pdd"))
 
 # Revel sicdegp
-autism.full$sicdegp <- relevel(autism.full$sicdegp, ref = 3)
+# autism.full$sicdegp <- relevel(autism.full$sicdegp, ref = 3)
 
 # Center age at 2 years to interpret the intercept
 autism.full$age2 <- autism.full$age - 2
@@ -123,13 +123,13 @@ autism.modframe <- na.omit(autism.modframe)
 #-------------------------------------------------------------------------------
 
 ### Initial model
-(M1 <- lmer(vsae ~ age2 + I(age2^2) + (age2 - 1 | childid), data = autism.modframe))
+(M1 <- lmer(vsae ~ poly(age2, 2) + (age2 - 1 | childid), data = autism.modframe))
 
 
 ### Is the linear random component for age enough?
 
 ## Conventional answer
-M2 <- lmer(vsae ~ age2 + I(age2^2) + (age2 + I(age2^2) - 1 | childid), 
+M2 <- lmer(vsae ~ poly(age2, 2) + (age2 -1 | childid) + (I(age2^2) - 1 | childid), 
 	data = autism.modframe)
 anova(M1, M2)
 
@@ -183,6 +183,9 @@ qplot(x = age2, y = y, data = autism.true.y, group = childid,
 
 ## Conventional tests say yes, but less convincingly
 M3 <- lmer(vsae ~ age2 + I(age2^2) + (age2 - 1 | childid) + (I(age2^2) - 1 | childid), data = autism.modframe)
+
+# M3 <- lmer(vsae ~ age2 + I(age2^2) + (age2 + I(age2^2) - 1 | childid), data = autism.modframe)
+
 anova(M2, M3)
 
 ## The lineup -need to compare simulated ranefs to ranefs of M2
@@ -197,7 +200,7 @@ M3.sim.ranef$.n <- as.numeric(str_extract(M3.sim.ranef$.n, "\\d+"))
 true.M2.ranef <- ranef(M2)$childid 
 
 qplot(x = age2, y = `I(age2^2)`, data = true.M2.ranef, 
-	geom = c("point", "smooth"), method = "lm", se = F) %+% 
+	geom = c("point", "smooth"), method = "lm", se = F, alpha = I(0.4)) %+% 
 	lineup(true = true.M2.ranef, samples = M3.sim.ranef) + 
 	facet_wrap( ~ .sample, ncol=5) + 
 	xlab("age - 2") + 
