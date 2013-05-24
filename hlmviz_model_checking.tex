@@ -97,7 +97,7 @@ Assessing an individual's ability requires that an individual evaluates multiple
 
 }
 
-Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model.
+Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model, such as allowing the strength of relationship between the exam scores to vary by school (i.e., adding a random slope to the model). In the next section we consider how visual inference can be utilized to explore hierarchical linear models.
 
 \begin{figure}
 	\centering
@@ -133,29 +133,30 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distributi
 %
 
 
-%\subsection{Residuals}
-%%------------------------------------------------------------------------------------
-%As with the classical linear model with uncorrelated errors, residuals are central to exploring the fit of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
-%%
-%\begin{itemize}
-%\item the level-1 residuals (i.e., the conditional residuals) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
+
+As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
 %
-%\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
-%\end{itemize}
-%%
-%where, assuming $\bm{V}$ is known
-%\begin{equation}\label{eq:glsb}
-%	\widehat{\bm{\beta}} = 
-%	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
-%	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
-%\end{equation}
-%and
-%\begin{equation}\label{eq:eb}
-%	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
-%	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
-%\end{equation}
-%%
-%In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML).
+\begin{itemize}
+\item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
+
+\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
+\end{itemize}
+%
+where, assuming $\bm{V}$ is known,
+\begin{equation}\label{eq:glsb}
+	\widehat{\bm{\beta}} = 
+	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
+	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
+\end{equation}
+and
+\begin{equation}\label{eq:eb}
+	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
+	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
+\end{equation}
+%
+In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Lineups for visual inference heavily rely on the types of residuals defined above. Next, we compare conventional and visual inference for model selection and validation.
+%Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
+
 
 %------------------------------------------------------------------------------------
 \subsection{Model selection}
@@ -179,12 +180,31 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 
 Visual inference provides an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since it does not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual inference depends on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss plots for visual inference useful in model selection.
 
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targeted, then side-by-side boxplots should be used.
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targeted, then side-by-side boxplots should be used. 
+
+In this setting, the null plots are generated using the parametric bootstrap with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
+
+\todo[inline]{I also included the unordered boxplots so we could look at the difference}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup8.pdf}
+	\caption{\label{fig:boxplot-ordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{sicdegp_level1_lineup9.pdf}
+	\caption{\label{fig:boxplot-unordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
+\end{figure}
 
 %To illustrate the use of visual tests for fixed effects...\todo{Choose a data set!}
 
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
+
+Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination. To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. If the model is appropriate, then these fitted models should closely resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 7$) is identified as the variance of GCSE exam scores is higher for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+
 
 \paragraph{Comparing non-nested models.}
 If two non-nested models are being considered, visual inference can be used to investigate the goodness-of-fit of each model (see Section~\ref{sec:checking} for further discussion). If inadequacies are discovered in one model but not in the other, then this support the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model; however, by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why one may be preferred.
@@ -193,28 +213,6 @@ If two non-nested models are being considered, visual inference can be used to i
 %------------------------------------------------------------------------------------
 \subsection{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
-
-As with the classical linear model with uncorrelated errors, residuals are central to checking the validity of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
-%
-\begin{itemize}
-\item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
-
-\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
-\end{itemize}
-%
-where, assuming $\bm{V}$ is known,
-\begin{equation}\label{eq:glsb}
-	\widehat{\bm{\beta}} = 
-	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
-	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
-\end{equation}
-and
-\begin{equation}\label{eq:eb}
-	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
-	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
-\end{equation}
-%
-In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 \subsubsection{Conventional practices}
 %------------------------------------------------------------------------------------
@@ -251,17 +249,17 @@ In this section we discuss how visual inference can be implemented to conduct co
 
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{ranef1_lineup3.pdf}
-	\caption{\label{fig:lineup-ranef1} Lineup testing whether the random slope for $(\text{age} - 2)$ is sufficient, or if additional random effects are needed. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{ranef2_lineup6.pdf}
-	\caption{\label{fig:lineup-ranef2} After adding a random effect for $(\text{age} - 2)^2$ we can construct the same lineup to see if we have a sufficient representation of the relationship between VSAE and age. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\textwidth]{ranef1_lineup3.pdf}
+%	\caption{\label{fig:lineup-ranef1} Lineup testing whether the random slope for $(\text{age} - 2)$ is sufficient, or if additional random effects are needed. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\textwidth]{ranef2_lineup6.pdf}
+%	\caption{\label{fig:lineup-ranef2} After adding a random effect for $(\text{age} - 2)^2$ we can construct the same lineup to see if we have a sufficient representation of the relationship between VSAE and age. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
+%\end{figure}
 
 \begin{figure}
 	\centering
