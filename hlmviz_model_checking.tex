@@ -5,7 +5,7 @@
 
 % for citations
 \usepackage[authoryear]{natbib} % natbib required for JASA
-\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+\usepackage[dvips,colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 
 %\definecolor{Blue}{rgb}{0,0,0.5}
 \newcommand{\hh}[1]{{\color{orange} #1}}
@@ -15,6 +15,7 @@
 
 % for figures
 \usepackage{graphicx}
+\DeclareGraphicsExtensions{.eps, .pdf}
 \graphicspath{{figures/}}
 
 % help with editing and coauthoring
@@ -219,7 +220,7 @@ If two non-nested models are being considered, visual inference can be used to i
 %------------------------------------------------------------------------------------
 
 \paragraph{Residual scatterplots/boxplots.} 
-One of the most common diagnostic plots is a scatterplot or boxplot of the residuals (either level-1 or -2) against the fitted values or an explanatory variable. Such plots are often used to check linearity of the variables included in the model and homoscedasticity of the level-1 residuals. Patterns in these plots indicate departures from the model assumptions, however, we have found that patterns seem to be detectable in properly specified models more often than in the classical linear model. This problem is more commonly seen in scatterplots.
+One of the most common diagnostic plots is a scatterplot or boxplot of the residuals (either level-1 or -2) against the fitted values or an explanatory variable. Such plots are often used to check linearity of the variables included in the model and homoscedasticity of the level-1 residuals. Patterns in these plots indicate departures from the model assumptions, however, we have found that patterns seem to be detectable in properly specified models more often than in the classical linear model. This problem is more commonly seen in scatterplots. 
 
 \paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are often used to check the assumption of homoscedastic level-1 residuals, but such plots do no account for the potential differences in variability across groups. Side-by-side boxplots of the level-1 residuals can be used to visualize this assumption; however, unbalanced group sizes can cause artificial structure in such plots. This can be seen by considering the sampling distribution of the level-1 residual variance, which has variance $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - p_i)$ which depends on the group size. Alternatively, \cite{Raudenbush:2002} propose using a standardized measure of dispersion given by
@@ -282,8 +283,14 @@ In this section we discuss how visual inference can be implemented to conduct co
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{sicdegp_level1_lineup9.pdf}
-	\caption{\label{fig:lineup-ranef1} Lineup testing for the significance of a fixed effect for SICDEGP. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Similar plots should also be checked using the level-2 residuals. These 20 plots show the level-1 residuals against SICDEGP. Which is the real plot?}
+	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
+	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{ahd_goodcyclone13.pdf}
+	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
 \missingfigure{
@@ -291,8 +298,6 @@ Simulate lineups for the Q-Q plots.\\
 (1) Find a situation where normality is rejected and the EBLUPS don't look normal.\\
 (2) Find a situation where is not rejected but the EBLUPS don't look normal.
 }
-
-\missingfigure{Simulate a lineup for the cyclone plots. The autism data has 155 groups, which would be way to many to show in the paper, so we need to reduce the number of groups for the illstration.}
 
 \subsection{Model checking}
 %------------------------------------------------------------------------------------
