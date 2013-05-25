@@ -83,7 +83,7 @@ Classical statistical inference consists of
 	\item comparing the test statistic to a reference (null) distribution,
 	\item and calculating a $p$-value from on which we base our conclusion.
 \end{enumerate}
-Following \citeauthor{Buja:2009hp}, each of these components has a direct analog in visual inference. \hh{As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
+Each of these steps has a direct analog in visual inference \cite{Buja:2009hp}. As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
 while
 the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under null and alternate hypothesis. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
@@ -102,15 +102,26 @@ Similarly, the lineup protocol also allows for an assessment of the power of a l
 where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X \ge x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
 Assessing an individual's ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha-1)$, where $\widehat{p} = x/N$ is an estimate for the probability that an individual chooses the true plot.
 
-}
-
-Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model, such as allowing the strength of relationship between the exam scores to vary by school (i.e., adding a random slope to the model). In the next section we consider how visual inference can be utilized to explore hierarchical linear models.
-
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_fanned_lineup19.pdf}
-	\caption{\label{fig:fanned} Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the real plot?}
+	\caption{\label{fig:fanned} \hh{For right now, could you remove axis labels and even scales, such as the numbers along the axis? - We need to take off anything that might identify the data to prevent observers from introducing preconceived biases into their assessment. } Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the real plot?}
 \end{figure}
+
+\hh{Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
+Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. 
+}
+\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 7$ is the  data}
+\hh{Here, the lineup is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE  and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
+\hh{The question of interest is whether random slopes for GCSE scores are required ($H_1$). Correspondingly, the null plots  are  created by simulating GCSE exam scores from a random intercept model. 
+If the random intercept model is appropriate for the observed data ($H_0$), the plot of the data should be indistinguishable from the null plots. 
+}
+\todo[inline]{results, again - with p-value}
+
+%Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model, such as allowing the strength of relationship between the exam scores to vary by school (i.e., adding a random slope to the model). 
+
+In the next section we \hh{discuss} how visual inference can be utilized to explore hierarchical linear models.
+
 
 %------------------------------------------------------------------------------------
 \section{Hierarchical linear models}\label{sec:hlms}
@@ -358,10 +369,19 @@ Situations to consider:
 
 
 %------------------------------------------------------------------------------------
+\section{Acknowledgment}
+%------------------------------------------------------------------------------------
+This work was funded in part by National Science Foundation grant DMS 1007697.
+
+%------------------------------------------------------------------------------------
 \section{Appendix: Data sets}
 %------------------------------------------------------------------------------------
+\subsection{General Certificate of Secondary Education}\label{data:gcse}
 
-\paragraph{The autism data.}
+
+%------------------------------------------------------------------------------------
+
+\subsection{The autism data.}\label{data:autism}
 %------------------------------------------------------------------------------------
 
 Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. 
