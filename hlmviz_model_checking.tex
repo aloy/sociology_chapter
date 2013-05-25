@@ -89,19 +89,25 @@ while
 the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under null and alternate hypothesis. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
 If the model assumption holds, i.e.  under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
-In the lineup protocol the true plot is randomly embedded among a number of null plots. 
-This allows for the estimation of a $p$-value associated with a lineup
-%similar to that of permutation tests---if the true plot is distinguishable from a group of $m$ null plots, we would reject the null hypothesis with a $p$-value of $1 / (k + 1)$.
+In the lineup protocol the true plot is randomly embedded among a number of null plots.  
+\hh{Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
+Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. 
+}
+
+The lineup protocol allows for the estimation of a $p$-value associated with a lineup
 based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
-Similarly, the lineup protocol also allows for an assessment of the power of a lineup \cite{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
+\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 7$ is the  data. Give a reference to where the backstory of the lineup is being discussed}
+
+
+The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
 \begin{equation}\label{eqn:power}
-\widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha} - 1),
+\widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
 \end{equation}
-where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X \ge x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
-Assessing an individual's ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha-1)$, where $\widehat{p} = x/N$ is an estimate for the probability that an individual chooses the true plot.
+where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
+Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. \hh{Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to base decisions on designs for particular tasks on evaluating lineups displaying different designs of the same data. }
 
 \begin{figure}
 	\centering
@@ -112,15 +118,11 @@ Assessing an individual's ability requires that an individual evaluates multiple
 	}
 \end{figure}
 
-\hh{Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
-Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. 
-}
-\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 7$ is the  data}
-\hh{Here, the lineup is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE  and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
+
+\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE  and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
 \hh{The question of interest is whether random slopes for GCSE scores are required ($H_1$). Correspondingly, the null plots  are  created by simulating GCSE exam scores from a random intercept model. 
 If the random intercept model is appropriate for the observed data ($H_0$), the plot of the data should be indistinguishable from the null plots. 
 }
-\todo[inline]{results, again - with p-value}
 
 %Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model, such as allowing the strength of relationship between the exam scores to vary by school (i.e., adding a random slope to the model). 
 
