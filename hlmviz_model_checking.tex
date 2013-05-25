@@ -9,6 +9,7 @@
 
 %\definecolor{Blue}{rgb}{0,0,0.5}
 \newcommand{\hh}[1]{{\color{orange} #1}}
+\newcommand{\al}[1]{{\color{red} #1}}
 
 % fonts
 %\usepackage{kpfonts}
@@ -104,8 +105,8 @@ Assessing an individual's ability requires that an individual evaluates multiple
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{normexam_fanned_lineup19.pdf}
-	\caption{\label{fig:fanned} \hh{For right now, could you remove axis labels and even scales, such as the numbers along the axis? - We need to take off anything that might identify the data to prevent observers from introducing preconceived biases into their assessment. } Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. 
+	\includegraphics[width=\textwidth]{normexam_fanned_lineup13.pdf}
+	\caption{\label{fig:fanned} \hh{For right now, could you remove axis labels and even scales, such as the numbers along the axis? - We need to take off anything that might identify the data to prevent observers from introducing preconceived biases into their assessment. } \al{How is that?} Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. 
 \hh{Which plot is the most different from the other plots?}
 	%Which is the real plot?
 	}
@@ -209,13 +210,13 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup8.pdf}
+	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup5.pdf}
 	\caption{\label{fig:boxplot-ordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{sicdegp_level1_lineup9.pdf}
+	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup4.pdf}
 	\caption{\label{fig:boxplot-unordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
 
@@ -224,7 +225,7 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination. To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. If the model is appropriate, then these fitted models should closely resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 7$) is identified as the variance of GCSE exam scores is higher for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination. To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. If the model is appropriate, then these fitted models should closely resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identified as the variance of GCSE exam scores is higher for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
 
 \paragraph{Comparing non-nested models.}
@@ -296,8 +297,14 @@ In this section we discuss how visual inference can be implemented to conduct co
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{ranef3_lineup15.pdf}
-	\caption{\label{fig:lineup-ranef3} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope from model XX. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see mroe false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
+	\includegraphics[width=\textwidth]{normexam_corr_lineup9.pdf}
+	\caption{\label{fig:ranef-corr} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_uncorr_lineup13.pdf}
+	\caption{\label{fig:ranef-uncorr}}
 \end{figure}
 
 \begin{figure}
@@ -312,6 +319,11 @@ In this section we discuss how visual inference can be implemented to conduct co
 	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_constvar_lineup5.pdf}
+	\caption{\label{fig:constvar1} Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
 
 
 \missingfigure{

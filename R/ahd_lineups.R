@@ -61,9 +61,10 @@ grid.newpage()
 pushViewport(viewport(layout = grid.layout(5,4)))
 vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
 realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids, 
-               geom = "boxplot", xlab = "subject", ylab = "residuals") + coord_flip() + 
+               geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
                  ylim(-150, 150) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank())
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
 real.i <- 5 # sample(1:20, 1)
 j <- 0
 pos <- matrix(1:20, ncol = 4, byrow=T)
@@ -78,9 +79,10 @@ for(i in 1:20){
   else{
     j <- j + 1
     p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
-               data = sim_resids[[j]], geom = "boxplot", xlab = "subject", ylab = "residuals") + 
+               data = sim_resids[[j]], geom = "boxplot", xlab = "", ylab = "") + 
                  coord_flip() + ylim(-150, 150) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank())
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
     
     if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
     if(!i %in% 17:20) p <- p + ylab(NULL)
@@ -119,10 +121,11 @@ grid.newpage()
 pushViewport(viewport(layout = grid.layout(5,4)))
 vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
 realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids2, 
-               geom = "boxplot", xlab = "subject", ylab = "residuals") + coord_flip() + 
+               geom = "boxplot", xlab = " ", ylab = " ") + coord_flip() + 
                  ylim(-.5, .5) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank())
-real.i <- 5 # sample(1:20, 1)
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
+real.i <- 13 # sample(1:20, 1)
 j <- 0
 pos <- matrix(1:20, ncol = 4, byrow=T)
 for(i in 1:20){
@@ -136,9 +139,10 @@ for(i in 1:20){
   else{
     j <- j + 1
     p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
-               data = sim_resids2[[j]], geom = "boxplot", xlab = "subject", ylab = "residuals") + 
+               data = sim_resids2[[j]], geom = "boxplot", xlab = " ", ylab = " ") + 
                  coord_flip() + ylim(-.5, .5) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank())
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
     
     if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
     if(!i %in% 17:20) p <- p + ylab(NULL)
