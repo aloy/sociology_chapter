@@ -173,6 +173,7 @@ radon <- read.csv("~/Documents/Thesis/Dissertation/eresids-chapter/minconfounded
 #-------------------------------------------------------------------------------
 # Q-Q plots -- observed radon data
 #-------------------------------------------------------------------------------
+
 fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = radon)
 
 b <- ranef(fm)[[1]] # notice that this is actually a matrix
@@ -219,19 +220,16 @@ qplot(sample = basement, data = b1, stat = "qq") %+%
 	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
 	xlab("Normal Quantiles") + ylab("Sample Quantiles")
 
+#-------------------------------------------------------------------------------
+# Q-Q plots -- simulations
+#-------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------
-# Q-Q plots -- simulating normal random effects
-#-------------------------------------------------------------------------------
 fm <- lmer(log.radon ~ basement + uranium + (1 | county) + (basement - 1 | county), data = radon)
 
-### INDEPENDENT RANDOM EFFECTS ###
 
-b <- ranef(fm)[[1]] # notice that this is actually a matrix
+### Normal random effects ###
 
-sim.y   <- sim_indep_ranef_hlm(fm, nsim = 20, e.dsn = "norm", 
-	b0.dsn = "norm", b1.dsn = "norm", sigma.err = 2, sigma.b0 = 1, sigma.b1 = 1)                        
-# sim.y   <- simulate(fm, nsim = 20)                        
+sim.y   <- simulate(fm, nsim = 20, seed = 801065795)                        
 sim.mod <- apply(sim.y, 2, refit, object = fm)            ## a list of models
 
 sim.b0 <- llply(sim.mod, function(x) ranef(x)[[1]][,1])   ## a list of random slopes
@@ -251,8 +249,10 @@ qplot(sample = X.Intercept., data = b0, stat = "qq") %+%
 	lineup(true = b0, sample = sim.b0) + 
 	facet_wrap(~ .sample, ncol = 5) + 
 	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
-
+#	xlab("Normal Quantiles") + ylab("Sample Quantiles") + 
+	ylab(NULL) + xlab(NULL) + 
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
 
 sim.b1 <- llply(sim.mod, function(x) ranef(x)[[1]][,2])   ## a list of random slopes
@@ -272,118 +272,15 @@ qplot(sample = basement, data = b1, stat = "qq") %+%
 	lineup(true = b1, sample = sim.b1) + 
 	facet_wrap(~ .sample, ncol = 5) + 
 	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
+#	xlab("Normal Quantiles") + ylab("Sample Quantiles") +
+	ylab(NULL) + xlab(NULL) + 
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
 
 
-### DEPENDENT RANDOM EFFECTS ###
-fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = radon)
-
-b <-  HLMresid(fm, level = "county", standardize = TRUE)
-# b <- ranef(fm)[[1]] # notice that this is actually a matrix
-
-sim.y   <- simulate(fm, nsim = 20)                        
-sim.mod <- apply(sim.y, 2, refit, object = fm)            ## a list of models
-
-sim.b0 <- llply(sim.mod, function(x) HLMresid(x, level = "county", standardize = TRUE)[,1]) # ranef(x)[[1]][,1])   ## a list of random slopes
-sim.b0 <- melt( do.call("rbind", sim.b0) )[,-2]           ## changing to a data frame
-names(sim.b0) <- c("sample", "(Intercept)")                 
-sim.b0        <- arrange(sim.b0, sample)                  ## ordering by simulation
-
-sim.b0$.n <- as.numeric( str_extract(sim.b0$sample, "\\d+") )
-sim.b0 <- ddply(sim.b0, .(.n), transform, band = sim_env(`(Intercept)`), 
-	x = sort(qqnorm(`(Intercept)`, plot.it=FALSE)$x))
-
-b0 <- subset(sim.b0, .n == 20)
-sim.b0 <- sim.b0[-which(sim.b0$.n == 20),] 
-
-# Lineup of random intercepts
-qplot(sample = X.Intercept., data = b0, stat = "qq") %+%
-	lineup(true = b0, sample = sim.b0) + 
-	facet_wrap(~ .sample, ncol = 5) + 
-	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
-
-
-sim.b1 <- llply(sim.mod, function(x) HLMresid(x, level = "county", standardize = TRUE)[,2]) # ranef(x)[[1]][,2])   ## a list of random slopes
-sim.b1 <- melt( do.call("rbind", sim.b1) )[,-2]           ## changing to a data frame
-names(sim.b1) <- c("sample", "basement")                  ## setting colnames for faceting
-sim.b1        <- arrange(sim.b1, sample)                  ## ordering by simulation
-
-sim.b1$.n <- as.numeric( str_extract(sim.b1$sample, "\\d+") )
-sim.b1 <- ddply(sim.b1, .(.n), transform, band = sim_env(basement), 
-	x = sort(qqnorm(basement, plot.it=FALSE)$x))
-
-b1 <- subset(sim.b1, .n == 20)
-sim.b1 <- sim.b1[-which(sim.b1$.n == 20),] 
-
-# Lineup of random slopes
-qplot(sample = basement, data = b1, stat = "qq") %+%
-	lineup(true = b1, sample = sim.b1) + 
-	facet_wrap(~ .sample, ncol = 5) + 
-	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
-
-
-#-------------------------------------------------------------------------------
-# Q-Q plots -- simulating non-normal random effects
-#-------------------------------------------------------------------------------
-
-### INDEPENDENT RANDOM EFFECTS ###
-fm <- lmer(log.radon ~ basement + uranium + (1 | county) + (basement - 1 | county), data = radon)
-
-sim.true <- sim_indep_ranef_hlm(fm, nsim = 1, e.dsn = "norm", 
-	b0.dsn = "exp", b1.dsn = "exp", sigma.err = 2, sigma.b0 = 1, sigma.b1 = 1)                        
-sim.y   <- sim_indep_ranef_hlm(fm, nsim = 19, e.dsn = "norm", 
-	b0.dsn = "norm", b1.dsn = "norm", sigma.err = 2, sigma.b0 = 1, sigma.b1 = 1)                        
-
-true.mod <- refit(fm, sim.true)
-sim.mod <- apply(sim.y, 2, refit, object = fm)            ## a list of models
-
-sim.b0 <- llply(sim.mod, function(x) ranef(x)[[1]][,1])   ## a list of random slopes
-sim.b0 <- melt( do.call("rbind", sim.b0) )[,-2]           ## changing to a data frame
-names(sim.b0) <- c("sample", "(Intercept)")                 
-sim.b0        <- arrange(sim.b0, sample)                  ## ordering by simulation
-
-sim.b0$.n <- as.numeric( str_extract(sim.b0$sample, "\\d+") )
-sim.b0 <- ddply(sim.b0, .(.n), transform, band = sim_env(`(Intercept)`), 
-	x = sort(qqnorm(`(Intercept)`, plot.it=FALSE)$x))
-
-b <- ranef(true.mod)[[1]]
-b0 <- transform(b, band = sim_env(`(Intercept)`), 
-	x = sort(qqnorm(`(Intercept)`, plot.it=FALSE)$x))
-
-# Lineup of random intercepts
-qplot(sample = X.Intercept., data = b0, stat = "qq") %+%
-	lineup(true = b0, sample = sim.b0) + 
-	facet_wrap(~ .sample, ncol = 5) + 
-	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
-
-
-sim.b1 <- llply(sim.mod, function(x) ranef(x)[[1]][,2])   ## a list of random slopes
-sim.b1 <- melt( do.call("rbind", sim.b1) )[,-2]           ## changing to a data frame
-names(sim.b1) <- c("sample", "basement")                  ## setting colnames for faceting
-sim.b1        <- arrange(sim.b1, sample)                  ## ordering by simulation
-
-sim.b1$.n <- as.numeric( str_extract(sim.b1$sample, "\\d+") )
-sim.b1 <- ddply(sim.b1, .(.n), transform, band = sim_env(basement), 
-	x = sort(qqnorm(basement, plot.it=FALSE)$x))
-
-b0 <- transform(b, band = sim_env(basement), 
-	x = sort(qqnorm(basement, plot.it=FALSE)$x))
-
-# Lineup of random slopes
-qplot(sample = basement, data = b1, stat = "qq") %+%
-	lineup(true = b1, sample = sim.b1) + 
-	facet_wrap(~ .sample, ncol = 5) + 
-	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
-
-
-
-### DEPENDENT RANDOM EFFECTS ###
-
+### Random effects from a t distribution ###
+set.seed(-2029298609)
 y.b.t <- sim_t_hlm(fm)
 refit.b.t <-  refit(fm, y.b.t)
 b.t <- ranef(refit.b.t)[[1]]
@@ -408,7 +305,10 @@ qplot(sample = X.Intercept., data = b0, stat = "qq") %+%
 	lineup(true = b0, sample = sim.b0) + 
 	facet_wrap(~ .sample, ncol = 5) + 
 	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
+#	xlab("Normal Quantiles") + ylab("Sample Quantiles") + 
+	ylab(NULL) + xlab(NULL) + 
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
 
 
@@ -429,4 +329,7 @@ qplot(sample = basement, data = b1, stat = "qq") %+%
 	lineup(true = b1, sample = sim.b1) + 
 	facet_wrap(~ .sample, ncol = 5) + 
 	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
-	xlab("Normal Quantiles") + ylab("Sample Quantiles")
+#	xlab("Normal Quantiles") + ylab("Sample Quantiles") +
+	ylab(NULL) + xlab(NULL) + 
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
