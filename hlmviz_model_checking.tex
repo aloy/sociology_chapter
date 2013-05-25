@@ -105,7 +105,10 @@ Assessing an individual's ability requires that an individual evaluates multiple
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_fanned_lineup19.pdf}
-	\caption{\label{fig:fanned} \hh{For right now, could you remove axis labels and even scales, such as the numbers along the axis? - We need to take off anything that might identify the data to prevent observers from introducing preconceived biases into their assessment. } Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the real plot?}
+	\caption{\label{fig:fanned} \hh{For right now, could you remove axis labels and even scales, such as the numbers along the axis? - We need to take off anything that might identify the data to prevent observers from introducing preconceived biases into their assessment. } Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. 
+\hh{Which plot is the most different from the other plots?}
+	%Which is the real plot?
+	}
 \end{figure}
 
 \hh{Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
@@ -359,9 +362,29 @@ Situations to consider:
 
 
 %------------------------------------------------------------------------------------
-\section{Experimental section to be named later}
+\section{Investigating Q-Q plots visually}
 %------------------------------------------------------------------------------------
 
+We are testing three different versions of a Q-Q plot %\citep{Wilk:1968}, 
+see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot with an added confidence region based on a simulation envelope of the theoretical distribution, and a rotated Q-Q plot of the same data are shown. 
+
+\begin{figure}
+%<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
+%dframe <- read.csv("data/data-1-1-1-20-2-14-5.csv")
+%library(ggplot2)
+%dframe$.sample <- "Control"
+%ctrl_lineup(subset(dframe, .sample_outer==5))
+%dframe$.sample <- "Standard"
+%std_lineup(subset(dframe, .sample_outer==5))
+%dframe$.sample <- "Rotated"
+%rot_lineup(subset(dframe, .sample_outer==5))
+%@
+\centering
+\includegraphics[width=0.3\textwidth]{qqplots1}
+\includegraphics[width=0.3\textwidth]{qqplots2}
+\includegraphics[width=0.3\textwidth]{qqplots3}
+\caption{ \label{qqplots} Three versions of Q-Q plots: control, standard, and rotated.}
+\end{figure}
 
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
