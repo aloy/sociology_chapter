@@ -84,7 +84,7 @@ Classical statistical inference consists of
 	\item comparing the test statistic to a reference (null) distribution,
 	\item and calculating a $p$-value from on which we base our conclusion.
 \end{enumerate}
-Each of these steps has a direct analog in visual inference \cite{Buja:2009hp}. As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
+Each of these steps has a direct analog in visual inference \citep{Buja:2009hp}. As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as e.g.~homogeneity of residual variance,
 while
 the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under null and alternate hypothesis. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
@@ -99,7 +99,7 @@ based on an assessment  by human observers: let $x$ be the number of observers, 
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
-\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 7$ is the  data. Give a reference to where the backstory of the lineup is being discussed}
+\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 1$ is the  data. Give a reference to where the backstory of the lineup is being discussed}
 
 
 The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
@@ -257,7 +257,7 @@ where $s_i^2$ is the residual variance within each group and $r_i = \mathrm{rank
 	H = \sum_{i=1}^{m^*} d_i^2
 \end{equation}
 %
-which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $m^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. If the distributional assumptions are violated or we do not have large enough group sizes then the approximation to the $\chi^2$ distribution breaks down.
+which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $m^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. If the distributional assumptions are violated or we do not have large enough group sizes, then the approximation to the $\chi^2$ distribution breaks down.
 
 
 \paragraph{Quantile-Quantile plots.}
@@ -306,7 +306,7 @@ In this section we discuss how visual inference can be implemented to conduct co
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_uncorr_lineup13.pdf}
-	\caption{\label{fig:ranef-uncorr}}
+	\caption{\label{fig:ranef-uncorr}  Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot?}
 \end{figure}
 
 \begin{figure}
@@ -420,7 +420,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 
 %------------------------------------------------------------------------------------
 
-\subsection{The autism data.}\label{data:autism}
+\subsection{The autism data}\label{data:autism}
 %------------------------------------------------------------------------------------
 
 Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. 
