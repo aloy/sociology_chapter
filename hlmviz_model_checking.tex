@@ -99,7 +99,7 @@ based on an assessment  by human observers: let $x$ be the number of observers, 
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
-\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 7$ is the  data. Give a reference to where the backstory of the lineup is being discussed}
+\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 7$ is the  data. Give a reference to where the backstory of the lineup is being discussed in section \ref{model-selection}}
 
 
 The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
@@ -119,10 +119,6 @@ Assessing ability requires that an individual evaluates multiple lineups. If tha
 \end{figure}
 
 
-\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE  and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
-\hh{The question of interest is whether random slopes for GCSE scores are required ($H_1$). Correspondingly, the null plots  are  created by simulating GCSE exam scores from a random intercept model. 
-If the random intercept model is appropriate for the observed data ($H_0$), the plot of the data should be indistinguishable from the null plots. 
-}
 
 %Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model, such as allowing the strength of relationship between the exam scores to vary by school (i.e., adding a random slope to the model). 
 
@@ -196,15 +192,22 @@ It is standard practice to use either a $t$-test or a likelihood ratio test to t
 
 Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ only with respect to their random components. This is because the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the asymptotic reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
 
+\hh{that 50:50 mixture is a suggestion of a workaround, but not actually proven to be true, not even asymptotically. }
+
+\hh{asymptotic results rarely hold in practice, when we are dealing with finite data.}
+
 \paragraph{Non-nested models.}
 If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly better than the other.
 
-\subsubsection{Proposals for visual inference}
+\subsubsection{Proposals for visual inference}\label{model-selection}
 %------------------------------------------------------------------------------------
 
 Visual inference provides an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since it does not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual inference depends on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss plots for visual inference useful in model selection.
 
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted, then a scatterplot with a smoother should be used; if a discrete variable is targeted, then side-by-side boxplots should be used. 
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother \hh{is suitable for testing}; for a discrete covariate, \hh{we can make use of} side-by-side boxplots. 
+
+\todo[inline]{using `should' sounds like scatterplots and boxplots are the only way to go. While we know that they work, there might be situations in which something else works better, so I would not want to make very strong recommendations without backing it up (with additional, extensive experiments, that we won't do just yet :)) }
+
 
 In this setting, the null plots are generated using the parametric bootstrap with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
 
@@ -227,7 +230,13 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination. To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. If the model is appropriate, then these fitted models should closely resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identified as the variance of GCSE exam scores is higher for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE  and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
+\hh{The question of interest is whether random slopes for GCSE scores are required ($H_1$). Correspondingly, the null plots  are  created 
+by simulating GCSE exam scores from a random intercept model. 
+}
+
+%Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
+ To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. If the model is appropriate, then these fitted models should closely resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 7$) is identified as the variance of GCSE exam scores is higher for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
 
 \paragraph{Comparing non-nested models.}
