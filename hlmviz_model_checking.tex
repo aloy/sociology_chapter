@@ -110,7 +110,7 @@ based on an assessment  by human observers: let $x$ be the number of observers, 
 
 \todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 1$ is the  data. Give a reference to where the backstory of the lineup is being discussed in section \ref{model-selection}}
 
-The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot at least $x_\alpha$ times:
+The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot more than $x_\alpha$ times:
 \begin{equation}\label{eqn:power}
 \widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
 \end{equation}
@@ -205,8 +205,6 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 Visual inference provides an alternative to conventional hypothesis tests that does not have limitations based on whether ML or REML was used to fit the model since it does not rely on the (restricted) log likelihood. Additionally, the $p$-value from a visual test is calculated using the Binomial distribution, which does not require adjustments to an asymptotic distribution. Rather, visual inference depends on the plot chosen, the number of alternatives, and the number of viewers. Below we discuss plots for visual inference useful in model selection.
 
 \paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother \hh{is suitable for testing}; for a discrete covariate, \hh{we can make use of} side-by-side boxplots. 
-
-\todo[inline]{using `should' sounds like scatterplots and boxplots are the only way to go. While we know that they work, there might be situations in which something else works better, so I would not want to make very strong recommendations without backing it up (with additional, extensive experiments, that we won't do just yet :)) }
 
 
 In this setting, the null plots are generated using the parametric bootstrap with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
@@ -398,8 +396,8 @@ Include:
 \section{Investigating Q-Q plots visually}
 %------------------------------------------------------------------------------------
 
-We are testing three different versions of a Q-Q plot %\citep{Wilk:1968}, 
-see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot with an added confidence region based on a simulation envelope of the theoretical distribution, and a rotated Q-Q plot of the same data are shown. 
+We are testing three different versions of a Q-Q plot \citep{Wilk:1968}, 
+see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot with an added confidence region based on a simulation envelope of the theoretical distribution \citep{reference?}, and a rotated Q-Q plot of the same data are shown. 
 
 \begin{figure}
 %<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
@@ -419,13 +417,16 @@ see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot wi
 \caption{ \label{qqplots} Three versions of Q-Q plots: control, standard, and rotated.}
 \end{figure}
 
+Using the Amazon Turk services, 417 participants were each asked to evaluate five lineups of different types. This resulted in 2006 responses.
+
+
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
 %------------------------------------------------------------------------------------
 
 
 %------------------------------------------------------------------------------------
-\section{Acknowledgment}
+\paragraph{Acknowledgment}
 %------------------------------------------------------------------------------------
 This work was funded in part by National Science Foundation grant DMS 1007697.
 
