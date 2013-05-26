@@ -246,6 +246,12 @@ Having considered the value of a random slope in the model, we next consider whe
 	\caption{\label{fig:ranef-corr} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_uncorr_lineup13.pdf}
+	\caption{\label{fig:ranef-uncorr}  Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot?}
+\end{figure}
+
 \paragraph{Comparing non-nested models.}
 If two non-nested models are being considered, visual inference can be used to investigate the goodness-of-fit of each model (see Section~\ref{sec:checking} for further discussion). If inadequacies are discovered in one model but not in the other, then this support the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model; however, by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why one may be preferred.
 
@@ -254,7 +260,7 @@ If two non-nested models are being considered, visual inference can be used to i
 \subsection{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
-\subsubsection{Conventional practices}
+\subsubsection{Conventional practices}\label{sec:conv-check}
 %------------------------------------------------------------------------------------
 
 \paragraph{Residual scatterplots/boxplots.} 
@@ -283,19 +289,62 @@ Quantile-Quantile (Q-Q) plots are often used as an informal check of the distrib
 \subsubsection{Proposals for visual inference}
 %------------------------------------------------------------------------------------
 
+The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
+
+First we consider investigating the appropriateness of a hierarchical linear model based on plots of residuals against explanatory variables. Such plots are appropriate to check the assumptions of linearity and homoscedasticity at each level of the model. The lineup in Figure~\ref{fig:constvar1} was chosen to test the homoscedasticity of the level-1 residual variance across levels of (standardized LRT scores)$^3$. Here, the true plot (panel $2^3-3$) is indistinguishable from the null plots indicating that there is no evidence that the level-1 residual variance is non-constant across the values of (standardized LRT scores)$^3$. While this conclusion is apparent from the lineup, we believe this is not the case if the true plot is considered separately. In this case, an analyst might believe that the level-1 residual variance decreases as (standardized LRT scores)$^3$ increases, which, based on the lineup, is simply artificial structure. 
+ 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_constvar_lineup5.pdf}
+	\caption{\label{fig:constvar1} Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
+
+While lineups such as Figure~\ref{fig:constvar1} address the assumption of homogeneous level-1 residual variance, they do not speak to the assumption of homogeneous level-1 residual variance across all groups. To do this we propose using a lineup of boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of Methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3-3$) is easily identified from the field of null plots revealing heteroscedasticity across groups that was not detected by other plots. In this longitudinal study each subject was observed at most 5 times, with 19 subjects dropping out of the study early. Due to the small group sizes, the $\chi^2$ approximation used by the numeric approach suggested by \cite{Raudenbush:2002} is inappropriate, so conventional testing would be forced to rely on simulation, which is computationally more demanding than the generation of 19 null plots.
 
 
-\todo[inline]{Should the below section headings be deleted?}
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
+	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
 
-%------------------------------------------------------------------------------------
-\section{Visual inference for hierarchical linear models}
-%------------------------------------------------------------------------------------
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{ahd_goodcyclone13.pdf}
+	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
 
-In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots. 
+
+Finally, the lineups in Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} are used to test the assumption of normality. 
 
 
-\subsection{Model selection}
-%------------------------------------------------------------------------------------
+In Section~\ref{sec:conv-check} we discussed...
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
+	\caption{\label{fig:qqlineup-norm} Lineup of 20 normal Q-Q plots for the predicted random slope.  Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{qqplot_tranef_slope_lineup6.pdf}
+	\caption{\label{fig:qqlineup-t} Lineup of 20 normal Q-Q plots for the predicted random slope.  Which is the real plot?}
+\end{figure}
+
+%
+%\todo[inline]{Should the below section headings be deleted?}
+%
+%%------------------------------------------------------------------------------------
+%\section{Visual inference for hierarchical linear models}
+%%------------------------------------------------------------------------------------
+%
+%In this section we discuss how visual inference can be implemented to conduct common tests for hierarchical linear models and to avoid misinterpreting residual plots. 
+%
+%
+%\subsection{Model selection}
+%%------------------------------------------------------------------------------------
 
 
 
@@ -314,53 +363,16 @@ In this section we discuss how visual inference can be implemented to conduct co
 %\end{figure}
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{normexam_uncorr_lineup13.pdf}
-	\caption{\label{fig:ranef-uncorr}  Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot?}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
-	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{ahd_goodcyclone13.pdf}
-	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{normexam_constvar_lineup5.pdf}
-	\caption{\label{fig:constvar1} Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
-	\caption{\label{fig:qqlineup-norm} Lineup of 20 normal Q-Q plots for the predicted random slope.  Which is the real plot?}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{qqplot_tranef_slope_lineup6.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup of 20 normal Q-Q plots for the predicted random slope.  Which is the real plot?}
-\end{figure}
-
-\subsection{Model checking}
-%------------------------------------------------------------------------------------
-
-Include:
-\begin{itemize}
-\item Checks for level-1 and -2 heteroscedasticity -- cyclone plots, residuals vs. predictors
-\item Linearity
-
-\end{itemize}
-
+%\subsection{Model checking}
+%%------------------------------------------------------------------------------------
+%
+%Include:
+%\begin{itemize}
+%\item Checks for level-1 and -2 heteroscedasticity -- cyclone plots, residuals vs. predictors
+%\item Linearity
+%
+%\end{itemize}
+%
 
 %\todo[inline]{Below is a list of some initial ideas.}
 %%------------------------------------------------------------------------------------
@@ -436,6 +448,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 
 We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school.
 
+\subsection{Methylprednisolone study}\label{data:ahd}
 %------------------------------------------------------------------------------------
 
 \subsection{The autism data}\label{data:autism}
