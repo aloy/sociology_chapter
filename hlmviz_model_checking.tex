@@ -1,7 +1,7 @@
 \documentclass{article} % JASA requires 12 pt font for manuscripts
 %\usepackage{JASA_manu}        % For JASA manuscript formatting
 
-%\usepackage{endfloat} % just for while I am writing
+\usepackage{endfloat} % just for while I am writing
 
 % for citations
 \usepackage[authoryear]{natbib} % natbib required for JASA
@@ -190,11 +190,14 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 \paragraph{Nested models.}
 It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 
-Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ only with respect to their random components. This is because the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the asymptotic reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters, but is rather a 50:50 mixture of $\chi^2$ distributions \citep{Self:1987wb, Stram:1994wd}. For example, when testing $q$ versus $q + 1$ random effects, the reference distribution is a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$.
+Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ only with respect to their random components. This is because the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. 
+Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the asymptotic reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters. \cite{Stram:1994wd} suggest the use of a 50:50 mixture of $\chi^2$ distributions with $q$ and $q + 1$ degrees of freedom when testing $q$ versus $q + 1$ random effects. While this approximation has been shown to be useful \citep{Morrell:1998ua}, it does not apply to every case.  We refer the reader \citet[Section 2.4.1]{Pinhiero:2000vf} for an example of when a this approximation is not successful. The lack of a general rule for approximating the distribution of the likelihood ratio test statistic reveals the need for a more transparent procedure for determining whether a random effect should be included in the model.
 
 \hh{that 50:50 mixture is a suggestion of a workaround, but not actually proven to be true, not even asymptotically. }
 
 \hh{asymptotic results rarely hold in practice, when we are dealing with finite data.}
+
+\al{I agree, I got myself a little turned around with the literature, but I have my head straight again.}
 
 \paragraph{Non-nested models.}
 If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly better than the other.
@@ -230,7 +233,7 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE  and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
+\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE   and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
 \hh{The question of interest is whether random slopes for GCSE scores are required ($H_1$). Correspondingly, the null plots  are  created 
 by simulating GCSE exam scores from a random intercept model. 
 }
@@ -430,7 +433,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 %------------------------------------------------------------------------------------
 \section{Appendix: Data sets}
 %------------------------------------------------------------------------------------
-\subsection{General Certificate of Secondary Education}\label{data:gcse}
+\subsection{General Certificate of Secondary Education}\label{data:GCSE}
 
 
 %------------------------------------------------------------------------------------

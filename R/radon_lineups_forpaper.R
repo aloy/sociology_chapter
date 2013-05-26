@@ -229,7 +229,7 @@ fm <- lmer(log.radon ~ basement + uranium + (1 | county) + (basement - 1 | count
 
 ### Normal random effects ###
 
-sim.y   <- simulate(fm, nsim = 20, seed = 987654321)                        
+sim.y   <- simulate(fm, nsim = 20, seed = 801065795)                        
 sim.mod <- apply(sim.y, 2, refit, object = fm)            ## a list of models
 
 sim.b0 <- llply(sim.mod, function(x) ranef(x)[[1]][,1])   ## a list of random slopes
