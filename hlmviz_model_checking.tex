@@ -313,10 +313,8 @@ While lineups such as Figure~\ref{fig:constvar1} address the assumption of homog
 \end{figure}
 
 
-Finally, the lineups in Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} are used to test the assumption of normality. 
-
-
-In Section~\ref{sec:conv-check} we discussed...
+Finally, the lineups presented in Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes were very unbalanced and there was a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-norm} (panel $2^5 - 5$) is indistinguishable from the null plots, indicating no evidence of a violation of normality, but compared only to the normal distribution in a single Q-Q plot would be identified as a violation. In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. 
+%The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
 
 \begin{figure}
@@ -446,11 +444,36 @@ $\ell_{\ell(i)}$ & lineup difficulty, $\ell_{\ell(i)} \sim N(0,1)$ i.i.d
 \end{tabular}
 \end{center}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Sun May 26 13:36:30 2013
-% xtable(summary(m0)@coefs, digits=c(0,2,3,2,4))\begin{table}[ht]\centering\begin{tabular}{rrrrrl}  \hline &\bf Estimate &\bf Std. Error &\bf z value &\bf Pr($>$$|$z$|$) & \\   \hlineIntercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
-\multicolumn{3}{l}{\bf design} \\   Control & 0.00 & ----- & ----- & ----- \\    Rotated & -0.34 & 0.130 & -2.64 & 0.0084 & **\\    Standard & 0.12 & 0.130 & 0.90 & 0.3670 \\ [3pt]%  locationOuter & 0.19 & 0.106 & 1.83 & 0.0677 \\ %  clickSingle & -0.09 & 0.104 & -0.89 & 0.3747 \\ \multicolumn{4}{l}{\bf degrees of freedom} \\  2 & 6.32 & 0.739 & 8.56 & 0.0000 & ***\\   5 & 2.44 & 0.721 & 3.38 & 0.0007 & ***\\   10 & 0.00 & ----- & ----- & ----- \\ [3pt]\multicolumn{3}{l}{\bf sample size} \\  20 & 0.00 & ----- & ----- & ----- \\   30 & 1.11 & 0.839 & 1.32 & 0.1869 \\   50 & 2.99 & 0.838 & 3.57 & 0.0004 & ***\\   75 & 2.30 & 0.840 & 2.74 & 0.0062 & **\\    \hline
-\multicolumn{5}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}\end{tabular}
-\caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Sun May 26 13:36:30 2013
+% xtable(summary(m0)@coefs, digits=c(0,2,3,2,4))
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrl}
+  \hline
+ &\bf Estimate &\bf Std. Error &\bf z value &\bf Pr($>$$|$z$|$) & \\ 
+  \hline
+Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
+\multicolumn{3}{l}{\bf design} \\
+   Control & 0.00 & ----- & ----- & ----- \\ 
+   Rotated & -0.34 & 0.130 & -2.64 & 0.0084 & **\\ 
+   Standard & 0.12 & 0.130 & 0.90 & 0.3670 \\ [3pt]
+%  locationOuter & 0.19 & 0.106 & 1.83 & 0.0677 \\ 
+%  clickSingle & -0.09 & 0.104 & -0.89 & 0.3747 \\ 
+\multicolumn{4}{l}{\bf degrees of freedom} \\
+  2 & 6.32 & 0.739 & 8.56 & 0.0000 & ***\\ 
+  5 & 2.44 & 0.721 & 3.38 & 0.0007 & ***\\ 
+  10 & 0.00 & ----- & ----- & ----- \\ [3pt]
+\multicolumn{3}{l}{\bf sample size} \\
+  20 & 0.00 & ----- & ----- & ----- \\ 
+  30 & 1.11 & 0.839 & 1.32 & 0.1869 \\ 
+  50 & 2.99 & 0.838 & 3.57 & 0.0004 & ***\\ 
+  75 & 2.30 & 0.840 & 2.74 & 0.0062 & **\\ 
+   \hline
+\multicolumn{5}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}
+\end{tabular}
+\caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }
+\end{table}
 
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
@@ -469,15 +492,17 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 
 We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school.
 
-\subsection{Methylprednisolone study}\label{data:ahd}
-%------------------------------------------------------------------------------------
-
 \subsection{The autism data}\label{data:autism}
 %------------------------------------------------------------------------------------
 
 Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. 
 The Vineland Adaptive Behavior Interview survey was used to assess each child's interpersonal relationships, play time activities, and coping skills. This survey is completed by the parents. From the survey the Vineland Socialization Age Equivalent (VSAE) was computed as overall measure of a child's social skills. Additionally, expressive language development at age 2 was assessed using the Sequenced Inventory of Communication Development (SICD) and the children were classified into three groups (high, medium, or low). Assessments were made on the children ages 2, 3, 5, 9, and 13, however, not all children were assessed at each age. Additional information collected on each child includes: gender, race (white or non-white), and initial diagnosis at age 2 (autism, pervasive development disorder (pdd), or non-spectrum). We restrict attention to models concerned with the changes in social skills for subjects diagnosed with autism spectrum disorder having complete data. This results in a reduced data set of 155 children. For more detailed analyses we refer the reader to \cite{Anderson:2007cl, Anderson:2009in}.
 
+\subsection{Methylprednisolone study}\label{data:ahd}
+%------------------------------------------------------------------------------------
+
+\subsection{Radon study}\label{data:radon}
+%------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
