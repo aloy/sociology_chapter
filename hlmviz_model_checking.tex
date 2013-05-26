@@ -417,8 +417,28 @@ see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot wi
 \caption{ \label{qqplots} Three versions of Q-Q plots: control, standard, and rotated.}
 \end{figure}
 
-Using the Amazon Turk services, 417 participants were each asked to evaluate five lineups of different types. This resulted in 2006 responses.
+Using the Amazon Turk services, 417 participants were each asked to evaluate five lineups of different types. This resulted in $n = $4018 responses.
+\[
+g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + \ell_{\ell(i)}
+\]
+where
 
+\begin{center}
+\begin{tabular}{lp{5.5in}}
+$\mu$ & overall mean\\
+$\tau_{j(i)}$ & is the effect of design $j$, $j \in \{ \text{Control, Standard, Rotated} \}$, and $j(i)$ is the design used in evaluation $i$, $1 \le i \le n$.  \\
+$\delta_{k(i)}$ & is the effect of $k$ degrees of freedom , $k \in \{ 2, 5, 10 \}$, and $k(i)$ is the degree of freedom used to generate the lineup  in evaluation $i$, $1 \le i \le n$.  \\
+$\nu_{\ell(i)}$ & is the effect of sample size $\ell$, $\ell \in \{ 20, 30, 50, 75 \}$, and $\ell(i)$ is the sample size used to generate the lineup  in evaluation $i$, $1 \le i \le n$.  \\
+$u_{u(i)}$ & user ability, $u_{u(i)} \sim N(0,1)$ i.i.d \\
+$\ell_{\ell(i)}$ & lineup difficulty, $\ell_{\ell(i)} \sim N(0,1)$ i.i.d 
+\end{tabular}
+\end{center}
+
+% latex table generated in R 3.0.1 by xtable 1.7-1 package% Sun May 26 13:36:30 2013
+% xtable(summary(m0)@coefs, digits=c(0,2,3,2,4))\begin{table}[ht]\centering\begin{tabular}{rrrrrl}  \hline &\bf Estimate &\bf Std. Error &\bf z value &\bf Pr($>$$|$z$|$) & \\   \hlineIntercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
+\multicolumn{3}{l}{\bf design} \\   Control & 0.00 & ----- & ----- & ----- \\    Rotated & -0.34 & 0.130 & -2.64 & 0.0084 & **\\    Standard & 0.12 & 0.130 & 0.90 & 0.3670 \\ [3pt]%  locationOuter & 0.19 & 0.106 & 1.83 & 0.0677 \\ %  clickSingle & -0.09 & 0.104 & -0.89 & 0.3747 \\ \multicolumn{4}{l}{\bf degrees of freedom} \\  2 & 6.32 & 0.739 & 8.56 & 0.0000 & ***\\   5 & 2.44 & 0.721 & 3.38 & 0.0007 & ***\\   10 & 0.00 & ----- & ----- & ----- \\ [3pt]\multicolumn{3}{l}{\bf sample size} \\  20 & 0.00 & ----- & ----- & ----- \\   30 & 1.11 & 0.839 & 1.32 & 0.1869 \\   50 & 2.99 & 0.838 & 3.57 & 0.0004 & ***\\   75 & 2.30 & 0.840 & 2.74 & 0.0062 & **\\    \hline
+\multicolumn{5}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}\end{tabular}
+\caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }\end{table}
 
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
