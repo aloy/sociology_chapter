@@ -228,13 +228,18 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education exam (GCSEE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSEE and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
-\hh{The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, null plots  are  created by simulating GCSE exam scores from a random intercept model,} 
-\al{and overlaying linear smoothers for each school.}
+\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education exam (GCSEE) and the  standardized London Reading Test (LRT).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression of the two test scores for all students at a school. 
+The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  is  created by simulating GCSE exam scores from a model with a random intercept only.}
+\hh{The resulting scores for each school are regressed on LRT results and shown as lines} 
+%\al{and overlaying linear smoothers for each school.}
+
+
 %
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
- %To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then these smoothers should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is indentifiable as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+ %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
+ If the model is appropriate, then these \hh{lines} should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identifiable 
+  \todo[inline]{we don't know that the true panel is identifiable, we do need to wait for the results first.}
+  as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random slope and intercept to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem, as a correlation of 0 is not on the boundary of the parameter space, a using a lineup keeps tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with a linear smoother. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) is easily identified, providing evidence supporting the inclusion of the additional parameter.
 
@@ -410,6 +415,8 @@ We are testing three different versions of a Q-Q plot \citep{Wilk:1968},
 see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot with an added confidence region based on a simulation envelope of the theoretical distribution \citep{reference?}, and a rotated Q-Q plot of the same data are shown. 
 
 \todo[inline]{I think the envelope that used was not a simulation envelope, but rather a point-wise confidence envelope based on the order statistics for an independent sample from the normal distribution.}
+\todo[inline]{Could you fix that, then? I have no idea what is really going on with the envelope :) 
+Do you also have a reference for this?}
 
 \begin{figure}
 %<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
@@ -507,7 +514,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 %------------------------------------------------------------------------------------
 \subsection{General Certificate of Secondary Education}\label{data:GCSE}
 
-We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school.
+We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSEE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school.
 
 \subsection{The autism data}\label{data:autism}
 %------------------------------------------------------------------------------------
