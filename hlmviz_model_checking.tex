@@ -72,9 +72,9 @@ Motivation for this paper: describe visual inference, and apply to (open) proble
 Hierarchical linear models (i.e., multilevel models, linear mixed effects models, random coefficient models) are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and verification. More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
 
 
-%------------------------------------------------------------------------------------
-\section{Visual inference}\label{sec:vi}
-%------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------
+%\section{Visual inference}\label{sec:vi}
+%%------------------------------------------------------------------------------------
 In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we work within a rigorous inferential framework. \cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
 
 Classical statistical inference consists of 
@@ -93,6 +93,14 @@ In the lineup protocol the true plot is randomly embedded among a number of null
 \hh{Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
 Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. 
 }
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_fanned_lineup13.pdf}
+	\caption{\label{fig:fanned} \hh{Which plot is the most different from the other plots?} \hh{What makes your choice different from the other plots?}
+	%Which is the real plot?
+	}
+\end{figure}
+
 
 The lineup protocol allows for the estimation of a $p$-value associated with a lineup
 based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
@@ -109,22 +117,11 @@ The lineup protocol also allows for an assessment of the power of a lineup \cite
 where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
 Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. \hh{Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to base decisions on designs for particular tasks on evaluating lineups displaying different designs of the same data. }
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{normexam_fanned_lineup13.pdf}
-	\caption{\label{fig:fanned} \hh{For right now, could you remove axis labels and even scales, such as the numbers along the axis? - We need to take off anything that might identify the data to prevent observers from introducing preconceived biases into their assessment. } \al{How is that?} Lineup of General Certificate of Secondary Education (GCSE) exam scores at age 16 against standardized London Reading Test scores at age 11. The null plots were created by simulating GCSE exam scores from a random intercept model. 
-\hh{Which plot is the most different from the other plots?}
-	%Which is the real plot?
-	}
-\end{figure}
-
-
-
-%Figure~\ref{fig:fanned} displays a lineup comparing the relationship between the  General Certificate of Secondary Education (GCSE) exam scores of students at age 16 to  standardized London Reading Test scores of students at age 11, by school for 65 inner-London schools (see the appendix for additional details about these data). The null plots were created by simulating GCSE exam scores from a random intercept model. Which is the true plot? If the random intercept model is appropriate for the observed data, this should be a difficult task, but if the true plot (panel $\sqrt{144} + 7$) is identified, then we should consider improving the model, such as allowing the strength of relationship between the exam scores to vary by school (i.e., adding a random slope to the model). 
+\hh{Unlike the classical hypothesis testing, visual inference allows us to collect information from observers what aspect of the display led them to their choice. Rather than to just reject a null hypothesis these reasons give us additional information what aspect of the null hypothesis seems to be violated. In practice this works surprisingly well. }
 
 In the next section we \hh{discuss} how visual inference can be utilized to explore hierarchical linear models.
 
-
+\todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
 %------------------------------------------------------------------------------------
 \section{Hierarchical linear models}\label{sec:hlms}
 %------------------------------------------------------------------------------------
