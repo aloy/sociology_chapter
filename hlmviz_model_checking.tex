@@ -214,13 +214,13 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 
 In this setting, the null plots are generated using the parametric bootstrap with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
 
-\todo[inline]{I also included the unordered boxplots so we could look at the difference}
-
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup5.pdf}
 	\caption{\label{fig:boxplot-ordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
+
+\todo[inline]{I also included the unordered boxplots so we could look at the difference}
 
 \begin{figure}
 	\centering
@@ -233,14 +233,21 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education (GCSE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSE   and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
-\hh{The question of interest is whether random slopes for GCSE scores are required ($H_1$). Correspondingly, the null plots  are  created 
-by simulating GCSE exam scores from a random intercept model. 
-}
-
+\hh{The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education exam (GCSEE) and the  standardized London Reading Test (LRT).  Each of the lines summarizes the relationship between GCSEE and LRT scores for one of 65  inner-London schools (see section~\ref{data:GCSE} for additional details).}
+\hh{The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, null plots  are  created by simulating GCSE exam scores from a random intercept model,} 
+\al{and overlaying linear smoothers for each school.}
+%
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
- To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. If the model is appropriate, then these fitted models should closely resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 7$) is identified as the variance of GCSE exam scores is higher for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+ %To construct this figure we used the parametric bootstrap to generate simulated GCSE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
+ If the model is appropriate, then these smoothers should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is indentifiable as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
+Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random slope and intercept to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem, as a correlation of 0 is not on the boundary of the parameter space, a using a lineup keeps tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with a linear smoother. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) is easily identified, providing evidence supporting the inclusion of the additional parameter.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{normexam_corr_lineup9.pdf}
+	\caption{\label{fig:ranef-corr} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
+\end{figure}
 
 \paragraph{Comparing non-nested models.}
 If two non-nested models are being considered, visual inference can be used to investigate the goodness-of-fit of each model (see Section~\ref{sec:checking} for further discussion). If inadequacies are discovered in one model but not in the other, then this support the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model; however, by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why one may be preferred.
@@ -309,11 +316,6 @@ In this section we discuss how visual inference can be implemented to conduct co
 %	\caption{\label{fig:lineup-ranef2} After adding a random effect for $(\text{age} - 2)^2$ we can construct the same lineup to see if we have a sufficient representation of the relationship between VSAE and age. These 20 plots display a child's VSAE trajectory. Which is the real plot?}
 %\end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{normexam_corr_lineup9.pdf}
-	\caption{\label{fig:ranef-corr} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
-\end{figure}
 
 \begin{figure}
 	\centering
@@ -434,6 +436,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 \section{Appendix: Data sets}
 %------------------------------------------------------------------------------------
 \subsection{General Certificate of Secondary Education}\label{data:GCSE}
+
 
 
 %------------------------------------------------------------------------------------
