@@ -429,22 +429,35 @@ see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot wi
 \caption{ \label{qqplots} Three versions of Q-Q plots: control, standard, and rotated.}
 \end{figure}
 
-Using the Amazon Turk services, 417 participants were each asked to evaluate five lineups of different types. This resulted in $n = $4018 responses.
+Using the Amazon Turk services, 417 participants were each asked to evaluate five lineups of different types. This resulted in $n =$ 4018 responses. $X_i$, with $X_i \sim B_{1, \pi_i}, 1 \le i \le n$,  is the binary decision on the $i$th evaluation and $\pi_i$ is the probability with which the observer chooses the data plot. This probability is influenced by a number of factors:
+
+\begin{center}
+\begin{tabular}{lp{5in}}
+$\tau$ & the design used in the lineup (Control, Standard, Rotated), \\
+&  the specific parameters under which the data for the lineup was created: \\
+&  $\delta$ \ \ \ degrees of freedom (2, 5, 10) and \\
+&  $\nu$  \ \ \ sample size (10, 20, 50, 75), \\
+$\ell$ &  level of difficulty based on the actual sample, and \\
+$u$ &  users' subjective abilities.
+ \end{tabular}
+\end{center}
+%
+This can be modeled as  
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + \ell_{\ell(i)}
 \]
-where
+where $g$ is the logit link function. Both user ability $u$ and sample difficulty $\ell$ are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{\ell(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
-\begin{center}
-\begin{tabular}{lp{5.5in}}
-$\mu$ & overall mean\\
-$\tau_{j(i)}$ & is the effect of design $j$, $j \in \{ \text{Control, Standard, Rotated} \}$, and $j(i)$ is the design used in evaluation $i$, $1 \le i \le n$.  \\
-$\delta_{k(i)}$ & is the effect of $k$ degrees of freedom , $k \in \{ 2, 5, 10 \}$, and $k(i)$ is the degree of freedom used to generate the lineup  in evaluation $i$, $1 \le i \le n$.  \\
-$\nu_{\ell(i)}$ & is the effect of sample size $\ell$, $\ell \in \{ 20, 30, 50, 75 \}$, and $\ell(i)$ is the sample size used to generate the lineup  in evaluation $i$, $1 \le i \le n$.  \\
-$u_{u(i)}$ & user ability, $u_{u(i)} \sim N(0,1)$ i.i.d \\
-$\ell_{\ell(i)}$ & lineup difficulty, $\ell_{\ell(i)} \sim N(0,1)$ i.i.d 
-\end{tabular}
-\end{center}
+%\begin{center}
+%\begin{tabular}{lp{5.5in}}
+%$\mu$ & overall mean\\
+%$\tau_{j(i)}$ & is the effect of design $j$, $j \in \{ \text{Control, Standard, Rotated} \}$, and $j(i)$ is the design used in evaluation $i$, $1 \le i \le n$.  \\
+%$\delta_{k(i)}$ & is the effect of $k$ degrees of freedom , $k \in \{ 2, 5, 10 \}$, and $k(i)$ is the degree of freedom used to generate the lineup  in evaluation $i$, $1 \le i \le n$.  \\
+%$\nu_{\ell(i)}$ & is the effect of sample size $\ell$, $\ell \in \{ 20, 30, 50, 75 \}$, and $\ell(i)$ is the sample size used to generate the lineup  in evaluation $i$, $1 \le i \le n$.  \\
+%$u_{u(i)}$ & user ability, $u_{u(i)} \sim N(0,1)$ i.i.d \\
+%$d_{\ell(i)}$ & data difficulty, $d_{\ell(i)} \sim N(0,1)$ i.i.d 
+%\end{tabular}
+%\end{center}
 
 % latex table generated in R 3.0.1 by xtable 1.7-1 package
 % Sun May 26 13:36:30 2013
@@ -476,6 +489,8 @@ Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
 \end{tabular}
 \caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }
 \end{table}
+
+The model coefficients are shown in table~\ref{tab:model}. As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality as is the case with lower degrees of freedom. The  type of design is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
 
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
