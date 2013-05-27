@@ -181,12 +181,22 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 
 \todo[inline]{The subsection headers might need work. I just wanted to put in some guiding names for while I was restructuring.}
 
+
+\todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
+
+
 \subsubsection{Conventional practices}
 %------------------------------------------------------------------------------------
 
 \paragraph{Nested models.}
 It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 
+\todo[inline]{Make the following paragraph a bullet list. This will help to emphasize the important parts. At the moment they get lost a bit.
+\begin{description}
+\item[\bf Fixed effects in nested models: ] likelihood ratio tests based on REML estimation do not allow for testing different fixed effect structures. Maximum likelihood estimation allows for it, but is conservative. 
+\item[\bf Random components in nested models: ] likelihood ratio tests for random components suffer from boundary effects. 
+\end{description}
+}
 Statistical software has made performing $t$-tests for fixed effects simple, but more thought is often required when performing a likelihood ratio test. More specifically, likelihood ratio tests can only be used with nested models fit by REML if they differ only with respect to their random components. This is because the restricted log likelihood contains a term that changes with $\bm{X}_i$ \citep[c.f.,][Section 2.2.5]{Pinhiero:2000vf}. Nested models fit by ML do not have this restriction, so likelihood ratio tests can be used to test both the fixed and random effects. 
 Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the asymptotic reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters. \cite{Stram:1994wd} suggest the use of a 50:50 mixture of $\chi^2$ distributions with $q$ and $q + 1$ degrees of freedom when testing $q$ versus $q + 1$ random effects. While this approximation has been shown to be useful \citep{Morrell:1998ua}, it does not apply to every case.  We refer the reader \citet[Section 2.4.1]{Pinhiero:2000vf} for an example of when a this approximation is not successful. The lack of a general rule for approximating the distribution of the likelihood ratio test statistic reveals the need for a more transparent procedure for determining whether a random effect should be included in the model.
 
@@ -237,7 +247,7 @@ The question of interest is whether random slopes for LRT scores are required to
 %
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then these \hh{lines} should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identifiable 
+ If the model is appropriate, then the \hh{overall pattern of the lines in the null plots} should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identifiable 
   \todo[inline]{we don't know that the true panel is identifiable, we do need to wait for the results first.}
   as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
