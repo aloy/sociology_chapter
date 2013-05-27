@@ -69,16 +69,29 @@ Motivation for this paper: describe visual inference, and apply to (open) proble
 \section{Introduction}
 %------------------------------------------------------------------------------------
 
-\hh{Intro to visual inference first}
+\hh{Intro to visual inference first} -- \al{This was a first pass at the intro.}
 
+\al{Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interested is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked. While graphical methods are often used for exploration, they are often deemed too subjective to be the sole basis for model selection or validation. This viewpoint leads to an over reliance on conventional hypothesis tests for model selection and validation in complex models where such procedures often perform sub-optimally. Until when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results. Recently, visual simulation-based diagnostics \cite{Gelman:2004gg} and inference \cite{Buja:2009hp} have been formulated, providing a more rigorous framework for graphical discovery. In this paper we consider using the inferential framework developed by \cite{Buja:2009hp} to address common difficulties encountered in the selection and validation of hierarchical linear models.
 
-Hierarchical linear models are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and verification. More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
+Hierarchical linear models are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and validation. For example:
+\begin{itemize}
+\item Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
+%Likelihood ratio tests for model selection are known to suffer from boundary effects, and while adjustments to the reference distributions have been proposed \citep{Stram:1994wd}, they do not hold in all cases.
+
+\item Residual plots often display noticeable patterns which are often artifacts of the model estimation procedure rather than indications of lack of fit. This problem is especially pronounced for plots of the predicted random effects \cite[c.f.,][]{Morrell:2000ve}.
+
+\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of Quantile-Quantile plots ineffective for distributional assessment.
+\end{itemize}
+%More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
+Visual inference provides a unified graphical approach to account for such problems encountered with complex models while relying on familiar statistical graphics. 
+%This results in a rigorous graphical approach that has for more potential for discovery during the model selection and validation processes, 
+}
 
 
 %%------------------------------------------------------------------------------------
 \subsection{Visual inference}\label{sec:vi}
 %%------------------------------------------------------------------------------------
-In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we work within a rigorous inferential framework. \cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
+In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we must work within a rigorous inferential framework. \cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
 
 Classical statistical inference consists of 
 \begin{enumerate}
