@@ -584,11 +584,14 @@ Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
 
 The model coefficients are shown in table~\ref{tab:model}. As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality as is the case with lower degrees of freedom. The  type of design is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
 
+
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
 %------------------------------------------------------------------------------------
 
+\hh{Technical implementation: R \cite{R} and packages for modeling lme4 \cite{lme4}, HLMDiag \cite{HLMDiag}, and visualizations ggplot2 \cite{ggplot2}, nullabor \cite{nullabor}, gridSVG \cite{gridSVG}. 
 
+Mahbub's website for experiments}
 %------------------------------------------------------------------------------------
 \paragraph{Acknowledgment}
 %------------------------------------------------------------------------------------
@@ -600,6 +603,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 \subsection{General Certificate of Secondary Education}\label{data:GCSE}
 
 We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSEE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school.
+\todo[inline]{What would be nice is to either provide a package/website where the data is available or make the data available ourselves.}
 
 \subsection{The autism data}\label{data:autism}
 %------------------------------------------------------------------------------------
