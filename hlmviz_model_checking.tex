@@ -69,6 +69,9 @@ Motivation for this paper: describe visual inference, and apply to (open) proble
 \section{Introduction}
 %------------------------------------------------------------------------------------
 
+\hh{Intro to visual inference first}
+
+
 Hierarchical linear models (i.e., multilevel models, linear mixed effects models, random coefficient models) are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and verification. More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
 
 
@@ -126,8 +129,11 @@ In the next section we \hh{discuss} how visual inference can be utilized to expl
 \section{Hierarchical linear models}\label{sec:hlms}
 %------------------------------------------------------------------------------------
 
-\subsection{Notation and formulation}
+\subsection{Notation and formulation} 
 %------------------------------------------------------------------------------------
+
+\todo[inline]{Let's move the notation into the introduction}
+
 In this paper we consider the continuous response hierarchical linear model
 %
 \begin{equation}\label{eq:hlm}
@@ -178,6 +184,7 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 %------------------------------------------------------------------------------------
 \subsection{Model selection}
 %------------------------------------------------------------------------------------
+\todo[inline]{move this subsection up in the hierarchy}
 
 
 \todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
@@ -335,6 +342,7 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 %------------------------------------------------------------------------------------
 
 \todo[inline]{This is my new idea for the order of this subsubsection. I need to take a break for a bit, but thought I would push this to github now.}
+\todo[inline]{this structure looks good, but let's move it up in the hierarchy by one}
 
 \subsubsection{Homogeneity of variance}
 %\subsubsection{Conventional practices}\label{sec:conv-check}
@@ -589,7 +597,7 @@ The model coefficients are shown in table~\ref{tab:model}. As expected, the task
 \section{Discussion and conclusions}
 %------------------------------------------------------------------------------------
 
-\hh{Technical implementation: R \cite{R} and packages for modeling lme4 \cite{lme4}, HLMDiag \cite{HLMDiag}, and visualizations ggplot2 \cite{ggplot2}, nullabor \cite{nullabor}, gridSVG \cite{gridSVG}. 
+\hh{Technical implementation: R \citep{R} and packages for modeling lme4 \citep{lme4}, HLMDiag \citep{HLMDiag}, and visualizations ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, gridSVG \citep{gridSVG}. 
 
 Mahbub's website for experiments}
 %------------------------------------------------------------------------------------
