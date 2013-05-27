@@ -192,11 +192,10 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 In the next section we \hh{discuss} how visual inference can be utilized to explore hierarchical linear models.
 
 \todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
-%------------------------------------------------------------------------------------
-\section{Visual inference for hierarchical linear models}\label{sec:hlms}
-%------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------
+%\section{Visual inference for hierarchical linear models}\label{sec:hlms}
+%%------------------------------------------------------------------------------------
 
-The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
 
 %\subsection{Notation and formulation} 
@@ -252,9 +251,10 @@ The lineup protocol presents a unified approach to overcome the difficulties enc
 
 
 %------------------------------------------------------------------------------------
-\subsection{Model selection}
+\section{Model selection}
 %------------------------------------------------------------------------------------
-\todo[inline]{move this subsection up in the hierarchy}
+
+The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
 
 \todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
@@ -408,7 +408,7 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 
 
 %------------------------------------------------------------------------------------
-\subsection{Model checking}\label{sec:checking}
+\section{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
 \todo[inline]{This is my new idea for the order of this subsubsection. I need to take a break for a bit, but thought I would push this to github now.}
