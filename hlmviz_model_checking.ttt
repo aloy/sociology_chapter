@@ -1,4 +1,5 @@
-\begin{table}[ht]
+\begin{table*}
+[ht]
 \centering
 \begin{tabular}{rrrrrl}
   \hline
@@ -24,6 +25,6 @@ Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
 \multicolumn{5}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}
 \end{tabular}
 \caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }
-\end{table}
+\end{table*}
 \efloatseparator
  
