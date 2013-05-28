@@ -486,7 +486,9 @@ To check the assumption of linearity we suggest the use of scatterplots and boxp
 \subsection{Normality}
 %------------------------------------------------------------------------------------
 
-Quantile-Quantile (Q-Q) plots are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, single Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
+\subsubsection{Assessing normality of the random effects}
+%------------------------------------------------------------------------------------
+Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, single Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
 Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-norm} (panel $2^4 - 5$) is indistinguishable from the null plots, indicating no evidence of a violation of normality, but compared only to the normal distribution in a single Q-Q plot would be identified as a violation. In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of this paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
@@ -648,17 +650,13 @@ Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of l
 
 
 %------------------------------------------------------------------------------------
-\section{Investigating Q-Q plots visually}\label{sec:qqplot}
+\subsubsection{Investigating Q-Q plots visually}\label{sec:qqplot}
 %------------------------------------------------------------------------------------
-\todo[inline]{this section should be folded into the previous section on the Q-Q plot discussion }
 
-
-We are testing three different versions of a Q-Q plot \citep{Wilk:1968}, 
-see figure~\ref{qqplots}. From left to right, a standard Q-Q plot, a Q-Q plot with an added confidence region based on a simulation envelope of the theoretical distribution \citep{reference?}, and a rotated Q-Q plot of the same data are shown. 
-
-\alnote{I think the envelope that used was not a simulation envelope, but rather a point-wise confidence envelope based on the order statistics for an independent sample from the normal distribution.}
-\todo[inline]{Could you fix that, then? I have no idea what is really going on with the envelope :) 
-Do you also have a reference for this?}
+\al{To further support the assessment of normality using lineups a study was conducted to compare three different versions of a Q-Q plot.
+%We are testing three different versions of a Q-Q plot, 
+The three versions are displayed in figure~\ref{qqplots} which include, from left to right, a standard Q-Q plot, a Q-Q plot with an added 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,} \todo{I didn't find a good general reference, but this is implemented all over the place.}
+\al{ and a rotated (i.e., detrended) Q-Q plot of the same data. }
 
 \begin{figure}
 %<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
@@ -678,7 +676,8 @@ Do you also have a reference for this?}
 \caption{ \label{qqplots} Three versions of Q-Q plots: control, standard, and rotated.}
 \end{figure}
 
- $X_i$, with $X_i \sim B_{1, \pi_i}, 1 \le i \le n$,  is the binary decision on the $i$th evaluation and $\pi_i$ is the probability with which the observer chooses the data plot. This probability is influenced by a number of factors:
+
+Let $X_i \sim B_{1, \pi_i}, 1 \le i \le n$, where $X_i$ is the binary decision on the $i$th evaluation and $\pi_i$ is the probability with which the observer chooses the data plot. This probability is influenced by a number of factors:
 
 \begin{center}
 \begin{tabular}{lp{5in}}
@@ -693,10 +692,11 @@ $u$ &  users' subjective abilities.
 %
 The above factors result in 12 different parameter settings. For each we created two samples, along with two sets of null data each, yielding 48 different lineups. 
 Using the Amazon Turk services, 417 participants were each asked to evaluate ten different lineups. This resulted in $n =$ 4,018 responses. We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
+\alnote{I find this notation a little confusing. I think we are just missing a sentence in the lead in.}
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + \ell_{\ell(i)}
 \]
-where $g$ is the logit link function. Both user ability $u$ and sample difficulty $\ell$ are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{\ell(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
+where $g$ is the logit link function. Both user ability, $u$, and sample difficulty, $\ell$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{\ell(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
 
 
@@ -742,9 +742,9 @@ Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
 \caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }
 \end{table}
 
-The model coefficients are shown in table~\ref{tab:model}. As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality as is the case with lower degrees of freedom. The  type of design is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
+The \al{estimated} model coefficients \al{for model $M1$} are shown in table~\ref{tab:model}. As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality, as is the case with lower degrees of freedom. The  design \al{of the Q-Q plot} is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
 
-\hh{Note that none of the data plots in the lineups were actually created using data from a normal distribution. This should lead to rejection of the null hypothesis in every single instance. This is not quite true, as can be seen in table~\ref{tab:reject}. But what becomes also evident is the high power  visual inference has. Based on lineups we are able to reject non-normality much more  often than based on any of the classical tests.}
+\hh{Note that none of the data plots in the lineups were actually created using data from a normal distribution. This should lead to rejection of the null hypothesis in every single instance. This is not quite true, as can be seen in table~\ref{tab:reject}. But what also becomes evident is the high power  of visual inference. Based on lineups we are able to reject non-normality much more often than with any of the classical tests.}
 
 % latex table generated in R 3.0.1 by xtable 1.7-1 package
 % Mon May 27 20:57:50 2013
@@ -758,7 +758,9 @@ Result & Visual & AD & SW & CVM & KS \\
   not reject & 24 & 38 & 32 & 40 & 38 \\ 
    \hline
 \end{tabular}
-\caption{\label{tab:reject} Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}
+\caption{\label{tab:reject} 
+\alnote{What significance level was used?}
+Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}
 \end{table}
 
 %------------------------------------------------------------------------------------
