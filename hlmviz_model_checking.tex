@@ -21,6 +21,7 @@
 
 % help with editing and coauthoring
 \usepackage{todonotes}
+\newcommand{\alnote}[1]{\todo[inline,color=green!40]{#1}}
 
 % title formatting
 \usepackage[compact,small]{titlesec}
@@ -259,6 +260,7 @@ The lineup protocol presents a unified approach to overcome the difficulties enc
 
 \todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
 
+\alnote{I went through and tried to merge everything today. This is only my first attempt at the merge. I am now rereading this section trying to work out the kinks.}
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}
@@ -308,7 +310,7 @@ The question of interest is whether random slopes for LRT scores are required to
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
  If the model is appropriate, then the \hh{overall pattern of the lines in the null plots} should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identifiable 
   \todo[inline]{we don't know that the true panel is identifiable, we do need to wait for the results first.}
-  \todo[inline]{true. I suppose I was just writing with an expected outcome in mind.}
+\alnote{true. I suppose I was just writing with an expected outcome in mind.}
   as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random slope and intercept to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem, as a correlation of 0 is not on the boundary of the parameter space, a using a lineup keeps tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with a linear smoother. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) is easily identified, providing evidence supporting the inclusion of the additional parameter.
@@ -411,8 +413,6 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 \section{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
-\todo[inline]{This is my new idea for the order of this subsubsection. I need to take a break for a bit, but thought I would push this to github now.}
-\todo[inline]{this structure looks good, but let's move it up in the hierarchy by one}
 %
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
@@ -469,7 +469,7 @@ which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data a
 
 To check the assumption of linearity we suggest the use of scatterplots and boxplots of  both the residuals (either level-1 or -2) against the fitted values or an explanatory variable. If the assumption of linearity is upheld, then the residuals plots should be centered around zero and exhibit ``random scatter.'' As illustrated in the previous section, such plots are also used to check for homogeneity of variance.
 
-\todo[inline]{This section is pretty small since we covered this type of lineup already. It needs some work, but I am trying to merge things together before editing.}
+\alnote{This section is pretty small since we covered this type of lineup already. It needs some work, but I am trying to merge things together before editing.}
 
 \subsection{Normality}
 %------------------------------------------------------------------------------------
@@ -734,8 +734,20 @@ The model coefficients are shown in table~\ref{tab:model}. As expected, the task
 
 \hh{Note that none of the data plots in the lineups were actually created using data from a normal distribution. This should lead to rejection of the null hypothesis in every single instance. This is not quite true, as can be seen in table~\ref{tab:reject}. But what becomes also evident is the power of visual inference. Based on lineups we are able to reject non-normality much more  often than any of the classical tests.}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Mon May 27 20:57:50 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hlineResult & Visual & AD & SW & CVM & KS \\   \hline  reject & 24 &  3 &  2 &  3 &  0 \\   not reject & 24 & 45 & 46 & 45 & 48 \\    \hline\end{tabular}
-\caption{\label{tab:reject} Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Mon May 27 20:57:50 2013
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+Result & Visual & AD & SW & CVM & KS \\ 
+  \hline
+  reject & 24 &  3 &  2 &  3 &  0 \\ 
+  not reject & 24 & 45 & 46 & 45 & 48 \\ 
+   \hline
+\end{tabular}
+\caption{\label{tab:reject} Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}
+\end{table}
 
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
