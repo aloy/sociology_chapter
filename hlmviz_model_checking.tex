@@ -751,12 +751,12 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 %------------------------------------------------------------------------------------
 \section{Appendix: Data sets}
 %------------------------------------------------------------------------------------
-\subsection{General Certificate of Secondary Education}\label{data:GCSE}
 
-We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSEE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school. \al{This data set is distributed as part of the R package mlmRev \citep{mlmRev}.}
-\todo[inline]{What would be nice is to either provide a package/website where the data is available or make the data available ourselves.}
+All of the data sets used in this paper are publicly available: the General Certificate of Secondary Education Exam data set is available in the R package mlmRev \citep{mlmRev}; all other data sets can be found in the R package HLMdiag \citep{HLMDiag}.
 
-\todo[inline]{I just added the autism, radon, and methylprednisolone data sets to the HLMdiag package.}
+\subsection{General certificate of secondary education exam data}\label{data:GCSE}
+
+We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSEE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school. 
 
 \subsection{The autism data}\label{data:autism}
 %------------------------------------------------------------------------------------
@@ -767,8 +767,13 @@ The Vineland Adaptive Behavior Interview survey was used to assess each child's 
 \subsection{Methylprednisolone study}\label{data:ahd}
 %------------------------------------------------------------------------------------
 
+\cite{Carithers:1989} conducted a four week longitudinal study to investigate the effectiveness of methylprednisolone to treat patients with severe alcoholic hepatitis. The researchers randomly assigned 66 patients to receive either methylprednisolone (35 patients) or a placebo (31 patients). Over the study duration, each subject's serum bilirubin levels (in $\mu$mol/L) were measured each week, with the first measurement taken at the start of the study (week 0).
+
+
 \subsection{Radon study}\label{data:radon}
 %------------------------------------------------------------------------------------
+
+The data consist of a stratified random sample of 919 owener-occupied homes in 85 counties in Minnesota. For each home, a radon measurement was recorded (in log $pCi/L$, i.e., log picoCuries per liter) as well as a binary variable indicating whether the measurement was taken in the basement (0) or a higher level (1). Additionally, the average soil uranium content for each county was available. The number of homes within each county varies greatly between counties ranging from one home to 116 homes, with 50\% of counties having measurements from between 3 and 10 homes.\cite{Gelman:2006ue} suggest a simple hierarchical model allowing for a random intercept for each county and a random slope for floor level. This is the model from which we simulate predicted random effects.
 
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
