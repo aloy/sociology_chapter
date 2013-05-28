@@ -185,10 +185,10 @@ and
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Lineups for visual inference heavily rely on the types of residuals defined above. Next, we compare conventional and visual inference for model selection and validation.
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
-
-
-
-In the next section we discuss how visual inference can be utilized to explore hierarchical linear models.
+\al{
+In sections~\ref{sec:select} and \ref{sec:checking} we discuss how visual inference can be utilized to select and validate hierarchical linear models. While we focus on example in which we encounter problems with conventional inference, visual inference can be applied more generally...
+}
+%In the next section we discuss how visual inference can be utilized to explore hierarchical linear models.
 
 \todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
 %%------------------------------------------------------------------------------------
@@ -250,11 +250,12 @@ In the next section we discuss how visual inference can be utilized to explore h
 
 
 %------------------------------------------------------------------------------------
-\section{Model selection}
+\section{Model selection}\label{sec:select}
 %------------------------------------------------------------------------------------
 
-The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
-
+%The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. 
+%In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
+In this section we discuss how visual inference can be used during model selection.
 
 \todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
 
@@ -264,22 +265,21 @@ The lineup protocol presents a unified approach to overcome the difficulties enc
 \subsection{Comparing nested models}
 %------------------------------------------------------------------------------------
 
-It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
+It is standard practice to use either a $t$-test or a likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a hierarchical linear model. More generally, likelihood ratio tests are used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is conservative. 
-\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer the usual $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations leading to either conservative or anti-conservative decisions. 
+\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space, the asymptotic distribution of the likelihood ratio is no longer the usual $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations leading to either conservative or anti-conservative decisions. 
 \end{description}
 
 
-Visual inference provides an alternative to conventional hypothesis tests that does not have different rules based on the method of estimation or whether a parameter lies on the boundary of the parameter space. Rather, visual inference depends on an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of viewers. 
-
-\todo[inline]{I need a transition sentence or two here.}
-
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
+Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of viewers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
 
 
-In this setting, the null plots are generated using the parametric bootstrap with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model omitting the variable of interest and the variable of interest. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type: if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
+
+
+In this setting, the null plots are generated using the parametric bootstrap \todo{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
 
 \begin{figure}
 	\centering
@@ -287,7 +287,7 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 	\caption{\label{fig:boxplot-ordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
 
-\todo[inline]{I also included the unordered boxplots so we could look at the difference}
+\alnote{I also included the unordered boxplots so we could look at the difference}
 
 \begin{figure}
 	\centering
@@ -295,10 +295,12 @@ In this setting, the null plots are generated using the parametric bootstrap wit
 	\caption{\label{fig:boxplot-unordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
 
-\paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
+\alnote{How much more should we say here? I feel like this discussion ends a little abruptly, but I don't want to ramble either.}
 
-The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education exam (GCSEE) and the  standardized London Reading Test (LRT).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression of the two test scores for all students at a school. 
-The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  is  created by simulating GCSE exam scores from a model with a random intercept only.
+\paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
+
+The lineup in figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression of the two test scores for all students at a school. 
+The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  is  created by simulating GCSEE scores from a model with a random intercept only.
 The resulting scores for each school are regressed on LRT results and shown as lines.
 %\al{and overlaying linear smoothers for each school.}
 
@@ -311,7 +313,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 \alnote{true. I suppose I was just writing with an expected outcome in mind.}
   as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
-Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random slope and intercept to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem, as a correlation of 0 is not on the boundary of the parameter space, a using a lineup keeps tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with a linear smoother. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) is easily identified, providing evidence supporting the inclusion of the additional parameter.
+Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random slope and intercept to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem, as a correlation of 0 is not on the boundary of the parameter space, using a lineup keeps tests of the random effects within a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with a linear smoother. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) is easily identified, providing evidence supporting the inclusion of the additional parameter.
 
 \begin{figure}
 	\centering
@@ -343,7 +345,7 @@ Having considered the value of a random slope in the model, we next consider whe
 
 \subsection{Comparing non-nested models}
 %------------------------------------------------------------------------------------
-If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly better than the other. To do this, we propose using visual inference to investigate the goodness-of-fit of each model. If inadequacies are discovered in one model but not in the other, then this supports the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model; however, by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why a model is preferred.
+If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly ``better'' than the other. To do this, we propose using visual inference to investigate the goodness-of-fit of each model. If inadequacies are discovered in one model but not in the other, then this supports the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model, but by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why a model is preferred.
 
 
 %\subsubsection{Proposals for visual inference}\label{model-selection}
@@ -740,7 +742,9 @@ The model coefficients are shown in table~\ref{tab:model}. As expected, the task
   \hline
 Result & Visual & AD & SW & CVM & KS \\ 
   \hline
-  reject & 24 & 10 & 16 &  8 & 10 \\   not reject & 24 & 38 & 32 & 40 & 38 \\    \hline
+  reject & 24 & 10 & 16 &  8 & 10 \\ 
+  not reject & 24 & 38 & 32 & 40 & 38 \\ 
+   \hline
 \end{tabular}
 \caption{\label{tab:reject} Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}
 \end{table}
