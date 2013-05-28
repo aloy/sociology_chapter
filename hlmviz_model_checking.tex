@@ -261,7 +261,7 @@ The lineup protocol presents a unified approach to overcome the difficulties enc
 
 
 %\subsubsection{Conventional practices}
-\subsubsection{Comparing nested models}
+\subsection{Comparing nested models}
 %------------------------------------------------------------------------------------
 
 It is standard practice to use either a $t$-test or a likelihood ratio test to test whether a fixed effect is significant in a hierarchical linear model. More generally, likelihood ratio tests can be used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. \al{While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
@@ -341,7 +341,7 @@ Having considered the value of a random slope in the model, we next consider whe
 %
 %\al{I agree, I got myself a little turned around with the literature, but I have my head straight again.}
 
-\subsubsection{Comparing non-nested models}
+\subsection{Comparing non-nested models}
 %------------------------------------------------------------------------------------
 If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only index and does not address whether the model with the smaller AIC is significantly better than the other. To do this, we propose using visual inference to investigate the goodness-of-fit of each model. If inadequacies are discovered in one model but not in the other, then this supports the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model; however, by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why a model is preferred.
 
@@ -417,7 +417,7 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
 
-\subsubsection{Homogeneity of variance}
+\subsection{Homogeneity of variance}
 %\subsubsection{Conventional practices}\label{sec:conv-check}
 %------------------------------------------------------------------------------------
 
@@ -464,14 +464,14 @@ which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data a
 \end{figure}
 
 
-\subsubsection{Linearity}
+\subsection{Linearity}
 %------------------------------------------------------------------------------------
 
 To check the assumption of linearity we suggest the use of scatterplots and boxplots of  both the residuals (either level-1 or -2) against the fitted values or an explanatory variable. If the assumption of linearity is upheld, then the residuals plots should be centered around zero and exhibit ``random scatter.'' As illustrated in the previous section, such plots are also used to check for homogeneity of variance.
 
 \todo[inline]{This section is pretty small since we covered this type of lineup already. It needs some work, but I am trying to merge things together before editing.}
 
-\subsubsection{Normality}
+\subsection{Normality}
 %------------------------------------------------------------------------------------
 
 Quantile-Quantile (Q-Q) plots are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, single Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, with lineups.
