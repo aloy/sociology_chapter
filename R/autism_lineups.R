@@ -288,7 +288,7 @@ ggsave("autism_sicdegp_level1_lineup4.pdf")
 
 make_interactive(filename= sprintf("autism-unordered-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
-make_interactive(filename= sprintf("autism-unordered-%s-multiple.svg", location), 
+make_interactive(filename= sprintf("autism-unordered-%s-single.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
 		
 

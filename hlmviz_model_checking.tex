@@ -107,7 +107,7 @@ A plot of data generated consistently with the null hypothesis is called a null 
 If the model assumption holds, i.e.  under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
 In the lineup protocol the true plot is randomly embedded among a number of null plots.  
 Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
-Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. 
+Observers are asked to identify the plot that is the most different from the other plots.  What is your choice for the most different plot?  Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. 
 
 \begin{figure}
 	\centering
@@ -119,19 +119,19 @@ Observers are asked to identify the plot that is the most different from the oth
 
 
 The lineup protocol allows for the estimation of a $p$-value associated with a lineup
-based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the true plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
+based on an assessment  by human observers: let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then given as the probability that at least as many observers chose the true plot given that the true plot is not any different from the other plots in the lineup. Under the null hypothesis the probability for choosing the true plot is $1/m$, and $X$, the number of observers choosing the true plot is distributed according to a Binomial distribution: $X \sim B_{N, p}$. The $p$-value is then estimated as
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
 
-\todo[inline]{XXX here, we should include the results from the study as soon as we have them.  panel $\sqrt{144} + 1$ is the  data. Give a reference to where the backstory of the lineup is being discussed in section \ref{model-selection}}
+\hh{Based on XXX evaluations of figure~\ref{fig:fanned}, XXX observers chose the true data from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of XXX. The actual model of the data and the null are explained in detail in section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 1$.}
 
 The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot more than $x_\alpha$ times:
 \begin{equation}\label{eqn:power}
 \widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
 \end{equation}
 where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
-Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to base decisions on designs for particular tasks on evaluating lineups displaying different designs of the same data. \hh{An example for this is given in section~\ref{sec:qqplot} at the example of three variations of the familiar Q-Q plots}
+Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to base decisions on designs for particular tasks on evaluating lineups displaying different designs of the same data. An example for this is given in section~\ref{sec:qqplot} at the example of three variations of the familiar Q-Q plots.
 
 Unlike the classical hypothesis testing, visual inference allows us to collect information from observers what aspect of the display led them to their choice. Rather than to just reject a null hypothesis these reasons give us additional information what aspect of the null hypothesis seems to be violated. \hh{An example of this is shown in XXX}
 
@@ -257,8 +257,6 @@ In sections~\ref{sec:select} and \ref{sec:checking} we discuss how visual infere
 %In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 In this section we discuss how visual inference can be used during model selection.
 
-\todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
-
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}
@@ -279,21 +277,22 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 \paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. 
 The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
 Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
-In this setting, the null plots are generated using the parametric bootstrap \todo{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. 
+In this setting, the null plots are generated using the parametric bootstrap \todo[inline]{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. 
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup5.pdf}
-	\caption{\label{fig:boxplot-ordered} \todo[inline]{I'm starting to get nitpicky again :)
-	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
-	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
-	\alnote{That is why I removed the outliers. It would be interesting to test.}
-	\hh{Which of the plots is the most different? Which feature led you to your choice?} }
+	\hfill
+	\includegraphics[width=0.9\textwidth]{autism_sicdegp_level1_lineup5.pdf}
+	\caption{\label{fig:boxplot-ordered} 
+%	\todo[inline]{I'm starting to get nitpicky again :)
+%	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
+%	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
+%	\alnote{That is why I removed the outliers. It would be interesting to test.}
+	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
-Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. \hh{In the study XXX observers are asked to choose the plot that is the most different from the rest. XXX of them identified the data plot (corresponding to a $p$-value of XXX), with XXX\% pointing to the trend as distinguishing feature. 
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In the study XXX observers are asked to choose the plot that is the most different from the rest. XXX of them identified the data plot (corresponding to a $p$-value of XXX), with XXX\% pointing to the trend as distinguishing feature. 
 This lineup is chosen
-to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Displayed on the $y$-axis are level-1 residuals from a longitudinal model. Clearly, language development at age 2 accounts for a significant amount of the remaining residual variability.}
+to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Displayed on the $y$-axis are level-1 residuals from a longitudinal model. Clearly, language development at age 2 accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
 %Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
 
@@ -301,8 +300,8 @@ to determine whether a child's language development at age 2 (low, medium, or hi
 \todo[inline]{I also included the unordered boxplots so we could look at the difference}
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup4.pdf}
+	\hfill
+	\includegraphics[width=0.9\textwidth]{autism_sicdegp_level1_lineup4.pdf}
 	\caption{\label{fig:boxplot-unordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
 
@@ -318,10 +317,9 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identifiable 
-  \todo[inline]{we don't know that the true panel is identifiable, we do need to wait for the results first.}
-\alnote{true. I suppose I was just writing with an expected outcome in mind.}
-  as the variance of GCSEE scores is larger for higher scores on the standardized LRT than in the null plots; thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+ If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 1$) is identifiable \hh{as XXX of the XXX observers pick the data plot. The main comment for their choice was a larger `fanning' of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows for;}
+  %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
+  thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random slope and intercept to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem, as a correlation of 0 is not on the boundary of the parameter space, using a lineup keeps tests of the random effects within a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with a linear smoother. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) is easily identified, providing evidence supporting the inclusion of the additional parameter.
 
