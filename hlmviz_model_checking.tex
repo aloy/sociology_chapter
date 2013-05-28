@@ -1,7 +1,7 @@
 \documentclass{article} % JASA requires 12 pt font for manuscripts
 %\usepackage{JASA_manu}        % For JASA manuscript formatting
 
-\usepackage{endfloat} % just for while I am writing
+%\usepackage{endfloat} % just for while I am writing
 
 % for citations
 \usepackage[authoryear]{natbib} % natbib required for JASA
@@ -259,7 +259,6 @@ In this section we discuss how visual inference can be used during model selecti
 
 \todo[inline]{I think what would work better, is if there was no strict separation between conventional practice and visual inference, but instead a focus on what the test is supposed to do. So pull the nested models out into a subsubsection and merge the visual inference into it.}
 
-\alnote{I went through and tried to merge everything today. This is only my first attempt at the merge. I am now rereading this section trying to work out the kinks.}
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}
@@ -276,9 +275,10 @@ It is standard practice to use either a $t$-test or a likelihood ratio test to d
 Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of viewers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
 
 
-\alnote{I need a transition sentence or two here.}
 \todo[inline]{It reads fine as is, but the shoulds and coulds need to go in the next paragraph :)}
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. 
+The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
+Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
 In this setting, the null plots are generated using the parametric bootstrap \todo{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. 
 
 \begin{figure}
