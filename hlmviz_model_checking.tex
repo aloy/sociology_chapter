@@ -1,7 +1,7 @@
 \documentclass{article} % JASA requires 12 pt font for manuscripts
 %\usepackage{JASA_manu}        % For JASA manuscript formatting
 
-\usepackage{endfloat} % just for while I am writing
+%\usepackage{endfloat} % just for while I am writing
 
 % for citations
 \usepackage[authoryear]{natbib} % natbib required for JASA
@@ -276,18 +276,29 @@ It is standard practice to use either a $t$-test or a likelihood ratio test to d
 Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of viewers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
 
 
-\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model omitting the variable of interest and the variable of interest. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type: if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
-
-
-In this setting, the null plots are generated using the parametric bootstrap \todo{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Which is the real plot? 
+\alnote{I need a transition sentence or two here.}
+\todo[inline]{It reads fine as is, but the shoulds and coulds need to go in the next paragraph :)}
+\paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. The residual that should be used depends on the level at which the variable of interest enters the model---if the variable enters at the observation-level (level-1), then the level-1 residuals should be used; if the variable enters at the group level, then both the level-1 and level-2 residuals should be explored as additional variation at either level could be explained by this variable. Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
+In this setting, the null plots are generated using the parametric bootstrap \todo{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{autism_sicdegp_level1_lineup5.pdf}
-	\caption{\label{fig:boxplot-ordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
+	\caption{\label{fig:boxplot-ordered} \todo[inline]{I'm starting to get nitpicky again :)
+	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
+	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
+	\alnote{That is why I removed the outliers. It would be interesting to test.}
+	\hh{Which of the plots is the most different? Which feature led you to your choice?} }
 \end{figure}
 
-\alnote{I also included the unordered boxplots so we could look at the difference}
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. \hh{In the study XXX observers are asked to choose the plot that is the most different from the rest. XXX of them identified the data plot (corresponding to a $p$-value of XXX), with XXX\% pointing to the trend as distinguishing feature. 
+This lineup is chosen
+to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Displayed on the $y$-axis are level-1 residuals from a longitudinal model. Clearly, language development at age 2 accounts for a significant amount of the remaining residual variability.}
+%The underlying data are level-1 residuals from a longitudinal 
+%Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
+
+
+\todo[inline]{I also included the unordered boxplots so we could look at the difference}
 
 \begin{figure}
 	\centering
@@ -295,7 +306,6 @@ In this setting, the null plots are generated using the parametric bootstrap \to
 	\caption{\label{fig:boxplot-unordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
 \end{figure}
 
-\alnote{How much more should we say here? I feel like this discussion ends a little abruptly, but I don't want to ramble either.}
 
 \paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 

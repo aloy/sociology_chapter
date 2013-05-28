@@ -255,6 +255,30 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	ylim(-10, 10) + 
 	ylab("level-1 residuals")
 
+# same as above, but massaged for the paper
+qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot", 
+	fill = sicdegp, outlier.size = 2, alpha=I(0.6)) %+% 
+	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10) + 
+	ylab("level-1 residuals") + 
+	scale_fill_brewer("", palette="Set2", labels=c("low", "medium", "high")) +
+	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
+ggsave("autism_sicdegp_level1_lineup5.pdf")
+
+M2.true.sicdegp$sicdegp <- factor(as.character(M2.true.sicdegp$sicdegp))
+M2.sim.sicdegp$sicdegp <- factor(as.character(M2.sim.sicdegp$sicdegp))
+qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot", 
+	fill = sicdegp, outlier.size = 2, alpha=I(0.6)) %+% 
+	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	ylim(-10, 10) + 
+	ylab("level-1 residuals") + 
+	scale_fill_brewer("", palette="Set2", labels=c("high", "low", "medium")) +
+	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
+ggsave("autism_sicdegp_level1_lineup4.pdf")
+
+
 qplot(x = sicdegp, y = residual, data = M2.true.sicdegp.std, geom = "boxplot", 
 	fill = sicdegp, outlier.size = 0) %+% 
 	lineup(true = M2.true.sicdegp.std, samples = M2.sim.sicdegp.std) + 
