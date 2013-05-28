@@ -51,6 +51,7 @@ library(plyr)
 library(reshape2)
 library(stringr)
 
+source("add_interaction.R")
 # Function to make lineups for explanatory variables less tedious - level 1
 data.lineup.explvar1 <- function(null.model, variable, data, nsim = 19, std = FALSE) {
 	mod.sims  <- simulate(null.model, nsim = nsim)
@@ -266,6 +267,12 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
 ggsave("autism_sicdegp_level1_lineup5.pdf")
 
+# use decrypt to get actual number - we need to automate this somehow!
+make_interactive(filename= "autism-ordered-9.svg", 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= "autism-unordered-9.svg", 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
+
 M2.true.sicdegp$sicdegp <- factor(as.character(M2.true.sicdegp$sicdegp))
 M2.sim.sicdegp$sicdegp <- factor(as.character(M2.sim.sicdegp$sicdegp))
 qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot", 
@@ -277,6 +284,13 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	scale_fill_brewer("", palette="Set2", labels=c("high", "low", "medium")) +
 	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
 ggsave("autism_sicdegp_level1_lineup4.pdf")
+
+# use decrypt to get actual number - we need to automate this somehow!
+make_interactive(filename= "autism-unordered-F9.svg", 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= "autism-unordered-F9.svg", 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
+		
 
 
 qplot(x = sicdegp, y = residual, data = M2.true.sicdegp.std, geom = "boxplot", 
