@@ -27,3 +27,17 @@ Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
 \end{table}
 \efloatseparator
  
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+Result & Visual & AD & SW & CVM & KS \\
+  \hline
+  reject & 24 &  3 &  2 &  3 &  0 \\
+  not reject & 24 & 45 & 46 & 45 & 48 \\
+   \hline
+\end{tabular}
+\caption{\label{tab:reject} Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}
+\end{table}
+\efloatseparator
+ 

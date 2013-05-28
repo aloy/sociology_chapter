@@ -732,9 +732,10 @@ Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
 
 The model coefficients are shown in table~\ref{tab:model}. As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality as is the case with lower degrees of freedom. The  type of design is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
 
-Note that none of the data plots in the lineups were actually created using data from a normal distribution. This should lead to rejection of the null hypothesis in every single instance. This is not quite true. But  the visual inference test manages to reject much more often than any of the classical tests:
+\hh{Note that none of the data plots in the lineups were actually created using data from a normal distribution. This should lead to rejection of the null hypothesis in every single instance. This is not quite true, as can be seen in table~\ref{tab:reject}. But what becomes also evident is the power of visual inference. Based on lineups we are able to reject non-normality much more  often than any of the classical tests.}
 
-table with results here
+% latex table generated in R 3.0.1 by xtable 1.7-1 package% Mon May 27 20:57:50 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hlineResult & Visual & AD & SW & CVM & KS \\   \hline  reject & 24 &  3 &  2 &  3 &  0 \\   not reject & 24 & 45 & 46 & 45 & 48 \\    \hline\end{tabular}
+\caption{\label{tab:reject} Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}\end{table}
 
 %------------------------------------------------------------------------------------
 \section{Discussion and conclusions}
