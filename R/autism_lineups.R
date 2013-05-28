@@ -257,9 +257,10 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	ylab("level-1 residuals")
 
 # same as above, but massaged for the paper
+location <- sample(20,1)
 qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot", 
 	fill = sicdegp, outlier.size = 2, alpha=I(0.6)) %+% 
-	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp) + 
+	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp, pos=location) + 
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylim(-10, 10) + 
 	ylab("level-1 residuals") + 
@@ -267,14 +268,14 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
 ggsave("autism_sicdegp_level1_lineup5.pdf")
 
-# use decrypt to get actual number - we need to automate this somehow!
-make_interactive(filename= "autism-ordered-9.svg", 
+make_interactive(filename= sprintf("autism-ordered-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
-make_interactive(filename= "autism-unordered-9.svg", 
+make_interactive(filename= sprintf("autism-ordered-%s-single.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
 
 M2.true.sicdegp$sicdegp <- factor(as.character(M2.true.sicdegp$sicdegp))
 M2.sim.sicdegp$sicdegp <- factor(as.character(M2.sim.sicdegp$sicdegp))
+location <- sample(20,1)
 qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot", 
 	fill = sicdegp, outlier.size = 2, alpha=I(0.6)) %+% 
 	lineup(true = M2.true.sicdegp, samples = M2.sim.sicdegp) + 
@@ -285,10 +286,9 @@ qplot(x = sicdegp, y = residual, data = M2.true.sicdegp, geom = "boxplot",
 	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
 ggsave("autism_sicdegp_level1_lineup4.pdf")
 
-# use decrypt to get actual number - we need to automate this somehow!
-make_interactive(filename= "autism-unordered-F9.svg", 
+make_interactive(filename= sprintf("autism-unordered-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
-make_interactive(filename= "autism-unordered-F9.svg", 
+make_interactive(filename= sprintf("autism-unordered-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
 		
 
