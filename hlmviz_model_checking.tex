@@ -655,8 +655,8 @@ Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of l
 
 \al{To further support the assessment of normality using lineups a study was conducted to compare three different versions of a Q-Q plot.
 %We are testing three different versions of a Q-Q plot, 
-The three versions are displayed in figure~\ref{qqplots} which include, from left to right, a standard Q-Q plot, a Q-Q plot with an added 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,} \todo{I didn't find a good general reference, but this is implemented all over the place.}
-\al{ and a rotated (i.e., detrended) Q-Q plot of the same data. }
+The three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,} \todo{I didn't find a good general reference, but this is implemented all over the place.}
+\al{ and a rotated (i.e., detrended) Q-Q plot of the same data. To explore the results of this study we must first define some additional notation.}
 
 \begin{figure}
 %<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
@@ -683,15 +683,17 @@ Let $X_i \sim B_{1, \pi_i}, 1 \le i \le n$, where $X_i$ is the binary decision o
 \begin{tabular}{lp{5in}}
 $\tau$ & the design used in the lineup (Control, Standard, Rotated), \\
 &  the specific parameters under which the data for the lineup was created: \\
-&  $\delta$ \ \ \ degrees of freedom (2, 5, 10) and \\
+&  $\delta$ \ \ \ degrees of freedom (2, 5, 10) \al{for the $t$ distribution} and \\
 &  $\nu$  \ \ \ sample size (10, 20, 50, 75), \\
-$\ell$ &  level of difficulty based on the actual sample, and \\
-$u$ &  users' subjective abilities.
+$\ell$ &  the level of difficulty based on the actual sample, and \\
+$u$ & the users' subjective abilities.
  \end{tabular}
 \end{center}
 %
-The above factors result in 12 different parameter settings. For each we created two samples, along with two sets of null data each, yielding 48 different lineups. 
-Using the Amazon Turk services, 417 participants were each asked to evaluate ten different lineups. This resulted in $n =$ 4,018 responses. We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
+The above factors result in 12 different parameter settings. For each setting we created two samples, along with two sets of null data each, yielding 48 different lineups. 
+Using the Amazon Turk \todo{Mechanical Turk?} services, 417 participants were each asked to evaluate ten different lineups. 
+\alnote{Why $n =$ 4,018? Did you throw out responses? Is there missing data?}
+This resulted in $n =$ 4,018 responses. We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
 \alnote{I find this notation a little confusing. I think we are just missing a sentence in the lead in.}
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + \ell_{\ell(i)}
@@ -759,8 +761,8 @@ Result & Visual & AD & SW & CVM & KS \\
    \hline
 \end{tabular}
 \caption{\label{tab:reject} 
-\alnote{What significance level was used?}
-Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. Neither of the classical tests comes close to that rejection rate. From left to right, we see the number of rejections from visual inference, Anderson-Darling, Shapiro-Wilks, Cramer-von Mises and Kolmogorov-Smirnov}
+\alnote{What significance level was used? I assume 5\%, but I don't want to guess wrong.}
+Out of the 48 non-normal samples, 24 get rejected based on evaluation by observers. None of the classical tests come close to that rejection rate. From left to right, we see the number of rejections from visual inference as well as the Anderson-Darling, Shapiro-Wilk, Cram\'er-von Mises and Kolmogorov-Smirnov tests for normality.}
 \end{table}
 
 %------------------------------------------------------------------------------------
