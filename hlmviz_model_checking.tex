@@ -444,8 +444,9 @@ Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of l
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
-	\caption{\label{fig:qqlineup-norm} Lineup of 20 normal Q-Q plots for the predicted random slope.  Which is the real plot?}
+%	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
+	\includegraphics[width=\textwidth]{filebab6182c2e84}
+	\caption{\label{fig:qqlineup-norm} Lineup of 20 normal Q-Q plots for the predicted random slope \hh{intercept? }.  Which is the real plot? \hh{I've replaced this lineup by the one from the previous study. This is the radon data.}}
 \end{figure}
 
 \begin{figure}
@@ -633,7 +634,7 @@ $\tau$ & the design used in the lineup (Control, Standard, Rotated), \\
 &  the specific parameters under which the data for the lineup was created: \\
 &  $\delta$ \ \ \ degrees of freedom (2, 5, 10) {of the $t$ distribution} and \\
 &  $\nu$  \ \ \ sample size (10, 20, 50, 75), \\
-$\ell$ &  the level of difficulty based on the actual sample, and \\
+$d$ &  the level of difficulty based on the actual sample, and \\
 $u$ & the users' subjective abilities.
  \end{tabular}
 \end{center}
@@ -643,9 +644,11 @@ Using  Amazon MTurk \citet{amazon}, 417 participants were each asked to evaluate
 We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
 \alnote{I find this notation a little confusing. I think we are just missing a sentence in the lead in.}
 \[
-g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + \ell_{\ell(i)}
+g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + d_{d(i)}
 \]
-where $g$ is the logit link function. Both user ability, $u$, and sample difficulty, $\ell$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{\ell(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
+where $g$ is the logit link function, \hh{$j(i) \in \{$Control, Standard, Rotated$\}$, $k(i) \in \{2,5,10\}$, $s(i) \in \{20, 30, 50, 75\}$, }
+
+Both user ability, $u$, and sample difficulty, $\ell$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{d(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
 
 
