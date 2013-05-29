@@ -153,10 +153,10 @@ Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given b
 \bm{y}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta},\ \bm{V}_i \right)
 \end{equation}
 %
-where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is given by
+where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \sigma^2 \bm{I}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is given by
 %
 \begin{equation}\label{eq:conditionalmod}
-\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \bm{R}_i \right)
+\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \bm\sigma^2 \bm{I}_i \right)
 \end{equation}
 %
 
@@ -435,10 +435,16 @@ To check the assumption of linearity we suggest the use of scatterplots and boxp
 
 \subsubsection{Assessing normality of the random effects}
 %------------------------------------------------------------------------------------
-Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. \todo[inline]{This last sentence is a bit tight. You're way too deep in the material :)
- first state that the common assumption for distributions of random effects is  normality and that we usually also assume that the effects are independent. Point out that due to confounding regular normal tests fail. That will lead better into the next sentence where you are giving reasons of why this happens.}
 
-Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, single Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
+%Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
+
+\todo[inline]{This last sentence is a bit tight. You're way too deep in the material :)
+ first state that the common assumption for distributions of random effects is  normality and that we usually also assume that the effects are independent. Point out that due to confounding regular normal tests fail. That will lead better into the next sentence where you are giving reasons of why this happens.}
+ 
+\alnote{Here is the first attempt as easing into things a bit more.}
+
+\al{Recall that for model~\ref{eq:hlm} we assumed that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} and the Anderson-Darling test are not appropriate. Formally this is seen by the}
+strong assumptions that are required for the empirical distributions of the residuals in the hierarchical linear models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
 Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-norm} (panel $2^4 - 6$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality, but compared only to the normal distribution a single Q-Q plot would %, \al{in our opinion}, 
 be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004).}
