@@ -73,12 +73,12 @@ resids <- ddply(resids, .(n, subject), transform, iqr=IQR(EB.resid))
 resids <- ddply(resids, .(n), transform, rank = rank(iqr))
 
 qplot(x = factor(rank), y = EB.resid, data = resids, 
-               geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
+               geom = "boxplot", xlab = "", ylab = "", outlier.size = 1.5) + coord_flip() + 
                  ylim(-150, 150) + 
                  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
                  axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
 				facet_wrap(~sample)
-ggsave("figures/ahd_badcyclone5.pdf")
+ggsave("figures/ahd_badcyclone5.pdf", width = 8.5, height = 11)
 
 source("R/add_interaction.R")
 location <- resids$sample[nrow(resids)]
@@ -158,7 +158,7 @@ sim_resids2 <- ldply(refit_fm2, function(x){
 	return(data.frame(EB.resid = e, subject = subj))
 })
 
-true_resids2 <- data.frame(.id="true_20", EB.resid = resid(model), subject = model@frame$subject)
+true_resids2 <- data.frame(.id="true_20", EB.resid = resid(model2), subject = model2@frame$subject)
 
 resids <- rbind(sim_resids2, true_resids2)
 resids$n <- as.numeric(gsub(".*_([0-9]+)", "\\1", as.character(resids$.id)))
@@ -167,47 +167,56 @@ resids <- ddply(resids, .(n, subject), transform, iqr=IQR(EB.resid))
 resids <- ddply(resids, .(n), transform, rank = rank(iqr))
 
 qplot(x = factor(rank), y = EB.resid, data = resids, 
-               geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
-                 ylim(-150, 150) + 
+               geom = "boxplot", xlab = "", ylab = "", outlier.size = 1.5) + coord_flip() + 
+                 ylim(-.5, .5) +
                  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
                  axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
 				facet_wrap(~sample)
+
+ggsave("figures/ahd_goodcyclone13.pdf", width = 8.5, height = 11)
+
+location <- resids$sample[nrow(resids)]
+make_interactive(filename= sprintf("cyclone-good-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("cyclone-good-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="toggle")
+
 				
 ###########################
 
-pdf.options(reset = FALSE)
-pdf("figures/ahd_goodcyclone13.pdf", width = 8.5, height = 11)
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(5,4)))
-vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
-realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids2, 
-               geom = "boxplot", xlab = " ", ylab = " ") + coord_flip() + 
-                 ylim(-.5, .5) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
-                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
-real.i <- 13 # sample(1:20, 1)
-j <- 0
-pos <- matrix(1:20, ncol = 4, byrow=T)
-for(i in 1:20){
-  if(i==real.i) { 
-    if(!i %in% c(1,5,9,13,17)) realp <- realp + xlab(NULL)
-    if(!i %in% 17:20) realp <- realp + ylab(NULL)
+# pdf.options(reset = FALSE)
+# pdf("figures/ahd_goodcyclone13.pdf", width = 8.5, height = 11)
+# grid.newpage()
+# pushViewport(viewport(layout = grid.layout(5,4)))
+# vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
+# realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids2, 
+               # geom = "boxplot", xlab = " ", ylab = " ") + coord_flip() + 
+                 # ylim(-.5, .5) + 
+                 # theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 # axis.text.x = element_blank(), axis.ticks.x = element_blank())
+# real.i <- 13 # sample(1:20, 1)
+# j <- 0
+# pos <- matrix(1:20, ncol = 4, byrow=T)
+# for(i in 1:20){
+  # if(i==real.i) { 
+    # if(!i %in% c(1,5,9,13,17)) realp <- realp + xlab(NULL)
+    # if(!i %in% 17:20) realp <- realp + ylab(NULL)
     
-    print(realp, vp = vplayout(which(pos == i, arr.ind = TRUE)[1],
-                               which(pos == i, arr.ind = TRUE)[2]))
-  }
-  else{
-    j <- j + 1
-    p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
-               data = sim_resids2[[j]], geom = "boxplot", xlab = " ", ylab = " ") + 
-                 coord_flip() + ylim(-.5, .5) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
-                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
+    # print(realp, vp = vplayout(which(pos == i, arr.ind = TRUE)[1],
+                               # which(pos == i, arr.ind = TRUE)[2]))
+  # }
+  # else{
+    # j <- j + 1
+    # p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
+               # data = sim_resids2[[j]], geom = "boxplot", xlab = " ", ylab = " ") + 
+                 # coord_flip() + ylim(-.5, .5) + 
+                 # theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 # axis.text.x = element_blank(), axis.ticks.x = element_blank())
     
-    if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
-    if(!i %in% 17:20) p <- p + ylab(NULL)
+    # if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
+    # if(!i %in% 17:20) p <- p + ylab(NULL)
     
-    print(p, vp = vplayout(which(pos == i, arr.ind = TRUE)[1], which(pos == i, arr.ind = TRUE)[2]))
-  }
-}
-dev.off()
+    # print(p, vp = vplayout(which(pos == i, arr.ind = TRUE)[1], which(pos == i, arr.ind = TRUE)[2]))
+  # }
+# }
+# dev.off()
