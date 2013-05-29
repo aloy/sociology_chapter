@@ -151,7 +151,7 @@ qplot(x = `(Intercept)`, y = standLRT, data = true.uncorr.ranef,
 #-------------------------------------------------------------------------------
 # Lineup to test for level-1 heteroscedasticity
 #-------------------------------------------------------------------------------
-
+### Negative
 fm2 <- lmer(normexam ~ standLRT + I(standLRT^2) + I(standLRT^3) + 
               (standLRT | school), Exam, REML = FALSE)
 
@@ -180,4 +180,3 @@ qplot(standLRT2, resid, data = lev1_resid_fm2,
  	 xlab(NULL) + ylab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
-  
