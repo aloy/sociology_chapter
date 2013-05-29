@@ -55,42 +55,76 @@ sim_resids <- llply(refit_fm, function(x){
 
 true_resids <- data.frame(EB.resid = resid(model), subject = model@frame$subject)
 
-pdf.options(reset = FALSE)
-pdf("figures/ahd_badcyclone5.pdf", width = 8.5, height = 11)
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(5,4)))
-vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
-realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids, 
+###############
+# HH attempt
+
+sim_resids <- ldply(refit_fm, function(x){
+	e <- resid(x)
+	subj <- x@frame$subject
+	return(data.frame(EB.resid = e, subject = subj))
+})
+
+true_resids <- data.frame(.id="true_20", EB.resid = resid(model), subject = model@frame$subject)
+
+resids <- rbind(sim_resids, true_resids)
+resids$n <- as.numeric(gsub(".*_([0-9]+)", "\\1", as.character(resids$.id)))
+resids$sample <- sample(20,20, replace=FALSE)[resids$n]
+resids <- ddply(resids, .(n, subject), transform, iqr=IQR(EB.resid))
+resids <- ddply(resids, .(n), transform, rank = rank(iqr))
+
+qplot(x = factor(rank), y = EB.resid, data = resids, 
                geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
                  ylim(-150, 150) + 
                  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
-                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
-real.i <- 5 # sample(1:20, 1)
-j <- 0
-pos <- matrix(1:20, ncol = 4, byrow=T)
-for(i in 1:20){
-  if(i==real.i) { 
-    if(!i %in% c(1,5,9,13,17)) realp <- realp + xlab(NULL)
-    if(!i %in% 17:20) realp <- realp + ylab(NULL)
+                 axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
+				facet_wrap(~sample)
+ggsave("figures/ahd_badcyclone5.pdf")
+
+source("R/add_interaction.R")
+location <- resids$sample[nrow(resids)]
+make_interactive(filename= sprintf("cyclone-bad-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("cyclone-bad-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="toggle")
+
+# ###############
+
+# pdf.options(reset = FALSE)
+# pdf("figures/ahd_badcyclone5.pdf", width = 8.5, height = 11)
+# grid.newpage()
+# pushViewport(viewport(layout = grid.layout(5,4)))
+# vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
+# realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids, 
+               # geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
+                 # ylim(-150, 150) + 
+                 # theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 # axis.text.x = element_blank(), axis.ticks.x = element_blank())
+# real.i <- 5 # sample(1:20, 1)
+# j <- 0
+# pos <- matrix(1:20, ncol = 4, byrow=T)
+# for(i in 1:20){
+  # if(i==real.i) { 
+    # if(!i %in% c(1,5,9,13,17)) realp <- realp + xlab(NULL)
+    # if(!i %in% 17:20) realp <- realp + ylab(NULL)
     
-    print(realp, vp = vplayout(which(pos == i, arr.ind = TRUE)[1],
-                               which(pos == i, arr.ind = TRUE)[2]))
-  }
-  else{
-    j <- j + 1
-    p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
-               data = sim_resids[[j]], geom = "boxplot", xlab = "", ylab = "") + 
-                 coord_flip() + ylim(-150, 150) + 
-                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
-                 axis.text.x = element_blank(), axis.ticks.x = element_blank())
+    # print(realp, vp = vplayout(which(pos == i, arr.ind = TRUE)[1],
+                               # which(pos == i, arr.ind = TRUE)[2]))
+  # }
+  # else{
+    # j <- j + 1
+    # p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
+               # data = sim_resids[[j]], geom = "boxplot", xlab = "", ylab = "") + 
+                 # coord_flip() + ylim(-150, 150) + 
+                 # theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 # axis.text.x = element_blank(), axis.ticks.x = element_blank())
     
-    if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
-    if(!i %in% 17:20) p <- p + ylab(NULL)
+    # if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
+    # if(!i %in% 17:20) p <- p + ylab(NULL)
     
-    print(p, vp = vplayout(which(pos == i, arr.ind = TRUE)[1], which(pos == i, arr.ind = TRUE)[2]))
-  }
-}
-dev.off()
+    # print(p, vp = vplayout(which(pos == i, arr.ind = TRUE)[1], which(pos == i, arr.ind = TRUE)[2]))
+  # }
+# }
+# dev.off()
 
 #-------------------------------------------------------------------------------
 # Cyclone plots - Assumption OK
@@ -114,6 +148,32 @@ sim_resids2 <- llply(refit_fm2, function(x){
 })
 
 true_resids2 <- data.frame(EB.resid = resid(model2), subject = model2@frame$subject)
+
+###########################
+# HH attempt
+
+sim_resids2 <- ldply(refit_fm2, function(x){
+	e <- resid(x)
+	subj <- x@frame$subject
+	return(data.frame(EB.resid = e, subject = subj))
+})
+
+true_resids2 <- data.frame(.id="true_20", EB.resid = resid(model), subject = model@frame$subject)
+
+resids <- rbind(sim_resids2, true_resids2)
+resids$n <- as.numeric(gsub(".*_([0-9]+)", "\\1", as.character(resids$.id)))
+resids$sample <- sample(20,20, replace=FALSE)[resids$n]
+resids <- ddply(resids, .(n, subject), transform, iqr=IQR(EB.resid))
+resids <- ddply(resids, .(n), transform, rank = rank(iqr))
+
+qplot(x = factor(rank), y = EB.resid, data = resids, 
+               geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
+                 ylim(-150, 150) + 
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
+				facet_wrap(~sample)
+				
+###########################
 
 pdf.options(reset = FALSE)
 pdf("figures/ahd_goodcyclone13.pdf", width = 8.5, height = 11)
