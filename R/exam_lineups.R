@@ -32,6 +32,9 @@ library(nullabor) # for lineups
 library(plyr)
 library(reshape2)
 library(stringr)
+library(gridSVG)
+
+source("R/add_interaction.R")
 
 #-------------------------------------------------------------------------------
 # Lineup to test for random slope
@@ -115,6 +118,13 @@ qplot(x = `(Intercept)`, y = standLRT, data = true.M2.ranef,
 	xlab(NULL) + ylab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+ggsave("exam_corr_lineup7.pdf")
+
+location <- 7
+make_interactive(filename= sprintf("exam-corr-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("exam-corr-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
 
 
 ## A simulation when we know that we DO NOT need correlation
