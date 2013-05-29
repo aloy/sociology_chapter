@@ -446,11 +446,13 @@ To check the assumption of linearity we suggest the use of scatterplots and boxp
 strong assumptions that are required for the empirical distributions of the residuals in the hierarchical linear models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
 Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-norm} (panel $2^4 - 6$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality, but compared only to the normal distribution a single Q-Q plot would %, \al{in our opinion}, 
-be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004).}
+be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the panel of the data).}
+\hh{Panel \#5 was the one identified  most often from the lineup in figure~\ref{fig:qqlineup-1}; it was picked by 13 out of 23 observers. All other panels were selected at most two times. }
 
-\alnote{Do you have the simulation that produced this lineup so that we can get the $p$-values for the null plots? Otherwise we can run another 19.}
+%\alnote{Do you have the simulation that produced this lineup so that we can get the $p$-values for the null plots? Otherwise we can run another 19.}
 
- \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, XXX of them fail a normality test.}
+ \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of 0.05.}
+
 
  In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
@@ -460,8 +462,8 @@ be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of 
 	\centering
 %	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
 	\includegraphics[width=\textwidth]{filebab6182c2e84}
-	\caption{\label{fig:qqlineup-norm} 
-	Lineup of 20 normal Q-Q plots for the predicted random slope.  Which is the real plot? \hh{I've replaced this lineup by the one from the previous study. This is the radon data, nobody out of 23 observers picked the data (which is in 10). The picture is a bit fuzzy right now - I'll replace it by a better pdf later - Could you change the text accordingly? }}
+	\caption{\label{fig:qqlineup-norm}
+	Lineup of  Q-Q plots for the predicted random slope of the radon data.  Which is the real plot?   }
 \end{figure}
 
 \begin{figure}
@@ -662,7 +664,7 @@ We model the probability of selecting the data plot from the lineup, $\pi$, with
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + d_{d(i)}
 \]
-where $g$ is the logit link function, \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample; more specifically, $j(i) \in \{$Control, Standard, Rotated$\}$, $k(i) \in \{2,5,10\}$, $s(i) \in \{20, 30, 50, 75\}$. $u(i)$ maps to the participant id, and $d(i)$ identifies the data sample used in the $i$th evaluation. }
+where $g$ is the logit link function, \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample; more specifically, $j(i) \in \{$Control, Standard, Rotated$\}$, $k(i) \in \{2,5,10\}$, $s(i) \in \{20, 30, 50, 75\}$. $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. }
 
 Both user ability, $u$, and sample difficulty, $d$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{d(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
