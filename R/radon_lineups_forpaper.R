@@ -277,6 +277,12 @@ qplot(sample = basement, data = b1, stat = "qq") %+%
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
+ggsave("qqplot_normranef_slope_lineup11.pdf")
+location <- 11
+make_interactive(filename= sprintf("radon-normsim-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("radon-normsim-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
 
 
 ### Random effects from a t distribution ###
@@ -324,12 +330,19 @@ sim.b1 <- ddply(sim.b1, .(.n), transform, band = sim_env(basement),
 b1 <- transform(b.t, band = sim_env(basement), 
 	x = sort(qqnorm(basement, plot.it=FALSE)$x))
 
+location <- 6
 # Lineup of random slopes
 qplot(sample = basement, data = b1, stat = "qq") %+%
-	lineup(true = b1, sample = sim.b1) + 
+	lineup(true = b1, sample = sim.b1, pos=location) + 
 	facet_wrap(~ .sample, ncol = 5) + 
 	geom_ribbon(aes(x = x, ymin = band.lower, ymax = band.upper), alpha = .25) + 
 #	xlab("Normal Quantiles") + ylab("Sample Quantiles") +
 	ylab(NULL) + xlab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+
+ggsave("qqplot_tranef_slope_lineup6.pdf")
+make_interactive(filename= sprintf("radon-tsim-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("radon-tsim-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")

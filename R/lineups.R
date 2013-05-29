@@ -149,7 +149,9 @@ mod3.sim.ranef$.n <- as.numeric(str_extract(mod3.sim.ranef$.n, "\\d+"))
 
 true.mod2.ranef <- ranef(mod2)$childid # we have to compare simulated ranefs to ranefs of mod2
 
-qplot(x = age.2, y = `I(age.2^2)`, data = true.mod2.ranef, geom = c("point", "smooth"), method = "lm", se = F) %+% lineup(true = true.mod2.ranef, samples = mod3.sim.ranef) + facet_wrap( ~ .sample, ncol=5)
+location <- sample(20,1)
+qplot(x = age.2, y = `I(age.2^2)`, data = true.mod2.ranef, alpha=I(0.5), geom = c("point", "smooth"), method = "lm", se = F) %+% lineup(true = true.mod2.ranef, samples = mod3.sim.ranef, pos=location) + facet_wrap( ~ .sample, ncol=5) + theme(axis.ticks=element_blank(), axis.text=element_blank(), axis.title=element_blank())
+
 
 ### Model selection using visual inference.
 
@@ -342,9 +344,24 @@ sim.y$.n <- as.numeric(str_extract(sim.y$.n, "\\d+"))
 sim.y$standLRT <- rep(Exam$standLRT, rep = 19)
 sim.y$school <- rep(Exam$school, rep = 19)
 
-true.y <- data.frame(y = Exam$normexam, standLRT = Exam$standLRT, school = Exam$school)
+true.y <- data.frame(.n=20, y = Exam$normexam, standLRT = Exam$standLRT, school = Exam$school)
 
-qplot(x = standLRT, y = y, data = true.y, group = school, geom = "smooth", method = "lm", se=F) %+% lineup(true = true.y, samples = sim.y) + facet_wrap( ~ .sample, ncol=5)
+gcse <- rbind(sim.y, true.y)
+gcse$sample <- sample(20, 20, replace=FALSE)[gcse$.n]
+location <- gcse$sample[nrow(gcse)]
+
+ggplot(aes(x = standLRT, y = y, group=school), data=gcse) + geom_smooth(method="lm", se=F, colour=rgb(0, 0, 0, alpha=0.5),  alpha=0.1) + facet_wrap(~sample) +
+	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
+ggsave("normexam_fanned_lineup13.pdf")
+
+make_interactive(filename= sprintf("exam-fanned-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("exam-fanned-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
+
+
+
+qplot(x = standLRT, y = y, data = true.y, group = school, geom = "smooth", method = "lm", se=F, ) %+% lineup(true = true.y, samples = sim.y, pos=location) + facet_wrap( ~ .sample, ncol=5)
 
 
 # Including a random slope
@@ -385,7 +402,7 @@ sim.resid3$standLRT2 <- rep(Exam$standLRT^2, times=19)
 
 true.resid3 <- data.frame(standLRT2 = Exam$standLRT^2, resid = resid(M3))
 
-qplot(x = standLRT2, y = resid, data = true.resid2, geom = "point", alpha = 0.3) %+% lineup(true = true.resid3, samples = sim.resid3) + facet_wrap( ~ .sample, ncol=4)
+qplot(x = standLRT2, y = resid, data = true.resid2, geom = "point", alpha = I(0.3)) %+% lineup(true = true.resid3, samples = sim.resid3) + facet_wrap( ~ .sample, ncol=4)
 
 # Looking at within-school variability
 qplot(x = reorder(school, resid(M3), IQR), y = resid(M3), data = Exam, geom = "boxplot") + coord_flip()
