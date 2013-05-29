@@ -199,21 +199,20 @@ Throughout this paper we discuss visual inference in the framework of hierarchic
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. 
 %In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
-In this section we discuss how visual inference can be used during model selection.
+%In this section we discuss how visual inference can be used during model selection.
+One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two hierarchical linear models are not nested when one model, previously termed the smaller model, cannot be viewed as a special case of the other. Model selection for hierarchical linear models relies on comparisons of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$-tests and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
 
 \todo[inline]{This needs more general discussion: comparing nested versus non-nested models.}
 
-\alnote{Should I pull out part of the first paragraph in section 2.1 for this?}
-
 
 %\subsubsection{Conventional practices}
-\subsection{Comparing nested models}
+\subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 
 It is standard practice to use either a $t$-test or a likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a hierarchical linear model. More generally, likelihood ratio tests are used to compare nested models. One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
-\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is conservative. 
+\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
 \item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space, the asymptotic distribution of the likelihood ratio is no longer the usual $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations leading to either conservative or anti-conservative decisions. 
 \end{description}
 
@@ -763,7 +762,7 @@ We make use of a subset of examination results of 4,065 students nested within 6
 
 \subsection{The autism data}\label{data:autism}
 %------------------------------------------------------------------------------------
-
+\alnote{I need to pare this down.}
 Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. The Vineland Adaptive Behavior Interview survey was used to assess each child's interpersonal relationships, play time activities, and coping skills. This survey is completed by the parents. From the survey the Vineland Socialization Age Equivalent (VSAE) was computed as overall measure of a child's social skills. Additionally, expressive language development at age 2 was assessed using the Sequenced Inventory of Communication Development (SICD) and the children were classified into three groups (high, medium, or low). Assessments were made on the children ages 2, 3, 5, 9, and 13, however, not all children were assessed at each age. Additional information collected on each child includes: gender, race (white or non-white), and initial diagnosis at age 2 (autism, pervasive development disorder (pdd), or non-spectrum). We restrict attention to models concerned with the changes in social skills for subjects diagnosed with autism spectrum disorder having complete data. This results in a reduced data set of 155 children. For more detailed analyses we refer the reader to \cite{Anderson:2007cl, Anderson:2009in}.
 
 \subsection{Methylprednisolone study}\label{data:ahd}
