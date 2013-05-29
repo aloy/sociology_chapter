@@ -201,6 +201,8 @@ Throughout this paper we discuss visual inference in the framework of hierarchic
 
 In this section we discuss how visual inference can be used during model selection.
 
+\todo[inline]{This needs more general discussion: comparing nested versus non-nested models.}
+
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}
@@ -219,7 +221,7 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 \paragraph{Fixed effects.} To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest and the values of that variable. 
 The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
 Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we can make use of side-by-side boxplots. 
-In this setting, the null plots are generated using the parametric bootstrap \todo[inline]{does the bootstrap need a citation?} with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. 
+In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest. The true plot is constructed from the same model but using the observed data. 
 
 \begin{figure}
 	\hfill
@@ -240,7 +242,7 @@ to determine whether a child's language development at age 2 (low, medium, or hi
 
 
 \alnote{I also included the unordered boxplots so we could look at the difference}
-\todo[inline]{We can include it in the study, but I would only mention it in the paper and maybe put the lineup in an appendix}
+\todo[inline]{This is a first example of a power analysis. We'll include the lineup in the study, but I would only mention the outcome in the paper and  put the lineup in an appendix}
 
 \begin{figure}
 	\hfill
@@ -423,13 +425,18 @@ which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data a
 To check the assumption of linearity we suggest the use of scatterplots and boxplots of  both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots should be centered around zero and exhibit ``random scatter.'' As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
 
 \alnote{This section is pretty small since we covered this type of lineup already. It needs some work, but I am trying to merge things together before editing.}
+\todo[inline]{Which lineup do you have in mind for testing linearity? Refer to it again. We might need to look into the reasons that people give in order to figure out whether they picked up on non-linearity or something else.}
 
 \subsection{Normality}
+\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in hierarchical models, which are complicated by confounding issues between levels of residual structures. In a second part we assess power of visual normality tests based on three different designs of Q-Q plots.}
 %------------------------------------------------------------------------------------
 
 \subsubsection{Assessing normality of the random effects}
 %------------------------------------------------------------------------------------
-Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, single Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
+Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. \todo[inline]{This last sentence is a bit tight. You're way too deep in the material :)
+ first state that the common assumption for distributions of random effects is  normality and that we usually also assume that the effects are independent. Point out that due to confounding regular normal tests fail. That will lead better into the next sentence where you are giving reasons of why this happens.}
+
+Additionally, strong assumptions are required for the empirical distributions of the residuals in the hierarchical linear model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. Consequently, single Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
 Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-norm} (panel $2^4 - 5$) is indistinguishable from the null plots \al{(only XXX of XXX observers identified this plot)}, providing no evidence of a violation of normality, but compared only to the normal distribution in a single Q-Q plot would, \al{in our opinion}, be identified as a violation. In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
@@ -594,10 +601,10 @@ Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of l
 \subsubsection{Investigating Q-Q plots visually}\label{sec:qqplot}
 %------------------------------------------------------------------------------------
 
-\al{To further support the assessment of normality using lineups a study was conducted to compare three different versions of a Q-Q plot.
+To further support the assessment of normality using lineups a study was conducted to compare three different versions of a Q-Q plot.
 %We are testing three different versions of a Q-Q plot, 
-The three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,} 
-\al{ and a rotated (i.e., detrended) Q-Q plot of the same data. To explore the results of this study we must first define some additional notation.}
+The three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added grey band representing a 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,
+ and a rotated (i.e., detrended) Q-Q plot of the same data. To explore the results of this study we must first define some additional notation.
 
 \begin{figure}
 %<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
@@ -632,9 +639,8 @@ $u$ & the users' subjective abilities.
 \end{center}
 %
 The above factors result in 12 different parameter settings. For each setting we created two samples, along with two sets of null data each, yielding 48 different lineups. 
-Using the Amazon MTurk services, 417 participants were each asked to evaluate ten different lineups. 
-\alnote{Why $n =$ 4,018? Did you throw out responses? Is there missing data?}
-This resulted in $n =$ 4,018 responses. We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
+Using  Amazon MTurk \citet{amazon}, 417 participants were each asked to evaluate ten different lineups. 
+We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
 \alnote{I find this notation a little confusing. I think we are just missing a sentence in the lead in.}
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + \ell_{\ell(i)}
@@ -663,22 +669,22 @@ where $g$ is the logit link function. Both user ability, $u$, and sample difficu
   \hline
  &\bf Estimate &\bf Std. Error &\bf z value &\bf Pr($>$$|$z$|$) & \\ 
   \hline
-Intercept & -5.00 & 0.765 & -6.54 & 0.0000 & *** \\ [3pt]
+Intercept & -5.04 & 0.769 & -6.55 & 0.0000 & *** \\ [3pt]
 \multicolumn{3}{l}{\bf design} \\
    Control & 0.00 & ----- & ----- & ----- \\ 
-   Rotated & -0.34 & 0.130 & -2.64 & 0.0084 & **\\ 
-   Standard & 0.12 & 0.130 & 0.90 & 0.3670 \\ [3pt]
+   Rotated & -0.38 & 0.128 & -2.97 & 0.0030 & **\\ 
+   Standard & 0.11 & 0.127 & 0.88 & 0.3782 \\ [3pt]
 %  locationOuter & 0.19 & 0.106 & 1.83 & 0.0677 \\ 
 %  clickSingle & -0.09 & 0.104 & -0.89 & 0.3747 \\ 
 \multicolumn{4}{l}{\bf degrees of freedom} \\
-  2 & 6.32 & 0.739 & 8.56 & 0.0000 & ***\\ 
-  5 & 2.44 & 0.721 & 3.38 & 0.0007 & ***\\ 
+  2 & 6.32 & 0.743 & 8.50 & 0.0000 & ***\\ 
+  5 & 2.43 & 0.726 & 3.34 & 0.0008 & ***\\ 
   10 & 0.00 & ----- & ----- & ----- \\ [3pt]
 \multicolumn{3}{l}{\bf sample size} \\
   20 & 0.00 & ----- & ----- & ----- \\ 
-  30 & 1.11 & 0.839 & 1.32 & 0.1869 \\ 
-  50 & 2.99 & 0.838 & 3.57 & 0.0004 & ***\\ 
-  75 & 2.30 & 0.840 & 2.74 & 0.0062 & **\\ 
+  30 & 1.09 & 0.844 & 1.29 & 0.1970 \\ 
+  50  & 2.98 & 0.844 & 3.54 & 0.0004 & ***\\ 
+  75 & 2.31 & 0.845 & 2.73 & 0.0063  & **\\ 
    \hline
 \multicolumn{5}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}
 \end{tabular}
