@@ -156,7 +156,9 @@ qplot(x = age2, y = y, data = autism.true.y, group = childid,
 	lineup(true = autism.true.y, samples = M1.sim.y) + 
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylab("VSAE") + 
-	xlab("age - 2")
+	xlab("age - 2") + 
+	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
+	
 	
 ### Now we can check the same type of lineup to see if this seems sufficient
 M2.sims  <- simulate(M2, nsim = 19)
@@ -178,6 +180,7 @@ qplot(x = age2, y = y, data = autism.true.y, group = childid,
 	facet_wrap( ~ .sample, ncol=5) + 
 	ylab("VSAE") + 
 	xlab("age - 2")
+	
 
 
 ### Do we need to allow for correlation between the two random effects?

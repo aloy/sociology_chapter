@@ -97,6 +97,7 @@ M2 <- lmer(normexam ~ standLRT + (standLRT  | school), data = Exam)
 M3 <- lmer(normexam ~ standLRT + (standLRT - 1 | school) + (1 | school), data = Exam)
 
 ## The lineup -need to compare simulated ranefs to ranefs of M2
+set.seed(987654321)
 M3.sims  <- simulate(M3, nsim = 19)
 M3.refit <- lapply(M3.sims, refit, object = M3)
 M3.sim.ranef <- lapply(M3.refit, function(x) ranef(x)[[1]])
@@ -117,6 +118,7 @@ qplot(x = `(Intercept)`, y = standLRT, data = true.M2.ranef,
 
 
 ## A simulation when we know that we DO NOT need correlation
+set.seed(9221632)
 M3.sims2  <- simulate(M3, nsim = 20)
 M3.refit2 <- lapply(M3.sims2[,-20], refit, object = M3)
 M3.sim.ranef2 <- lapply(M3.refit2, function(x) ranef(x)[[1]])
@@ -163,7 +165,7 @@ class(lev1_resid_fm2[,3])  <- "numeric"
 qplot(standLRT2, resid, data = lev1_resid_fm2,
       	geom = "point", alpha = I(0.3)) %+%
   	lineup(true = lev1_resid_fm2, samples = sim_fm2_lev1_resid) +
-  	facet_wrap(~ .sample, ncol = 4) +
+  	facet_wrap(~ .sample, ncol = 5) +
   	geom_hline(aes(yintercept = 0), colour = I("red")) + 
  	 xlab(NULL) + ylab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
