@@ -124,7 +124,7 @@ based on an assessment  by human observers: let $x$ be the number of observers, 
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
 
-\hh{Based on XXX evaluations of figure~\ref{fig:fanned}, XXX observers chose the true data from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of XXX. The actual model of the data and the null are explained in detail in section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 1$.}
+\hh{Based on XXX evaluations of figure~\ref{fig:fanned}, XXX observers chose the true data from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of XXX. The actual model of the data and the null are explained in detail in section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} - 10$.}
 
 The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013} as the probability that in $N$ independent evaluations observers choose the true plot more than $x_\alpha$ times:
 \begin{equation}\label{eqn:power}
@@ -133,7 +133,7 @@ The lineup protocol also allows for an assessment of the power of a lineup \cite
 where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
 Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation of eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to base decisions on designs for particular tasks on evaluating lineups displaying different designs of the same data. An example for this is given in section~\ref{sec:qqplot} at the example of three variations of the familiar Q-Q plots.
 
-Unlike the classical hypothesis testing, visual inference allows us to collect information from observers what aspect of the display led them to their choice. Rather than to just reject a null hypothesis these reasons give us additional information what aspect of the null hypothesis seems to be violated. \hh{An example of this is shown in XXX}
+Unlike the classical hypothesis testing, visual inference allows us to collect information from observers what aspect of the display led them to their choice. Rather than to just reject a null hypothesis these reasons give us additional information about an aspect of the null hypothesis seems to be violated. \hh{An example of this is shown in section XXX}
 
 
 \subsection{Model notation and formulation} 
@@ -185,70 +185,11 @@ and
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Lineups for visual inference heavily rely on the types of residuals defined above. %Next, we compare conventional and visual inference for model selection and validation.
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
-\al{
-Throughout this paper we discuss visual inference in the framework of hierarchical linear models and suggest a graphical tests in situations where the assumptions of conventional inference are violated. In Section~\ref{sec:select} we focus on model building. Section~\ref{sec:checking} focuses on model validation and presents the results of a study investigating the power of three different versions of a Quantile-Quantile plot. In Section~\ref{sec:conclusion} we provide concluding remarks.
-%In sections~\ref{sec:select} and \ref{sec:checking} we discuss how visual inference can be utilized to select and validate hierarchical linear models. 
-%While we focus on examples in which we encounter problems with conventional inference, visual inference can be applied more generally...
-}
-%In the next section we discuss how visual inference can be utilized to explore hierarchical linear models.
 
-\todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
-%%------------------------------------------------------------------------------------
-%\section{Visual inference for hierarchical linear models}\label{sec:hlms}
-%%------------------------------------------------------------------------------------
+Throughout this paper we discuss visual inference in the framework of hierarchical linear models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. In Section~\ref{sec:select} we focus on model building. In section~\ref{sec:checking} we present graphical tests for model validation. We also show results of a study investigating the power of three different versions of the familiar Quantile-Quantile plot. 
 
+%\todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
 
-
-%\subsection{Notation and formulation} 
-%%------------------------------------------------------------------------------------
-%
-%\todo[inline]{Let's move the notation into the introduction}
-%
-%In this paper we consider the continuous response hierarchical linear model
-%%
-%\begin{equation}\label{eq:hlm}
-%	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
-%\end{equation}
-%%
-%where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ that are independent from the level-1 error terms, $\bm{\varepsilon}_i$, which we assume are a random sample from $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
-%Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
-%Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
-%%
-%\begin{equation}\label{eq:marginalmod}
-%\bm{y}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta},\ \bm{V}_i \right)
-%\end{equation}
-%%
-%where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \bm{R}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is given by
-%%
-%\begin{equation}\label{eq:conditionalmod}
-%\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \bm{R}_i \right)
-%\end{equation}
-%%
-%
-%
-%
-%As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
-%%
-%\begin{itemize}
-%\item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
-%
-%\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
-%\end{itemize}
-%%
-%where, assuming $\bm{V}$ is known,
-%\begin{equation}\label{eq:glsb}
-%	\widehat{\bm{\beta}} = 
-%	\left(\sum^m_i \bm{X}\trans_i \bm{V}^{-1}_i \bm{X} \right)^{-1} 
-%	\sum^m_i \bm{X}_i\trans \bm{V}_i\inv \bm{y}_i,
-%\end{equation}
-%and
-%\begin{equation}\label{eq:eb}
-%	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
-%	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
-%\end{equation}
-%%
-%In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Lineups for visual inference heavily rely on the types of residuals defined above. Next, we compare conventional and visual inference for model selection and validation.
-%%Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
 %------------------------------------------------------------------------------------
@@ -257,6 +198,7 @@ Throughout this paper we discuss visual inference in the framework of hierarchic
 
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. 
 %In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
+
 In this section we discuss how visual inference can be used during model selection.
 
 
@@ -297,7 +239,8 @@ to determine whether a child's language development at age 2 (low, medium, or hi
 %Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
 
 
-\todo[inline]{I also included the unordered boxplots so we could look at the difference}
+\alnote{I also included the unordered boxplots so we could look at the difference}
+\todo[inline]{We can include it in the study, but I would only mention it in the paper and maybe put the lineup in an appendix}
 
 \begin{figure}
 	\hfill
@@ -653,7 +596,7 @@ Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of l
 
 \al{To further support the assessment of normality using lineups a study was conducted to compare three different versions of a Q-Q plot.
 %We are testing three different versions of a Q-Q plot, 
-The three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,} \todo{I didn't find a good general reference, but this is implemented all over the place.}
+The three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,} 
 \al{ and a rotated (i.e., detrended) Q-Q plot of the same data. To explore the results of this study we must first define some additional notation.}
 
 \begin{figure}
@@ -681,7 +624,7 @@ Let $X_i \sim B_{1, \pi_i}, 1 \le i \le n$, where $X_i$ is the binary decision o
 \begin{tabular}{lp{5in}}
 $\tau$ & the design used in the lineup (Control, Standard, Rotated), \\
 &  the specific parameters under which the data for the lineup was created: \\
-&  $\delta$ \ \ \ degrees of freedom (2, 5, 10) \al{for the $t$ distribution} and \\
+&  $\delta$ \ \ \ degrees of freedom (2, 5, 10) {of the $t$ distribution} and \\
 &  $\nu$  \ \ \ sample size (10, 20, 50, 75), \\
 $\ell$ &  the level of difficulty based on the actual sample, and \\
 $u$ & the users' subjective abilities.
@@ -689,7 +632,7 @@ $u$ & the users' subjective abilities.
 \end{center}
 %
 The above factors result in 12 different parameter settings. For each setting we created two samples, along with two sets of null data each, yielding 48 different lineups. 
-Using the Amazon Turk \todo{Mechanical Turk?} services, 417 participants were each asked to evaluate ten different lineups. 
+Using the Amazon MTurk services, 417 participants were each asked to evaluate ten different lineups. 
 \alnote{Why $n =$ 4,018? Did you throw out responses? Is there missing data?}
 This resulted in $n =$ 4,018 responses. We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
 \alnote{I find this notation a little confusing. I think we are just missing a sentence in the lead in.}
