@@ -174,10 +174,16 @@ class(lev1_resid_fm2[,3])  <- "numeric"
 
 ## Creating lineup
 qplot(standLRT2, resid, data = lev1_resid_fm2,
-      	geom = "point", alpha = I(0.3)) %+%
+      	geom = "point", alpha = I(0.4)) %+%
   	lineup(true = lev1_resid_fm2, samples = sim_fm2_lev1_resid) +
   	facet_wrap(~ .sample, ncol = 5) +
-  	geom_hline(aes(yintercept = 0), colour = I("red")) + 
+  	geom_hline(aes(yintercept = 0), colour = I("white"), alpha = I(0.5)) + 
  	 xlab(NULL) + ylab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+
+location <- 5
+make_interactive(filename= sprintf("exam-homogeneity-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("exam-homogeneity-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
