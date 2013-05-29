@@ -78,7 +78,7 @@ qplot(x = factor(rank), y = EB.resid, data = resids,
                  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
                  axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
 				facet_wrap(~sample)
-ggsave("figures/ahd_badcyclone5.pdf", width = 8.5, height = 11)
+ggsave("figures/ahd_badcyclone5.pdf")
 
 source("R/add_interaction.R")
 location <- resids$sample[nrow(resids)]
@@ -173,7 +173,7 @@ qplot(x = factor(rank), y = EB.resid, data = resids,
                  axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
 				facet_wrap(~sample)
 
-ggsave("figures/ahd_goodcyclone13.pdf", width = 8.5, height = 11)
+ggsave("figures/ahd_goodcyclone13.pdf")
 
 location <- resids$sample[nrow(resids)]
 make_interactive(filename= sprintf("cyclone-good-%s-multiple.svg", location), 
