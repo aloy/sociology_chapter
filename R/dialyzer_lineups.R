@@ -92,7 +92,7 @@ qplot(pressure, resid, data = m2.resid.df,
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
-location <- 
+location <- 14
 make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
 make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-single.svg", location), 
@@ -100,4 +100,4 @@ make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-single.svg", locat
 
 
 # saving data
-# saveRDS(m2.resid.df, m2.sim.resids, file = file.choose(new = TRUE))
+# save(m2.resid.df, m2.sim.resids, file = file.choose(new = TRUE))

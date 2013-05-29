@@ -6,7 +6,8 @@
 # May 2013
 #
 # EXAM DATA
-# Description: 4059 students nested within 65 schools
+# Data description:
+# 4059 students nested within 65 schools
 # Variables - 
 # *school - school id
 # *student - student id
