@@ -70,7 +70,9 @@ resids <- rbind(sim_resids, true_resids)
 resids$n <- as.numeric(gsub(".*_([0-9]+)", "\\1", as.character(resids$.id)))
 resids$sample <- sample(20,20, replace=FALSE)[resids$n]
 resids <- ddply(resids, .(n, subject), transform, iqr=IQR(EB.resid))
-resids <- ddply(resids, .(n), transform, rank = rank(iqr))
+resids <- ddply(resids, .(n), transform, rank = order(order(iqr, subject)))
+resids <- ddply(resids, .(n, subject), transform, rank = min(rank))
+resids <- ddply(resids, .(n), transform, rank = rank(rank))
 
 qplot(x = factor(rank), y = EB.resid, data = resids, 
                geom = "boxplot", xlab = "", ylab = "", outlier.size = 1.5) + coord_flip() + 
@@ -79,6 +81,7 @@ qplot(x = factor(rank), y = EB.resid, data = resids,
                  axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
 				facet_wrap(~sample)
 ggsave("figures/ahd_badcyclone5.pdf")
+save(resids, file="cyclone-bad.RData")
 
 source("R/add_interaction.R")
 location <- resids$sample[nrow(resids)]
