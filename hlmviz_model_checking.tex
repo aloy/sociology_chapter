@@ -182,11 +182,13 @@ and
 	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right)
 \end{equation}
 %
-In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Lineups for visual inference heavily rely on the types of residuals defined above. Next, we compare conventional and visual inference for model selection and validation.
+In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equation. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). Lineups for visual inference heavily rely on the types of residuals defined above. %Next, we compare conventional and visual inference for model selection and validation.
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 \al{
-In sections~\ref{sec:select} and \ref{sec:checking} we discuss how visual inference can be utilized to select and validate hierarchical linear models. While we focus on example in which we encounter problems with conventional inference, visual inference can be applied more generally...
+Throughout this paper we discuss visual inference in the framework of hierarchical linear models and suggest a graphical tests in situations where the assumptions of conventional inference are violated. In Section~\ref{sec:select} we focus on model building. Section~\ref{sec:checking} focuses on model validation and presents the results of a study investigating the power of three different versions of a Quantile-Quantile plot. In Section~\ref{sec:conclusion} we provide concluding remarks.
+%In sections~\ref{sec:select} and \ref{sec:checking} we discuss how visual inference can be utilized to select and validate hierarchical linear models. 
+%While we focus on examples in which we encounter problems with conventional inference, visual inference can be applied more generally...
 }
 %In the next section we discuss how visual inference can be utilized to explore hierarchical linear models.
 
@@ -761,7 +763,7 @@ Out of the 48 non-normal samples, 24 get rejected at a significance level of 5\%
 \end{table}
 
 %------------------------------------------------------------------------------------
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
 
 We have presented a graphical approach to model selection and diagnosis in this paper based on simulating from the model fitted to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight to the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tools. It is important to note that simulation-based diagnostics for hierarchical linear models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computation burden of simulation-based diagnostics.
