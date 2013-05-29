@@ -129,8 +129,22 @@ mod2.sim.y$vsae <- rep(autism$vsae, rep = 19)
 mod2.sim.y$childid <- rep(autism$childid, rep = 19)
 mod2.sim.y$age.2 <- rep(autism$age.2, rep = 19)
 
+location <- sample(20, 1)
+qplot(x = age.2, y = y, data = autism.true.y, group = childid, geom = "line", se=F, alpha = I(0.3)) %+% lineup(true = autism.true.y, samples = mod2.sim.y, pos=location) + facet_wrap( ~ .sample, ncol=5) + ylab("VSAE") + xlab("age - 2")
 
-qplot(x = age.2, y = y, data = autism.true.y, group = childid, geom = "line", se=F, alpha = I(0.3)) %+% lineup(true = autism.true.y, samples = mod2.sim.y) + facet_wrap( ~ .sample, ncol=5) + ylab("VSAE") + xlab("age - 2")
+library(grid)
+qplot(x = age.2, y = y, data = autism.true.y, group = childid, geom = "line", se=F, alpha = I(0.3)) %+% lineup(true = autism.true.y, samples = mod2.sim.y, pos=location) + facet_wrap( ~ .sample, ncol=5) +
+theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), panel.grid.major.y = element_blank(), 
+                 axis.title=element_blank()) 
+ggsave(sprintf("figures/autism-fanned2-%s-multiple.svg", location)
+save(autism.true.y, mod2.sim.y, file="autism-fanned2.RData")
+
+source("R/add_interaction.R")
+make_interactive(filename= sprintf("autism-fanned2-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("autism-fanned2-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="toggle")
 
 
 ### Question: Do we need to allow for correlation between the two random effects?

@@ -340,6 +340,7 @@ qplot(sample = basement, data = b1, stat = "qq") %+%
 	ylab(NULL) + xlab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+save(b1, file=sprintf("radon-tsim-%s.RData", location))
 
 ggsave("qqplot_tranef_slope_lineup6.pdf")
 make_interactive(filename= sprintf("radon-tsim-%s-multiple.svg", location), 
