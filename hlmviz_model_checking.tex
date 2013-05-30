@@ -155,8 +155,9 @@ In this paper we consider the continuous response hierarchical linear model
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, g$, 
 \alnote{We use $m$ in the development of visual inference, should we choose a different letter here?}
+\todo[inline]{$g$ should work instead of $m$ ...}
 $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, which we assume are a random sample from $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
@@ -217,9 +218,6 @@ One statistical model is nested within another when the \emph{larger model} cont
  as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two are not nested when one model, previously termed the smaller model, is not a special case of the other. For example, if two models contain different sets of fixed effects.
  Model selection for hierarchical linear models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
 
-\todo[inline]{This needs more general discussion: comparing nested versus non-nested models.}
-
-\alnote{How does that work?}
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}\label{sec:select-fixed}
@@ -279,14 +277,15 @@ The resulting scores for each school are regressed on LRT results and shown as l
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
-Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of 0 is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with \al{overlayed} \hh{regression lines}. The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots. In Figure~\ref{fig:ranef-corr} the true plot (panel $\sqrt{70 + 11}$) was identified \al{by XXX of the XXX observers}, providing evidence supporting the inclusion of the additional parameter.
+Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of \hh{zero} is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. \hh{This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. The slopes of the regression lines are indicative of the amount of correlation. Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. }
+ The null plots are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects. If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
+ \hh{The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model.}
+  In Figure~\ref{fig:ranef-corr} the true plot (panel $2 + \sqrt{25}$) was identified \al{by XXX of the XXX observers}, providing evidence supporting the inclusion of the additional parameter.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{exam_corr_lineup7.pdf}
-	\caption{\label{fig:ranef-corr} 
-	\alnote{I need to revisit this caption}
-	Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
+	\caption{\label{fig:ranef-corr} Lineup for testing correlation between random effects. Which plot is the most different of the others? What feature in the panel led you to your choice? }
 \end{figure}
 
 %\alnote{We could move the negative lineups that we did not include in the study to the appendix. I am thinking about this more from the perspective of when we submit to a journal with length restrictions}
@@ -474,11 +473,6 @@ To check the assumption of linearity we suggest the use of scatterplots with smo
 %------------------------------------------------------------------------------------
 
 %Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
-
-\todo[inline]{This last sentence is a bit tight. You're way too deep in the material :)
- first state that the common assumption for distributions of random effects is  normality and that we usually also assume that the effects are independent. Point out that due to confounding regular normal tests fail. That will lead better into the next sentence where you are giving reasons of why this happens.}
- 
-\alnote{Here is the first attempt as easing into things a bit more.}
 
 \al{Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. Formally this is seen by the}
 strong assumptions that are required for the empirical distributions of the residuals in the hierarchical linear models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
@@ -698,12 +692,10 @@ $u$ & the users' subjective abilities.
 The above factors result in 12 different parameter settings. For each setting we created two samples, along with two sets of null data each, yielding 48 different lineups. 
 Using  Amazon MTurk \citep{amazon}, 417 participants were each asked to evaluate ten different lineups. 
 We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
-\todo[inline]{there's more explanation below - does that help?}
-\alnote{Yep! I thought that was what was going on, but I think the explanation makes it easier on the reader.}
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + d_{d(i)}
 \]
-where $g$ is the logit link function, and \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample. More specifically, $j(i) \in \{$Control, Standard, Rotated$\}$; $k(i) \in \{2,5,10\}$; $s(i) \in \{20, 30, 50, 75\}$; $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. }
+where $g$ is the logit link function, and $j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample. More specifically, $j(i) \in \{$Control, Standard, Rotated$\}$; $k(i) \in \{2,5,10\}$; $s(i) \in \{20, 30, 50, 75\}$; $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. 
 
 Both user ability, $u$, and sample difficulty, $d$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{d(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
@@ -751,8 +743,10 @@ Intercept & -5.04 & 0.769 & -6.55 & 0.0000 & *** \\ [3pt]
 \caption{\label{tab:model} Coefficients and significances corresponding to  model $M_1$. The type of design is important for the power of a lineup. Rotated Q-Q plots lose a significant amount of power compared to both the regular and the standard version of Q-Q plots. }
 \end{table}
 
-The estimated model coefficients for model $M1$ are shown in table~\ref{tab:model}.
-\todo[inline]{estimates of variance components} As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality, as is the case with lower degrees of freedom. The  design of the Q-Q plot is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
+The estimated model coefficients for model $M_1$ are shown in table~\ref{tab:model}. 
+\hh{Estimates of the variance components are $\widehat{\sigma}_u = 0.71$, $\widehat{\sigma}_d=1.95$, and $\widehat{\sigma} = 0.29$. Variances of user ability and data difficulty are large relative to residual variance, indicating that both random effects are necessary.}
+%
+As expected, the task of identifying non-normality is easier with increased sample size and more pronounced deviations from normality, as is the case with lower degrees of freedom. The  design of the Q-Q plot is of huge importance for the probability of choosing the data plot. Interestingly, the rotated version of the Q-Q plot is significantly less suitable for the task of assessing normality compared to the control form. Adding confidence bands helps with evaluation, but not significantly. 
 
 Note that none of the data plots in the lineups were actually created using data from a normal distribution. This should lead to rejection of the null hypothesis in every single instance. This is not quite true, as can be seen in table~\ref{tab:reject}. But what also becomes evident is the high power  of visual inference. Based on lineups we are able to reject non-normality much more often than with any of the classical tests.
 
