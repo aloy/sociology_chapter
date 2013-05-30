@@ -75,24 +75,11 @@ Statistical modeling involves a cyclical process consisting of exploration, esti
 in complex models where such procedures often perform sub-optimally.
 Until now, when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results \citep[c.f.,][]{Longford:2001wy}. 
 \todo[inline]{what makes the parametric bootstrap solution unsatisfactory? -- we shouldn't bring it up unless there's a good reason to not use it. }
-Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a rigorous framework for graphical discovery. In this paper we consider using the inferential framework developed by \cite{Buja:2009hp} to address common difficulties encountered in the selection and validation of hierarchical linear models.
+Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a rigorous framework for graphical discovery. In this paper we apply the  framework of visual inference  \cite{Buja:2009hp, mahbub:2013} to address common difficulties encountered in the selection and validation of hierarchical linear models.
 
-Hierarchical linear models are versatile models that allow for dependence that is expected when data are organized in hierarchical structures.
-%---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
-Examples of such structures include when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and validation. For example:
-\begin{itemize}
-\item Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
-%Likelihood ratio tests for model selection are known to suffer from boundary effects, and while adjustments to the reference distributions have been proposed \citep{Stram:1994wd}, they do not hold in all cases.
-
-\item Residual plots often display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. This problem is especially pronounced for plots of the predicted random effects \cite[c.f.,][]{Morrell:2000ve}.
-
-\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment.
-\end{itemize}
-%More specifically, residual plots often display noticeable patterns, but these patterns are often artifacts of model estimation rather than indications of lack of fit. To mitigate the risk of detecting such artifacts we suggest a graphical simulation-based approach to model checking that makes use of the protocols from visual inference \citep{Buja:2009hp}.
 Visual inference provides a unified graphical approach to account for such problems encountered with complex models while relying on familiar statistical graphics. 
-%This results in a rigorous graphical approach that has for more potential for discovery during the model selection and validation processes, 
 
-In order to develop such graphical tools as substitutes for statistical tests, we must first define the inferential framework on which we rely.
+In order to develop such graphical tools as complements to conventional tests, we must first define the inferential framework on which we rely.
 
 %%------------------------------------------------------------------------------------
 \subsection{Visual inference}\label{sec:vi}
@@ -141,16 +128,28 @@ choose the true plot more than $x_\alpha$ times is
 \begin{equation}\label{eqn:power}
 \widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
 \end{equation}
-where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$.  $p_i$ is the probability that individual $i$ chooses the true plot, which  depends both on the strength of the signal in the true plot and an individual's visual ability.
-Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we must assume that all individuals share the same ability, and the power calculation in eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying different designs of the same data. An example of this is given in section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
+where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$, where  $p_i$ is the probability that individual $i$ chooses the true plot. This probability  depends both on the strength of the signal in the true plot and an individual's visual ability.
+Assessing ability requires that an individual evaluates multiple lineups. If that is not possible, we have to assume that all individuals share the same ability, and the power calculation in eqn.~(\ref{eqn:power}) simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability that an individual chooses the true plot based on a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying different designs of the same data. An example of this is given in section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
 
-Unlike classical hypothesis tests, visual inference allows us to collect information on what aspect of the display led each observer to their choice. 
+Unlike classical hypothesis tests, visual inference allows us to also  collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-These reasons give us additional information on how the null hypothesis seems to be violated, information that is not provided in classical hypothesis tests. \hh{An example of this is shown in section XXX}
+This additional information helps us to assess more specifically, which part of the null hypothesis seems to be violated, something that is not provided in classical hypothesis tests. \hh{An example of this is shown in section XXX}
 
 
 \subsection{Model notation and formulation} 
 %------------------------------------------------------------------------------------
+
+Hierarchical linear models are versatile models that allow for dependence that is expected when data are organized in hierarchical structures.
+%---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
+Examples of such structures include when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and validation. For example:
+\begin{itemize}
+\item Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
+%Likelihood ratio tests for model selection are known to suffer from boundary effects, and while adjustments to the reference distributions have been proposed \citep{Stram:1994wd}, they do not hold in all cases.
+
+\item Residual plots often display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. This problem is especially pronounced for plots of the predicted random effects \cite[c.f.,][]{Morrell:2000ve}.
+
+\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment.
+\end{itemize}
 
 In this paper we consider the continuous response hierarchical linear model
 %
