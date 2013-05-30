@@ -60,7 +60,7 @@ qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth"),
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
-location <- 19
+location <- 17
 make_interactive(filename= sprintf("dialyzer-nonlinear-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
 make_interactive(filename= sprintf("dialyzer-nonlinear-%s-single.svg", location), 
@@ -92,7 +92,7 @@ qplot(pressure, resid, data = m2.resid.df,
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
-location <- 14
+location <- 3
 make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
 make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-single.svg", location), 

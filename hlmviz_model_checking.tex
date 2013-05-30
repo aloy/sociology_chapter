@@ -284,7 +284,9 @@ Having considered the value of a random slope in the model, we next consider whe
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{exam_corr_lineup7.pdf}
-	\caption{\label{fig:ranef-corr} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
+	\caption{\label{fig:ranef-corr} 
+	\alnote{I need to revisit this caption}
+	Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
 \end{figure}
 
 %\alnote{We could move the negative lineups that we did not include in the study to the appendix. I am thinking about this more from the perspective of when we submit to a journal with length restrictions}
@@ -376,6 +378,8 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 \section{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
+\alnote{I will think about an intro for this section.}
+
 %
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
@@ -384,10 +388,14 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 %\subsubsection{Conventional practices}\label{sec:conv-check}
 %------------------------------------------------------------------------------------
 
-Model~\ref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption must we verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the variance is also constant across groups. Such investigations are often carried out using plots of the level-1 residuals; however, the interpretation of these plots is error prone.
-For example, consider investigating the appropriateness of this assumption for the GSCEE data. To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
+Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption must we verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant across groups. Such investigations are often carried out using plots of the level-1 residuals; however, the interpretation of these plots is error prone.
+For example, consider investigating the appropriateness of this assumption for the GSCEE data. 
+%To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
 %Such plots are appropriate to check the assumptions of linearity and homoscedasticity at each level of the model. 
-The lineup in Figure~\ref{fig:constvar1} consists of 20 plots of the level-1 residual against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the level-1 residual variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{225} + 2$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
+%The lineup in 
+Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{225} + 2$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
+
+\alnote{We can talk about the second example here}
 
 \begin{figure}
 	\centering
@@ -398,10 +406,17 @@ The lineup in Figure~\ref{fig:constvar1} consists of 20 plots of the level-1 res
 \end{figure}
 
 %\paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are useful in checking for homoscedastic level-1 residuals, but they do not investigate potential differences in variability across groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. Taken individually, unbalanced group sizes can cause artificial structure in these plots, which can be seen by considering the variance of the sampling distribution of the level-1 residuals, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - p_i)$, which depends on the group size.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of Methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3-3$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. \al{Figure~\ref{fig:goodcyclone} shows an example of a lineup where the assumption is upheld. Only XXX of XXX observers identified the true plot in this situation.}
+Residual scatterplots are useful in checking that level-1 residuals are homoscedastic, but they do not investigate potential differences in variability across groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of Methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3-3$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
+%\al{Figure~\ref{fig:goodcyclone} shows an example of a lineup where the assumption is upheld. Only XXX of XXX observers identified the true plot in this situation.}
 
-%\alnote{Should we talk about both lineups of cyclone plots explicitly? I couldn't quite work it in this time around.}
+\alnote{Do I remember correctly that we are dropping the negative lineup here? For now I have commented out this plot.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
+	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
 
 An alternative approach to detect homoscedasticity of the level-1 residuals across groups is to use a \al{test based on the} standardized measure of dispersion given by
 %
@@ -409,7 +424,7 @@ An alternative approach to detect homoscedasticity of the level-1 residuals acro
 	d_i = \frac{\log\left( s_i^2 \right) - \left[ \sum_i (n_i - r_i) \log\left( s_i^2 \right) / \sum_i  (n_i - r_i) \right]}{\left(2 / (n_i - r_i)\right)^{1/2}}
 \end{equation}
 %
-where $s_i^2$ is the residual variance within each group and $r_i = \mathrm{rank}(\bm{X}_i)$ \citep{Raudenbush:2002}. The test statistic is then
+where $s_i^2$ is the residual variance within each group \citep{Raudenbush:2002}. The test statistic is then
 %
 \begin{equation}
 	H = \sum_{i=1}^{m^*} d_i^2
@@ -418,17 +433,17 @@ where $s_i^2$ is the residual variance within each group and $r_i = \mathrm{rank
 which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $m^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the Methylprednisolone study each subject was observed at most 5 times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is computationally more demanding than the generation of 19 null plots.
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
-	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
+%	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+%\end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{ahd_goodcyclone13.pdf}
-	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\textwidth]{ahd_goodcyclone13.pdf}
+%	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+%\end{figure}
 
 
 \subsection{Linearity}
@@ -436,10 +451,11 @@ which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data a
 
 To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of  both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
 
-\alnote{This section is pretty small since we covered this type of lineup already. It needs some work, but I am trying to merge things together before editing.}
-\todo[inline]{Which lineup do you have in mind for testing linearity? Refer to it again. We might need to look into the reasons that people give in order to figure out whether they picked up on non-linearity or something else.}
-\alnote{I think a scatterplot with a smoother would be used to test this assumption. We don't have any examples where linearity is violated, though I can find one if it would be of interest. I was mostly not wanting to sound repetitive in this section.}
-
+\begin{figure}
+	\centering
+	\includegraphics[]{}
+	\caption{\label{fig:linearity} }
+\end{figure}
 
 \subsection{Normality}
 \hh{This section consists of two parts: we first discuss how to assess distributional assumptions in hierarchical models, which are complicated by confounding issues between levels of residual structures. In a second part we assess power of visual normality tests based on three different designs of Q-Q plots.}
