@@ -52,22 +52,23 @@ m1.refit <- lapply(m1.sims, refit, object = M1)
 m1.sim.resids <- ldply(m1.refit, function(x) data.frame(x@frame, resid = resid(x)))
 m1.sim.resids$.n <- as.numeric(str_extract(m1.sim.resids$.id, "\\d+"))
 
+location <- sample(20, 1)
 qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth"),
 	method = "loess") %+%
-  	lineup(true = m1.resid.df, samples = m1.sim.resids) +
+  	lineup(true = m1.resid.df, samples = m1.sim.resids, pos=location) +
   	facet_wrap(~ .sample, ncol = 5) +
  	 xlab(NULL) + ylab(NULL) + 
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
-
-location <- 17
+ggsave(file=sprintf("dialyzer-nonlinear-%s.pdf", location))
 make_interactive(filename= sprintf("dialyzer-nonlinear-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
 make_interactive(filename= sprintf("dialyzer-nonlinear-%s-single.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
 
 # saving data
-# save(m1.resid.df, m1.sim.resids, file = file.choose(new = TRUE))
+# 
+save(m1.resid.df, m1.sim.resids, file = "dialyzer-nonlinear.RData")
 
 #-------------------------------------------------------------------------------
 # Lineup to test for homogeneity

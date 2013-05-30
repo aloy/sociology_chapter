@@ -96,6 +96,25 @@ make_interactive(filename= sprintf("exam-corr-%s-single.svg", location),
 
 ##### lineup number 6 #####
 
+load("dialyzer-nonlinear.RData")
+
+location <- 17
+qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth"),
+	method = "loess") %+%
+  	lineup(true = m1.resid.df, samples = m1.sim.resids, pos=location) +
+  	facet_wrap(~ .sample, ncol = 5) +
+ 	 xlab(NULL) + ylab(NULL) + 
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+
+make_interactive(filename= sprintf("dialyzer-nonlinear-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("dialyzer-nonlinear-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
+
+
+
+
 ##### lineup number 7 #####
 ggsave("exam-homogeneity.RData")
 location <- 7
@@ -148,4 +167,22 @@ qplot(sample = basement, data = b1, stat = "qq") %+%
 make_interactive(filename= sprintf("radon-tsim-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")
 make_interactive(filename= sprintf("radon-tsim-%s-single.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
+
+##### lineup number 10 #####
+load("dialyzer-nonlinear.RData")
+
+
+location <- 3
+qplot(pressure, resid, data = m2.resid.df,
+      	geom = "point", alpha = I(0.5)) %+%
+  	lineup(true = m2.resid.df, samples = m2.sim.resids) +
+  	facet_wrap(~ .sample, ncol = 5) +
+ 	 xlab(NULL) + ylab(NULL) + 
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+
+make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-multiple.svg", location), 
+		script="http://www.hofroe.net/examples/lineup/action.js")
+make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-single.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js", toggle="select")
