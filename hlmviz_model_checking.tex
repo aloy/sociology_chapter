@@ -51,7 +51,7 @@
 \newcommand{\cov}{\ensuremath{\mathrm{Cov}}}
 
 
-\title{Visual Inference for Linear Mixed Effects Models}
+\title{Visual Inference for Linear Mixed-Effects Models}
 
 \author{Adam Loy, Lendie Follett, Heike Hofmann, Dianne Cook\\
 	Department of Statistics\\
@@ -65,7 +65,7 @@
 Motivation for this paper: describe visual inference, and apply to (open) problems of diagnosing HLMs. Show a case study of an experiment for Q-Q plots. 
 \end{abstract}
 
-\tableofcontents
+%\tableofcontents
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ in complex models where such procedures often perform sub-optimally.
 Until now, when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results \citep[c.f.,][]{Longford:2001wy}. 
 \todo[inline]{what makes the parametric bootstrap solution unsatisfactory? -- we shouldn't bring it up unless there's a good reason to not use it. }
 \alnote{I refer to the fact that they require more computation time than the lineups later in the paper. Also, like classical hypothesis tests, they only provide decisions whereas lineups provide additional information.}
-Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a rigorous framework for graphical discovery. In this paper we apply the  framework of visual inference  \cite{Buja:2009hp, mahbub:2013} to address common difficulties encountered in the selection and validation of hierarchical linear models.
+Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a rigorous framework for graphical discovery. In this paper we apply the  framework of visual inference  \cite{Buja:2009hp, mahbub:2013} to address common difficulties encountered in the selection and validation of linear mixed-effects (LME) models.
 
 Visual inference provides a unified graphical approach to account for such problems encountered with complex models while relying on familiar statistical graphics. 
 
@@ -784,14 +784,14 @@ Throughout this paper we have provided examples of graphical diagnostics that we
 
 Additionally, we have presented a more detailed look at graphical diagnostics that can be used to assess distributional assumptions. We found that, contrary to expectation, rotating the Q-Q plot to emphasize the vertical comparisons does not improve the power of the graphical test. In addition to supporting the use of the standard construction of Q-Q plots, this study provides an example of how to select a graphical diagnostic based on its estimated power. 
 
-\alnote{I'm not quite sure where to put this... We could add a paragraph here describing what was used, or maybe an appendix? If we put it here, should it be the last paragraph?}
-\hh{Technical implementation: R \citep{R} and packages for modeling lme4 \citep{lme4}, HLMdiag \citep{HLMDiag}, and visualizations ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, gridSVG \citep{gridSVG}. 
+%\alnote{I'm not quite sure where to put this... We could add a paragraph here describing what was used, or maybe an appendix? If we put it here, should it be the last paragraph?}
+%\hh{Technical implementation: R \citep{R} and packages for modeling lme4 \citep{lme4}, HLMdiag \citep{HLMDiag}, and visualizations ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, gridSVG \citep{gridSVG}. 
+%Mahbub's website for experiments}
 
-Mahbub's website for experiments}
 %------------------------------------------------------------------------------------
 \paragraph{Acknowledgments}
 %------------------------------------------------------------------------------------
-We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study. 
+We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study (\url{http://www.public.iastate.edu/~mahbub/}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used to model fitting and the calculation of diagnostic quantities, respectively, and ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} were used for visualization.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
 
 %------------------------------------------------------------------------------------
