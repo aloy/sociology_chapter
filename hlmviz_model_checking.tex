@@ -70,9 +70,12 @@ Motivation for this paper: describe visual inference, and apply to (open) proble
 \section{Introduction}
 %------------------------------------------------------------------------------------
 
-Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked. While graphical methods are often used for exploration, they are often deemed too subjective to be the sole basis for model selection or validation. This viewpoint leads to an over-reliance on conventional hypothesis tests 
+Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked. While there is a wide-spread use of graphical methods for exploration, they are often deemed too subjective to be the sole basis for model selection or validation. This viewpoint leads to an over-reliance on conventional hypothesis tests 
 %for model selection and validation 
-in complex models where such procedures often perform sub-optimally. Until now, when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results \citep[c.f.,][]{Longford:2001wy}. Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a rigorous framework for graphical discovery. In this paper we consider using the inferential framework developed by \cite{Buja:2009hp} to address common difficulties encountered in the selection and validation of hierarchical linear models.
+in complex models where such procedures often perform sub-optimally.
+Until now, when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results \citep[c.f.,][]{Longford:2001wy}. 
+\todo[inline]{what makes the parametric bootstrap solution unsatisfactory? -- we shouldn't bring it up unless there's a good reason to not use it. }
+Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a rigorous framework for graphical discovery. In this paper we consider using the inferential framework developed by \cite{Buja:2009hp} to address common difficulties encountered in the selection and validation of hierarchical linear models.
 
 Hierarchical linear models are versatile models that allow for dependence that is expected when data are organized in hierarchical structures.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
@@ -783,8 +786,8 @@ Mahbub's website for experiments}
 %------------------------------------------------------------------------------------
 \paragraph{Acknowledgments}
 %------------------------------------------------------------------------------------
-We would like to thank Mahbubul Majumder, without whose help  we could not have conducted our Amazon MTurk study.
-This work was funded in part by National Science Foundation grant DMS 1007697.
+We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study. 
+This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
 
 %------------------------------------------------------------------------------------
 \appendix
