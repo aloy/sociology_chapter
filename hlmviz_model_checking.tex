@@ -393,15 +393,16 @@ For example, consider investigating the appropriateness of this assumption for t
 %To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
 %Such plots are appropriate to check the assumptions of linearity and homoscedasticity at each level of the model. 
 %The lineup in 
-Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{225} + 2$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
+Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{121} - 8$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
 
 \alnote{We can talk about the second example here}
+
+\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure from the dialyzer study (see Section~\ref{data:dialyzer}). In this example XXX of XXX observers identified the true plot (panel $2^3 - 5$), providing evidence of heteroscedasticity. Additionally, looking at the reasons that observers chose this plot...}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_constvar_lineup3.png}
 	\caption{\label{fig:constvar1} 
-	\alnote{I need to update text for new lineup.}
 	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
@@ -415,9 +416,7 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 %\paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are useful in checking that level-1 residuals are homoscedastic, but they do not investigate potential differences in variability across groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
 To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of Methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3-3$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
-%\al{Figure~\ref{fig:goodcyclone} shows an example of a lineup where the assumption is upheld. Only XXX of XXX observers identified the true plot in this situation.}
 
-\alnote{Do I remember correctly that we are dropping the negative lineup here? For now I have commented out this plot.}
 
 \begin{figure}
 	\centering
