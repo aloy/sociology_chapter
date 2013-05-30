@@ -367,6 +367,7 @@ location <- gcse$sample[nrow(gcse)]
 ggplot(aes(x = standLRT, y = y, group=school), data=gcse) + geom_smooth(method="lm", se=F, colour=rgb(0, 0, 0, alpha=0.5),  alpha=0.1) + facet_wrap(~sample) +
 	theme(axis.text=element_blank(), axis.ticks=element_blank(), axis.title=element_blank())
 ggsave("normexam_fanned_lineup13.pdf")
+save(gcse, file="exam-fanned.RData")
 
 make_interactive(filename= sprintf("exam-fanned-%s-multiple.svg", location), 
 		script="http://www.hofroe.net/examples/lineup/action.js")

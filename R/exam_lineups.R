@@ -120,6 +120,7 @@ qplot(x = `(Intercept)`, y = standLRT, data = true.M2.ranef,
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 ggsave("exam_corr_lineup7.pdf")
+save(true.M2.ranef, M3.sim.ranef, file="exam-corr.RData")
 
 location <- 7
 make_interactive(filename= sprintf("exam-corr-%s-multiple.svg", location), 
