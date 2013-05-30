@@ -155,10 +155,7 @@ In this paper we consider the continuous response hierarchical linear model
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, g$, 
-\alnote{We use $m$ in the development of visual inference, should we choose a different letter here?}
-\todo[inline]{$g$ should work instead of $m$ ...}
-$\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, which we assume are a random sample from $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, g$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, which we assume are a random sample from $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
 %
@@ -377,6 +374,9 @@ If two models are not nested, then the likelihood ratio test cannot be used to d
 \section{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
+In the formulation of model \eqref{eq:hlm} we make a number of assumptions that must be satisfied...
+
+
 \alnote{I will think about an intro for this section.}
 
 %
@@ -402,14 +402,16 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 	\centering
 	\includegraphics[width=\textwidth]{normexam_constvar_lineup3.png}
 	\caption{\label{fig:constvar1} 
-	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{dialyzer-heterogeneous-lineup3.pdf}
 	\caption{\label{fig:constvar2} 
-	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
 %\paragraph{Testing homoscedasticity across groups.}
@@ -421,7 +423,9 @@ To overcome this difficulty, we create a lineup of side-by-side boxplots for eac
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{ahd_badcyclone5.pdf}
-	\caption{\label{fig:badcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+	\caption{\label{fig:badcyclone} 
+	Lineup testing homogeneity of the level-1 residuals between groups. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
 An alternative approach to detect homoscedasticity of the level-1 residuals across groups is to use a \al{test based on the} standardized measure of dispersion given by
@@ -433,10 +437,10 @@ An alternative approach to detect homoscedasticity of the level-1 residuals acro
 where $s_i^2$ is the residual variance within each group based on separate ordinary least squares regressions  \citep{Raudenbush:2002}. The test statistic is then
 %
 \begin{equation}
-	H = \sum_{i=1}^{m^*} d_i^2
+	H = \sum_{i=1}^{g^*} d_i^2
 \end{equation}
 %
-which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $m^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the Methylprednisolone study each subject was observed at most 5 times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is computationally more demanding than the generation of 19 null plots.
+which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the Methylprednisolone study each subject was observed at most 5 times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is computationally more demanding than the generation of 19 null plots.
 
 
 %\begin{figure}
@@ -462,7 +466,8 @@ To check the assumption of linearity we suggest the use of scatterplots with smo
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{dialyzer-nonlinear-lineup17.pdf}
-	\caption{\label{fig:linearity} Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
+	\caption{\label{fig:linearity} Lineup testing testing for nonlinearity of a covariate. Which of the plots is the most different? Which feature led you to your choice?}
+	%Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
 \subsection{Normality}
@@ -811,6 +816,7 @@ Autism is a developmental disorder typically characterized by impaired communica
 \subsection{Dialyzer study}\label{data:dialyzer}
 %------------------------------------------------------------------------------------
 
+\cite{Vonesh:1992us} describe a study characterizing the water transportation characteristics of 20 high flux membrane dialyzers, which were introduced to reduce the time a patient spends on hemodialysis. The 20 dialyzers were studied \emph{in vitro} using bovine blood at flow rates of either 200 or 300 ml/min, and the ultrafiltration rate (ml/hr) for each dialyzer was measured at seven transmembrane pressures (in mmHg). \cite{Vonesh:1992us} use nonlinear mixed-effects models to analyze these data; however, they can be modeled using polynomials in the linear mixed-effects framework.
 
 \subsection{Radon study}\label{data:radon}
 %------------------------------------------------------------------------------------
@@ -826,7 +832,7 @@ The data consist of a stratified random sample of 919 owener-occupied homes in 8
 \begin{figure}[h]
 	\hfill
 	\includegraphics[width=0.9\textwidth]{autism_sicdegp_level1_lineup4.pdf}
-	\caption{\label{fig:boxplot-unordered} Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. Which is the real plot?}
+	\caption{\label{fig:boxplot-unordered} An alternative layout of Figure~\ref{fig:boxplot-ordered}, where the boxplots are ordered as they are for inference. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
 %------------------------------------------------------------------------------------
