@@ -70,7 +70,7 @@ Motivation for this paper: describe visual inference, and apply to (open) proble
 \section{Introduction}
 %------------------------------------------------------------------------------------
 
-Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interested is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked. While graphical methods are often used for exploration, they are often deemed too subjective to be the sole basis for model selection or validation. This viewpoint leads to an over reliance on conventional hypothesis tests for model selection and validation in complex models where such procedures often perform sub-optimally. Until when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results. Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a more rigorous framework for graphical discovery. In this paper we consider using the inferential framework developed by \cite{Buja:2009hp} to address common difficulties encountered in the selection and validation of hierarchical linear models.
+Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked. While graphical methods are often used for exploration, they are often deemed too subjective to be the sole basis for model selection or validation. This viewpoint leads to an over reliance on conventional hypothesis tests for model selection and validation in complex models where such procedures often perform sub-optimally. Until when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results. Recently, visual simulation-based diagnostics \citep{Gelman:2004gg} and inference \citep{Buja:2009hp} have been formulated, providing a more rigorous framework for graphical discovery. In this paper we consider using the inferential framework developed by \cite{Buja:2009hp} to address common difficulties encountered in the selection and validation of hierarchical linear models.
 
 Hierarchical linear models are versatile models that allow for dependence expected when data are organized in hierarchical structures---such data structures are especially common in social science research where studies often focus on responses from human subjects. Examples of these structures include when subjects are naturally grouped by organization (e.g., student within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and validation. For example:
 \begin{itemize}
@@ -272,13 +272,13 @@ Having considered the value of a random slope in the model, we next consider whe
 	\caption{\label{fig:ranef-corr} Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot? Note that this is the type of plot that \cite{Morrell:2000ve} discussed. If there were a higher degree of shrinkage in the random effects we would start to see more false lines in these plots, but as it is, if you remove the smoother and use $\alpha$-blending a line/curve is visible consisting of the random effects of children with only one observation.}
 \end{figure}
 
-\alnote{We could move the negative lineups that we did not include in the study to the appendix. I am thinking about this more from the perspective of when we submit to a journal with length restrictions}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{normexam_uncorr_lineup13.pdf}
-	\caption{\label{fig:ranef-uncorr}  Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot?}
-\end{figure}
+%\alnote{We could move the negative lineups that we did not include in the study to the appendix. I am thinking about this more from the perspective of when we submit to a journal with length restrictions}
+%
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\textwidth]{normexam_uncorr_lineup13.pdf}
+%	\caption{\label{fig:ranef-uncorr}  Lineup testing the need to allow for correlation between the two random effects. These 20 plots compare the predicted random intercept and slope for the model fit to the Exam data. Which is the real plot?}
+%\end{figure}
 
 
 %\todo[inline]{Make the following paragraph a bullet list. This will help to emphasize the important parts. At the moment they get lost a bit.
@@ -419,7 +419,7 @@ which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data a
 \subsection{Linearity}
 %------------------------------------------------------------------------------------
 
-To check the assumption of linearity we suggest the use of scatterplots and boxplots of  both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots should be centered around zero and exhibit ``random scatter.'' As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
+To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of  both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
 
 \alnote{This section is pretty small since we covered this type of lineup already. It needs some work, but I am trying to merge things together before editing.}
 \todo[inline]{Which lineup do you have in mind for testing linearity? Refer to it again. We might need to look into the reasons that people give in order to figure out whether they picked up on non-linearity or something else.}
@@ -443,7 +443,7 @@ To check the assumption of linearity we suggest the use of scatterplots and boxp
 \al{Recall that for model~\ref{eq:hlm} we assumed that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} and the Anderson-Darling test are not appropriate. Formally this is seen by the}
 strong assumptions that are required for the empirical distributions of the residuals in the hierarchical linear models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
-Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-norm} (panel $2^4 - 6$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality, but compared only to the normal distribution a single Q-Q plot would %, \al{in our opinion}, 
+Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality, but compared only to the normal distribution a single Q-Q plot would %, \al{in our opinion}, 
 be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the panel of the data).}
 \hh{Panel \#5 was the one identified  most often from the lineup in figure~\ref{fig:qqlineup-1}; it was picked by 13 out of 23 observers. All other panels were selected at most two times. }
 
@@ -460,7 +460,7 @@ be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of 
 	\centering
 %	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
 	\includegraphics[width=\textwidth]{filebab6182c2e84}
-	\caption{\label{fig:qqlineup-norm}
+	\caption{\label{fig:qqlineup-1}
 	Lineup of  Q-Q plots for the predicted random slope of the radon data.  Which is the real plot?   }
 \end{figure}
 
@@ -657,12 +657,12 @@ $u$ & the users' subjective abilities.
 The above factors result in 12 different parameter settings. For each setting we created two samples, along with two sets of null data each, yielding 48 different lineups. 
 Using  Amazon MTurk \citet{amazon}, 417 participants were each asked to evaluate ten different lineups. 
 We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
-\alnote{I find this notation a little confusing. I think we are just missing a sentence in the lead in.}
 \todo[inline]{there's more explanation below - does that help?}
+\alnote{Yep! I thought that was what was going on, but I think the explanation makes it easier on the reader.}
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + d_{d(i)}
 \]
-where $g$ is the logit link function, \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample; more specifically, $j(i) \in \{$Control, Standard, Rotated$\}$, $k(i) \in \{2,5,10\}$, $s(i) \in \{20, 30, 50, 75\}$. $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. }
+where $g$ is the logit link function, \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample. More specifically, $j(i) \in \{$Control, Standard, Rotated$\}$; $k(i) \in \{2,5,10\}$; $s(i) \in \{20, 30, 50, 75\}$; $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. }
 
 Both user ability, $u$, and sample difficulty, $d$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{d(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
