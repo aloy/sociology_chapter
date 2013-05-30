@@ -140,7 +140,7 @@ This additional information helps us to assess more specifically, which part of 
 %\subsection{Model notation and formulation} 
 %------------------------------------------------------------------------------------
 
-Hierarchical linear models are versatile models that allow for dependence that is expected when data are organized in hierarchical structures.
+Linear mixed-effects models are versatile models that allow for dependence that is expected when data are organized in hierarchical structures.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
 Examples of such structures include when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), and interviewer (e.g., respondents assigned to an interviewer). The additional flexibility offered by these models to incorporate data from each level of the data hierarchy and allow for dependencies between individuals within the same group complicates model exploration and validation. For example:
 \begin{itemize}
@@ -152,7 +152,7 @@ Examples of such structures include when individuals are naturally grouped by or
 \item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment.
 \end{itemize}
 
-In this paper we consider the continuous response hierarchical linear model
+In this paper we consider the continuous response linear mixed-effects model
 %
 \begin{equation}\label{eq:hlm}
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
@@ -175,7 +175,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \sigma^2 \bm{I}_i$, and the conditional d
 
 
 
-As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a hierarchical linear model. For hierarchical linear models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
+As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a linear mixed-effects model. For linear mixed-effects residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. Two fundamental residuals for model checking include
 %
 \begin{itemize}
 \item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
@@ -199,7 +199,7 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-Throughout this paper we discuss visual inference in the framework of hierarchical linear models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. In Section~\ref{sec:select} we focus on model building. In section~\ref{sec:checking} we present graphical tests for model validation. We also show results of a study investigating the power of three different versions of the familiar Q-Q plot. 
+Throughout this paper we discuss visual inference in the framework of linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. In Section~\ref{sec:select} we focus on model building. In section~\ref{sec:checking} we present graphical tests for model validation. We also show results of a study investigating the power of three different versions of the familiar Q-Q plot. 
 
 %\todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
 
@@ -216,14 +216,14 @@ Throughout this paper we discuss visual inference in the framework of hierarchic
 One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}
 % with respect to both fixed and random effects, 
  as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two are not nested when one model, previously termed the smaller model, is not a special case of the other. For example, if two models contain different sets of fixed effects.
- Model selection for hierarchical linear models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
+ Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
 
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 
-It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a hierarchical linear model. Likelihood ratio tests are more generally applicable in comparing nested models, but are most commonly in the selection of random effects. 
+It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a linear mixed-effects model. Likelihood ratio tests are more generally applicable in comparing nested models, but are most commonly in the selection of random effects. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
@@ -483,7 +483,7 @@ To check the assumption of linearity we suggest the use of scatterplots with smo
 %Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
 
 \al{Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. Formally this is seen by the}
-strong assumptions that are required for the empirical distributions of the residuals in the hierarchical linear models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
+strong assumptions that are required for the empirical distributions of the residuals in the linear mixed-effects models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
 Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Figure~\ref{fig:qqlineup-1} presents a lineup of the predicted random slopes from the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage.
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
@@ -778,7 +778,7 @@ Out of the 48 non-normal samples, 24 get rejected at the 5\% significance level 
 \section{Conclusion}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
 
-We have presented a graphical approach to model selection and diagnosis based on simulating from the model fit to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight into the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tests. It is important to note that simulation-based diagnostics for hierarchical linear models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
+We have presented a graphical approach to model selection and diagnosis based on simulating from the model fit to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight into the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tests. It is important to note that simulation-based diagnostics for linear mixed-effects models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
 
 Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and its predecessors, we believe the approach can be easily adapted.
 
