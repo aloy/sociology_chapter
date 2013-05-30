@@ -405,6 +405,13 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{dialyzer-heterogeneous-lineup3.pdf}
+	\caption{\label{fig:constvar2} 
+	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
 %\paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are useful in checking that level-1 residuals are homoscedastic, but they do not investigate potential differences in variability across groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
 To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of Methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3-3$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
@@ -449,16 +456,18 @@ which has an approximate $\chi^2_{m^*-1}$ reference distribution when the data a
 \subsection{Linearity}
 %------------------------------------------------------------------------------------
 
-To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of  both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
+To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' 
+%As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
+\alnote{I will write more here.}
 
 \begin{figure}
 	\centering
-	\includegraphics[]{}
-	\caption{\label{fig:linearity} }
+	\includegraphics[width=\textwidth]{dialyzer-nonlinear-lineup17.pdf}
+	\caption{\label{fig:linearity} Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
 \subsection{Normality}
-\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in hierarchical models, which are complicated by confounding issues between levels of residual structures. In a second part we assess power of visual normality tests based on three different designs of Q-Q plots.}
+\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in hierarchical models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
 %------------------------------------------------------------------------------------
 
 \subsubsection{Assessing normality of the random effects}
@@ -471,19 +480,20 @@ To check the assumption of linearity we suggest the use of scatterplots with smo
  
 \alnote{Here is the first attempt as easing into things a bit more.}
 
-\al{Recall that for model~\ref{eq:hlm} we assumed that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} and the Anderson-Darling test are not appropriate. Formally this is seen by the}
+\al{Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. Formally this is seen by the}
 strong assumptions that are required for the empirical distributions of the residuals in the hierarchical linear models to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
-Figures~\ref{fig:qqlineup-norm} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality, but compared only to the normal distribution a single Q-Q plot would %, \al{in our opinion}, 
-be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the panel of the data).}
-\hh{Panel \#5 was the one identified  most often from the lineup in figure~\ref{fig:qqlineup-1}; it was picked by 13 out of 23 observers. All other panels were selected at most two times. }
+Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a hiearachical linear model. Figure~\ref{fig:qqlineup-1} presents a lineup of the predicted random slopes from the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage.
+%Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
+Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plots---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
+be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the panel of the data).} 
+\hh{Panel \#5 was identified  most often from the lineup in figure~\ref{fig:qqlineup-1}; it was picked by 13 out of 23 observers. All other panels were selected at most two times. }
+Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after after model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of .05
+% \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
-%\alnote{Do you have the simulation that produced this lineup so that we can get the $p$-values for the null plots? Otherwise we can run another 19.}
-
- \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of 0.05.}
-
-
- In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
+% In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distrubution. This lineup is show in Figure~\ref{fig:qqlineup-t}. \al{XXX out of XXX} identified the true plot, providing evidence against the null hypothesis of normality.  
+ The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
 
@@ -648,10 +658,10 @@ be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of 
 \subsubsection{Investigating Q-Q plots visually}\label{sec:qqplot}
 %------------------------------------------------------------------------------------
 
-To further support the assessment of normality using lineups a study was conducted to compare three different versions of a Q-Q plot.
+To further \al{develop} the assessment of normality using lineups, we conducted a study was conducted comparing three different versions of the Q-Q plot.
 %We are testing three different versions of a Q-Q plot, 
-The three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added grey band representing a 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,
- and a rotated (i.e., detrended) Q-Q plot of the same data. To explore the results of this study we must first define some additional notation.
+Examples of the three versions are displayed in figure~\ref{qqplots} and include (from left to right): a standard Q-Q plot, a Q-Q plot with an added grey band representing a 95\% pointwise confidence region based on the estimated standard error of the order statistics for an independent sample from the theoretical distribution,
+ and a rotated (i.e., detrended) Q-Q plot. All Q-Q plots in figure~\ref{qqplots} are constructed from the same data. To explore the results of this study we must first define some additional notation.
 
 \begin{figure}
 %<<qqplots, fig.width=2.75, fig.height=2.75, out.width='0.3\\textwidth', echo=FALSE, include=FALSE>>=
@@ -686,14 +696,14 @@ $u$ & the users' subjective abilities.
 \end{center}
 %
 The above factors result in 12 different parameter settings. For each setting we created two samples, along with two sets of null data each, yielding 48 different lineups. 
-Using  Amazon MTurk \citet{amazon}, 417 participants were each asked to evaluate ten different lineups. 
+Using  Amazon MTurk \citep{amazon}, 417 participants were each asked to evaluate ten different lineups. 
 We model the probability of selecting the data plot from the lineup, $\pi$, with the help of model $M_1$:
 \todo[inline]{there's more explanation below - does that help?}
 \alnote{Yep! I thought that was what was going on, but I think the explanation makes it easier on the reader.}
 \[
 g(\pi_i) = \mu + \tau_{j(i)} +\delta_{k(i)}+ \nu_{s(i)} + u_{u(i)} + d_{d(i)}
 \]
-where $g$ is the logit link function, \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample. More specifically, $j(i) \in \{$Control, Standard, Rotated$\}$; $k(i) \in \{2,5,10\}$; $s(i) \in \{20, 30, 50, 75\}$; $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. }
+where $g$ is the logit link function, and \hh{$j(.), k(.), s(.), u(.)$, and $d(.)$ are all indexing functions that relate evaluation $i$ to the corresponding levels in the factor variables, to the observer, or a particular data sample. More specifically, $j(i) \in \{$Control, Standard, Rotated$\}$; $k(i) \in \{2,5,10\}$; $s(i) \in \{20, 30, 50, 75\}$; $u(i)$ maps to the participant's id of the $i$th evaluation and $d(i)$ identifies the particular data sample used for it. }
 
 Both user ability, $u$, and sample difficulty, $d$, are modeled as independent, normally distributed  random effects, i.e. $u_{u(i)} \sim N(0, \sigma_u^2)$, $d_{d(i)} \sim N(0,\sigma_d^2)$ with cov$(u, d) = 0$.
 
@@ -759,26 +769,27 @@ Result & Visual & AD & SW & CVM & KS \\
    \hline
 \end{tabular}
 \caption{\label{tab:reject} 
-Out of the 48 non-normal samples, 24 get rejected at a significance level of 5\% based on evaluation by observers. None of the classical tests come close to that rejection rate. From left to right, we see the number of rejections from visual inference as well as the Anderson-Darling, Shapiro-Wilk, Cram\'er-von Mises and Kolmogorov-Smirnov tests for normality.}
+Out of the 48 non-normal samples, 24 get rejected at the 5\% significance level based on evaluation by observers. None of the classical tests come close to that rejection rate. From left to right, we see the number of rejections from visual inference as well as the Anderson-Darling, Shapiro-Wilk, Cram\'er-von Mises and Kolmogorov-Smirnov tests for normality.}
 \end{table}
 
 %------------------------------------------------------------------------------------
 \section{Conclusion}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
 
-We have presented a graphical approach to model selection and diagnosis in this paper based on simulating from the model fitted to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight to the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tools. It is important to note that simulation-based diagnostics for hierarchical linear models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
+We have presented a graphical approach to model selection and diagnosis based on simulating from the model fit to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight into the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tests. It is important to note that simulation-based diagnostics for hierarchical linear models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
 
 Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and its predecessors, we believe the approach can be easily adapted.
 
-Additionally, we have presented a more detailed look at graphical diagnostics that can be used to assess distributional assumptions. We found that, contrary to expectation, rotating the Q-Q plot to emphasize the vertical comparisons does not improve the power of the graphical test. In addition to supporting the use of the standard construction of Q-Q plots, this study provides an example of how to select which graphical diagnostic to use based on its estimated power. 
+Additionally, we have presented a more detailed look at graphical diagnostics that can be used to assess distributional assumptions. We found that, contrary to expectation, rotating the Q-Q plot to emphasize the vertical comparisons does not improve the power of the graphical test. In addition to supporting the use of the standard construction of Q-Q plots, this study provides an example of how to select a graphical diagnostic based on its estimated power. 
 
 \alnote{I'm not quite sure where to put this... We could add a paragraph here describing what was used, or maybe an appendix? If we put it here, should it be the last paragraph?}
 \hh{Technical implementation: R \citep{R} and packages for modeling lme4 \citep{lme4}, HLMdiag \citep{HLMDiag}, and visualizations ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, gridSVG \citep{gridSVG}. 
 
 Mahbub's website for experiments}
 %------------------------------------------------------------------------------------
-\paragraph{Acknowledgment}
+\paragraph{Acknowledgments}
 %------------------------------------------------------------------------------------
+We would like to thank Mahbubul Majumder, without whose help  we could not have conducted our Amazon MTurk study.
 This work was funded in part by National Science Foundation grant DMS 1007697.
 
 %------------------------------------------------------------------------------------
@@ -786,14 +797,14 @@ This work was funded in part by National Science Foundation grant DMS 1007697.
 \section{Appendix: Data sets}
 %------------------------------------------------------------------------------------
 
-All of the data sets used in this paper are publicly available: the General Certificate of Secondary Education Exam data set is available in the R package mlmRev \citep{mlmRev}; all other data sets can be found in the R package HLMdiag \citep{HLMDiag}.
+All of the data sets used in this paper are publicly available: the General Certificate of Secondary Education Exam data set is available in the R package mlmRev \citep{mlmRev}; the Dialyzer data set is available in the R package MEMSS \citep{MEMSS}; all other data sets can be found in the R package HLMdiag \citep{HLMDiag}.
 
 \subsection{General certificate of secondary education exam data}\label{data:GCSE}
 
 We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education (GCSEE) scores in both mathematics and English. This exam is taken the end of at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school. 
 
 
-\subsection{The autism data}\label{data:autism}
+\subsection{Autism study}\label{data:autism}
 %------------------------------------------------------------------------------------
 \alnote{I need to pare this down.}
 Autism is a developmental disorder typically characterized by impaired communication and social skills, but there is relatively little consensus on how these abilities or disabilities change over time \citep{Anderson:2007cl, Anderson:2009in}. In an effort to better understand changes in verbal and social abilities from childhood to adolescence \cite{Anderson:2007cl, Anderson:2009in} carried out a prospective longitudinal study following 214 children between the ages of 2 and 13 who had been diagnosed with either autism spectrum disorder or non-spectrum developmental delays at age 2. The Vineland Adaptive Behavior Interview survey was used to assess each child's interpersonal relationships, play time activities, and coping skills. This survey is completed by the parents. From the survey the Vineland Socialization Age Equivalent (VSAE) was computed as overall measure of a child's social skills. Additionally, expressive language development at age 2 was assessed using the Sequenced Inventory of Communication Development (SICD) and the children were classified into three groups (high, medium, or low). Assessments were made on the children ages 2, 3, 5, 9, and 13, however, not all children were assessed at each age. Additional information collected on each child includes: gender, race (white or non-white), and initial diagnosis at age 2 (autism, pervasive development disorder (pdd), or non-spectrum). We restrict attention to models concerned with the changes in social skills for subjects diagnosed with autism spectrum disorder having complete data. This results in a reduced data set of 155 children. For more detailed analyses we refer the reader to \cite{Anderson:2007cl, Anderson:2009in}.
