@@ -155,8 +155,9 @@ In this paper we consider the continuous response hierarchical linear model
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, m$, 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i=1, \ldots, g$, 
 \alnote{We use $m$ in the development of visual inference, should we choose a different letter here?}
+\todo[inline]{$g$ should work instead of $m$ ...}
 $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects governing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms governing the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, which we assume are a random sample from $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
@@ -217,9 +218,6 @@ One statistical model is nested within another when the \emph{larger model} cont
  as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two are not nested when one model, previously termed the smaller model, is not a special case of the other. For example, if two models contain different sets of fixed effects.
  Model selection for hierarchical linear models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
 
-\todo[inline]{This needs more general discussion: comparing nested versus non-nested models.}
-
-\alnote{How does that work?}
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}\label{sec:select-fixed}

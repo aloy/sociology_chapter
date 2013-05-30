@@ -167,7 +167,9 @@ resids <- rbind(sim_resids2, true_resids2)
 resids$n <- as.numeric(gsub(".*_([0-9]+)", "\\1", as.character(resids$.id)))
 resids$sample <- sample(20,20, replace=FALSE)[resids$n]
 resids <- ddply(resids, .(n, subject), transform, iqr=IQR(EB.resid))
-resids <- ddply(resids, .(n), transform, rank = rank(iqr))
+resids <- ddply(resids, .(n), transform, rank = order(order(iqr, subject)))
+resids <- ddply(resids, .(n, subject), transform, rank = min(rank))
+resids <- ddply(resids, .(n), transform, rank = rank(rank))
 
 qplot(x = factor(rank), y = EB.resid, data = resids, 
                geom = "boxplot", xlab = "", ylab = "", outlier.size = 1.5) + coord_flip() + 
