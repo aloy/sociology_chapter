@@ -123,7 +123,8 @@ Observers are asked to identify the plot that is the most different from the oth
 	\centering
 	\includegraphics[width=\textwidth]{normexam_fanned_lineup16.pdf}
 	\caption{\label{fig:fanned} Which plot is the most different from the other plots? What makes your plot different from the other plots?
-	%Which is the real plot?
+	%Which is the real plot? 
+	\hh{checked, is correct XXX }
 	}
 \end{figure}
 
@@ -134,7 +135,7 @@ based on an assessment  by human observers. Let $x$ be the number of observers, 
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
 
-\hh{Based on XXX evaluations of Figure~\ref{fig:fanned}, XXX observers chose the true data from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of XXX. The actual model of the data and the null} \al{hypothesis} \hh{are explained in detail in section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.}
+\hh{Based on 73 evaluations of Figure~\ref{fig:fanned}, 11 observers chose the true data from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of 0.00026. The actual model of the data and the null} \al{hypothesis} \hh{are explained in detail in section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.}
 
 The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013}. 
 %as the probability that in $N$ independent evaluations observers 
@@ -877,10 +878,11 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 %------------------------------------------------------------------------------------
 
 \hh{There are five different null sets for each data set. Throughout the paper we show lineups for the first replicate. } \hh{XXX I need to check that that's actually true. But you can go ahead and put the numbers in the right places assuming that that's what's going on.} 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Tue Jun  4 23:00:42 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline replicate & 1 & 2 & 3 & 4 & 5 \\   \hlineautismfanned2 & 50/79 & 26/59 & 31/67 & 32/72 & 35/71 \\   autismordered & 65/74 & 57/66 & 62/68 & 54/63 & 66/76 \\   autismunordered & 52/54 & 63/76 & 70/75 & 59/64 & 63/70 \\   cyclone & 50/75 & 44/64 & 45/68 & 46/76 & 50/67 \\   dialyzerheterogeneous & 29/85 & 10/65 & 24/64 & 7/60 & 13/72 \\   dialyzernonlinear & 60/63 & 62/64 & 57/60 & 84/88 & 66/69 \\   examcorr & 41/69 & 62/73 & 31/64 & 57/75 & 55/67 \\   examfanned & 11/73 & 7/70 & 9/65 & 13/66 & 7/72 \\   examuncorr & 8/77 & 11/42 & 22/70 & 25/71 & 3/67 \\   radontranef & 29/70 & 52/79 & 0/64 & 13/59 & 6/74 \\    \hline\end{tabular}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package% Tue Jun  4 23:00:42 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline replicate & 1 & 2 & 3 & 4 & 5 \\   \hline  examfanned & 11/73 & 7/70 & 9/65 & 13/66 & 7/72 \\ autismfanned2 & 50/79 & 26/59 & 31/67 & 32/72 & 35/71 \\   autismordered & 65/74 & 57/66 & 62/68 & 54/63 & 66/76 \\   autismunordered & 52/54 & 63/76 & 70/75 & 59/64 & 63/70 \\   cyclone & 50/75 & 44/64 & 45/68 & 46/76 & 50/67 \\   dialyzerheterogeneous & 29/85 & 10/65 & 24/64 & 7/60 & 13/72 \\   dialyzernonlinear & 60/63 & 62/64 & 57/60 & 84/88 & 66/69 \\   examcorr & 41/69 & 62/73 & 31/64 & 57/75 & 55/67 \\   examuncorr & 8/77 & 11/42 & 22/70 & 25/71 & 3/67 \\   radontranef & 29/70 & 52/79 & 0/64 & 13/59 & 6/74 \\    \hline\end{tabular}
 \caption{\label{tab:results} Overview of all lineup evaluations. Shown are number correct/number evaluations}\end{table}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Tue Jun  4 23:10:10 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline & 1 & 2 & 3 & 4 & 5 \\   \hlineautismfanned2 & 2.1e-46 & 7.4e-20 & 9.3e-23 & 5.8e-24 & 1.1e-26 \\   autismordered & 1.4e-76 & 1.3e-66 & 8.8e-76 & 8.4e-61 & 6.1e-77 \\   autismunordered & 5.7e-68 & 8.6e-69 & 1.1e-84 & 4.5e-73 & 9.1e-74 \\   cyclone & 3.4e-48 & 9.6e-44 & 1.9e-43 & 4.1e-40 & 2.2e-52 \\   dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.0098 & 5.4e-05 \\   dialyzernonlinear & 7.7e-77 & 6.6e-81 & 2e-70 & 2.4e-106 & 6.1e-82 \\   examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 4.4e-60 & 1e-61 \\   examfanned & 0.00026 & 0.023 & 0.0014 & 4e-06 & 0.027 \\   examuncorr & 0.038 & 6.6e-07 & 2e-12 & 2.9e-16 & 0.43 \\   radontranef & 7.1e-21 & 1.6e-49 & 0.96 & 9.6e-07 & 0.077 \\    \hline\end{tabular}\caption{\label{tab:pvalues} Visual $p$-values - just for us, will delete later}\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package% Tue Jun  4 23:10:10 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline & 1 & 2 & 3 & 4 & 5 \\   \hline
+  examfanned & 0.00026 & 0.023 & 0.0014 & 4e-06 & 0.027 \\   autismordered & 1.4e-76 & 1.3e-66 & 8.8e-76 & 8.4e-61 & 6.1e-77 \\   autismunordered & 5.7e-68 & 8.6e-69 & 1.1e-84 & 4.5e-73 & 9.1e-74 \\   cyclone & 3.4e-48 & 9.6e-44 & 1.9e-43 & 4.1e-40 & 2.2e-52 \\   dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.0098 & 5.4e-05 \\   dialyzernonlinear & 7.7e-77 & 6.6e-81 & 2e-70 & 2.4e-106 & 6.1e-82 \\   examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 4.4e-60 & 1e-61 \\   examuncorr & 0.038 & 6.6e-07 & 2e-12 & 2.9e-16 & 0.43 \\   radontranef & 7.1e-21 & 1.6e-49 & 0.96 & 9.6e-07 & 0.077 \\ autismfanned2 & 2.1e-46 & 7.4e-20 & 9.3e-23 & 5.8e-24 & 1.1e-26 \\    \hline\end{tabular}\caption{\label{tab:pvalues} Visual $p$-values - just for us, will delete later}\end{table}
 
 
 \clearpage
