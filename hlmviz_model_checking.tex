@@ -434,12 +434,12 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 %\paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are useful in checking that level-1 residuals are homoscedastic, but they do not investigate potential differences in variability across groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3-4$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{ahd_badcyclone4.pdf}
+	\includegraphics[width=\textwidth]{cyclone-13.pdf}
 	\caption{\label{fig:badcyclone} 
 	Lineup testing homogeneity of the level-1 residuals between groups. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
