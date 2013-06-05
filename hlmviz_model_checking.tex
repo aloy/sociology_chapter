@@ -266,7 +266,9 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
-Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, XXX observers were asked to choose the plot that is the most different from the rest. XXX of them identified the data plot (panel $2^3 + 2$), corresponding to a $p$-value of XXX, with XXX\% pointing to the trend as distinguishing feature. 
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five of them identified the data plot (panel $2^3 + 2$), 
+%corresponding to a $p$-value of XXX, 
+with XXX\% pointing to the trend as distinguishing feature. 
 This lineup is chosen
 to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder (see Appendix~\ref{data:autism} for details). Displayed on the $y$-axis are level-1 residuals from a longitudinal model. Clearly, language development at age 2 accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
@@ -288,7 +290,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %\al{and overlaying linear smoothers for each school.}
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} -2$) is identifiable \hh{as XXX of the XXX observers pick the data plot. The main comment for their choice was a larger ``fanning out'' of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;}
+ If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 4$) is identifiable \hh{as 11 of the 73 observers pick the data plot. The main comments for their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;}
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
 
@@ -299,7 +301,7 @@ The slopes of the regression lines are indicative of the amount of correlation.
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
  \hh{The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model,} \al{avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.}
-  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified \al{by XXX of the XXX observers}, providing evidence supporting the inclusion of the additional parameter.
+  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified \al{by 41 of the 69 observers}, providing evidence supporting the inclusion of the additional parameter.
 
 \begin{figure}
 	\centering
@@ -413,7 +415,7 @@ For example, consider investigating the appropriateness of this assumption for t
 %The lineup in 
 Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{121} - 8$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
 
-\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Section~\ref{data:dialyzer}). In this example XXX of XXX observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
+\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Section~\ref{data:dialyzer}). In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
 
 \begin{figure}
 	\centering
@@ -434,7 +436,7 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 %\paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are useful in checking that level-1 residuals are homoscedastic, but they do not investigate potential differences in variability across groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots \al{(by XXX of XXX observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots \al{(by 50 of 75 observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
 
 
 \begin{figure}
@@ -477,7 +479,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 %------------------------------------------------------------------------------------
 
 \al{
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of XXX observers, XXX identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer}). It is clear that a higher-order polynomial is required.
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer}). It is clear that a higher-order polynomial is required.
 
 To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
 }
@@ -515,7 +517,7 @@ Additionally, this example shows that even the null plots that were generated fr
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
-To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distrubution. This lineup is show in Figure~\ref{fig:qqlineup-t}. \al{XXX out of XXX} identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distrubution. This lineup is show in Figure~\ref{fig:qqlineup-t}. \al{Twenty nine out of 70} identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
  The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
@@ -878,16 +880,77 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 %------------------------------------------------------------------------------------
 
 \hh{There are five different null sets for each data set. Throughout the paper we show lineups for the first replicate. } \hh{XXX I need to check that that's actually true. But you can go ahead and put the numbers in the right places assuming that that's what's going on.} 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Tue Jun  4 23:00:42 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline replicate & 1 & 2 & 3 & 4 & 5 \\   \hline  examfanned & 11/73 & 7/70 & 9/65 & 13/66 & 7/72 \\   autismordered & 65/74 & 57/66 & 62/68 & 54/63 & 66/76 \\   examcorr & 41/69 & 62/73 & 31/64 & 57/75 & 55/67 \\   examuncorr & 8/77 & 11/42 & 22/70 & 25/71 & 3/67 \\   dialyzerheterogeneous & 29/85 & 10/65 & 24/64 & 7/60 & 13/72 \\   cyclone & 50/75 & 44/64 & 45/68 & 46/76 & 50/67 \\   dialyzernonlinear & 60/63 & 62/64 & 57/60 & 84/88 & 66/69 \\   radon  & 0/29  &  \\   radontranef & 29/70 & 52/79 & 0/64 & 13/59 & 6/74 \\   autismfanned2 & 50/79 & 26/59 & 31/67 & 32/72 & 35/71 \\   autismunordered & 52/54 & 63/76 & 70/75 & 59/64 & 63/70 \\    \hline\end{tabular}
-\caption{\label{tab:results} Overview of all lineup evaluations. Shown are ratios of number correct compared to number of total evaluations.}\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Tue Jun  4 23:00:42 2013
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ replicate & 1 & 2 & 3 & 4 & 5 \\ 
+  \hline
+  examfanned & 11/73 & 7/70 & 9/65 & 13/66 & 7/72 \\ 
+  autismordered & 65/74 & 57/66 & 62/68 & 54/63 & 66/76 \\ 
+  examcorr & 41/69 & 62/73 & 31/64 & 57/75 & 55/67 \\ 
+  examuncorr & 8/77 & 11/42 & 22/70 & 25/71 & 3/67 \\ 
+  dialyzerheterogeneous & 29/85 & 10/65 & 24/64 & 7/60 & 13/72 \\ 
+  cyclone & 50/75 & 44/64 & 45/68 & 46/76 & 50/67 \\ 
+  dialyzernonlinear & 60/63 & 62/64 & 57/60 & 84/88 & 66/69 \\ 
+  radon  & 0/29  &  \\ 
+  radontranef & 29/70 & 52/79 & 0/64 & 13/59 & 6/74 \\ 
+  autismfanned2 & 50/79 & 26/59 & 31/67 & 32/72 & 35/71 \\ 
+  autismunordered & 52/54 & 63/76 & 70/75 & 59/64 & 63/70 \\ 
+   \hline
+\end{tabular}
+\caption{\label{tab:results} Overview of all lineup evaluations. Shown are ratios of number correct compared to number of total evaluations.}
+\end{table}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Wed Jun  5 08:41:06 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline & outlier & spread & trend & asymmetry & other \\   \hlineautismfanned2 & 15.8 ( 74.7) & 22.3 ( 48.5) & 23.8 ( 58.0) & 12.0 ( 83.3) & 5.0 ( 90.0) \\   autismordered & 9.0 ( 77.8) & 8.3 (100.0) & 29.8 ( 86.6) & 15.3 (100.0) & 11.5 ( 82.6) \\   autismunordered & 4.5 ( 77.8) & 10.5 (100.0) & 16.5 (100.0) & 17.0 ( 94.1) & 5.5 (100.0) \\   cyclone & 14.0 ( 35.7) & 7.0 ( 28.6) & 21.0 ( 81.0) & 18.5 ( 73.0) & 14.5 ( 86.2) \\   dialyzerheterogeneous & 24.5 ( 24.5) & 16.0 ( 15.6) & 18.5 ( 59.5) & 14.0 ( 60.7) & 12.0 ( 25.0) \\   dialyzernonlinear & 6.5 ( 84.6) & 7.0 ( 85.7) & 38.5 ( 97.4) & 11.0 (100.0) & 0.0 (  NaN) \\ %  electoral & 6.1 ( 46.6) & 3.4 ( 82.9) & 13.4 ( 21.1) & 24.8 ( 50.5) & 9.3 ( 10.7) \\   examcorr & 8.0 ( 68.8) & 16.5 ( 24.2) & 28.5 ( 93.0) & 14.0 ( 78.6) & 2.0 ( 50.0) \\   examfanned & 24.5 (  8.2) & 21.8 ( 29.8) & 15.3 ( 16.3) & 6.3 ( 15.8) & 5.0 ( 20.0) \\   examuncorr & 25.5 (  7.8) & 32.5 ( 10.8) & 7.0 ( 28.6) & 9.0 (  0.0) & 3.0 ( 16.7) \\   radontranef & 33.0 ( 59.1) & 3.3 ( 75.0) & 21.3 ( 39.8) & 6.3 (  0.0) & 6.0 ( 41.7) \\    \hline\end{tabular}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Wed Jun  5 08:41:06 2013
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & outlier & spread & trend & asymmetry & other \\ 
+  \hline
+autismfanned2 & 15.8 ( 74.7) & 22.3 ( 48.5) & 23.8 ( 58.0) & 12.0 ( 83.3) & 5.0 ( 90.0) \\ 
+  autismordered & 9.0 ( 77.8) & 8.3 (100.0) & 29.8 ( 86.6) & 15.3 (100.0) & 11.5 ( 82.6) \\ 
+  autismunordered & 4.5 ( 77.8) & 10.5 (100.0) & 16.5 (100.0) & 17.0 ( 94.1) & 5.5 (100.0) \\ 
+  cyclone & 14.0 ( 35.7) & 7.0 ( 28.6) & 21.0 ( 81.0) & 18.5 ( 73.0) & 14.5 ( 86.2) \\ 
+  dialyzerheterogeneous & 24.5 ( 24.5) & 16.0 ( 15.6) & 18.5 ( 59.5) & 14.0 ( 60.7) & 12.0 ( 25.0) \\ 
+  dialyzernonlinear & 6.5 ( 84.6) & 7.0 ( 85.7) & 38.5 ( 97.4) & 11.0 (100.0) & 0.0 (  NaN) \\ 
+%  electoral & 6.1 ( 46.6) & 3.4 ( 82.9) & 13.4 ( 21.1) & 24.8 ( 50.5) & 9.3 ( 10.7) \\ 
+  examcorr & 8.0 ( 68.8) & 16.5 ( 24.2) & 28.5 ( 93.0) & 14.0 ( 78.6) & 2.0 ( 50.0) \\ 
+  examfanned & 24.5 (  8.2) & 21.8 ( 29.8) & 15.3 ( 16.3) & 6.3 ( 15.8) & 5.0 ( 20.0) \\ 
+  examuncorr & 25.5 (  7.8) & 32.5 ( 10.8) & 7.0 ( 28.6) & 9.0 (  0.0) & 3.0 ( 16.7) \\ 
+  radontranef & 33.0 ( 59.1) & 3.3 ( 75.0) & 21.3 ( 39.8) & 6.3 (  0.0) & 6.0 ( 41.7) \\ 
+   \hline
+\end{tabular}
 \caption{\label{tab:reasons}Overview of lineups and reasoning, table is in form of number of evaluations (percent correct).
 Weighting is used to accommodate for multiple reasons.}
 \end{table}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Tue Jun  4 23:10:10 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline & 1 & 2 & 3 & 4 & 5 \\   \hline
-  examfanned & 0.00026 & 0.023 & 0.0014 & 4e-06 & 0.027 \\   autismordered & 1.4e-76 & 1.3e-66 & 8.8e-76 & 8.4e-61 & 6.1e-77 \\   autismunordered & 5.7e-68 & 8.6e-69 & 1.1e-84 & 4.5e-73 & 9.1e-74 \\   cyclone & 3.4e-48 & 9.6e-44 & 1.9e-43 & 4.1e-40 & 2.2e-52 \\   dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.0098 & 5.4e-05 \\   dialyzernonlinear & 7.7e-77 & 6.6e-81 & 2e-70 & 2.4e-106 & 6.1e-82 \\   examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 4.4e-60 & 1e-61 \\   examuncorr & 0.038 & 6.6e-07 & 2e-12 & 2.9e-16 & 0.43 \\   autismfanned2 & 2.1e-46 & 7.4e-20 & 9.3e-23 & 5.8e-24 & 1.1e-26 \\   radontranef & 7.1e-21 & 1.6e-49 & 0.96 & 9.6e-07 & 0.077 \\    \hline\end{tabular}\caption{\label{tab:pvalues} Visual $p$-values - just for us, will delete later}\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Tue Jun  4 23:10:10 2013
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 1 & 2 & 3 & 4 & 5 \\ 
+  \hline
+  examfanned & 0.00026 & 0.023 & 0.0014 & 4e-06 & 0.027 \\ 
+  autismordered & 1.4e-76 & 1.3e-66 & 8.8e-76 & 8.4e-61 & 6.1e-77 \\ 
+  autismunordered & 5.7e-68 & 8.6e-69 & 1.1e-84 & 4.5e-73 & 9.1e-74 \\ 
+  cyclone & 3.4e-48 & 9.6e-44 & 1.9e-43 & 4.1e-40 & 2.2e-52 \\ 
+  dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.0098 & 5.4e-05 \\ 
+  dialyzernonlinear & 7.7e-77 & 6.6e-81 & 2e-70 & 2.4e-106 & 6.1e-82 \\ 
+  examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 4.4e-60 & 1e-61 \\ 
+  examuncorr & 0.038 & 6.6e-07 & 2e-12 & 2.9e-16 & 0.43 \\ 
+  autismfanned2 & 2.1e-46 & 7.4e-20 & 9.3e-23 & 5.8e-24 & 1.1e-26 \\ 
+  radontranef & 7.1e-21 & 1.6e-49 & 0.96 & 9.6e-07 & 0.077 \\ 
+   \hline
+\end{tabular}
+\caption{\label{tab:pvalues} Visual $p$-values - just for us, will delete later}
+\end{table}
 
 
 
