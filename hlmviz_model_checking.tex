@@ -477,7 +477,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 %------------------------------------------------------------------------------------
 
 \al{
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of XXX observers, XXX identified the true plot (panel $2^4 + 1$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer}). It is clear that a higher-order polynomial is required.
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of XXX observers, XXX identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer}). It is clear that a higher-order polynomial is required.
 
 To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
 }
@@ -489,7 +489,7 @@ To extend checks of linearity to group-level variables we suggest the use of the
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{dialyzer-nonlinear-lineup17.pdf}
+	\includegraphics[width=\textwidth]{dialyzernonlinear-10.pdf}
 	\caption{\label{fig:linearity} Lineup testing testing for nonlinearity of a covariate. Which of the plots is the most different? Which feature led you to your choice?}
 	%Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
 \end{figure}
