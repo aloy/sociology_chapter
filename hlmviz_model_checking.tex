@@ -299,7 +299,7 @@ The slopes of the regression lines are indicative of the amount of correlation.
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
  \hh{The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model,} \al{avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.}
-  In Figure~\ref{fig:ranef-corr} the true plot (panel~$2 + \sqrt{25}$) was identified \al{by XXX of the XXX observers}, providing evidence supporting the inclusion of the additional parameter.
+  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified \al{by XXX of the XXX observers}, providing evidence supporting the inclusion of the additional parameter.
 
 \begin{figure}
 	\centering
@@ -413,19 +413,19 @@ For example, consider investigating the appropriateness of this assumption for t
 %The lineup in 
 Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{121} - 8$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
 
-\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Section~\ref{data:dialyzer}). In this example XXX of XXX observers identified the true plot (panel $2^3 - 5$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
+\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Section~\ref{data:dialyzer}). In this example XXX of XXX observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_constvar_lineup3.png}
 	\caption{\label{fig:constvar1} 
-	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?\hh{We need to figure out what to do with this example. }}
 %	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{dialyzer-heterogeneous-lineup3.pdf}
+	\includegraphics[width=\textwidth]{dialyzerheterogeneous-19.pdf}
 	\caption{\label{fig:constvar2} 
 	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
