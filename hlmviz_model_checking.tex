@@ -492,7 +492,7 @@ To extend checks of linearity to group-level variables we suggest the use of the
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{dialyzernonlinear-10.pdf}
-	\caption{\label{fig:linearity} Lineup testing testing for nonlinearity of a covariate. Which of the plots is the most different? Which feature led you to your choice?}
+	\caption{\label{fig:linearity} Lineup testing  for nonlinearity of a covariate. Which of the plots is the most different? Which feature led you to your choice?}
 	%Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
@@ -527,13 +527,13 @@ To determine whether lineups can detect distributional violations we constructed
 %	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
 	\includegraphics[width=\textwidth]{filebab6182c2e84}
 	\caption{\label{fig:qqlineup-1}
-	Lineup testing testing for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice?}
+	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup testing testing for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice?}
+	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
 
@@ -891,15 +891,14 @@ This section includes two lineups that were included in the Amazon MTurk study, 
   \hline
  replicate & 1 & & 2 && 3 && 4 && 5 \\ 
   \hline
-  examfanned & 11/73&\hspace{-0.1in}*** & 7/70&\hspace{-0.1in}* & 9/65&\hspace{-0.1in}** & 13/66&\hspace{-0.1in}*** & 7/72&\hspace{-0.1in}* \\ 
+  examfanned & 11/73&\hspace{-0.1in}*** & 7/70&\hspace{-0.1in}. & 9/65&\hspace{-0.1in}** & 13/66&\hspace{-0.1in}*** & 7/72&\hspace{-0.1in}. \\ 
   autismordered & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** \\ 
   examcorr & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** \\ 
   examuncorr & 8/77&\hspace{-0.1in}*  & 11/42&\hspace{-0.1in}*** & 22/70&\hspace{-0.1in}*** & 25/71&\hspace{-0.1in}*** & 3/67& \\ 
-  dialyzerheterogeneous & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}** & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}** & 13/72&\hspace{-0.1in}*** \\ 
+  dialyzerheterogeneous & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}** & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}* & 13/72&\hspace{-0.1in}*** \\ 
   cyclone & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** \\ 
   dialyzernonlinear & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** \\ 
-  radon  & 0/29&  &  \\ 
-  radontranef & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74&\hspace{-0.1in}. \\ 
+  radontranef & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& \\ 
   autismfanned2 & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** \\ 
   autismunordered & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** \\ 
    \hline
@@ -907,9 +906,11 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 \end{tabular}
 \caption{\label{tab:results} Overview of all lineup evaluations. Shown are ratios of number correct compared to number of total evaluations. \hh{maybe we should include a star system for significances}} 
 \alnote{Was examuncorr actually the plots for investigating homogeneous level-1 variance?}
-\alnote{Were there 29 or 23 Turkers in Lendie's study? I have 23 in the body of the paper, but certainly could have transcribed that incorrectly.}
+\alnote{Were there 29 or 23 Turkers in Lendie's study? I have 23 in the body of the paper, but certainly could have transcribed that incorrectly.} \hh{23 is right}
 \end{table}
 
+% latex table generated in R 3.0.1 by xtable 1.7-1 package% Wed Jun  5 17:17:29 2013\begin{table}[ht]\centering\begin{tabular}{rlll}  \hline & Control & Standard &Rotated  \\   \hlineRadon$_1$ & 1/27&\bf 0/23 & 0/22  \\ Radon$_2$  & 0/30& 0/18  & 0/31 \\    \hline\end{tabular}
+\caption{\label{tab:qqplot} Overview of \# correct data picks compared to \# evaluations of each lineup. Under no design, the distribution of the predicted random slopes  showed inconsistencies with data sampled from a normal distribution. The bold numbers are results for the lineup shown in figure~\ref{fig:qqlineup-1}. }\end{table}
 
 % latex table generated in R 3.0.1 by xtable 1.7-1 package
 % Wed Jun  5 08:41:06 2013
@@ -936,28 +937,7 @@ autismfanned2 & 15.8 ( 74.7) & 22.3 ( 48.5) & 23.8 ( 58.0) & 12.0 ( 83.3) & 5.0 
 Weighting is used to accommodate for multiple reasons.}
 \end{table}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package
-% Tue Jun  4 23:10:10 2013
-\begin{table}[ht]
-\centering
-\begin{tabular}{rrrrrr}
-  \hline
- & 1 & 2 & 3 & 4 & 5 \\ 
-  \hline
-  examfanned & 0.00026 & 0.023 & 0.0014 & 4e-06 & 0.027 \\ 
-  autismordered & 1.4e-76 & 1.3e-66 & 8.8e-76 & 8.4e-61 & 6.1e-77 \\ 
-  autismunordered & 5.7e-68 & 8.6e-69 & 1.1e-84 & 4.5e-73 & 9.1e-74 \\ 
-  cyclone & 3.4e-48 & 9.6e-44 & 1.9e-43 & 4.1e-40 & 2.2e-52 \\ 
-  dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.0098 & 5.4e-05 \\ 
-  dialyzernonlinear & 7.7e-77 & 6.6e-81 & 2e-70 & 2.4e-106 & 6.1e-82 \\ 
-  examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 4.4e-60 & 1e-61 \\ 
-  examuncorr & 0.038 & 6.6e-07 & 2e-12 & 2.9e-16 & 0.43 \\ 
-  autismfanned2 & 2.1e-46 & 7.4e-20 & 9.3e-23 & 5.8e-24 & 1.1e-26 \\ 
-  radontranef & 7.1e-21 & 1.6e-49 & 0.96 & 9.6e-07 & 0.077 \\ 
-   \hline
-\end{tabular}
-\caption{\label{tab:pvalues} Visual $p$-values - just for us, will delete later}
-\alnote{I might be a little spacey, but these look like $P(X > x)$ rather than $P(X \ge x)$}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package% Wed Jun  5 16:43:35 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline & 1 & 2 & 3 & 4 & 5 \\   \hlineautismfanned2 & 6.9e-45 & 1.2e-18 & 9.3e-23 & 9.1e-23 & 1.1e-26 \\   autismordered & 1.9e-74 & 1.6e-64 & 1.8e-73 & 8.4e-61 & 7.8e-75 \\   autismunordered & 2.9e-65 & 8.6e-69 & 1.1e-84 & 1e-70 & 9.1e-74 \\   cyclone & 1.3e-46 & 4.1e-42 & 7.2e-42 & 4.1e-40 & 1.3e-50 \\   dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.03 & 5.4e-05 \\   dialyzernonlinear & 3e-74 & 4e-78 & 2e-70 & 9.8e-104 & 6.1e-82 \\ %  electoral & 1.9e-11 & 0.00041 & 0.31 & 1.2e-05 & 0.00023 \\   examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 2.7e-58 & 9.1e-60 \\   examfanned & 0.00098 & 0.06 & 0.0049 & 2e-05 & 0.068 \\   examuncorr & 0.038 & 4.9e-06 & 2e-12 & 3.1e-15 & 0.66 \\   radontranef & 9.9e-20 & 5.8e-48 &   1 & 5.6e-06 & 0.17 \\    \hline\end{tabular}\caption{\label{tab:pvalues} Visual $p$-values  \hh{updated}- just for us, will delete later}
 \end{table}
 
 
