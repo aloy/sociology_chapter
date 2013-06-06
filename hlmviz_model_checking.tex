@@ -304,7 +304,7 @@ The slopes of the regression lines are indicative of the amount of correlation.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{examcorr-15.pdf}
-	\caption{\label{fig:ranef-corr} Lineup for testing correlation between random effects. Which plot is the most different of the others? What feature in the panel led you to your choice? \hh{plot is checked}}
+	\caption{\label{fig:ranef-corr} Lineup for testing correlation between random effects. Which plot is the most different of the others? What feature in the panel led you to your choice?}
 \end{figure}
 
 %\alnote{We could move the negative lineups that we did not include in the study to the appendix. I am thinking about this more from the perspective of when we submit to a journal with length restrictions}
@@ -804,7 +804,7 @@ Result & Visual & AD & SW & CVM & KS \\
 We have presented a graphical approach to model selection and diagnosis based on simulating from the model fit to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight into the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tests. 
 %It is important to note that simulation-based diagnostics for linear mixed-effects models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
 
-\al{As the results of visual inference rely on the choices of the observers there is some concern about the quality of their responses compared to those that could be obtained more traditionally, i.e. in the lab, but existing studies show promising results.  Using Amazon MTurk \cite{heer:2010} replicated the study of \cite{cleveland:1984} and achieved similar results. Similarly, \cite{kosara:2010} found similar results between a lab study and one performed using MTurk. The studies also discuss tactics that can be used to avoid people ``gaming the system,'' which provide further protection from irrelevant responses.}
+\al{As the results of visual inference rely on the choices of the observers there is some concern about the quality of their responses compared to those that could be obtained more traditionally, i.e. in the lab, but existing studies show promising results.  Using Amazon MTurk \cite{heer:2010} replicated the study of \cite{cleveland:1984} and achieved similar results. \cite{kosara:2010} found similar results between a lab study and one performed using MTurk. The studies also discuss tactics that can be used to avoid people ``gaming the system,'' which provide further protection from irrelevant responses.}
 
 Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and its predecessors, we believe the approach can be easily adapted.
 
@@ -817,7 +817,7 @@ Additionally, we have presented a more detailed look at graphical diagnostics th
 %------------------------------------------------------------------------------------
 \paragraph{Acknowledgments}
 %------------------------------------------------------------------------------------
-We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study (\url{http://www.public.iastate.edu/~mahbub/}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used to model fitting and the calculation of diagnostic quantities, respectively, and ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} were used for visualization.
+We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study (\url{http://www.public.iastate.edu/~mahbub/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
 
 %------------------------------------------------------------------------------------
