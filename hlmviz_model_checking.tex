@@ -123,8 +123,6 @@ Observers are asked to identify the plot that is the most different from the oth
 	\centering
 	\includegraphics[width=\textwidth]{normexam_fanned_lineup16.pdf}
 	\caption{\label{fig:fanned} Which plot is the most different from the other plots? What makes your plot different from the other plots?
-	%Which is the real plot? 
-	\hh{checked, is correct XXX }
 	}
 \end{figure}
 
@@ -149,7 +147,7 @@ Assessing ability requires that an individual evaluates multiple lineups. If tha
 
 Unlike classical hypothesis tests, visual inference allows us to also  collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-This additional information helps us to assess which part of the null hypothesis seems to be violated, something that is not provided in classical hypothesis tests. \hh{An example of this is shown in section XXX}
+This additional information helps us to assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. 
 
 
 %\subsection{Model notation and formulation} 
@@ -268,7 +266,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 
 Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five of them identified the data plot (panel $2^3 + 2$), 
 %corresponding to a $p$-value of XXX, 
-with XXX\% pointing to the trend as distinguishing feature. 
+with 40.3\% pointing to the trend as distinguishing feature. 
 This lineup is chosen
 to determine whether a child's language development at age 2 (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder (see Appendix~\ref{data:autism} for details). Displayed on the $y$-axis are level-1 residuals from a longitudinal model. Clearly, language development at age 2 accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
@@ -909,8 +907,20 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 \alnote{Were there 29 or 23 Turkers in Lendie's study? I have 23 in the body of the paper, but certainly could have transcribed that incorrectly.} \hh{23 is right}
 \end{table}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Wed Jun  5 17:17:29 2013\begin{table}[ht]\centering\begin{tabular}{rlll}  \hline & Control & Standard &Rotated  \\   \hlineRadon$_1$ & 1/27&\bf 0/23 & 0/22  \\ Radon$_2$  & 0/30& 0/18  & 0/31 \\    \hline\end{tabular}
-\caption{\label{tab:qqplot} Overview of \# correct data picks compared to \# evaluations of each lineup. Under no design, the distribution of the predicted random slopes  showed inconsistencies with data sampled from a normal distribution. The bold numbers are results for the lineup shown in figure~\ref{fig:qqlineup-1}. }\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Wed Jun  5 17:17:29 2013
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+  \hline
+ & Control & Standard &Rotated  \\ 
+  \hline
+Radon$_1$ & 1/27&\bf 0/23 & 0/22  \\ 
+Radon$_2$  & 0/30& 0/18  & 0/31 \\ 
+   \hline
+\end{tabular}
+\caption{\label{tab:qqplot} Overview of \# correct data picks compared to \# evaluations of each lineup. Under no design, the distribution of the predicted random slopes  showed inconsistencies with data sampled from a normal distribution. The bold numbers are results for the lineup shown in figure~\ref{fig:qqlineup-1}. }
+\end{table}
 
 % latex table generated in R 3.0.1 by xtable 1.7-1 package
 % Wed Jun  5 08:41:06 2013
@@ -937,7 +947,28 @@ autismfanned2 & 15.8 ( 74.7) & 22.3 ( 48.5) & 23.8 ( 58.0) & 12.0 ( 83.3) & 5.0 
 Weighting is used to accommodate for multiple reasons.}
 \end{table}
 
-% latex table generated in R 3.0.1 by xtable 1.7-1 package% Wed Jun  5 16:43:35 2013\begin{table}[ht]\centering\begin{tabular}{rrrrrr}  \hline & 1 & 2 & 3 & 4 & 5 \\   \hlineautismfanned2 & 6.9e-45 & 1.2e-18 & 9.3e-23 & 9.1e-23 & 1.1e-26 \\   autismordered & 1.9e-74 & 1.6e-64 & 1.8e-73 & 8.4e-61 & 7.8e-75 \\   autismunordered & 2.9e-65 & 8.6e-69 & 1.1e-84 & 1e-70 & 9.1e-74 \\   cyclone & 1.3e-46 & 4.1e-42 & 7.2e-42 & 4.1e-40 & 1.3e-50 \\   dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.03 & 5.4e-05 \\   dialyzernonlinear & 3e-74 & 4e-78 & 2e-70 & 9.8e-104 & 6.1e-82 \\ %  electoral & 1.9e-11 & 0.00041 & 0.31 & 1.2e-05 & 0.00023 \\   examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 2.7e-58 & 9.1e-60 \\   examfanned & 0.00098 & 0.06 & 0.0049 & 2e-05 & 0.068 \\   examuncorr & 0.038 & 4.9e-06 & 2e-12 & 3.1e-15 & 0.66 \\   radontranef & 9.9e-20 & 5.8e-48 &   1 & 5.6e-06 & 0.17 \\    \hline\end{tabular}\caption{\label{tab:pvalues} Visual $p$-values  \hh{updated}- just for us, will delete later}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Wed Jun  5 16:43:35 2013
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 1 & 2 & 3 & 4 & 5 \\ 
+  \hline
+autismfanned2 & 6.9e-45 & 1.2e-18 & 9.3e-23 & 9.1e-23 & 1.1e-26 \\ 
+  autismordered & 1.9e-74 & 1.6e-64 & 1.8e-73 & 8.4e-61 & 7.8e-75 \\ 
+  autismunordered & 2.9e-65 & 8.6e-69 & 1.1e-84 & 1e-70 & 9.1e-74 \\ 
+  cyclone & 1.3e-46 & 4.1e-42 & 7.2e-42 & 4.1e-40 & 1.3e-50 \\ 
+  dialyzerheterogeneous & 5.2e-17 & 0.0014 & 2.1e-15 & 0.03 & 5.4e-05 \\ 
+  dialyzernonlinear & 3e-74 & 4e-78 & 2e-70 & 9.8e-104 & 6.1e-82 \\ 
+%  electoral & 1.9e-11 & 0.00041 & 0.31 & 1.2e-05 & 0.00023 \\ 
+  examcorr & 1.9e-35 & 4.4e-69 & 1.6e-23 & 2.7e-58 & 9.1e-60 \\ 
+  examfanned & 0.00098 & 0.06 & 0.0049 & 2e-05 & 0.068 \\ 
+  examuncorr & 0.038 & 4.9e-06 & 2e-12 & 3.1e-15 & 0.66 \\ 
+  radontranef & 9.9e-20 & 5.8e-48 &   1 & 5.6e-06 & 0.17 \\ 
+   \hline
+\end{tabular}
+\caption{\label{tab:pvalues} Visual $p$-values  \hh{updated}- just for us, will delete later}
 \end{table}
 
 
