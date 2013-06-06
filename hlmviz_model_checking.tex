@@ -181,7 +181,7 @@ Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given b
 \bm{y}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta},\ \bm{V}_i \right)
 \end{equation}
 %
-where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i + \sigma^2 \bm{I}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is given by
+where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is given by
 %
 \begin{equation}\label{eq:conditionalmod}
 \bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \bm\sigma^2 \bm{I}_i \right)
