@@ -5,7 +5,15 @@
 
 % for citations
 \usepackage[authoryear]{natbib} % natbib required for JASA
-\usepackage[dvips,colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+
+% for the fancy tables with the icons
+%\usepackage[margin=1.0in]{geometry}% http://ctan.org/pkg/margin
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\usepackage{array}% http://ctan.org/pkg/array
+\newcolumntype{M}{>{\centering\arraybackslash}m{\dimexpr.05\linewidth-2\tabcolsep}}
+
+
 
 %\definecolor{Blue}{rgb}{0,0,0.5}
 \newcommand{\hh}[1]{{\color{orange} #1}}
@@ -885,22 +893,23 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 % Tue Jun  4 23:00:42 2013
 \begin{table}[ht]
 \centering
-\begin{tabular}{rrlrlrlrlrl}
+\begin{tabular}{Mrrlrlrlrlrl}
   \hline
- replicate & 1 & & 2 && 3 && 4 && 5 \\ 
+&  & Replicate \\
+& & 1 & & 2 && 3 && 4 && 5 \\ 
   \hline
-  examfanned & 11/73&\hspace{-0.1in}*** & 7/70&\hspace{-0.1in}. & 9/65&\hspace{-0.1in}** & 13/66&\hspace{-0.1in}*** & 7/72&\hspace{-0.1in}. \\ 
-  autismordered & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** \\ 
-  examcorr & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** \\ 
-  examuncorr & 8/77&\hspace{-0.1in}*  & 11/42&\hspace{-0.1in}*** & 22/70&\hspace{-0.1in}*** & 25/71&\hspace{-0.1in}*** & 3/67& \\ 
-  dialyzerheterogeneous & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}** & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}* & 13/72&\hspace{-0.1in}*** \\ 
-  cyclone & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** \\ 
-  dialyzernonlinear & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** \\ 
-  radontranef & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& \\ 
-  autismfanned2 & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** \\ 
-  autismunordered & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** \\ 
-   \hline
-\multicolumn{5}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}
+\includegraphics[width=0.05\textwidth]{examfanned-icon}&  examfanned & 11/73&\hspace{-0.1in}*** & 7/70&\hspace{-0.1in}. & 9/65&\hspace{-0.1in}** & 13/66&\hspace{-0.1in}*** & 7/72&\hspace{-0.1in}. \\ 
+\includegraphics[width=0.05\textwidth]{autism-ordered-icon}&   autismordered & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{examcorr-icon}&   examcorr & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{examuncorr-icon}&   examuncorr & 8/77&\hspace{-0.1in}*  & 11/42&\hspace{-0.1in}*** & 22/70&\hspace{-0.1in}*** & 25/71&\hspace{-0.1in}*** & 3/67& \\ 
+\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-icon}&   dialyzerheterogeneous & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}** & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}* & 13/72&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{cyclone-icon}&   cyclone & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{dialyzernonlinear-icon}&   dialyzernonlinear & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{radontranef-icon}&   radontranef & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& \\ 
+\includegraphics[width=0.05\textwidth]{autism2-fanned-icon}&   autismfanned2 & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{autism-unordered-icon}&   autismunordered & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** \\ 
+    \hline
+\multicolumn{8}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1}
 \end{tabular}
 \caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown. Significance was determined from the visual $p$-value defined in Equation~\ref{eqn.pvalue}.} 
 \end{table}
@@ -924,21 +933,21 @@ Radon$_2$  & 0/30& 0/18  & 0/31 \\
 % Wed Jun  5 08:41:06 2013
 \begin{table}[ht]
 \centering
-\begin{tabular}{rrrrrr}
+\begin{tabular}{Mrrrrrr}
   \hline
- & outlier & spread & trend & asymmetry & other \\ 
+& & outlier & spread & trend & asymmetry & other \\ 
   \hline
-autismfanned2 & 15.8 ( 74.7) & 22.3 ( 48.5) & 23.8 ( 58.0) & 12.0 ( 83.3) & 5.0 ( 90.0) \\ 
-  autismordered & 9.0 ( 77.8) & 8.3 (100.0) & 29.8 ( 86.6) & 15.3 (100.0) & 11.5 ( 82.6) \\ 
-  autismunordered & 4.5 ( 77.8) & 10.5 (100.0) & 16.5 (100.0) & 17.0 ( 94.1) & 5.5 (100.0) \\ 
-  cyclone & 14.0 ( 35.7) & 7.0 ( 28.6) & 21.0 ( 81.0) & 18.5 ( 73.0) & 14.5 ( 86.2) \\ 
-  dialyzerheterogeneous & 24.5 ( 24.5) & 16.0 ( 15.6) & 18.5 ( 59.5) & 14.0 ( 60.7) & 12.0 ( 25.0) \\ 
-  dialyzernonlinear & 6.5 ( 84.6) & 7.0 ( 85.7) & 38.5 ( 97.4) & 11.0 (100.0) & 0.0 (  NaN) \\ 
-%  electoral & 6.1 ( 46.6) & 3.4 ( 82.9) & 13.4 ( 21.1) & 24.8 ( 50.5) & 9.3 ( 10.7) \\ 
-  examcorr & 8.0 ( 68.8) & 16.5 ( 24.2) & 28.5 ( 93.0) & 14.0 ( 78.6) & 2.0 ( 50.0) \\ 
-  examfanned & 24.5 (  8.2) & 21.8 ( 29.8) & 15.3 ( 16.3) & 6.3 ( 15.8) & 5.0 ( 20.0) \\ 
-  examuncorr & 25.5 (  7.8) & 32.5 ( 10.8) & 7.0 ( 28.6) & 9.0 (  0.0) & 3.0 ( 16.7) \\ 
-  radontranef & 33.0 ( 59.1) & 3.3 ( 75.0) & 21.3 ( 39.8) & 6.3 (  0.0) & 6.0 ( 41.7) \\ 
+& autismfanned2 & 15.8 ( 74.7) & 22.3 ( 48.5) & 23.8 ( 58.0) & 12.0 ( 83.3) & 5.0 ( 90.0) \\ 
+&   autismordered & 9.0 ( 77.8) & 8.3 (100.0) & 29.8 ( 86.6) & 15.3 (100.0) & 11.5 ( 82.6) \\ 
+&   autismunordered & 4.5 ( 77.8) & 10.5 (100.0) & 16.5 (100.0) & 17.0 ( 94.1) & 5.5 (100.0) \\ 
+&   cyclone & 14.0 ( 35.7) & 7.0 ( 28.6) & 21.0 ( 81.0) & 18.5 ( 73.0) & 14.5 ( 86.2) \\ 
+&   dialyzerheterogeneous & 24.5 ( 24.5) & 16.0 ( 15.6) & 18.5 ( 59.5) & 14.0 ( 60.7) & 12.0 ( 25.0) \\ 
+&   dialyzernonlinear & 6.5 ( 84.6) & 7.0 ( 85.7) & 38.5 ( 97.4) & 11.0 (100.0) & 0.0 (  NaN) \\ 
+ %  electoral & 6.1 ( 46.6) & 3.4 ( 82.9) & 13.4 ( 21.1) & 24.8 ( 50.5) & 9.3 ( 10.7) \\ 
+&   examcorr & 8.0 ( 68.8) & 16.5 ( 24.2) & 28.5 ( 93.0) & 14.0 ( 78.6) & 2.0 ( 50.0) \\ 
+&   examfanned & 24.5 (  8.2) & 21.8 ( 29.8) & 15.3 ( 16.3) & 6.3 ( 15.8) & 5.0 ( 20.0) \\ 
+&   examuncorr & 25.5 (  7.8) & 32.5 ( 10.8) & 7.0 ( 28.6) & 9.0 (  0.0) & 3.0 ( 16.7) \\ 
+&   radontranef & 33.0 ( 59.1) & 3.3 ( 75.0) & 21.3 ( 39.8) & 6.3 (  0.0) & 6.0 ( 41.7) \\ 
    \hline
 \end{tabular}
 \caption{\label{tab:reasons} Overview of the reasoning by lineup, the table is in form of number of evaluations (percent correct). Weighting was used to accommodate  multiple reasons.}
