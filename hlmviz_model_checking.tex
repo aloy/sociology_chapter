@@ -78,11 +78,14 @@ Valid model-based statistical inference relies on proper specification of a mode
 \section{Introduction}
 %------------------------------------------------------------------------------------
 \hh{Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.} 
-Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model. \hh{Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}.  \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit in Bayesian model frameworks.  }
+Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used for checking the assumptions of a model. \hh{Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}.  \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit in Bayesian model frameworks.  }
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
-While the use of statistical graphics is wide-spread in the exploration process and for informal validation, graphics are often considered to be too subjective as the sole basis for model selection or validation. At the core of this criticism is the fact that decisions are being made based on a single plot. When a single plot is used, the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, artificial structures are often observed in the residuals of properly specified complex models \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. These drawbacks lead to an over-reliance on conventional hypothesis tests %for model selection and validation 
+While the use of statistical graphics is wide-spread in the exploratory data analysis  and for informal validation, graphics are often considered to be too subjective as the sole basis for model selection or validation. 
+At the core of this criticism is the fact that decisions are being made based on a single plot. When a single plot is used, the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, \hh{complex models introduce structures  that are then observed e.g.~} 
+%artificial structures are often observed 
+in the residuals of properly specified complex models \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
+These drawbacks lead to an over-reliance on conventional hypothesis tests %for model selection and validation 
 in complex models where such procedures often perform sub-optimally.
-
 
 %however, conventional practices for the selection and validation of linear mixed-effects models often rely on test statistics with questionable reference distributions and residual plots that exhibit artificial structure in well-fitting models. Graphical displays are often suggested 
 %
@@ -94,7 +97,13 @@ in complex models where such procedures often perform sub-optimally.
 %Until now, when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results \citep[c.f.,][]{Longford:2001wy}. 
 %\todo[inline]{what makes the parametric bootstrap solution unsatisfactory? -- we shouldn't bring it up unless there's a good reason to not use it. }
 %\alnote{I refer to the fact that they require more computation time than the lineups later in the paper. Also, like classical hypothesis tests, they only provide decisions whereas lineups provide additional information.}
-Recent developments in graphics methodology provide us with a rigorous framework for graphical discovery: visual inference  \citep{Buja:2009hp}   allows for the quantification of strength of graphical evidence and has been shown to perform similarly to classical tests in simulation-based studies \citep{, mahbub:2013}. Using visual inference, we suggest and validate a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects (LME) models. This approach is able to enhance familiar statistical graphics to avoid the detection of artificial structures. 
+Recent developments in graphics methodology provide us with a rigorous framework for graphical discovery: visual inference  \citep{Buja:2009hp}  allows for the quantification of the significance of graphical findings. In simulation-based studies visual inference has been shown to perform similarly to classical tests  \citep{mahbub:2013}. Using visual inference, we suggest and validate a framework
+ that enable us 
+ to overcome common difficulties  with conventional hypothesis tests 
+% and statistical graphics 
+ %that are encountered 
+ in the selection and validation of linear mixed-effects (LME) models. 
+% This approach is able to enhance familiar statistical graphics to avoid the detection of artificial structures. 
 
 
 
@@ -111,17 +120,15 @@ In order to develop such graphical tools as complements to conventional tests, w
 %\cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
 
 Classical statistical inference consists of 
-\begin{enumerate}
-	\item formulating a null and alternative hypothesis,
-	\item calculating a test statistic,
-	\item comparing the test statistic to a reference (null) distribution,
-	\item and calculating a $p$-value on which we base our conclusion.
-\end{enumerate}
-Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference for model diagnostics, we want to highlight these parallels in this framework: the null  hypothesis corresponds to some assumption about the model, such as, e.g.,~homogeneity of residual variance,
+(i) formulating  null and alternative hypotheses,
+	(ii) calculating a test statistic \hh{of the observed data},
+	(iii) comparing the test statistic to a reference (null) distribution,
+	(iv) and \hh{deriving} a $p$-value on which we base our conclusion.
+Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of \hh{linear mixed effects models}, we want to highlight  parallels there. Assume that  the question of interest involves  some assumption about a model, e.g. let us assume that the null hypothesis is  homogeneity of residual variance,
 while
 the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays the model assumption and allows the observer to distinguish between scenarios under the null and alternate hypotheses. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
-If the model assumption holds, i.e.  under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
+If the model assumption holds, i.e. ~under the null hypothesis, the plot of the observed data is indistinguishable from the null plots. 
 In the lineup protocol the true plot is randomly embedded among a number of null plots.  
 
 Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
