@@ -229,8 +229,9 @@ Some of the problems which we address in this paper are:
 \item[Asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
 \al{For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In finite sample situations these assumptions are often not met, rendering the conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment.}
 
-\item[Artifact due to data structure: ] Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for plots of the predicted random effects \cite[c.f.,][]{Morrell:2000ve}.\todo[inline]{what kind of patterns does Morrell refer to? - Let's be more specific here, or any patterns will be automatically contributed to this paper.}
+\item[Artifacts due to the data structure: ] Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
+\al{This problem is especially pronounced for \al{scatterplots} comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite{Morrell:2000ve}. Additionally, we have found plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.}
+
 
 %\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment. \todo[inline]{Compared to the other items this one is very specific - it might fit in better as an example, maybe under the first item.}
 
