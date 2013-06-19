@@ -224,12 +224,15 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 Some of the problems which we address in this paper are:
 \begin{description}
 \item[Asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
+\al{For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In finite sample situations these assumptions are often not met, rendering the conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment.}
+
+
 %Likelihood ratio tests for model selection are known to suffer from boundary effects, and while adjustments to the reference distributions have been proposed \citep{Stram:1994wd}, they do not hold in all cases.
 
 \item[Artifact due to data structure: ] Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
 This problem is especially pronounced for plots of the predicted random effects \cite[c.f.,][]{Morrell:2000ve}.\todo[inline]{what kind of patterns does Morrell refer to? - Let's be more specific here, or any patterns will be automatically contributed to this paper.}
 
-\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment. \todo[inline]{Compared to the other items this one is very specific - it might fit in better as an example, maybe under the first item.}
+%\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment. \todo[inline]{Compared to the other items this one is very specific - it might fit in better as an example, maybe under the first item.}
 
 \item[Comparison of nested models: ] 
 
