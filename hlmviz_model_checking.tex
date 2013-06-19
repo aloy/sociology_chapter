@@ -181,13 +181,9 @@ let us  consider a continuous response linear mixed-effects model for group $i$,
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-<<<<<<< HEAD
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units (observations) in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects \hh{describing} the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms \hh{accounting for} the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects \hh{describing} the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms \hh{accounting for} the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
-=======
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the $p$ fixed and $q$ random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects \hh{describing} the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms \hh{accounting for} the within-group covariance structure. We further assume that the random effects are distributed according to  $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
-Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
->>>>>>> small edits
+
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
 %
 \begin{equation}\label{eq:marginalmod}
