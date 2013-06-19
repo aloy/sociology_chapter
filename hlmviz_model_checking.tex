@@ -235,11 +235,13 @@ Some of the problems which we address in this paper are:
 
 %\item The empirical distribution of the random effects often does not resemble the theoretical distribution rendering conventional use of normality tests and Quantile-Quantile plots ineffective for distributional assessment. \todo[inline]{Compared to the other items this one is very specific - it might fit in better as an example, maybe under the first item.}
 
-\item[Comparison of nested models: ] 
+%\item[Comparison of nested models: ] 
 
 \todo[inline]{What about boundary issues in assessing relevancy of variance components? Comparison of nested models with different fixed effects not possible with REML estimation, too liberal for ML. }
 
 \item[Boundary issues  in comparison of nested models: ] 
+\al{When evaluating the significance of terms in the random effects structure, the likelihood ratio test statistic does not have the usual $\chi^2$ reference distribution if we are testing whether a variance component lies on the boundary of the parameter space. \cite{Stram:1994wd} argue that using the usual $\chi^2$ reference distribution leads to conservative results, and suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.}
+
 \item[Incomparability  of nested models due to estimation procedure: ]
  Comparison of nested models with different fixed effects not possible with REML estimation, too liberal for ML. 
 
