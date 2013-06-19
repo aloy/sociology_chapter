@@ -78,14 +78,14 @@ Valid model-based statistical inference relies on proper specification of a mode
 \section{Introduction}
 %------------------------------------------------------------------------------------
 \hh{Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.} 
-Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used for checking the assumptions of a model. \hh{Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}.  \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit in Bayesian model frameworks.  }
+Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used to check the assumptions of a model. \hh{Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}.  \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit in Bayesian model frameworks.  }
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
-While the use of statistical graphics is wide-spread in the exploratory data analysis  and for informal validation, graphics are often considered to be too subjective as the sole basis for model selection or validation. 
-At the core of this criticism is the fact that decisions are being made based on a single plot. When a single plot is used, the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, \hh{complex models introduce structures  that are then observed e.g.~} 
+While the use of statistical graphics is wide-spread in exploratory data analysis and informal validation, graphics are often considered to be too subjective as the sole basis for model selection or validation. 
+At the core of this criticism is the fact that decisions are being made based on a single plot. When a single plot is used, the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, \hh{complex models introduce structures  that are  observed, e.g.,~} 
 %artificial structures are often observed 
-in the residuals of properly specified complex models \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
+in the residuals of properly specified models \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
 These drawbacks lead to an over-reliance on conventional hypothesis tests %for model selection and validation 
-in complex models where such procedures often perform sub-optimally.
+for complex models where such procedures often perform sub-optimally.
 
 %however, conventional practices for the selection and validation of linear mixed-effects models often rely on test statistics with questionable reference distributions and residual plots that exhibit artificial structure in well-fitting models. Graphical displays are often suggested 
 %
@@ -98,7 +98,7 @@ in complex models where such procedures often perform sub-optimally.
 %\todo[inline]{what makes the parametric bootstrap solution unsatisfactory? -- we shouldn't bring it up unless there's a good reason to not use it. }
 %\alnote{I refer to the fact that they require more computation time than the lineups later in the paper. Also, like classical hypothesis tests, they only provide decisions whereas lineups provide additional information.}
 Recent developments in graphics methodology provide us with a rigorous framework for graphical discovery: visual inference  \citep{Buja:2009hp}  allows for the quantification of the significance of graphical findings. In simulation-based studies visual inference has been shown to perform similarly to classical tests  \citep{mahbub:2013}. Using visual inference, we suggest and validate a framework
- that enable us 
+ that enables us 
  to overcome common difficulties  with conventional hypothesis tests 
 % and statistical graphics 
  %that are encountered 
@@ -124,9 +124,9 @@ Classical statistical inference consists of
 	(ii) calculating a test statistic \hh{of the observed data},
 	(iii) comparing the test statistic to a reference (null) distribution,
 	(iv) and \hh{deriving} a $p$-value on which we base our conclusion.
-Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of \hh{linear mixed effects models}, we want to highlight  parallels there. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
+Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of \hh{linear mixed-effects models}, we want to highlight  parallels there. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
 while
-the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption which allows the observer to distinguish between scenarios under the null from scenarios under alternate hypotheses. 
+the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption which allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternate hypotheses. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
 If the model assumption holds, the plot of the observed data will be indistinguishable from the null plots. 
 \hh{For the lineup protocol a sample of the null distribution is taken and shown in a set of null plots, in which}
@@ -160,7 +160,7 @@ choose the true plot more than $x_\alpha$ times is
 \widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
 \end{equation}
 where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$, where  $p_i$ is the probability that individual $i$ chooses the data plot. This probability  depends both on the strength of the signal in the data plot and an individual's visual ability.
-Assessing ability requires that each individual evaluates multiple lineups. If that is not possible, we have to assume that all participants share the same ability, and the power calculation in Equation~\ref{eqn:power} simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability to choose the data plot based on a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying \hh{  the same data in different types of displays}. An example of this is given in Section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
+Assessing this ability requires that each individual evaluates multiple lineups. If that is not possible, we have to assume that all participants share the same ability, and the power calculation in Equation~\ref{eqn:power} simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability of choosing the data plot for a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying \hh{  the same data in different types of displays}. An example of this is given in Section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
 
 Unlike classical hypothesis tests, visual inference allows us to also  collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
@@ -170,7 +170,7 @@ This additional information helps us to assess which part of the null hypothesis
 %\subsection{Model notation and formulation} 
 %------------------------------------------------------------------------------------
 
-Linear mixed-effects models are versatile models that allow to account for dependence structure when data are organized in groups.
+Linear mixed-effects models are versatile models that allow us to account for dependence structures when data are organized in groups.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
 Such structures occur when individuals are naturally grouped by organization (e.g.~students within schools), geography (e.g.~voters within states), or design (e.g.~respondents assigned to  interviewers). The additional flexibility offered by these models \hh{enable us} to incorporate data at the observation-level and the group-level while \hh{also accommodating} for dependencies between individuals within the same group. 
 
@@ -180,8 +180,8 @@ Let us consider a continuous response linear mixed-effects model for group $i$, 
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects \hh{describing} the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms \hh{accounting for} the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
-Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending whether global or group-specific questions are of interest.
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units (observations) in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects \hh{describing} the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms \hh{accounting for} the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
+Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
 %
 \begin{equation}\label{eq:marginalmod}
@@ -197,7 +197,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_i$, and the conditi
 
 
 
-As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a linear mixed-effects model. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking \hh{that we consider here, are:}
+As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a linear mixed-effects model. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking \hh{that we consider here are:}
 %
 \begin{itemize}
 \item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
@@ -221,7 +221,7 @@ In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used
 
 \hh{The additional flexibility of random effects models comes at the cost of} complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
-Some of the problems which we are addressing in this paper are:
+Some of the problems which we address in this paper are:
 \begin{description}
 \item[Asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
 %Likelihood ratio tests for model selection are known to suffer from boundary effects, and while adjustments to the reference distributions have been proposed \citep{Stram:1994wd}, they do not hold in all cases.
