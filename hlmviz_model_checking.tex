@@ -16,8 +16,9 @@
 
 
 %\definecolor{Blue}{rgb}{0,0,0.5}
+\usepackage[usenames,dvipsnames]{xcolor}
 \newcommand{\hh}[1]{{\color{orange} #1}}
-\newcommand{\al}[1]{{\color{red} #1}}
+\newcommand{\al}[1]{{\color{ForestGreen} #1}}
 
 %% For printing in black and white
 %\newcommand{\hh}[1]{{\color{black} #1}}
@@ -297,7 +298,11 @@ While statistical software has made performing many of these tests easy, situati
 
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
-\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations leading to either conservative or anti-conservative decisions. 
+\alnote{I could also mention the messy business of defining the degrees of freedom here.}
+
+\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations. \al{This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal.}
+
+ leading to either conservative or anti-conservative decisions. 
 \end{description}
 
 
@@ -335,7 +340,7 @@ to determine whether a child's language development at age two (low, medium, or 
 %\end{figure}
 
 
-\paragraph{Random effects.} Tests of the random part of a hierarchical model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
+\paragraph{Random effects.} Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
 The lineup in Figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Appendix~\ref{data:GCSE} for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression \al{relating} the two test scores for all students at a school. 
 The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  is  created by simulating GCSEE scores from a model with only a single random effect, the random intercept.
@@ -346,6 +351,8 @@ The resulting scores for each school are regressed on LRT results and shown as l
  If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 4$) is identifiable, \hh{as 11 of the 73 observers pick the data plot. The main comments for their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;}
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
+  
+\alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
 %This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. 
@@ -461,6 +468,8 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 %\subsubsection{Conventional practices}\label{sec:conv-check}
 %------------------------------------------------------------------------------------
 
+\alnote{I know that the turk study for this first lineup was off because of the data thinning we had to do, but do we want to totally scrap this piece? We could use it as an example of the structure we might observe, and then use the other lineup with the study. I am not sure how well that would flow, but I thought it provided a better example of the artificial structure.}
+
 Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals; however, the interpretation of these plots is error prone.
 For example, consider investigating the appropriateness of this assumption for the GSCEE data. 
 %To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
@@ -514,6 +523,7 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 %
 which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is computationally more demanding than the generation of 19 null plots.
 
+\alnote{I need to go back an really emphasize the lack of effective conventional tests here}
 
 %\begin{figure}
 %	\centering
@@ -550,10 +560,10 @@ To extend checks of linearity to group-level variables we suggest the use of the
 \end{figure}
 
 \subsection{Normality}
-\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
+%\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
 %------------------------------------------------------------------------------------
 
-\subsubsection{Assessing normality of the random effects}
+%\subsubsection{Assessing normality of the random effects}
 %------------------------------------------------------------------------------------
 
 %Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
@@ -564,7 +574,7 @@ strong assumptions that are required for the empirical distributions of the resi
 Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a linear mixed-effects model. Figure~\ref{fig:qqlineup-1} presents a lineup of the predicted random slopes from the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage.
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
 Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 2$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
-be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the panel of the data).} 
+be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).} 
 \hh{Panel \#5 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 13 out of 23 observers. All other panels were selected at most two times. }
 Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after after model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of .05
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
@@ -742,11 +752,13 @@ To determine whether lineups can detect distributional violations we constructed
 We have presented a graphical approach to model selection and diagnosis based on simulating from the model fit to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight into the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tests. 
 %It is important to note that simulation-based diagnostics for linear mixed-effects models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
 
+\alnote{I think it would be useful to expand this paragraph to include a more comprehensive discussion of when we would use MTurk in practice, when we would go ask colleagues their opinions, etc. I think would clarify the process, which, as I saw from J's reaction, can seem a little odd until you wrap your head around visual inference.}
+
 \al{As the results of visual inference rely on the choices of the observers, there is some concern about the quality of their responses compared to those that could be obtained more traditionally, i.e. in the lab, but existing studies show promising results.  Using Amazon MTurk, \cite{heer:2010} replicated the study of \cite{cleveland:1984} and achieved similar results. \cite{kosara:2010} found similar results between a lab study and one performed using MTurk. The studies also discuss tactics that can be used to avoid people ``gaming the system,'' which provide further protection from irrelevant responses.}
 
-Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and its predecessors, we believe the approach can be easily adapted.
+Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and its predecessors \citep{Buja:2009hp, mahbub:2013}, we believe the approach can be easily adapted.
 
-Additionally, we have presented a more detailed look at graphical diagnostics that can be used to assess distributional assumptions. We found that, contrary to expectation, rotating the Q-Q plot to emphasize the vertical comparisons does not improve the power of the graphical test. In addition to supporting the use of the standard construction of Q-Q plots, this study provides an example of how to select a graphical diagnostic based on its estimated power. 
+%Additionally, we have presented a more detailed look at graphical diagnostics that can be used to assess distributional assumptions. We found that, contrary to expectation, rotating the Q-Q plot to emphasize the vertical comparisons does not improve the power of the graphical test. In addition to supporting the use of the standard construction of Q-Q plots, this study provides an example of how to select a graphical diagnostic based on its estimated power. 
 
 %\alnote{I'm not quite sure where to put this... We could add a paragraph here describing what was used, or maybe an appendix? If we put it here, should it be the last paragraph?}
 %\hh{Technical implementation: R \citep{R} and packages for modeling lme4 \citep{lme4}, HLMdiag \citep{HLMDiag}, and visualizations ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, gridSVG \citep{gridSVG}. 
@@ -755,7 +767,7 @@ Additionally, we have presented a more detailed look at graphical diagnostics th
 %------------------------------------------------------------------------------------
 \paragraph{Acknowledgments}
 %------------------------------------------------------------------------------------
-We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study (\url{http://www.public.iastate.edu/~mahbub/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
+We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study (\url{http://www.public.iastate.edu/~Buja:2009hp/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
 
 %------------------------------------------------------------------------------------
