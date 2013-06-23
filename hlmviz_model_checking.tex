@@ -34,7 +34,8 @@
 
 % help with editing and coauthoring
 \usepackage{todonotes}
-\newcommand{\alnote}[1]{\todo[inline,color=green!40]{#1}}
+\newcommand{\alnote}[1]{\todo[inline,color=green!40]{#1}} %% nice template!!
+\newcommand{\hhnote}[1]{\todo[inline,color=orange!40]{#1}} 
 
 % title formatting
 \usepackage[compact,small]{titlesec}
@@ -108,7 +109,7 @@ Recent developments in graphics methodology provide us with a rigorous framework
 % and statistical graphics 
  %that are encountered 
  in the selection and validation of linear mixed-effects (LME) models. 
-\alnote{Should we spell out the ``linear mixed-effects model'' each time, or use the abbreviation? I think LME is well-known in the community, so it shouldn't add undue burden on the reader, but that is just my opinion.}
+\alnote{Should we spell out the ``linear mixed-effects model'' each time, or use the abbreviation? I think LME is well-known in the community, so it shouldn't add undue burden on the reader, but that is just my opinion.} \hhnote{LME is fine with me}
 % This approach is able to enhance familiar statistical graphics to avoid the detection of artificial structures. 
 
 
@@ -120,6 +121,7 @@ Recent developments in graphics methodology provide us with a rigorous framework
 In order to develop such graphical tools as complements to conventional tests, we must first define the inferential framework on which we rely.
 
 \alnote{Do we need more of a transition here? When I was reading this I realized this was the end of the ``general introduction'' and the following sections introduce specific topics/issues. Would it make sense to go back to subheadings?}
+\hhnote{subheadings will be a bit tricky at the end of the introduction, when we are going into the purpose of the paper - but if you have good ideas, go ahead with the subheadings.}
 %%------------------------------------------------------------------------------------
 %\subsection{Visual inference}\label{sec:vi}
 %%------------------------------------------------------------------------------------
@@ -156,20 +158,20 @@ Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  lin
 Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. What is your choice for the most different plot?
 
 \alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
-
+\hhnote{sure, go ahead}
 \hh{Based on 73 evaluations of Figure~\ref{fig:fanned}, 11 observers chose the  data plot from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of approximately 0.001. The actual model of the data and the null} \al{hypothesis} \hh{are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.}
 
-The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013}. 
-%as the probability that in $N$ independent evaluations observers 
-In $N$ independent evaluations, the probability that observers
-choose the true plot more than $x_\alpha$ times is
-\begin{equation}\label{eqn:power}
-\widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
-\end{equation}
-where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$, where  $p_i$ is the probability that individual $i$ chooses the data plot. This probability  depends both on the strength of the signal in the data plot and an individual's visual ability.
-Assessing this ability requires that each individual evaluates multiple lineups. If that is not possible, we have to assume that all participants share the same ability, and the power calculation in Equation~\ref{eqn:power} simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability of choosing the data plot for a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying \hh{  the same data in different types of displays} \citep{Hofmann:2012ts}. 
-\alnote{I took out the reference to our example here and just cited your other paper instead.}
-%An example of this is given in Section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
+%The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013}. 
+%%as the probability that in $N$ independent evaluations observers 
+%In $N$ independent evaluations, the probability that observers
+%choose the true plot more than $x_\alpha$ times is
+%\begin{equation}\label{eqn:power}
+%\widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
+%\end{equation}
+%where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$, where  $p_i$ is the probability that individual $i$ chooses the data plot. This probability  depends both on the strength of the signal in the data plot and an individual's visual ability.
+%Assessing this ability requires that each individual evaluates multiple lineups. If that is not possible, we have to assume that all participants share the same ability, and the power calculation in Equation~\ref{eqn:power} simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability of choosing the data plot for a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying \hh{  the same data in different types of displays} \citep{Hofmann:2012ts}. 
+%\alnote{I took out the reference to our example here and just cited your other paper instead.}
+%%An example of this is given in Section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
 
 Unlike classical hypothesis tests, visual inference also allows us to collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
@@ -267,6 +269,7 @@ The purpose of this paper is to discuss visual inference in the framework of lin
 In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. 
 
 \alnote{Should we include another pointer to the descriptions of the data sets?}
+\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
 
 %We also show results of a study investigating the power of three different versions of the familiar Q-Q plot. 
 
@@ -477,7 +480,7 @@ For example, consider investigating the appropriateness of this assumption for t
 %The lineup in 
 Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{121} - 8$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
 
-\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Section~\ref{data:dialyzer}). In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
+\al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}). In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
 
 %\begin{figure}
 %	\centering
@@ -542,22 +545,21 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 %------------------------------------------------------------------------------------
 
 \al{
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer}). It is clear that a higher-order polynomial is required.
-
-To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
-}
-
-
-%To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' 
-%%As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
-%\alnote{I will write more here.}
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required.} \hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{dialyzernonlinear-10.pdf}
 	\caption{\label{fig:linearity} Lineup testing  for nonlinearity of a covariate. Which of the plots is the most different? Which feature led you to your choice?}
+%To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' 
+%%As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
+%\alnote{I will write more here.}
+
 	%Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
 \end{figure}
+
+\al{To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
+}
 
 \subsection{Normality}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
