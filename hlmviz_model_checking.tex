@@ -83,11 +83,11 @@ Valid model-based statistical inference relies on proper specification of a mode
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
-\hh{Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.} 
-Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used to check the assumptions of a model. \hh{Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}.}  \al{In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit.  }
+Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
+Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used to check the assumptions of a model. Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}. In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit. 
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
 While the use of statistical graphics is wide-spread in exploratory data analysis and informal validation, graphics are often considered to be too subjective to be the sole basis for model selection or validation. 
-At the core of this criticism is the fact that decisions are being made based on a single plot. When a single plot is used, the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, \hh{complex models introduce structures  that are  observed,} for example, 
+At the core of this criticism is the fact that decisions are being made based on a single plot. When a single plot is used, the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, complex models introduce structures  that are  observed, for example, 
 %artificial structures are often observed 
 in the residuals of properly specified models \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
 These drawbacks lead to an over-reliance on conventional hypothesis tests %for model selection and validation 
@@ -109,7 +109,6 @@ Recent developments in graphics methodology provide us with a rigorous framework
 % and statistical graphics 
  %that are encountered 
  in the selection and validation of linear mixed-effects (LME) models. 
-\alnote{Should we spell out the ``linear mixed-effects model'' each time, or use the abbreviation? I think LME is well-known in the community, so it shouldn't add undue burden on the reader, but that is just my opinion.} \hhnote{LME is fine with me}
 % This approach is able to enhance familiar statistical graphics to avoid the detection of artificial structures. 
 
 
@@ -743,6 +742,9 @@ To determine whether lineups can detect distributional violations we constructed
 %
 %\end{itemize}
 
+%------------------------------------------------------------------------------------
+\section{Critical Discussion of visual inference results}\label{sec:results}
+%------------------------------------------------------------------------------------
 
 
 %------------------------------------------------------------------------------------
