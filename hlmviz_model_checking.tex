@@ -301,7 +301,7 @@ While statistical software has made performing many of these tests easy, situati
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
 \alnote{I could also mention the messy business of defining the degrees of freedom here.}
-
+\hhnote{yes, a bit of that discussion would be good. I'm not sure that we can cite Bates - but maybe by now he's actually published something on that discussion, which is the main reason for his aversion of putting in p values.}
 \item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations. \al{This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal.}
 
  leading to either conservative or anti-conservative decisions. 
@@ -355,6 +355,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
   
 \alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
+\hhnote{yes, I agree - we actually need another lineup on this for the new experiment ***LINEUP*** I would suggest to include the random slope in the model from which you simulate the null and draw the same picture again. Hopefully the data disappears.}
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
 %This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. 
@@ -472,6 +473,8 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 
 \alnote{I know that the turk study for this first lineup was off because of the data thinning we had to do, but do we want to totally scrap this piece? We could use it as an example of the structure we might observe, and then use the other lineup with the study. I am not sure how well that would flow, but I thought it provided a better example of the artificial structure.}
 
+\hh{***LINEUP*** for homogeneity - what about the dialyzer example with side by side boxplots for flow speed}
+
 Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals; however, the interpretation of these plots is error prone.
 For example, consider investigating the appropriateness of this assumption for the GSCEE data. 
 %To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
@@ -525,7 +528,8 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 %
 which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is computationally more demanding than the generation of 19 null plots.
 
-\alnote{I need to go back an really emphasize the lack of effective conventional tests here}
+\alnote{I need to go back and really emphasize the lack of effective conventional tests here}
+\hhnote{and we need a second cyclone plot (that probably ends up in the supplementary material, but still ... ***LINEUP***  to show a situation with different group sizes, i.e. the cyclone structure, but non significant variability.}
 
 %\begin{figure}
 %	\centering
@@ -559,6 +563,8 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 
 \al{To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
 }
+\hhnote{we wanted to talk about how this is the most familiar situation and is entirely solvable with tools straight from linear models. Did Cook and Weisberg name those? I think I've seen the name partial residual plots at times. 
+We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyzer example to have a better mean structure.}
 
 \subsection{Normality}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
@@ -591,13 +597,13 @@ To determine whether lineups can detect distributional violations we constructed
 %	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
 	\includegraphics[width=\textwidth]{filebab6182c2e84}
 	\caption{\label{fig:qqlineup-1}
-	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice?}
+	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? \hh{***LINEUP*** we wanted to have five nulls to make this fit into the general framework.}}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice?}
+	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? \hh{this is the simulation from $t$, right? if so, it needs to say that. the file name suggests it.}}
 \end{figure}
 
 
