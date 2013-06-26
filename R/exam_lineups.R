@@ -91,13 +91,52 @@ qplot(x = standLRT, y = fitted, data = true.fitted, group = school,
 #	xlab("standardized LRT score") + 
 #	ylab("GCSE exam score")
 
+
+## Adding the random slope
+M2 <- lmer(normexam ~ standLRT + (standLRT  | school), data = Exam)
+
+M2.sims  <- simulate(M2, nsim = 19, seed = 1234)
+M2.refit <- lapply(M2.sims, refit, object = M2)
+M2.simy <- lapply(M2.refit, function(x) x@y)
+
+sim2.y <- do.call("cbind", M2.simy)
+sim2.y <- melt(sim2.y)[,-1]
+names(sim2.y) <- c(".n", "y")
+sim2.y$.n <- as.numeric(str_extract(sim2.y$.n, "\\d+"))
+sim2.y$standLRT <- rep(Exam$standLRT, rep = 19)
+sim2.y$school <- rep(Exam$school, rep = 19)
+
+# The "harder way" to get alpha working
+M2.fitted <- ddply(sim2.y, .(.n, school), function(x) {
+	m <- lm(y ~ standLRT, data = x)
+	data.frame(x, fitted = fitted(m))
+})
+
+true.df <- subset(Exam, select = c(school, normexam, standLRT))
+colnames(true.df)[2] <- "y"
+
+true.fitted <- ddply(true.df, .(school), function(x) {
+	m <- lm(y ~ standLRT, data = x)
+	data.frame(x, fitted = fitted(m))	
+})
+
+# save(M2.fitted, true.fitted, file = "exam-fanned-withslope.RData")
+
+qplot(x = standLRT, y = fitted, data = true.fitted, group = school, 
+	geom = "line", alpha = I(0.5)) %+% 
+	lineup(true = true.fitted, samples = M2.fitted) + 
+	facet_wrap( ~ .sample, ncol=5) + 
+	xlab(NULL) + ylab(NULL) +
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+		axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+
+
 #-------------------------------------------------------------------------------
 # Lineups to test for need for correlated random effects
 #-------------------------------------------------------------------------------
 
 # Do we need to allow for correlation? Typically you would add the random effect, then
 # test for the correlation. So that is what we will try.
-M2 <- lmer(normexam ~ standLRT + (standLRT  | school), data = Exam)
 M3 <- lmer(normexam ~ standLRT + (standLRT - 1 | school) + (1 | school), data = Exam)
 
 ## The lineup -need to compare simulated ranefs to ranefs of M2

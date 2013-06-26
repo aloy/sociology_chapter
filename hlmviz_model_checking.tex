@@ -302,6 +302,10 @@ While statistical software has made performing many of these tests easy, situati
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
 \alnote{I could also mention the messy business of defining the degrees of freedom here.}
 \hhnote{yes, a bit of that discussion would be good. I'm not sure that we can cite Bates - but maybe by now he's actually published something on that discussion, which is the main reason for his aversion of putting in p values.}
+\alnote{I am taking a look through the literature. I did find Bates' ``rant'' (which is quite hilarious and interesting) \url{https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html}, and I also found a paper by Hodges that might be applicable, but I need to read it to make that determination:
+
+Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
+}
 \item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no one approximation holds for all situations. \al{This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal.}
 
  leading to either conservative or anti-conservative decisions. 
@@ -356,6 +360,15 @@ The resulting scores for each school are regressed on LRT results and shown as l
   
 \alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
 \hhnote{yes, I agree - we actually need another lineup on this for the new experiment ***LINEUP*** I would suggest to include the random slope in the model from which you simulate the null and draw the same picture again. Hopefully the data disappears.}
+\alnote{Here is a lineup with the random slope. Can you find the data?\\[1em]
+
+A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = \textwidth]{normexam_fanned_withslope_lineup18}
+	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model. Which plot is the most different of the others?}
+\end{figure}
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
 %This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. 
@@ -548,7 +561,9 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 %------------------------------------------------------------------------------------
 
 \al{
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required.} \hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required.} 
+\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
+\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
 
 \begin{figure}
 	\centering
@@ -565,6 +580,15 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 }
 \hhnote{we wanted to talk about how this is the most familiar situation and is entirely solvable with tools straight from linear models. Did Cook and Weisberg name those? I think I've seen the name partial residual plots at times. 
 We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyzer example to have a better mean structure.}
+\alnote{See the above note for a comment on the mean structure.\\[1em] 
+
+I am not sure if Cook and Weisberg named the scatterplots with smoothers, but they are not quite partial residual plots. Partial residual plots use the augmented (larger) model to construct residuals using fixed effects estimates for a reduced set of variables. Added variable plots are also similar in spirit to partial residual plots, though they are more involved. Partial residual plots have been discussed for mixed models (Hilden-Minton (1995); Hodges (1998)), but what we are doing is simpler in my mind. It might be interesting to pull this parallel into the paper, and maybe even compare what we see in an added variable plot and in the lineup. An extra perk of the lineup here is that added variable plots for LME models are not implement in R, but lineups are easy to create.\\[1em]
+
+Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hierarchical models, applied to diagnostics. \emph{Journal of the Royal Statistical Society. Series B (Statistical Methodology)}, 60(3), 497Ð536.\\[1em]
+
+Based on the examples I have seen, visual inference seems to overcome the problems of interpreting slopes observed on residual plots that was pointed out by Atkinson (1985, p. 67), though I have not formally tested this in any way. Perhaps it would be interesting to do that? Of course, this is most straightforward in the OLS regression setting. 
+}
+
 
 \subsection{Normality}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}

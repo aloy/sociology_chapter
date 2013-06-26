@@ -146,10 +146,7 @@ qplot(x = factor(rank), y = EB.resid, data = resids,
 				facet_wrap(~sample)
 
 location <- resids$sample[nrow(resids)]
-make_interactive(filename= sprintf("cyclone-bad-%s-multiple.svg", location), 
-		script="http://www.hofroe.net/examples/lineup/action.js")
-make_interactive(filename= sprintf("cyclone-bad-%s-single.svg", location), 
-		script="http://www.hofroe.net/examples/lineup/action.js", toggle="toggle")
+
 
 ##### lineup number 9 #####
 load("radon-tsim-6.RData")
