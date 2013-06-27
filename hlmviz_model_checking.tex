@@ -488,6 +488,16 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 
 \hh{***LINEUP*** for homogeneity - what about the dialyzer example with side by side boxplots for flow speed}
 
+\alnote{I included such a lineup, though I am not sure if it quite what we want.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.9\textwidth]{dialyzer-boxplots-lineup8.pdf}
+	\caption{ 
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
 Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals; however, the interpretation of these plots is error prone.
 For example, consider investigating the appropriateness of this assumption for the GSCEE data. 
 %To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
@@ -593,7 +603,7 @@ We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyz
 
 I am not sure if Cook and Weisberg named the scatterplots with smoothers, but they are not quite partial residual plots. Partial residual plots use the augmented (larger) model to construct residuals using fixed effects estimates for a reduced set of variables. Added variable plots are also similar in spirit to partial residual plots, though they are more involved. Partial residual plots have been discussed for mixed models (Hilden-Minton (1995); Hodges (1998)), but what we are doing is simpler in my mind. It might be interesting to pull this parallel into the paper, and maybe even compare what we see in an added variable plot and in the lineup. An extra perk of the lineup here is that added variable plots for LME models are not implement in R, but lineups are easy to create.\\[1em]
 
-Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hierarchical models, applied to diagnostics. \emph{Journal of the Royal Statistical Society. Series B (Statistical Methodology)}, 60(3), 497Ð536.\\[1em]
+Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hierarchical models, applied to diagnostics. \emph{Journal of the Royal Statistical Society. Series B (Statistical Methodology)}, 60(3), 497--536.\\[1em]
 
 Based on the examples I have seen, visual inference seems to overcome the problems of interpreting slopes observed on residual plots that was pointed out by Atkinson (1985, p. 67), though I have not formally tested this in any way. Perhaps it would be interesting to do that? Of course, this is most straightforward in the OLS regression setting. 
 }

@@ -78,7 +78,7 @@ save(m1.resid.df, m1.sim.resids, file = "dialyzer-nonlinear.RData")
 
 M2 <- lmer(rate ~ (pressure + I(pressure^2) + I(pressure^3) + I(pressure^4))*QB + (pressure + I(pressure^2) | Subject), data = Dialyzer)
 
-m2.resid.df <- data.frame(pressure = M2@frame$pressure, resid = resid(M2))
+m2.resid.df <- data.frame(M2@frame, resid = resid(M2))
 
 m2.sims <- simulate(M2, nsim = 19)
 m2.refit <- lapply(m2.sims, refit, object = M2)
@@ -102,3 +102,16 @@ make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-single.svg", locat
 
 # saving data
 # save(m2.resid.df, m2.sim.resids, file = file.choose(new = TRUE))
+
+
+lineup.df <- rbind.fill(m2.sim.resids, m2.resid.df)
+plot.order <- sample.int(20, 20)
+lineup.df$.n <- rep(plot.order, each = 140)
+
+qplot(x = QB, y = resid, data = lineup.df, geom = "boxplot", facets = ~ .n, fill = QB,
+		outlier.size = 1.5, alpha=I(0.6)) + 
+	xlab(NULL) + 
+	ylab(NULL) + 
+	scale_fill_brewer("", palette="Set2") +
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
