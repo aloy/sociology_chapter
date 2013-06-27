@@ -265,7 +265,7 @@ The purpose of this paper is to discuss visual inference in the framework of lin
  Some diagnostics are new, addressing practical needs. An example of this is the cyclone plots of Figure~\ref{fig:badcyclone}. The purpose of  these examples is to show a variety of graphical diagnostics and emphasize that they all fit within the graphical inference framework.  We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
 
 \al{The remainder of this paper is organized as follows.}
-In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. 
+In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. \al{Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools.}
 
 \alnote{Should we include another pointer to the descriptions of the data sets?}
 \hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
@@ -543,6 +543,15 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 
 \alnote{I need to go back and really emphasize the lack of effective conventional tests here}
 \hhnote{and we need a second cyclone plot (that probably ends up in the supplementary material, but still ... ***LINEUP***  to show a situation with different group sizes, i.e. the cyclone structure, but non significant variability.}
+\alnote{Here is a cyclone plot made from a reduced set of the radon data. I used the EB residuals here, so not everything is centered around 0, but we could use the LS residuals to overcome that.}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{radon_cyclone10.pdf}
+	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
+\end{figure}
+
 
 %\begin{figure}
 %	\centering
@@ -627,7 +636,7 @@ To determine whether lineups can detect distributional violations we constructed
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? \hh{this is the simulation from $t$, right? if so, it needs to say that. the file name suggests it.}}
+	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of random slopes \al{simulated from a $t_3$ distribution}. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
 
