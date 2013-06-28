@@ -83,6 +83,8 @@ Valid model-based statistical inference relies on proper specification of a mode
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
+\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
+
 Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
 Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used to check the assumptions of a model. Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}. In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit. 
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
@@ -363,6 +365,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 \alnote{Here is a lineup with the random slope. Can you find the data?\\[1em]
 
 A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
+\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
 \begin{figure}
 	\centering
@@ -486,11 +489,12 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 
 \alnote{I know that the turk study for this first lineup was off because of the data thinning we had to do, but do we want to totally scrap this piece? We could use it as an example of the structure we might observe, and then use the other lineup with the study. I am not sure how well that would flow, but I thought it provided a better example of the artificial structure.}
 
-\hh{***LINEUP*** for homogeneity - what about the dialyzer example with side by side boxplots for flow speed}
+\hhnote{***LINEUP*** for homogeneity - what about the dialyzer example with side by side boxplots for flow speed}
 
 \alnote{I included such a lineup, though I am not sure if it quite what we want.}
 
-\alnote{Try a jittered boxplot.}
+\hhnote{I like the boxplots a lot - but in the study, let's include both the boxplots and an example with jittered dots - I would like to check on the power between the designs. I would assume that boxplots are better (we've seen that before in the infovis paper \cite{infovis:2011}), but it would be nice to confirm it. }
+
 
 \begin{figure}
 	\centering
@@ -609,7 +613,7 @@ Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hie
 
 Based on the examples I have seen, visual inference seems to overcome the problems of interpreting slopes observed on residual plots that was pointed out by Atkinson (1985, p. 67), though I have not formally tested this in any way. Perhaps it would be interesting to do that? Of course, this is most straightforward in the OLS regression setting. 
 }
-
+\hhnote{this is where we want to extend the discussion a bit: the partial residual plots and our approach is like the difference between type I and type III sums of squares - i.e. looking at the contribution of covariates either without regarding any of the covariates (type III) or only after adjusting for everything else, in which case we need to fit the model first before we can look into the relationship between $Y$ and $X_i$}
 
 \subsection{Normality}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
@@ -620,8 +624,11 @@ Based on the examples I have seen, visual inference seems to overcome the proble
 
 %Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
 
-\al{Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. Formally this is seen by the}
+\al{Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. 
+Formally this is seen by the}
 strong assumptions that are required for the empirical distributions of the residuals in the linear mixed-effects model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs, individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
+
+\hhnote{we can make this an even stronger statement. Cite your JCGS submission - by the time we're through any review process, this will be resolved.}
 
 Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a linear mixed-effects model. Figure~\ref{fig:qqlineup-1} presents a lineup of the predicted random slopes from the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage.
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
@@ -796,7 +803,7 @@ To determine whether lineups can detect distributional violations we constructed
 %------------------------------------------------------------------------------------
 \section{Critical Discussion of visual inference results}\label{sec:results}
 %------------------------------------------------------------------------------------
-
+\hhnote{overarching results;  variability in results due to  sample of null sets}
 
 %------------------------------------------------------------------------------------
 \section{Conclusion}\label{sec:conclusion}
