@@ -143,11 +143,11 @@ If the model assumption holds, the plot of the observed data will be indistingui
 the true plot is randomly embedded.  
 
 \hh{An assessment of the lineup by human observers then  allows for the estimation of a $p$-value associated with the lineup.}
-Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. Under the null hypothesis, $X$ is distributed according to a Binomial distribution with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value is then estimated as
+Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. Under the null hypothesis, $X$ is distributed according to a Binomial distribution with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
-
+\hhnote{this is just the $p$ value conditioned on the lineup. For the unconditioned $p$ value we need to `integrate' the effect of the lineup out - we have multiple samples of null sets for the same data. We need to still write out how to combine those.}
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_fanned_lineup16.pdf}
