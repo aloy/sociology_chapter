@@ -143,7 +143,9 @@ If the model assumption holds, the plot of the observed data will be indistingui
 the true plot is randomly embedded.  
 
 \hh{An assessment of the lineup by human observers then  allows for the estimation of a $p$-value associated with the lineup.}
-Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. Under the null hypothesis, $X$ is distributed according to a Binomial distribution with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
+Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
+\hhnote{the distribution needs to be fixed, but it should not change the actual results.}
+Under the null hypothesis, $X$ is distributed according to a Binomial distribution with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 \begin{equation}\label{eqn.pvalue}
 \widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
 \end{equation}
@@ -909,19 +911,20 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 % Tue Jun  4 23:00:42 2013
 \begin{table}[ht]
 \centering
-\caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown. Significance was determined from the visual $p$-value defined in Equation~\ref{eqn.pvalue}.} 
+\caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown. Significance was determined from the visual $p$-value defined in Equation~\ref{eqn.pvalue}. \hhnote{pvalues are re-checked}} 
 \begin{tabular}{Mrrlrlrlrlrl}
   \hline
 &  & \multicolumn{9}{c}{Replicate} \\ \cline{3-12}
 & Lineup & 1 & & 2 && 3 && 4 && 5 \\ 
   \hline
-\includegraphics[width=0.05\textwidth]{examfanned-icon}&  fig.~\ref{fig:fanned} & 11/73&\hspace{-0.1in}*** & 7/70&\hspace{-0.1in}. & 9/65&\hspace{-0.1in}** & 13/66&\hspace{-0.1in}*** & 7/72&\hspace{-0.1in}. \\ 
+  
+\includegraphics[width=0.05\textwidth]{examfanned-icon}&  fig.~\ref{fig:fanned} & 11/73&\hspace{-0.1in}** & 7/70&\hspace{-0.1in}. & 9/65&\hspace{-0.1in}* & 13/66&\hspace{-0.1in}*** & 7/72&\hspace{-0.1in}. \\ 
 \includegraphics[width=0.05\textwidth]{autism-ordered-icon}&   fig.~\ref{fig:boxplot-ordered} & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** \\ 
 \includegraphics[width=0.05\textwidth]{examcorr-icon}&   fig.~\ref{fig:ranef-corr} & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** \\ 
-\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-icon}& fig.~\ref{fig:constvar2} & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}** & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}* & 13/72&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-icon}& fig.~\ref{fig:constvar2} & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}** & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}* & 13/72&\hspace{-0.1in}** \\ 
 \includegraphics[width=0.05\textwidth]{cyclone-icon}&   fig.~\ref{fig:badcyclone} & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** \\ 
 \includegraphics[width=0.05\textwidth]{dialyzernonlinear-icon}&   fig.~\ref{fig:linearity} & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** \\ 
-\includegraphics[width=0.05\textwidth]{radontranef-icon}&   fig.~\ref{fig:qqlineup-t} & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& \\ 
+\includegraphics[width=0.05\textwidth]{radontranef-icon}&   fig.~\ref{fig:qqlineup-t} & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74&. \\ 
 \includegraphics[width=0.05\textwidth]{autism2-fanned-icon}&   fig.~\ref{fig:autism-ranef} & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** \\ 
 \includegraphics[width=0.05\textwidth]{autism-unordered-icon}&   fig.~\ref{fig:boxplot-unordered} & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** \\ 
     \hline
@@ -989,11 +992,11 @@ Radon$_2$  & 0/30& 0/18  & 0/31 \\
 %  examuncorr & 0.038 & 4.9e-06 & 2e-12 & 3.1e-15 & 0.66 \\ 
 %  radontranef & 9.9e-20 & 5.8e-48 &   1 & 5.6e-06 & 0.17 \\ 
 %   \hline
+% autismfanned2 & 6.7e-45 & 1.1e-18 & 8.8e-23 & 8.5e-23 & 1e-26 \\ %  autismordered & 1.9e-74 & 1.6e-64 & 1.7e-73 & 8.3e-61 & 7.7e-75 \\ %  autismunordered & 2.9e-65 & 8.5e-69 & 1.1e-84 & 1e-70 & 9.1e-74 \\ %  cyclone & 1.3e-46 & 4e-42 & 7e-42 & 3.9e-40 & 1.3e-50 \\ %  dialyzerheterogeneous & 4.7e-17 & 0.0095 & 1.9e-15 & 0.041 & 0.0018 \\ %  dialyzernonlinear & 3e-74 & 3.9e-78 & 2e-70 & 9.8e-104 & 6.1e-82 \\ %  electoral & 1.7e-11 & 0.0055 & 0.15 & 0.00097 & 0.004 \\ %  examcorr & 1.8e-35 & 4.4e-69 & 1.5e-23 & 2.6e-58 & 9e-60 \\ %  examfanned & 0.0081 & 0.059 & 0.018 & 0.001 & 0.06 \\ %  examuncorr & 0.046 & 0.00033 & 1.7e-12 & 2.8e-15 & 0.22 \\ %  radontranef & 9.2e-20 & 5.7e-48 & 0.15 & 0.00053 & 0.088 \\ %   \hline
 %\end{tabular}
 %\caption{\label{tab:pvalues} Visual $p$-values  \hh{updated}- just for us, will delete later}
 %\end{table}
-
-
+%
 
 \clearpage
 %------------------------------------------------------------------------------------
