@@ -1,9 +1,12 @@
 #-------------------------------------------------------------------------------
-# Script for constructing the lineups for the second MTurk study for
+# Script for constructing more lineups for the second MTurk study for
 # "Visual Inference for Linear Mixed-Effects Models"
 #
 # Adam Loy, Heike Hofmann, Dianne Cook
-# June 2013
+# August 2013
+#
+# This script gives code constructing lineups for the second Mturk study
+# that will help "fill out" the paper.
 #-------------------------------------------------------------------------------
 
 library(grid)
@@ -54,4 +57,7 @@ qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.
 	theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
 	      axis.text.x = element_blank(), axis.ticks.y = element_blank(), 
 	      panel.grid.major.y = element_blank())
+
+
+##### lineup number 3 #####
 

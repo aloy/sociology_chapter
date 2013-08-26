@@ -23,7 +23,8 @@
 # Preliminaries
 #-------------------------------------------------------------------------------
 
-setwd("~/Documents/Thesis/Dissertation/sociology_chapter/")
+setwd("~/Documents/Research/sociology_chapter/")
+
 library(ggplot2)
 library(lme4)     # for modeling
 library(HLMdiag)  # for residuals
@@ -104,6 +105,10 @@ make_interactive(filename= sprintf("dialyzer-heterogeneous-%s-single.svg", locat
 # save(m2.resid.df, m2.sim.resids, file = file.choose(new = TRUE))
 
 
+### Another look at homogeneity using a different explanatory variable
+
+
+# Lineup using boxplots
 lineup.df <- rbind.fill(m2.sim.resids, m2.resid.df)
 plot.order <- sample.int(20, 20)
 lineup.df$.n <- rep(plot.order, each = 140)
@@ -113,5 +118,18 @@ qplot(x = QB, y = resid, data = lineup.df, geom = "boxplot", facets = ~ .n, fill
 	xlab(NULL) + 
 	ylab(NULL) + 
 	scale_fill_brewer("", palette="Set2") +
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+
+# Lineup using dotplots
+lineup.df <- rbind.fill(m2.sim.resids, m2.resid.df)
+plot.order <- sample.int(20, 20)
+lineup.df$.n <- rep(plot.order, each = 140)
+
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, 
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + 
+	xlab(NULL) + 
+	ylab(NULL) + 
+	scale_colour_brewer("", palette="Set2") +
 	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
 	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
