@@ -9,6 +9,7 @@
 library(grid)
 library(ggplot2)
 library(plyr)
+library(nullabor)
 
 ##### lineup number 1 #####
 
@@ -33,14 +34,24 @@ cyclone.df <- rbind.fill(observed.cyclone.df, null.cyclone.df)
 plot.order <- sample.int(20, 20)
 cyclone.df$.id <- rep(plot.order, each = 919)
 
+cyclone.df <- ddply(cyclone.df, .(.id, county), transform, iqr = IQR(resid))
+cyclone.df <- ddply(cyclone.df, .(.id), transform, rank = order(order(iqr, county)))
+cyclone.df <- ddply(cyclone.df, .(.id, county), transform, rank = min(rank))
+cyclone.df <- dlply(cyclone.df, .(.id), transform, rank = rank(rank))
+cyclone.df <- ldply(cyclone.df, function(df) {
+	df$rank <- factor(df$rank)
+	levels(df$rank) <- 1:length(levels(df$rank))
+	return(df)
+})
+
 location <- plot.order[1]
-qplot(x = factor(rank), y = EB.resid, data = resids, geom = "boxplot", outlier.size = 1.5) + 
+qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.size = 1.5) + 
 	coord_flip() + 
-	ylim(-, ) + 
+	ylim(-2, 2) + 
 	xlab(NULL) + 
 	ylab(NULL) + 
+	facet_wrap(~ .id) + 
 	theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
 	      axis.text.x = element_blank(), axis.ticks.y = element_blank(), 
-	      panel.grid.major.y = element_blank()) +
-	facet_wrap(~ sample)
+	      panel.grid.major.y = element_blank())
 
