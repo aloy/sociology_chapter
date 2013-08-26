@@ -1,0 +1,344 @@
+loading necessary packages#
+library(foreign)#
+#
+# reading in the survey data#
+cscap <- read.spss(file = "/Users/loya/Documents/CSCAP/data/CSCAP_U2U_Survey_10_8_12_Respondents.por", to.data.frame = TRUE)
+soil <- read.csv("~/Documents/CSCAP/data/NonirrigatedMarginalSoils.csv")
+head(soil)
+head(cscap)
+cscap$FIPS
+head(cscap$FIPS)
+names(cscap)
+head(cscap$STATE)
+head(cscap$STATE2)
+head(cscap$COUNTY)
+head(cscap$COUNTYNA)
+unique(cscap$STATE2)
+head(cscap$FIPS)
+levels(cscap$FIPS)
+as.numeric(levels(cscap$FIPS))
+head(cscap$FIPS)
+head(levels(cscap$FIPS))
+unique(cscap$STATE2)
+levels(cscap$STATE2)
+str(cscap)
+str(cscap$STATE)
+str(cscap$STATE2)
+head(soil)
+library(stringr)
+help(package=stringr)
+?substr
+cscap$fips5 <- substr(cscap$STATE2)
+cscap$fips5 <- substr(cscap$STATE2, start = 1, stop = 2)
+head(cscap$fips5)
+head(cscap$fips5)
+tail(cscap$fips5)
+tail(cscap$STATE2)
+help(package=stringr)
+head(cscap$COUNTY)
+head(cscap$COUNTYNA)
+str(cscap$COUNTY)
+head(str_pad(cscap$COUNTY, width = 3, side = "left", pad = "0"))
+head(str_c(substr(cscap$STATE2, start = 1, stop = 2), str_pad(cscap$COUNTY, width = 3, side = "left", pad = "0")))
+cscap$fips5 <- head(str_c(substr(cscap$STATE2, start = 1, stop = 2), str_pad(cscap$COUNTY, width = 3, side = "left", pad = "0")))
+cscap$fips5 <- str_c(substr(cscap$STATE2, start = 1, stop = 2), str_pad(cscap$COUNTY, width = 3, side = "left", pad = "0"))
+head(cscap$fips5)
+soil <- read.csv("~/Documents/CSCAP/data/NonirrigatedMarginalSoils.csv")
+head(soil)
+names(cscap)
+cscap$ID
+names(cscap)
+cscap$ID1
+all.equal(cscap$ID1, cscsap$ID)
+all.equal(cscap$ID1, cscap$ID)
+identical(cscap$ID1, cscap$ID)
+soil.export <- subset(cscap, select = c(ID, fips5, STATE, STATE2, COUNTY, COUNTYNA))
+head(soil.export)
+soil.export$COUNTYNA <- str_trim(soil.export$COUNTYNA)
+head(soil.export)
+head(soil)
+?merge
+dim(soil.export)
+soil.export <- merge(x = soil.export, y = soil, by = fips5, all.x = TRUE)
+head(soil)
+head(soil.export)
+soil.export <- merge(x = soil.export, y = soil, by = "fips5", all.x = TRUE)
+head(soil.export)
+dim(soil.export)
+soil.export <- subset(soil.export, select = - c(state, county, state_fips))
+head(soil.export)
+args(write.table)
+write.csv(soil.export, file = file.choose(new = TRUE), row.names = FALSE)
+library(grid)#
+library(ggplot2)#
+library(plyr)
+load("exam-fanned-withslope.RData")
+location <- 18#
+qplot(x = standLRT, y = fitted, data = true.fitted, group = school, #
+	geom = "line", alpha = I(0.5)) %+% #
+	lineup(true = true.fitted, samples = M2.fitted, pos = 18) + #
+	facet_wrap( ~ .sample, ncol=5) + #
+	xlab(NULL) + ylab(NULL) +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+		axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+library(grid)#
+library(ggplot2)#
+library(plyr)
+ls()
+head(location)
+head(M2.fitted)
+tail(M2.fitted)
+library(nullabor)
+location <- 18#
+qplot(x = standLRT, y = fitted, data = true.fitted, group = school, #
+	geom = "line", alpha = I(0.5)) %+% #
+	lineup(true = true.fitted, samples = M2.fitted, pos = 18) + #
+	facet_wrap( ~ .sample, ncol=5) + #
+	xlab(NULL) + ylab(NULL) +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+		axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+load("radon-cyclone.RData")
+cyclone.df <- rbind.fill(observed.cyclone.df, null.cyclone.df)
+plot.order <- sample.int(20, 20)#
+cyclone.df$.id <- rep(plot.order, each = 919)
+location <- plot.order[1]
+location
+qplot(x = factor(rank), y = EB.resid, data = resids, geom = "boxplot", outlier.size = 1.5) + #
+	coord_flip() + #
+	ylim(-, ) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),#
+	      axis.text.x = element_blank(), axis.ticks.y = element_blank(), #
+	      panel.grid.major.y = element_blank()) +#
+	facet_wrap(~ sample)
+qplot(x = factor(rank), y = EB.resid, data = resids, geom = "boxplot", outlier.size = 1.5)
+ls()
+load("/Users/loya/Documents/Research/sociology_chapter/R/radon-cyclone.RData")
+head(null.cyclone.df)
+head(observed.cyclone.df)
+qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.size = 1.5) + #
+	coord_flip() + #
+	ylim(-2, 2) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),#
+	      axis.text.x = element_blank(), axis.ticks.y = element_blank(), #
+	      panel.grid.major.y = element_blank()) +#
+	facet_wrap(~ sample)
+qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.size = 1.5) + #
+	coord_flip() + #
+	ylim(-2, 2) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),#
+	      axis.text.x = element_blank(), axis.ticks.y = element_blank(), #
+	      panel.grid.major.y = element_blank()) +#
+	facet_wrap(~ .id)
+head(cyclone.df)
+qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.size = 1.5) + #
+	coord_flip() + #
+	ylim(-2, 2) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	facet_wrap(~ .id)
+ls()
+head(null.cyclone.df)
+cyclone.df <- ddply(cyclone.df, .(.id, county), transform, iqr = IQR(resid))#
+cyclone.df <- ddply(cyclone.df, .(.id), transform, rank = order(order(iqr, county)))#
+cyclone.df <- ddply(cyclone.df, .(.id, county), transform, rank = min(rank))#
+cyclone.df <- dlply(cyclone.df, .(.id), transform, rank = rank(rank))#
+cyclone.df <- ldply(cyclone.df, function(df) {#
+	df$rank <- factor(df$rank)#
+	levels(df$rank) <- 1:length(levels(df$rank))#
+	return(df)#
+})
+location <- plot.order[1]
+location
+qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.size = 1.5) + #
+	coord_flip() + #
+	ylim(-2, 2) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	facet_wrap(~ .id)
+qplot(x = factor(rank), y = resid, data = cyclone.df, geom = "boxplot", outlier.size = 1.5) + #
+	coord_flip() + #
+	ylim(-2, 2) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	facet_wrap(~ .id) + #
+	theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),#
+	      axis.text.x = element_blank(), axis.ticks.y = element_blank(), #
+	      panel.grid.major.y = element_blank())
+setwd("~/Documents/Thesis/Dissertation/sociology_chapter/")#
+library(ggplot2)#
+library(lme4)     # for modeling#
+library(HLMdiag)  # for residuals#
+library(mlmRev)   # for the exam data#
+library(nullabor) # for lineups#
+library(plyr)#
+library(reshape2)#
+library(stringr)#
+library(gridSVG)#
+#
+source("R/add_interaction.R")#
+#
+library(MEMSS) # for the Dialyzer data set
+instll.packages("gridSVG")
+install.packages("gridSVG")
+install.packages("MEMSS")
+setwd("~/Documents/Thesis/Dissertation/sociology_chapter/")#
+library(ggplot2)#
+library(lme4)     # for modeling#
+library(HLMdiag)  # for residuals#
+library(mlmRev)   # for the exam data#
+library(nullabor) # for lineups#
+library(plyr)#
+library(reshape2)#
+library(stringr)#
+library(gridSVG)#
+#
+source("R/add_interaction.R")#
+#
+library(MEMSS) # for the Dialyzer data set
+library(ggplot2)#
+library(lme4)     # for modeling#
+library(HLMdiag)  # for residuals#
+library(mlmRev)   # for the exam data#
+library(nullabor) # for lineups#
+library(plyr)#
+library(reshape2)#
+library(stringr)#
+library(gridSVG)
+install.packages("mlmRev")
+library(ggplot2)#
+library(lme4)     # for modeling#
+library(HLMdiag)  # for residuals#
+library(mlmRev)   # for the exam data#
+library(nullabor) # for lineups#
+library(plyr)#
+library(reshape2)#
+library(stringr)#
+library(gridSVG)
+source("R/add_interaction.R")
+setwd("~/Documents/sociology_chapter/")
+dir()
+setwd("~/Documents/Research/sociology_chapter/")
+dir()
+source("R/add_interaction.R")
+library(MEMSS) # for the Dialyzer data set
+M1 <- lmer(rate ~ (pressure + I(pressure^2))*QB + (pressure + I(pressure^2) | Subject), #
+	data = Dialyzer)#
+#
+m1.resid.df <- data.frame(pressure = M1@frame$pressure, resid = resid(M1))#
+#
+m1.sims <- simulate(M1, nsim = 19)#
+m1.refit <- lapply(m1.sims, refit, object = M1)#
+m1.sim.resids <- ldply(m1.refit, function(x) data.frame(x@frame, resid = resid(x)))#
+m1.sim.resids$.n <- as.numeric(str_extract(m1.sim.resids$.id, "\\d+"))#
+#
+location <- sample(20, 1)#
+qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth"),#
+	method = "loess") %+%#
+  	lineup(true = m1.resid.df, samples = m1.sim.resids, pos=location) +#
+  	facet_wrap(~ .sample, ncol = 5) +#
+ 	 xlab(NULL) + ylab(NULL) + #
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+M2 <- lmer(rate ~ (pressure + I(pressure^2) + I(pressure^3) + I(pressure^4))*QB + (pressure + I(pressure^2) | Subject), data = Dialyzer)#
+#
+m2.resid.df <- data.frame(M2@frame, resid = resid(M2))#
+#
+m2.sims <- simulate(M2, nsim = 19)#
+m2.refit <- lapply(m2.sims, refit, object = M2)#
+m2.sim.resids <- ldply(m2.refit, function(x) data.frame(x@frame, resid = resid(x)))#
+m2.sim.resids$.n <- as.numeric(str_extract(m2.sim.resids$.id, "\\d+"))#
+#
+qplot(pressure, resid, data = m2.resid.df,#
+      	geom = "point", alpha = I(0.5)) %+%#
+  	lineup(true = m2.resid.df, samples = m2.sim.resids) +#
+  	facet_wrap(~ .sample, ncol = 5) +#
+ 	 xlab(NULL) + ylab(NULL) + #
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+lineup.df <- rbind.fill(m2.sim.resids, m2.resid.df)#
+plot.order <- sample.int(20, 20)#
+lineup.df$.n <- rep(plot.order, each = 140)#
+#
+qplot(x = QB, y = resid, data = lineup.df, geom = "boxplot", facets = ~ .n, fill = QB,#
+		outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_fill_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+qplot(x = QB, y = resid, data = lineup.df, geom = "jittered", facets = ~ .n, #
+      fill = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_fill_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, #
+      fill = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_fill_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, #
+      fill = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_colour_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_colour_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_colour_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+qplot(x = QB, y = resid, data = lineup.df, geom = "point", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+    geom_jitter(width = .5)
+qplot(x = QB, y = resid, data = lineup.df, geom = "point", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+    geom_jitter(width = 40)
+qplot(x = QB, y = resid, data = lineup.df, geom = "point", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+    geom_jitter(width = 100)
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_colour_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+load("/Users/loya/Documents/Research/sociology_chapter/lineups_data/cyclone-bad.RData")
+load("/Users/loya/Documents/Research/sociology_chapter/lineups_data/cyclone-bad.RData")
+load("/Users/loya/Documents/Research/sociology_chapter/lineups_data/autism-unordered.RData")
+qplot(x = QB, y = resid, data = lineup.df, geom = "jitter", facets = ~ .n, #
+      colour = QB, outlier.size = 1.5, alpha=I(0.6)) + #
+	xlab(NULL) + #
+	ylab(NULL) + #
+	scale_colour_brewer("", palette="Set2") +#
+	theme(axis.text.y = element_blank(), axis.text.x = element_blank(),#
+	axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
+ggsave(filename = file.choose(new=TRUE))
+head(lineup.df)
+tail(lineup.df)
+head(m2.resid.df)
+lineup.df
+lineup.df
+load("dialyzer-heterogeneous.RData")
+load("/Users/loya/Documents/Research/sociology_chapter/lineups_data/dialyzer-heterogeneous.RData")
+ls()
