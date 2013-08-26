@@ -140,12 +140,13 @@ the true plot is randomly embedded.
 
 \hh{An assessment of the lineup by human observers then  allows for the estimation of a $p$-value associated with the lineup.}
 Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
-\hhnote{the distribution needs to be fixed, but it should not change the actual results.}
-Under the null hypothesis, $X$ is distributed according to a Binomial distribution with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
-\begin{equation}\label{eqn.pvalue}
-\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
-\end{equation}
-\hhnote{this is just the $p$ value conditioned on the lineup. For the unconditioned $p$ value we need to `integrate' the effect of the lineup out - we have multiple samples of null sets for the same data. We need to still write out how to combine those.}
+Under the null hypothesis, $X$ is distributed according to a \hh{distribution similar to a} Binomial distribution, \hh{but adjusted for the dependency inherent to the application of lineups in a human subject study.} 
+\hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
+%with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
+%\begin{equation}\label{eqn.pvalue}
+%\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
+%\end{equation}
+%\hhnote{this is just the $p$ value conditioned on the lineup. For the unconditioned $p$ value we need to `integrate' the effect of the lineup out - we have multiple samples of null sets for the same data. We need to still write out how to combine those.}
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{normexam_fanned_lineup16.pdf}
@@ -156,9 +157,9 @@ Under the null hypothesis, $X$ is distributed according to a Binomial distributi
 Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
 Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. What is your choice for the most different plot?
 
-\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
-\hhnote{sure, go ahead}
-\hh{Based on 73 evaluations of Figure~\ref{fig:fanned}, 11 observers chose the  data plot from the lineup. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of approximately 0.001. The actual model of the data and the null} \al{hypothesis} \hh{are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.}
+%\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
+%\hhnote{sure, go ahead}
+\hh{Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of approximately 0.0158. The actual model of the data and the null} \al{hypothesis} \hh{are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.}
 
 %The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013}. 
 %%as the probability that in $N$ independent evaluations observers 
@@ -252,7 +253,7 @@ Some of the problems which we address in this paper are:
 
 \end{description}
 
-\hh{These issues are well-known, and in special circumstances} \al{fixes have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases. Additionally, \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case.} 
+\hh{These issues are well-known, and in special circumstances} \al{adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases. Additionally, \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case.} 
 \hh{A different approach is to tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without any further assumptions. }
 
 %\hh{Why are you going back to lineups now? - it might be better to shift this sentence back by a couple of paragraphs}
@@ -866,7 +867,7 @@ from which the Vineland Socialization Age Equivalent (VSAE) was computed as an o
 The data consist of a stratified random sample of 919 owner-occupied homes in 85 counties in Minnesota. For each home, a radon measurement was recorded (in log $pCi/L$, i.e., log picoCuries per liter) as well as a binary variable indicating whether the measurement was taken in the basement (0) or a higher level (1). Additionally, the average soil uranium content for each county was available. The number of homes within each county varies greatly between counties ranging from one home to 116 homes, with 50\% of counties having measurements from between 3 and 10 homes. \cite{Gelman:2006ue} suggest a simple hierarchical model allowing for a random intercept for each county and a random slope for floor level. This is the model from which we simulate predicted random effects.
 
 %------------------------------------------------------------------------------------
-\section{Experimental Setup and Results}
+\section{Experimental Setup and Results}\label{study}
 %------------------------------------------------------------------------------------
 \subsection{Experimental Setup}
 How did we get the data? Some information on Amazon Turk, and setup of experiments.
