@@ -494,6 +494,7 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 
 \hhnote{I like the boxplots a lot - but in the study, let's include both the boxplots and an example with jittered dots - I would like to check on the power between the designs. I would assume that boxplots are better (we've seen that before in the infovis paper \cite{infovis:2011}), but it would be nice to confirm it. }
 
+\hhnote{I'm including two more plots here - figures~\ref{homogeneous-1} and \ref{homogeneous-2}. They are both plots of residuals by subject. For the dot plots, I liked the idea of the sorting by group - so here, we sort groups by increasing variance - all the groups are the same size, but the sorting is different for each one. I believe that we cannot pick the data, i.e. there is homogeneity, but I like the way that the plot fans out. It might be a bit busy, though. To be fair, the box plots would probably also have to be sorted, but they aren't at the moment.}
 
 \begin{figure}
 	\centering
@@ -502,6 +503,22 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.9\textwidth]{dialyzerhomogeneous-dots-1-19.pdf}
+	\caption{\label{homogeneous-1}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=.9\textwidth]{dialyzerhomogeneous-1-19.pdf}
+	\caption{ \label{homogeneous-2}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
 
 Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals; \hh{in order to guard against mis- or over-interpretation of the residual plots, we can again employ lineups.} 
 
@@ -517,6 +534,7 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 
 %\begin{figure}
 %	\centering
+%:
 %	\includegraphics[width=\textwidth]{normexam_constvar_lineup3.png}
 %	\caption{\label{fig:constvar1} 
 %	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?\hh{We need to figure out what to do with this example. }}
