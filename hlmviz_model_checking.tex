@@ -360,7 +360,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value.
   
 \alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
-\hhnote{yes, I agree - we actually need another lineup on this for the new experiment ***LINEUP*** I would suggest to include the random slope in the model from which you simulate the null and draw the same picture again. Hopefully the data disappears.}
+\hhnote{yes, I agree - we actually need another lineup on this for the new experiment ***LINEUP***(added to folder) I would suggest to include the random slope in the model from which you simulate the null and draw the same picture again. Hopefully the data disappears.}
 \alnote{Here is a lineup with the random slope. Can you find the data?\\[1em]
 
 A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
@@ -503,7 +503,8 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
-Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals; however, the interpretation of these plots is error prone.
+Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals; \hh{in order to guard against mis- or over-interpretation of the residual plots, we can again employ lineups.} 
+
 For example, consider investigating the appropriateness of this assumption for the GSCEE data. 
 %To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
 %Such plots are appropriate to check the assumptions of linearity and homoscedasticity at each level of the model. 
@@ -511,6 +512,8 @@ For example, consider investigating the appropriateness of this assumption for t
 Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against (standardized LRT scores)$^3$, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{121} - 8$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
 
 \al{A second example of this type of lineup is given in Figure~\ref{fig:constvar2}, which compares the level-1 residuals to pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}). In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. }
+
+\hhnote{Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} - with the only difference that pressure is categorized into seven categories. In order to preserve the appearance of continuity on the x axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. *** LINEUP *** (included in file) }
 
 %\begin{figure}
 %	\centering
@@ -525,6 +528,14 @@ Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals a
 	\includegraphics[width=\textwidth]{dialyzerheterogeneous-19.pdf}
 	\caption{\label{fig:constvar2} 
 	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{dialyzerheterogeneous-bp-19.pdf}
+	\caption{\label{fig:constvar2.bp} 
+	\hh{Alternative box plot } Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
