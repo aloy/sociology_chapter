@@ -76,11 +76,11 @@ resids <- ddply(resids, .(n), transform, rank = rank(rank))
 
 qplot(x = factor(rank), y = EB.resid, data = resids, 
                geom = "boxplot", xlab = "", ylab = "", outlier.size = 1.5) + coord_flip() + 
-                 ylim(-150, 150) + 
+                 ylim(-125, 125) + 
                  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
                  axis.text.x = element_blank(), axis.ticks.y = element_blank(), panel.grid.major.y = element_blank()) +
 				facet_wrap(~sample)
-ggsave("figures/ahd_badcyclone5.pdf")
+ggsave("figures/ahd_badcyclone5.pdf", width = 8.5, height = 11)
 save(resids, file="cyclone-bad.RData")
 
 source("R/add_interaction.R")
@@ -92,42 +92,44 @@ make_interactive(filename= sprintf("cyclone-bad-%s-single.svg", location),
 
 # ###############
 
-# pdf.options(reset = FALSE)
-# pdf("figures/ahd_badcyclone5.pdf", width = 8.5, height = 11)
-# grid.newpage()
-# pushViewport(viewport(layout = grid.layout(5,4)))
-# vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
-# realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids, 
-               # geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
-                 # ylim(-150, 150) + 
-                 # theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
-                 # axis.text.x = element_blank(), axis.ticks.x = element_blank())
-# real.i <- 5 # sample(1:20, 1)
-# j <- 0
-# pos <- matrix(1:20, ncol = 4, byrow=T)
-# for(i in 1:20){
-  # if(i==real.i) { 
-    # if(!i %in% c(1,5,9,13,17)) realp <- realp + xlab(NULL)
-    # if(!i %in% 17:20) realp <- realp + ylab(NULL)
+pdf.options(reset = FALSE)
+pdf("ahd_badcyclone5.pdf", width = 11, height = 8.5)
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(4,5)))
+vplayout <- function(x, y){viewport(layout.pos.row = x, layout.pos.col = y)}
+realp <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, data = true_resids, 
+               geom = "boxplot", xlab = "", ylab = "") + coord_flip() + 
+                 ylim(-150, 150) + 
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+                 axis.ticks.y = element_blank())
+real.i <- 13 # sample(1:20, 1)
+j <- 0
+pos <- matrix(1:20, ncol = 5, byrow=T)
+for(i in 1:20){
+  if(i==real.i) { 
+    if(!i %in% c(1, 6, 11, 16)) realp <- realp + xlab(NULL)
+    if(!i %in% 16:20) realp <- realp + ylab(NULL)
     
-    # print(realp, vp = vplayout(which(pos == i, arr.ind = TRUE)[1],
-                               # which(pos == i, arr.ind = TRUE)[2]))
-  # }
-  # else{
-    # j <- j + 1
-    # p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
-               # data = sim_resids[[j]], geom = "boxplot", xlab = "", ylab = "") + 
-                 # coord_flip() + ylim(-150, 150) + 
-                 # theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
-                 # axis.text.x = element_blank(), axis.ticks.x = element_blank())
+    print(realp + annotate("text", x=true_resids$subject[which.max(true_resids$rank)], y = -150, label=real.i, vjust=1, colour=I("Red"), size = 8, hjust=.2), vp = vplayout(which(pos == i, arr.ind = TRUE)[1],
+                               which(pos == i, arr.ind = TRUE)[2]))
+  }
+  else{
+    j <- j + 1
+    p <- qplot(x = reorder(subject, EB.resid, IQR), y = EB.resid, 
+               data = sim_resids[[j]], geom = "boxplot", xlab = "", ylab = "") + 
+                 coord_flip() + ylim(-150, 150) + 
+                 theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"), axis.text.y = element_blank(),
+                 axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+                 axis.ticks.y = element_blank())
     
-    # if(!i %in% c(1,5,9,13,17)) p <- p + xlab(NULL)
-    # if(!i %in% 17:20) p <- p + ylab(NULL)
+    if(!i %in% c(1, 6, 11, 16)) p <- p + xlab(NULL)
+    if(!i %in% 16:20) p <- p + ylab(NULL)
     
-    # print(p, vp = vplayout(which(pos == i, arr.ind = TRUE)[1], which(pos == i, arr.ind = TRUE)[2]))
-  # }
-# }
-# dev.off()
+    print(p + annotate("text", x= sim_resids[[j]]$subject[which.max(sim_resids[[j]]$rank)], y = -150, label=i, vjust=1, colour=I("Red"), size = 8, hjust=.2), vp = vplayout(which(pos == i, arr.ind = TRUE)[1], which(pos == i, arr.ind = TRUE)[2]))
+  }
+}
+dev.off()
 
 #-------------------------------------------------------------------------------
 # Cyclone plots - Assumption OK

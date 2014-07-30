@@ -116,7 +116,7 @@ make_interactive(filename= sprintf("dialyzer-nonlinear-%s-single.svg", location)
 
 
 ##### lineup number 7 #####
-ggsave("exam-homogeneity.RData")
+load("exam-homogeneity.RData")
 location <- 7
 
 qplot(standLRT2, resid, data = lev1_resid_fm2,
