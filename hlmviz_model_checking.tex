@@ -494,7 +494,7 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 
 \hhnote{I like the boxplots a lot - but in the study, let's include both the boxplots and an example with jittered dots - I would like to check on the power between the designs. I would assume that boxplots are better (we've seen that before in the infovis paper \cite{infovis:2011}), but it would be nice to confirm it. }
 
-\hhnote{I'm including two more plots here - figures~\ref{homogeneous-1} and \ref{homogeneous-2}. They are both plots of residuals by subject. For the dot plots, I liked the idea of the sorting by group - so here, we sort groups by increasing variance - all the groups are the same size, but the sorting is different for each one. I believe that we cannot pick the data, i.e. there is homogeneity, but I like the way that the plot fans out. It might be a bit busy, though. To be fair, the box plots would probably also have to be sorted, but they aren't at the moment.}
+\hhnote{I'm including two more plots here - figures~\ref{homogeneous-1} and \ref{homogeneous-2}. They are both plots of residuals by subject. For the dot plots, I liked the idea of the sorting by group - so here, we sort groups by increasing variance - all the groups are the same size, but the sorting is different for each one. I believe that we cannot pick the data (it's at least difficult), i.e. there is homogeneity, but I like the way that the plot fans out. It might be a bit busy, though. To be fair, the box plots would probably also have to be sorted, but they aren't at the moment.}
 
 \begin{figure}
 	\centering
@@ -588,7 +588,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 \alnote{I need to go back and really emphasize the lack of effective conventional tests here}
 \hhnote{and we need a second cyclone plot (that probably ends up in the supplementary material, but still ... ***LINEUP***  to show a situation with different group sizes, i.e. the cyclone structure, but non significant variability.}
 \alnote{Here is a cyclone plot made from a reduced set of the radon data. I used the EB residuals here, so not everything is centered around 0, but we could use the LS residuals to overcome that.}
-
+\hhnote{The centered residuals might work better - or we need to sort differently. Lineups with LS residuals in cyclone plots are added to the study}
 
 \begin{figure}
 	\centering
@@ -642,6 +642,8 @@ Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hie
 Based on the examples I have seen, visual inference seems to overcome the problems of interpreting slopes observed on residual plots that was pointed out by Atkinson (1985, p. 67), though I have not formally tested this in any way. Perhaps it would be interesting to do that? Of course, this is most straightforward in the OLS regression setting. 
 }
 \hhnote{this is where we want to extend the discussion a bit: the partial residual plots and our approach is like the difference between type I and type III sums of squares - i.e. looking at the contribution of covariates either without regarding any of the covariates (type III) or only after adjusting for everything else, in which case we need to fit the model first before we can look into the relationship between $Y$ and $X_i$}
+
+\hhnote{Another aspect that we can highlight at this point, is that lineups are omnibus tests - we can use the same setup, and depending on where we are in the modeling process, we will get a test result: as long as the mean structure is not right, it is most likely the most distinguishing feature, Once the mean structure is taken care of, the lineups change to test for homogeneity of variance. }
 
 \subsection{Normality}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}

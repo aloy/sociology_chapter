@@ -21,12 +21,14 @@ fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(r
 
 # The *observed residuals* and other variables needed for lineup
 observed.cyclone.df <- data.frame(fm@frame, resid = resid(fm))
+#observed.cyclone.df <- HLMresid(fm, type="LS", level=1)
 
 # Simulating a set of 19 null plots
 sim.y   <- simulate(fm, nsim = 19, seed = 987654321) ## Change seed for diff. nulls                       
 sim.mod <- apply(sim.y, 2, refit, object = fm)
 
 null.cyclone.df <- ldply(sim.mod, function(x) data.frame(x@frame, resid = resid(x)))
+#null.cyclone.df <- ldply(sim.mod, function(x) HLMresid(x, type="LS", level=1))
 null.cyclone.df$.id <- as.numeric( str_extract(null.cyclone.df$.id, "\\d+") )
 
 cyclone.df <- rbind.fill(observed.cyclone.df, null.cyclone.df)
@@ -35,7 +37,8 @@ plot.order <- sample.int(20, 20)
 location <- plot.order[1]
 cyclone.df$.id <- rep(plot.order, each = nrow(fm@frame))
 
-cyclone.df <- ddply(cyclone.df, .(.id, county), transform, iqr = IQR(resid))
+#cyclone.df$resid <- cyclone.df$LS.resid
+cyclone.df <- ddply(cyclone.df, .(.id, county), transform, iqr = IQR(resid, na.rm=TRUE))
 cyclone.df <- ddply(cyclone.df, .(.id), transform, rank = order(order(iqr, county)))
 cyclone.df <- ddply(cyclone.df, .(.id, county), transform, rank = min(rank))
 cyclone.df <- dlply(cyclone.df, .(.id), transform, rank = rank(rank))
