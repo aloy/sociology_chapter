@@ -79,9 +79,9 @@ Valid model-based statistical inference relies on proper specification of a mode
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
-\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
+%\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship and look past this structure in search of additional structure that is unexplained by the model; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
+Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship, take it out of the data, and search in the residuals for additional structure that is yet unexplained; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
 Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used to check the assumptions of a model. Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}. In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit. 
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
 While the use of statistical graphics is wide-spread in exploratory data analysis and informal validation, graphics are often considered to be too subjective to be the sole basis for model selection or validation. 
@@ -127,16 +127,16 @@ In order to develop such graphical tools as complements to conventional tests, w
 
 Classical statistical inference consists of 
 (i) formulating  null and alternative hypotheses,
-	(ii) calculating a test statistic \hh{of the observed data},
+	(ii) calculating a test statistic of the observed data,
 	(iii) comparing the test statistic to a reference (null) distribution,
-	(iv) and \hh{deriving} a $p$-value on which we base our conclusion.
-Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of \hh{linear mixed-effects models}, we want to highlight  parallels there. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
+	(iv) and deriving a $p$-value on which we base our conclusion.
+Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of linear mixed-effects models, we want to highlight  parallels there. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
 while
 the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption which allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternate hypotheses. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
 If the model assumption holds, the plot of the observed data will be indistinguishable from the null plots. 
-\hh{For the lineup protocol a sample of the null distribution is taken and shown in a set of null plots, in which}
-the true plot is randomly embedded.  
+For the lineup protocol a sample of the null distribution is taken, in which
+the true plot is randomly embedded.  \hh{These lineups are then presented to independent observers for evaluation. }
 
 \hh{An assessment of the lineup by human observers then  allows for the estimation of a $p$-value associated with the lineup.}
 Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
