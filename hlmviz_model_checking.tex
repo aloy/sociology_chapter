@@ -120,7 +120,7 @@ In order to develop such graphical tools as complements to conventional tests, w
 \alnote{Do we need more of a transition here? When I was reading this I realized this was the end of the ``general introduction'' and the following sections introduce specific topics/issues. Would it make sense to go back to subheadings?}
 \hhnote{subheadings will be a bit tricky at the end of the introduction, when we are going into the purpose of the paper - but if you have good ideas, go ahead with the subheadings.}
 %%------------------------------------------------------------------------------------
-%\subsection{Visual inference}\label{sec:vi}
+\subsection{Visual inference}\label{sec:vi}
 %%------------------------------------------------------------------------------------
 %In order to develop graphical model diagnostics as substitutes for statistical tests of model assumptions, we must work within a rigorous inferential framework. 
 %\cite{Gelman:2004gg} formulates a visual analog of simulation-based model diagnostics in which a visualization of an aspect of the model is compared to data generated under the model. \cite{Buja:2009hp} extend this idea, proposing two protocols that formalize a rigorous inferential framework for testing visual discoveries. In this section we outline the lineup protocol.
@@ -139,8 +139,8 @@ For the lineup protocol a sample of the null distribution is taken, in which
 the true plot is randomly embedded.  \hh{These lineups are then presented to independent observers for evaluation. }
 
 \hh{An assessment of the lineup by human observers then  allows for the estimation of a $p$-value associated with the lineup.}
-Let $x$ be the number of observers, out of $N$, who chose the data plot from the lineup. The $p$-value is then the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, \hh{i.e.~the null hypothesis is true}. Under the null hypothesis the probability for choosing the true plot is $1/m$, if there are a total of  $m$ plots  in the lineup. Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
-Under the null hypothesis, $X$ is distributed according to a \hh{distribution similar to a} Binomial distribution, \hh{but adjusted for the dependency inherent to the application of lineups in a human subject study.} 
+ Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
+If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, \hh{but adjusted for the dependency inherent to the application of lineups in a human subject study.} 
 \hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 %\begin{equation}\label{eqn.pvalue}
@@ -157,42 +157,34 @@ Under the null hypothesis, $X$ is distributed according to a \hh{distribution si
 Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
 Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. What is your choice for the most different plot?
 
-%\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
-%\hhnote{sure, go ahead}
-\hh{Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of approximately 0.0158. The actual model of the data and the null} \al{hypothesis} \hh{are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.}
+\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
-%The lineup protocol also allows for an assessment of the power of a lineup \citep{mahbub:2013}. 
-%%as the probability that in $N$ independent evaluations observers 
-%In $N$ independent evaluations, the probability that observers
-%choose the true plot more than $x_\alpha$ times is
-%\begin{equation}\label{eqn:power}
-%\widehat{\text{Power}} = \text{Power}_{N} = 1 - F_{X} (x_{\alpha}),
-%\end{equation}
-%where $F_X$ is the distribution of $X$ and $x_\alpha$ is the critical value for a given significance level of $\alpha$, i.e. $P(X >  x_{\alpha}) \le \alpha$. $X$ is composed of the sum of $N$ observers' (binary) decisions $X_i \sim B_{1, p_i}$, where  $p_i$ is the probability that individual $i$ chooses the data plot. This probability  depends both on the strength of the signal in the data plot and an individual's visual ability.
-%Assessing this ability requires that each individual evaluates multiple lineups. If that is not possible, we have to assume that all participants share the same ability, and the power calculation in Equation~\ref{eqn:power} simplifies to $1 - B_{N, \hat{p}}(x_\alpha)$, where $\widehat{p}$ is an estimate for the probability of choosing the data plot for a specific lineup. Similar to classical inference, we can make use of power to assess sensitivity of tests. This allows us to make decisions about designs for particular tasks by evaluating lineups displaying \hh{  the same data in different types of displays} \citep{Hofmann:2012ts}. 
-%\alnote{I took out the reference to our example here and just cited your other paper instead.}
-%%An example of this is given in Section~\ref{sec:qqplot}, where we compare three variations of the familiar Quantile-Quantile (Q-Q) plot \citep{Wilk:1968}.
+Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of approximately 0.0158. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$.
+
+\hhnote{Data collected for each response: time taken, answer(s), confidence level and reason for choice - four suggestions in form of check boxes, one text box;
+data collected on each participant: gender, age group, education level, geography (from ip address), nickname to match responses from the same individual. }
 
 Unlike classical hypothesis tests, visual inference also allows us to collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
 This additional information helps us assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. 
-
+\hhnote{Should we give the reasons for the first example?}
 
 %\subsection{Model notation and formulation} 
+\subsection{Linear mixed-effects models} 
 %------------------------------------------------------------------------------------
 
 Linear mixed-effects models are versatile models that allow us to account for dependence structures when data are organized in groups.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
-Such structures occur, for example, when individuals are naturally grouped by organization (e.g.~students within schools), geography (e.g.~voters within states), or design (e.g.~respondents assigned to  interviewers). The additional flexibility offered by these models \hh{enable us} to incorporate data at the observation-level and the group-level while \hh{also accommodating} for dependencies between individuals within the same group. 
+Such structures occur, for example, when individuals are naturally grouped by organization (e.g.~students within schools), geography (e.g.~voters within states), or design (e.g.~respondents assigned to  interviewers). The additional flexibility offered by these models enables us to incorporate data at the observation-level and the group-level while also accommodating for dependencies between individuals within the same group. 
 
-\hh{For data organized into $g$ groups, }
-let us  consider a continuous response linear mixed-effects model for group $i$, $i=1, \ldots, g$:
+For data organized into $g$ groups, 
+let us  consider a continuous response linear mixed-effects model for each group $i$, $i=1, \ldots, g$:
 %
 \begin{equation}\label{eq:hlm}
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects \hh{describing} the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms \hh{accounting for} the within-group covariance structure. We further assume that the random effects are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. We further assume that the random effects,  $\bm{b}$,  are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms,  $\bm{\varepsilon}$, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
 
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
@@ -210,15 +202,15 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_i$, and the conditi
 
 
 
-As with the classical linear model with uncorrelated errors, residuals are central to the exploration of a linear mixed-effects model. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking \hh{that we consider here are:}
+Similar to the classical linear model with uncorrelated error structure, residuals are central to the exploration of a linear mixed-effects model. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking that we consider here are:
 %
 \begin{itemize}
-\item the level-1 residuals (i.e., the conditional residuals or error terms) $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
+\item the \emph{level-1 residuals}, i.e.~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
 
-\item and the level-2 residuals (i.e., the predicted random effects) $\widehat{\bm{b}}_i$
+\item and the \emph{level-2 residuals}, i.e.~the predicted random effects $\widehat{\bm{b}}_i$
 \end{itemize}
 %
-where, assuming $\bm{V}$ is known, $\widehat{\bm{\beta}}$ is an estimate of the fixed effects,
+where $\widehat{\bm{\beta}}$ is an estimate of the fixed effects (for known $\bm{V}$),
 \begin{equation}\label{eq:glsb}
 	\widehat{\bm{\beta}} = 
 	\left(\sum^g_{i=1} \bm{X}\trans_i \bm{V}^{-1}_i \bm{X}_i \right)^{-1} 
@@ -232,20 +224,20 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 %
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
 
-\hh{The additional flexibility of random effects models comes at the cost of} complicating model exploration and validation. %For example:
+The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
 Some of the problems which we address in this paper are:
 \begin{description}
 
-\item[\al{Breakdown of } asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
-\al{For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions are not met, rendering conventional use of Quantile-Quantile (Q-Q) plots and tests of the empirical distribution function ineffective for distributional assessment.}
+\item[Breakdown of  asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
+For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Quantile-Quantile (Q-Q) plots and tests of the empirical distribution function ineffective for distributional assessment.
 
 \item[Artifacts due to the data structure: ] Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
-\al{This problem is especially pronounced for \al{scatterplots} comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite{Morrell:2000ve}. Additionally, we have found plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.}
+This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \citet{Morrell:2000ve} \hhnote{XXX I'm not quite sure how that would look like}.  Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
 
 
-\item[Boundary issues the in comparison of nested models: ] 
-\al{When evaluating the significance of terms in the random effects structure, the likelihood ratio test statistic does not have the usual $\chi^2$ reference distribution if we are testing whether a variance component lies on the boundary of the parameter space. This results in tests for the random effects that tend to be conservative.}
+\item[Boundary issues  in the comparison of nested models: ] 
+When evaluating the significance of terms in the random effects structure, the likelihood ratio test statistic does not have the usual $\chi^2$ reference distribution if we are testing whether a variance component lies on the boundary of the parameter space. This results in tests for the random effects that tend to be conservative.
 %\cite{Stram:1994wd} argue that using the usual $\chi^2$ reference distribution leads to conservative results, and suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.}
 
 %\item[Incomparability  of nested models due to estimation procedure: ]
@@ -253,15 +245,18 @@ Some of the problems which we address in this paper are:
 
 \end{description}
 
-\hh{These issues are well-known, and in special circumstances} \al{adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases. Additionally, \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case.} 
-\hh{A different approach is to tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without any further assumptions. }
+These issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case.
+ 
 
 %\hh{Why are you going back to lineups now? - it might be better to shift this sentence back by a couple of paragraphs}
 %Lineups for visual inference heavily rely on the types of residuals defined above. %Next, we compare conventional and visual inference for model selection and validation.
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-The purpose of this paper is to discuss visual inference in the framework of linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. 
+The purpose of this paper is to discuss visual inference in the framework of diagnosing fits of linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. 
+This approach allows us to  tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
+
+\hhnote{The next paragraph should be broken into two; and all the discussion should go into the back}
 \hh{We do not intend for this paper to include an exhaustive discussion of all possible tests or testing situations, but rather we include some suggestions of specific diagnostics to alleviate some of the problems inherent to mixed effects models. The diagnostics in this paper draw from various sources. Some of the diagnostics presented here, are well known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models, such as XXX.
  Some diagnostics are new, addressing practical needs. An example of this is the cyclone plots of Figure~\ref{fig:badcyclone}. The purpose of  these examples is to show a variety of graphical diagnostics and emphasize that they all fit within the graphical inference framework.  We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
 
