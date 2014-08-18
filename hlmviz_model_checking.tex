@@ -280,17 +280,21 @@ In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:chec
 %In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
 %In this section we discuss how visual inference can be used during model selection.
-One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}
-% with respect to both fixed and random effects, 
- as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two models are not nested when one model cannot be viewed as a special case of the other. For example, if two models contain different sets of fixed effects.
- Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
+
+%One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}
+%% with respect to both fixed and random effects, 
+% as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two models are not nested when one model cannot be viewed as a special case of the other. For example, if two models contain different sets of fixed effects.
+ Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. 
+ \hhnote{For linear models, we have AIC or BIC for non-nested models \citep{anderson1998}.}
+ In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
+
 
 
 %\subsubsection{Conventional practices}
 \subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 
-It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a linear mixed-effects model. Likelihood ratio tests are more generally applicable in comparing nested models, but are most commonly used in the selection of random effects. 
+It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a linear mixed-effects model. Likelihood ratio tests are more generally applicable in comparing nested models, but are  commonly used in the selection of random effects. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
