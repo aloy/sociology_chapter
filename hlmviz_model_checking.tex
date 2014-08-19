@@ -700,14 +700,20 @@ Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i
 Formally this is seen by the
 strong assumptions that are required for the empirical distributions of the residuals in the linear mixed-effects model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs, individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
-\hhnote{we can make this an even stronger statement. Cite your JCGS submission - by the time we're through any review process, this will be resolved.}
-
 Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a linear mixed-effects model. Figure~\ref{fig:qqlineup-1} presents a lineup of the predicted random slopes from the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage.
+\begin{figure}[hbt]
+	\centering
+%	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
+	\includegraphics[width=\textwidth]{filebab6182c2e84}
+	\caption{\label{fig:qqlineup-1}
+	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? }
+\end{figure}
+
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
-Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 2$) is indistinguishable from the null plots \al{(none of 23 observers identified this plot)}, providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
-be \hh{rejected by any standard test for normality} \al{(e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).} 
-\hh{Panel \#5 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 13 out of 23 observers. All other panels were selected at most two times. }
-Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after after model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of .05
+Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 2$) is indistinguishable from the null plots (none of 72 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
+be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
+Panel \#5 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by \hh{XXX out of 72 observers. All other panels were selected at most XXX times. }
+Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of .05. \hh{This is due to confounding between the different levels of the mixed-effects model  \citet{adam}.} 
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
@@ -716,13 +722,6 @@ To determine whether lineups can detect distributional violations we constructed
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
 \hhnote{ I think we should include both a positive and a negative result for the Q-Q plot tests for normality - I am including five sets each of random intercepts and random slopes for the radon study. }
-\begin{figure}
-	\centering
-%	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
-	\includegraphics[width=\textwidth]{filebab6182c2e84}
-	\caption{\label{fig:qqlineup-1}
-	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? \hh{***LINEUP*** we wanted to have five nulls to make this fit into the general framework.}}
-\end{figure}
 
 \begin{figure}
 	\centering
