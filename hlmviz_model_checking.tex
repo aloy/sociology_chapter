@@ -636,6 +636,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
+\hh{Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. Similar XXX??? -need the $p$-value first! XXX to the above $p$-value, homogeneity is not rejected based on this lineup.  Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup.}
 
 %\begin{figure}
 %	\centering
@@ -653,10 +654,10 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 \subsection{Linearity}
 %------------------------------------------------------------------------------------
 
-\al{
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required.} 
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required. 
 \hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 \alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
+\hhnote{Oh, ok - we should still write up a sentence on this}
 
 \begin{figure}
 	\centering
@@ -669,11 +670,12 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 	%Lineup of 20 scatterplots of level-1 residuals against pressure with a LOESS smoother used to test the assumption of linearity for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
-\al{To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
-}
+To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
+
 \hhnote{we wanted to talk about how this is the most familiar situation and is entirely solvable with tools straight from linear models. Did Cook and Weisberg name those? I think I've seen the name partial residual plots at times. 
 We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyzer example to have a better mean structure.}
 \alnote{See the above note for a comment on the mean structure.\\[1em] 
+
 
 I am not sure if Cook and Weisberg named the scatterplots with smoothers, but they are not quite partial residual plots. Partial residual plots use the augmented (larger) model to construct residuals using fixed effects estimates for a reduced set of variables. Added variable plots are also similar in spirit to partial residual plots, though they are more involved. Partial residual plots have been discussed for mixed models (Hilden-Minton (1995); Hodges (1998)), but what we are doing is simpler in my mind. It might be interesting to pull this parallel into the paper, and maybe even compare what we see in an added variable plot and in the lineup. An extra perk of the lineup here is that added variable plots for LME models are not implement in R, but lineups are easy to create.\\[1em]
 
@@ -694,8 +696,8 @@ Based on the examples I have seen, visual inference seems to overcome the proble
 
 %Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
 
-\al{Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. 
-Formally this is seen by the}
+Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{I}_i)$. In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. 
+Formally this is seen by the
 strong assumptions that are required for the empirical distributions of the residuals in the linear mixed-effects model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs, individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
 
 \hhnote{we can make this an even stronger statement. Cite your JCGS submission - by the time we're through any review process, this will be resolved.}
