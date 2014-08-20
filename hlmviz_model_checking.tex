@@ -713,20 +713,21 @@ Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of line
 Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 2$) is indistinguishable from the null plots (none of 72 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
 be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
 Panel \#5 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by \hh{XXX out of 72 observers. All other panels were selected at most XXX times. }
-Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of .05. \hh{This is due to confounding between the different levels of the mixed-effects model  \citet{adam}.} 
+Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. \hh{This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.} 
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
-To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distrubution. This lineup is show in Figure~\ref{fig:qqlineup-t}. \al{Twenty nine out of 70} identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
- The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. \al{Twenty nine out of 70} identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
+ The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach.%, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
+ The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
-\hhnote{ I think we should include both a positive and a negative result for the Q-Q plot tests for normality - I am including five sets each of random intercepts and random slopes for the radon study. }
+%\hhnote{ I think we should include both a positive and a negative result for the Q-Q plot tests for normality - I am including five sets each of random intercepts and random slopes for the radon study. They all turned out negative ... }
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of random slopes \al{simulated from a $t_3$ distribution}. Which of the plots is the most different? Which feature led you to your choice?}
+	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of random slopes with error terms simulated from a $t_3$ distribution. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
 
@@ -900,7 +901,7 @@ Throughout this paper we have provided examples of graphical diagnostics that we
 %------------------------------------------------------------------------------------
 \paragraph{Acknowledgments}
 %------------------------------------------------------------------------------------
-We would like to thank Mahbubul Majumder, who conducted the Amazon MTurk study (\url{http://www.public.iastate.edu/~mahbub/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
+We would like to thank Mahbubul Majumder and Eric Hare, who conducted the Amazon MTurk study (\url{mahbub.stat.iastate.edu/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
 
 %------------------------------------------------------------------------------------
@@ -988,21 +989,28 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
   \hline
   
 \includegraphics[width=0.05\textwidth]{examfanned-icon}&  fig.~\ref{fig:fanned} & 11/73&\hspace{-0.1in}* & 7/70&\hspace{-0.1in} & 9/65&\hspace{-0.1in}*& 13/66&\hspace{-0.1in}** & 7/72&\hspace{-0.1in} \\ 
+ \includegraphics[width=0.05\textwidth]{exam-with-slope-icon} & fig.~\ref{fig:fanned2} & 0/64 & \hspace{-0.1in}  & 7/75 & \hspace{-0.1in}  & 11/76 & \hspace{-0.1in}* & 0/69 & \hspace{-0.1in}  & 0/60 & \hspace{-0.1in}  \\ 
+%
 \includegraphics[width=0.05\textwidth]{autism-ordered-icon}&   fig.~\ref{fig:boxplot-ordered} & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** \\ 
-\includegraphics[width=0.05\textwidth]{examcorr-icon}&   fig.~\ref{fig:ranef-corr} & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** \\ 
+\includegraphics[width=0.05\textwidth]{autism-unordered-icon}&   fig.~\ref{fig:boxplot-unordered} & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** \\ 
+ %
+ \includegraphics[width=0.05\textwidth]{examcorr-icon}&   fig.~\ref{fig:ranef-corr} & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** \\ 
+ %
 \includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-icon}& fig.~\ref{fig:constvar2} & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}* & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}. & 13/72&\hspace{-0.1in}** \\ 
 \includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-bp} &  fig.~\ref{fig:constvar2.bp} & 23/70 & \hspace{-0.1in}*** & 9/74 & \hspace{-0.1in}. & 11/62 & \hspace{-0.1in}** & 31/78 & \hspace{-0.1in}*** & 25/61 & \hspace{-0.1in}*** \\ 
+%
+\includegraphics[width=0.05\textwidth]{homogeneous-bp-icon} &  fig.~\ref{homogeneous-2}& 23/61 & \hspace{-0.1in}*** & 38/72 & \hspace{-0.1in}*** & 29/59 & \hspace{-0.1in}*** & 22/70 & \hspace{-0.1in}*** & 35/62 & \hspace{-0.1in}*** \\ 
+ \includegraphics[width=0.05\textwidth]{homogeneous-dots-icon} & fig.~\ref{homogeneous-1}& 0/57 & \hspace{-0.1in}  & 1/71 & \hspace{-0.1in}  & 8/75 & \hspace{-0.1in}  & 0/59 & \hspace{-0.1in}  & 2/68 & \hspace{-0.1in}  \\ 
+%
 \includegraphics[width=0.05\textwidth]{cyclone-icon}&   fig.~\ref{fig:badcyclone} & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** \\ 
 \includegraphics[width=0.05\textwidth]{cyclone-good-icon} & fig.~\ref{fig:goodcyclone}  & 1/59 & \hspace{-0.1in}  & 2/79 & \hspace{-0.1in}  & 2/68 & \hspace{-0.1in}  & 4/62 & \hspace{-0.1in}  & 1/73 & \hspace{-0.1in}  \\ 
+%
 \includegraphics[width=0.05\textwidth]{dialyzernonlinear-icon}&   fig.~\ref{fig:linearity} & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** \\ 
+%
 \includegraphics[width=0.05\textwidth]{radontranef-icon}&   fig.~\ref{fig:qqlineup-t} & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& \\ 
    & random intercept & 0/72 & \hspace{-0.1in}  & 1/75 & \hspace{-0.1in}  & 0/68 & \hspace{-0.1in}  & 0/75 & \hspace{-0.1in}  & 2/61 & \hspace{-0.1in}  \\ 
    & random slope & 0/65 & \hspace{-0.1in}  & 0/64 & \hspace{-0.1in}  & 0/68 & \hspace{-0.1in}  & 0/46 & \hspace{-0.1in}  & 0/64 & \hspace{-0.1in}  \\ 
 \includegraphics[width=0.05\textwidth]{autism2-fanned-icon}&   fig.~\ref{fig:autism-ranef} & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** \\ 
-\includegraphics[width=0.05\textwidth]{autism-unordered-icon}&   fig.~\ref{fig:boxplot-unordered} & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** \\ 
- \includegraphics[width=0.05\textwidth]{homogeneous-bp-icon} &  fig.~\ref{homogeneous-2}& 23/61 & \hspace{-0.1in}*** & 38/72 & \hspace{-0.1in}*** & 29/59 & \hspace{-0.1in}*** & 22/70 & \hspace{-0.1in}*** & 35/62 & \hspace{-0.1in}*** \\ 
- \includegraphics[width=0.05\textwidth]{homogeneous-dots-icon} & fig.~\ref{homogeneous-1}& 0/57 & \hspace{-0.1in}  & 1/71 & \hspace{-0.1in}  & 8/75 & \hspace{-0.1in}  & 0/59 & \hspace{-0.1in}  & 2/68 & \hspace{-0.1in}  \\ 
- \includegraphics[width=0.05\textwidth]{exam-with-slope-icon} & fig.~\ref{fig:fanned2} & 0/64 & \hspace{-0.1in}  & 7/75 & \hspace{-0.1in}  & 11/76 & \hspace{-0.1in}* & 0/69 & \hspace{-0.1in}  & 0/60 & \hspace{-0.1in}  \\ 
    \hline
 \multicolumn{8}{l}{Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1} \\
 
@@ -1013,18 +1021,18 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 
 % latex table generated in R 3.0.1 by xtable 1.7-1 package
 % Wed Jun  5 17:17:29 2013
-\begin{table}[ht]
-\centering
-\caption{\label{tab:qqplot} Overview of the number of correct data picks compared to the number of evaluations of each lineup. None of the three designs identified inconsistencies between the predicted random slopes and those simulated from a normal distribution. The bold numbers are results for the lineup shown in Figure~\ref{fig:qqlineup-1}. \hhnote{let's take the different designs out - it muddles things at this point. The Standard design is good enough. This table got replaced by the results in the table of significances}}
-\begin{tabular}{rccc}
-  \hline
- & Control & Standard &Rotated  \\ 
-  \hline
-Radon$_1$ & 1/27&\bf 0/23 & 0/22  \\ 
-Radon$_2$  & 0/30& 0/18  & 0/31 \\ 
-   \hline
-\end{tabular}
-\end{table}
+%\begin{table}[ht]
+%\centering
+%\caption{\label{tab:qqplot} Overview of the number of correct data picks compared to the number of evaluations of each lineup. None of the three designs identified inconsistencies between the predicted random slopes and those simulated from a normal distribution. The bold numbers are results for the lineup shown in Figure~\ref{fig:qqlineup-1}. \hhnote{let's take the different designs out - it muddles things at this point. The Standard design is good enough. This table got replaced by the results in the table of significances}}
+%\begin{tabular}{rccc}
+%  \hline
+% & Control & Standard &Rotated  \\ 
+%  \hline
+%Radon$_1$ & 1/27&\bf 0/23 & 0/22  \\ 
+%Radon$_2$  & 0/30& 0/18  & 0/31 \\ 
+%   \hline
+%\end{tabular}
+%\end{table}
 
 % latex table generated in R 3.0.1 by xtable 1.7-1 package
 % Wed Jun  5 08:41:06 2013
