@@ -1,6 +1,8 @@
-\documentclass{article} % JASA requires 12 pt font for manuscripts
+\documentclass[12pt]{article} % JASA requires 12 pt font for manuscripts
 %\usepackage{JASA_manu}        % For JASA manuscript formatting
 
+\usepackage{times, asa, url}
+\RequirePackage{pdf14}
 %\usepackage{endfloat} % just for while I am writing
 
 % for citations
@@ -37,11 +39,11 @@
 \newcommand{\hhnote}[1]{\todo[inline,color=orange!40]{#1}} 
 
 % title formatting
-\usepackage[compact,small]{titlesec}
+%\usepackage[compact,small]{titlesec}
 
 % page formatting
 \usepackage[margin = 1in]{geometry}
-\usepackage[parfill]{parskip}
+%\usepackage[parfill]{parskip}
 
 % line spacing
 \usepackage{setspace}
@@ -1096,7 +1098,7 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 
-\bibliographystyle{apalike}
+\bibliographystyle{asa}
 \bibliography{hlmviz_bib}
 
 \end{document}
