@@ -156,7 +156,7 @@ If $X=x$ is  the number of observers, out of $N$, who chose the data plot from t
 %\hhnote{this is just the $p$ value conditioned on the lineup. For the unconditioned $p$ value we need to `integrate' the effect of the lineup out - we have multiple samples of null sets for the same data. We need to still write out how to combine those.}
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{normexam_fanned_lineup16.pdf}
+	\includegraphics[width=0.5\textwidth]{normexam_fanned_lineup16.pdf}
 	\caption{\label{fig:fanned} Lineup of size 20. Which plot is the most different from the other plots? What makes your plot different from the other plots?
 	}
 \end{figure}
@@ -329,8 +329,8 @@ Additionally, the type of plot depends on the variable type---if a continuous va
 In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest. The true plot is constructed from the same model but uses the observed data. 
 
 \begin{figure}[h]
-	\hfill
-	\includegraphics[width=0.9\textwidth]{autism2-ordered-10.pdf}
+	\centering
+	\includegraphics[width=0.5\textwidth]{autism2-ordered-10.pdf}
 	\caption{\label{fig:boxplot-ordered} \hh{Lineup of level-1 residuals in box plots  by groups to test significance of a discrete covariate.}
 %	\todo[inline]{I'm starting to get nitpicky again :)
 %	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
@@ -369,7 +369,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
   
 \begin{figure}
 	\centering
-	\includegraphics[width = \textwidth]{normexam_fanned_withslope_lineup18}
+	\includegraphics[width = 0.5\textwidth]{normexam_fanned_withslope_lineup18}
 	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model. Which plot is the most different of the others?}
 \end{figure}
 
@@ -398,7 +398,7 @@ The lineup allows us to gauge the amount of correlation between the random effec
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=.9\textwidth]{examcorr-15.pdf}
+	\includegraphics[width=.5\textwidth]{examcorr-15.pdf}
 	\caption{\label{fig:ranef-corr} Lineup for testing correlation between random effects. Which plot is the most different of the others? What feature in the panel led you to your choice?}
 \end{figure}
 
@@ -534,7 +534,7 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=\textwidth]{dialyzerheterogeneous-19.pdf}
+	\includegraphics[width=0.5\textwidth]{dialyzerheterogeneous-19.pdf}
 	\caption{\label{fig:constvar2} 
 	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
@@ -542,7 +542,7 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=\textwidth]{dialyzerheterogeneous-bp-19.pdf}
+	\includegraphics[width=0.5\textwidth]{dialyzerheterogeneous-bp-19.pdf}
 	\caption{\label{fig:constvar2.bp} 
 	\hh{Alternative box plot } Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
@@ -562,14 +562,14 @@ If any panel of this lineup is considered separately, an analyst may come to the
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=.9\textwidth]{dialyzerhomogeneous-dots-1-19.pdf}
+	\includegraphics[width=.5\textwidth]{dialyzerhomogeneous-dots-1-19.pdf}
 	\caption{\label{homogeneous-1}
 	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=.9\textwidth]{dialyzerhomogeneous-1-19.pdf}
+	\includegraphics[width=.5\textwidth]{dialyzerhomogeneous-1-19.pdf}
 	\caption{ \label{homogeneous-2}
 	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
@@ -605,7 +605,7 @@ To overcome this difficulty, we create a lineup of side-by-side boxplots for eac
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=\textwidth]{cyclone-13.pdf}
+	\includegraphics[width=.5\textwidth]{cyclone-13.pdf}
 	\caption{\label{fig:badcyclone} 
 	Lineup testing homogeneity of the level-1 residuals between groups. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
@@ -634,7 +634,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=\textwidth]{radon_cyclone10.pdf}
+	\includegraphics[width=.5\textwidth]{radon_cyclone10.pdf}
 	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
@@ -663,7 +663,7 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{dialyzernonlinear-10.pdf}
+	\includegraphics[width=.5\textwidth]{dialyzernonlinear-10.pdf}
 	\caption{\label{fig:linearity} Lineup testing  for nonlinearity of a covariate. Which of the plots is the most different? Which feature led you to your choice?}
 %To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' 
 %%As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
@@ -706,7 +706,7 @@ Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of line
 \begin{figure}[hbt]
 	\centering
 %	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
-	\includegraphics[width=\textwidth]{filebab6182c2e84}
+	\includegraphics[width=.5\textwidth]{filebab6182c2e84}
 	\caption{\label{fig:qqlineup-1}
 	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? }
 \end{figure}
@@ -728,7 +728,7 @@ To determine whether lineups can detect distributional violations we constructed
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{radontranef-19.pdf}
+	\includegraphics[width=.5\textwidth]{radontranef-19.pdf}
 	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of random slopes with error terms simulated from a $t_3$ distribution. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
@@ -960,13 +960,13 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{autism-fanned2-16.pdf}
+	\includegraphics[width=.5\textwidth]{autism-fanned2-16.pdf}
 	\caption{\label{fig:autism-ranef} Which of the plots is the most different? Which feature led you to your choice? }
 \end{figure}
 
 \begin{figure}[h]
-	\hfill
-	\includegraphics[width=0.9\textwidth]{autism2-unordered-10.pdf}
+	\centering
+	\includegraphics[width=0.5\textwidth]{autism2-unordered-10.pdf}
 	\caption{\label{fig:boxplot-unordered} An alternative layout of Figure~\ref{fig:boxplot-ordered}, where the boxplots are ordered as they are for inference. Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
 
