@@ -576,7 +576,18 @@ If any panel of this lineup is considered separately, an analyst may come to the
 \end{figure}
 
 \hh{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
-Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. The dot plot version is not significant, but the box plot version is because of outliers. XXX give numbers for reasons XXX. This might not be so much of an issue of homogeneity being violated as much as error distribution being different between the data and the nulls. Null data comes from a parametric bootstrap where residuals are simulated under a normal error assumption. Outliers in small samples are indicative of the sample being from a distribution with heavy tails.
+Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
+%Outliers       Large spread       Trend       Asymmetry       Other
+% dialyzerhomogeneous
+%  correct        1        2        3        4        5
+%1   FALSE 38.86852 33.89209 13.35778 12.46726 1.414353
+%2    TRUE 25.35211 28.16901 29.57746 16.90141       NA
+% dialyzerhomogeneous-bp
+%  correct        1        2        3        4        5
+%1   FALSE 29.09350 25.72378 28.286664 12.05505 4.841006
+%2    TRUE 45.31162 37.28243  8.422235  7.29927 1.684447
+
+The reason for the box plot design being so much more significant might not be so much of an issue of homogeneity being violated as much as a difference in the error distribution between the data and the nulls. Null data comes from a parametric bootstrap where residuals are simulated under a normal error assumption. Outliers in small samples are indicative of the sample being from a distribution with heavy tails.
 Regardless of the reasoning, the second lineup design enables us to diagnose a problem with the model that makes the data stand out from a set of nulls.  The two designs therefore represent two very similar tests with different power.}
 
 
@@ -706,15 +717,16 @@ Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of line
 \begin{figure}[hbt]
 	\centering
 %	\includegraphics[width=\textwidth]{qqplot_normranef_slope_lineup11.pdf}
-	\includegraphics[width=0.8\textwidth]{filebab6182c2e84}
+%	\includegraphics[width=0.8\textwidth]{filebab6182c2e84}
+	\includegraphics[width=0.8\textwidth]{radonqqb2-3-10.pdf}
 	\caption{\label{fig:qqlineup-1}
 	Lineup testing  for normality of the random slope for the radon data. Which of the plots is the most different? Which feature led you to your choice? }
 \end{figure}
 
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
-Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 2$) is indistinguishable from the null plots (none of 72 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
+Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots (none of 68 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
 be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
-Panel \#5 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by \hh{XXX out of 72 observers. All other panels were selected at most XXX times. }
+Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by \hh{29 out of 68 observers. Other panels  selected at least four times were \#1, 13,14, 16, and 18. }
 Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. \hh{This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.} 
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
@@ -990,7 +1002,7 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 \begin{table}[ht]
 \centering
 \caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown.  \hh{$p$-values and significances are based on the calculations as described in section~\ref{sec:pvalues}}} 
-\begin{tabular}{Mrrlrlrlrlrlr}
+\begin{tabular}{Mrrlrlrlrlrlc}
   \hline
 &  & \multicolumn{9}{c}{Replicate} && Overall \\ \cline{3-12} 
 \multicolumn{2}{c}{Lineup} & 1 & & 2 && 3 && 4 && 5 && $p$-values\\ 
@@ -999,26 +1011,26 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 \includegraphics[width=0.05\textwidth]{examfanned-icon}&  fig.~\ref{fig:fanned} & 11/73&\hspace{-0.1in}* & 7/70&\hspace{-0.1in} & 9/65&\hspace{-0.1in}*& 13/66&\hspace{-0.1in}** & 7/72&\hspace{-0.1in} & 0.0001\\ 
  \includegraphics[width=0.05\textwidth]{exam-with-slope-icon} & fig.~\ref{fig:fanned2} & 0/64 & \hspace{-0.1in}  & 7/75 & \hspace{-0.1in}  & 11/76 & \hspace{-0.1in}* & 0/69 & \hspace{-0.1in}  & 0/60 & \hspace{-0.1in} & 0.4837 \\ 
 %
-\includegraphics[width=0.05\textwidth]{autism-ordered-icon}&   fig.~\ref{fig:boxplot-ordered} & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** & $\le 10^{-5}$\\ 
-\includegraphics[width=0.05\textwidth]{autism-unordered-icon}&   fig.~\ref{fig:boxplot-unordered} & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** & $\le 10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{autism-ordered-icon}&   fig.~\ref{fig:boxplot-ordered} & 65/74&\hspace{-0.1in}*** & 57/66&\hspace{-0.1in}*** & 62/68&\hspace{-0.1in}*** & 54/63&\hspace{-0.1in}*** & 66/76&\hspace{-0.1in}*** & $<10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{autism-unordered-icon}&   fig.~\ref{fig:boxplot-unordered} & 52/54&\hspace{-0.1in}***  & 63/76&\hspace{-0.1in}*** & 70/75&\hspace{-0.1in}*** & 59/64&\hspace{-0.1in}*** & 63/70&\hspace{-0.1in}*** & $<10^{-5}$\\ 
  %
- \includegraphics[width=0.05\textwidth]{examcorr-icon}&   fig.~\ref{fig:ranef-corr} & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** & $\le 10^{-5}$\\ 
+ \includegraphics[width=0.05\textwidth]{examcorr-icon}&   fig.~\ref{fig:ranef-corr} & 41/69&\hspace{-0.1in}*** & 62/73&\hspace{-0.1in}*** & 31/64&\hspace{-0.1in}*** & 57/75&\hspace{-0.1in}*** & 55/67&\hspace{-0.1in}*** & $<10^{-5}$\\ 
  %
-\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-icon}& fig.~\ref{fig:constvar2} & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}* & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}. & 13/72&\hspace{-0.1in}** & $\le 10^{-5}$\\ 
-\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-bp} &  fig.~\ref{fig:constvar2.bp} & 23/70 & \hspace{-0.1in}*** & 9/74 & \hspace{-0.1in}. & 11/62 & \hspace{-0.1in}** & 31/78 & \hspace{-0.1in}*** & 25/61 & \hspace{-0.1in}*** & $\le 10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-icon}& fig.~\ref{fig:constvar2} & 29/85&\hspace{-0.1in}***  & 10/65&\hspace{-0.1in}* & 24/64&\hspace{-0.1in}*** & 7/60&\hspace{-0.1in}. & 13/72&\hspace{-0.1in}** & $<10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{dialyzerheterogeneous-bp} &  fig.~\ref{fig:constvar2.bp} & 23/70 & \hspace{-0.1in}*** & 9/74 & \hspace{-0.1in}. & 11/62 & \hspace{-0.1in}** & 31/78 & \hspace{-0.1in}*** & 25/61 & \hspace{-0.1in}*** & $<10^{-5}$\\ 
 %
-\includegraphics[width=0.05\textwidth]{homogeneous-bp-icon} &  fig.~\ref{homogeneous-2}& 23/61 & \hspace{-0.1in}*** & 38/72 & \hspace{-0.1in}*** & 29/59 & \hspace{-0.1in}*** & 22/70 & \hspace{-0.1in}*** & 35/62 & \hspace{-0.1in}*** & $\le 10^{-5}$\\ 
  \includegraphics[width=0.05\textwidth]{homogeneous-dots-icon} & fig.~\ref{homogeneous-1}& 0/57 & \hspace{-0.1in}  & 1/71 & \hspace{-0.1in}  & 8/75 & \hspace{-0.1in}  & 0/59 & \hspace{-0.1in}  & 2/68 & \hspace{-0.1in}  & 0.7078 \\ 
+\includegraphics[width=0.05\textwidth]{homogeneous-bp-icon} &  fig.~\ref{homogeneous-2}& 23/61 & \hspace{-0.1in}*** & 38/72 & \hspace{-0.1in}*** & 29/59 & \hspace{-0.1in}*** & 22/70 & \hspace{-0.1in}*** & 35/62 & \hspace{-0.1in}*** & $<10^{-5}$\\ 
 %
-\includegraphics[width=0.05\textwidth]{cyclone-icon}&   fig.~\ref{fig:badcyclone} & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** & $\le 10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{cyclone-icon}&   fig.~\ref{fig:badcyclone} & 50/75&\hspace{-0.1in}***  & 44/64&\hspace{-0.1in}*** & 45/68&\hspace{-0.1in}*** & 46/76&\hspace{-0.1in}*** & 50/67&\hspace{-0.1in}*** & $<10^{-5}$\\ 
 \includegraphics[width=0.05\textwidth]{cyclone-good-icon} & fig.~\ref{fig:goodcyclone}  & 1/59 & \hspace{-0.1in}  & 2/79 & \hspace{-0.1in}  & 2/68 & \hspace{-0.1in}  & 4/62 & \hspace{-0.1in}  & 1/73 & \hspace{-0.1in}  & 0.7180\\ 
 %
-\includegraphics[width=0.05\textwidth]{dialyzernonlinear-icon}&   fig.~\ref{fig:linearity} & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** & $\le 10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{dialyzernonlinear-icon}&   fig.~\ref{fig:linearity} & 60/63&\hspace{-0.1in}***  & 62/64&\hspace{-0.1in}*** & 57/60&\hspace{-0.1in}*** & 84/88&\hspace{-0.1in}*** & 66/69&\hspace{-0.1in}*** & $<10^{-5}$\\ 
 %
-\includegraphics[width=0.05\textwidth]{radontranef-icon}&   fig.~\ref{fig:qqlineup-t} & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& & $\le 10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{radontranef-icon}&   fig.~\ref{fig:qqlineup-t} & 29/70&\hspace{-0.1in}***  & 52/79&\hspace{-0.1in}*** & 0/64& & 13/59&\hspace{-0.1in}*** & 6/74& & $<10^{-5}$\\ 
 \multicolumn{2}{r}{random intercept} & 0/72 & \hspace{-0.1in}  & 1/75 & \hspace{-0.1in}  & 0/68 & \hspace{-0.1in}  & 0/75 & \hspace{-0.1in}  & 2/61 & \hspace{-0.1in} & 0.9458 \\ 
 \multicolumn{2}{r}{random slope} & 0/65 & \hspace{-0.1in}  & 0/64 & \hspace{-0.1in}  & 0/68 & \hspace{-0.1in}  & 0/46 & \hspace{-0.1in}  & 0/64 & \hspace{-0.1in}  & 1.0000\\ 
-\includegraphics[width=0.05\textwidth]{autism2-fanned-icon}&   fig.~\ref{fig:autism-ranef} & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** & $\le 10^{-5}$\\ 
+\includegraphics[width=0.05\textwidth]{autism2-fanned-icon}&   fig.~\ref{fig:autism-ranef} & 50/79&\hspace{-0.1in}***  & 26/59&\hspace{-0.1in}*** & 31/67&\hspace{-0.1in}*** & 32/72&\hspace{-0.1in}*** & 35/71&\hspace{-0.1in}*** & $<10^{-5}$\\ 
    \hline
 \multicolumn{12}{l}{Signif. codes:  0 $\le$ *** $\le$ 0.001 $\le$ ** $\le$ 0.01 $\le$ * $\le$ 0.05 $\le$ . $\le$ 0.1 $\le$ ' ' $\le$ 1}
 
