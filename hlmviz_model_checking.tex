@@ -366,6 +366,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
  If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value. \hhnote{XXX do we have a $p$-value for that?}
+\alnote{The p-value is $<$ 1e-4.}
   
 \begin{figure}
 	\centering
@@ -395,6 +396,7 @@ The slopes of the regression lines are indicative of the amount of correlation.
 The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model, avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.
   In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects.
   \hhnote{What does the $p$-value of the classical LRT say?}
+  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
 
 \begin{figure}[hbt]
 	\centering
@@ -628,7 +630,7 @@ An alternative approach to detect homoscedasticity of the level-1 residuals acro
 	d_i = \frac{\log\left( s_i^2 \right) - \left[ \sum_i (n_i - r_i) \log\left( s_i^2 \right) / \sum_i  (n_i - r_i) \right]}{\left(2 / (n_i - r_i)\right)^{1/2}}
 \end{equation}
 %
-where $s_i^2$ is the residual variance within each group based on separate ordinary least squares regressions. The test statistic is then
+where $s_i^2$ is the residual variance within each group based on separate ordinary least squares regressions and $r_i$ is the rank of the corresponding model matrix. The test statistic is then
 %
 \begin{equation}
 	H = \sum_{i=1}^{g^*} d_i^2
@@ -638,6 +640,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 
 \alnote{I need to go back and really emphasize the lack of effective conventional tests here}
 \hhnote{what is the result - in $p$-value for the conventional test? it would be nice if it were inconclusive :) }
+\alnote{Unfortunately, the result was not inconclusive ($p$-value $<$ 1e-4), however, the test statistic is based on LS regression using only 4 or 5 observations for each model. This seems dubious!}
 
 \hhnote{and we need a second cyclone plot (that probably ends up in the supplementary material, but still ... ***LINEUP***  to show a situation with different group sizes, i.e. the cyclone structure, but non significant variability.}
 \alnote{Here is a cyclone plot made from a reduced set of the radon data. I used the EB residuals here, so not everything is centered around 0, but we could use the LS residuals to overcome that.}
@@ -650,6 +653,8 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 \end{figure}
 
 \hh{Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. Similar XXX??? -need the $p$-value first! XXX to the above $p$-value, homogeneity is not rejected based on this lineup.  Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup.}
+
+\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
 
 %\begin{figure}
 %	\centering

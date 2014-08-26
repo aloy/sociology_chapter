@@ -70,14 +70,13 @@ radon <- ddply(radon, .(county), transform, n = length(county))
 fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n > 9))
 
 test.df2 <- ddply(fm@frame, .(county), calc_s_df, formula = log.radon ~ basement)
-test.df2 <- transform(test.df, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
+test.df2 <- transform(test.df2, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
 
 H2 <- sum(test.df2$d^2)
-pchisq(H2, df = nrow(test.df) - 1, lower.tail = FALSE)
+pchisq(H2, df = nrow(test.df2) - 1, lower.tail = FALSE)
 
 
 # Checking the p-value via simulation
-
 set.seed(987654321)
 sim.ys <- simulate(fm, nsim = 1000)
 sim.df <- lapply(sim.ys, function(y) {
