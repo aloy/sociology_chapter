@@ -149,6 +149,7 @@ the true plot is randomly embedded.  \hh{These lineups are then presented to ind
  Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
 If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, \hh{but adjusted for the dependency inherent to the application of lineups in a human subject study.} 
 \hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
+\alnote{Can we cite the R package? Having a citation might help with this.}
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 %\begin{equation}\label{eqn.pvalue}
 %\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
@@ -179,6 +180,7 @@ Unlike classical hypothesis tests, visual inference also allows us to collect in
 %Rather than to just reject a null hypothesis 
 This additional information helps us assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. 
 \hhnote{Should we give the reasons for the first example?}
+\alnote{That's a good idea. I think we can give both the common choices from MTurk, and our own analysis of the plot, since it is possible to get both from a lineup.}
 
 %\subsection{Model notation and formulation} 
 \subsection{Linear mixed-effects models} 
@@ -235,16 +237,21 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 %
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
 
+\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
 The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
 Some of the problems which we address in this paper are:
 \begin{description}
 
 \item[Breakdown of  asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
-For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Quantile-Quantile (Q-Q) plots and tests of the empirical distribution function ineffective for distributional assessment.
+For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment \cite[see the supplement of][for supporting simulation results]{adam}.
+\alnote{Seems like a nice place to cite the supplement of the JCGS paper}
 
 \item[Artifacts due to the data structure: ] Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \citet{Morrell:2000ve} \hhnote{XXX I'm not quite sure how that would look like}.  Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
+This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve} 
+\hhnote{XXX I'm not quite sure how that would look like}.  
+\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
+Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
 
 
 \item[Boundary issues  in the comparison of nested models: ] 
@@ -256,7 +263,7 @@ When evaluating the significance of terms in the random effects structure, the l
 
 \end{description}
 
-These issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case.
+The above issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case \citep{adam}.
  
 
 %\hh{Why are you going back to lineups now? - it might be better to shift this sentence back by a couple of paragraphs}
@@ -264,7 +271,7 @@ These issues are well-known, and in special circumstances adjustments to the met
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-The purpose of this paper is to discuss visual inference in the framework of diagnosing fits of linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. 
+The purpose of this paper is to discuss visual inference in the framework of diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. 
 This approach allows us to  tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
 
 \hhnote{The next paragraph should be broken into two; and all the discussion should go into the back}
@@ -317,7 +324,7 @@ While statistical software has made performing many of these tests easy, situati
 
 Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
 }
-\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single one approximation holds for all situations. This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal leading to either conservative or anti-conservative decisions. 
+\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal leading to either conservative or anti-conservative decisions. 
 \end{description}
 
 
@@ -384,6 +391,7 @@ A similar thing can be done with the trajectories plotted for the autism data, s
 \hh{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot (in panel\#$(2\cdot 3^2)$). }
 
 \hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
+\alnote{I think that is a good idea!}
 
 \hh{Participants should only see one of figures~\ref{fig:fanned} or~\ref{fig:fanned2}, because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel as shown before. While this chance is slim in practice, we ensured in the user study to expose participants to only one of a set of of dependent lineups.  }
 
@@ -428,6 +436,7 @@ The lineup allows us to gauge the amount of correlation between the random effec
 If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only an index and does not address whether the model with the smaller AIC is significantly ``better'' than the other. To do this, we propose using lineups to investigate the goodness-of-fit of each model. If inadequacies are discovered in one model but not in the other, then this supports the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model, but by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why a model is preferred.
 %
 \hhnote{Do we have a lineup for this, or an idea of how to do a lineup checking for the goodness of fit?}
+\alnote{No, we don't have a lineup for this. I added this in the original manuscript ``to be complete,'' but I think that it could be omitted. It doesn't add much and length could be an issue.}
 
 %\subsubsection{Proposals for visual inference}\label{model-selection}
 %------------------------------------------------------------------------------------
@@ -924,7 +933,7 @@ Throughout this paper we have provided examples of graphical diagnostics that we
 %Mahbub's website for experiments}
 
 %------------------------------------------------------------------------------------
-\paragraph{Acknowledgments}
+\section{Acknowledgments}
 %------------------------------------------------------------------------------------
 We would like to thank Mahbubul Majumder and Eric Hare, who conducted the Amazon MTurk study (\url{mahbub.stat.iastate.edu/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
