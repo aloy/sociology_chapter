@@ -143,11 +143,11 @@ the alternative hypothesis encompasses any violation of this model assumption. F
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
 If the model assumption holds, the plot of the observed data will be indistinguishable from the null plots. 
 For the lineup protocol a sample of the null distribution is taken, in which
-the true plot is randomly embedded.  \hh{These lineups are then presented to independent observers for evaluation. }
+the true plot is randomly embedded.  These lineups are then presented to independent observers for evaluation. 
 
-\hh{This  allows for the estimation of a $p$-value associated with the lineup.}
+This  allows for the estimation of a $p$-value associated with the lineup.
  Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
-If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, \hh{but adjusted for the dependency inherent to the application of lineups in a human subject study.} 
+If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependency inherent to the application of lineups in a human subject study.
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 %\begin{equation}\label{eqn.pvalue}
@@ -297,14 +297,14 @@ In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:chec
 %% with respect to both fixed and random effects, 
 % as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two models are not nested when one model cannot be viewed as a special case of the other. For example, if two models contain different sets of fixed effects.
  Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. 
- \hh{For comparing non-nested models we usually make use of  AIC or BIC  \citep{anderson1998}.}
- In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models. 
+% \hh{For comparing non-nested models we usually make use of  AIC or BIC  \citep{anderson1998}.}
+ In this section we discuss how to use visual inference as a unified testing framework for model selection of both fixed and random effects.
+ % for both nested and non-nested models. 
 
 
 
 %\subsubsection{Conventional practices}
 %\subsection{Comparing nested models}\label{sec:select-fixed}
-\subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 
 It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a linear mixed-effects model. Likelihood ratio tests are more generally applicable in comparing nested models, but are  commonly used in the selection of random effects. 
@@ -388,7 +388,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
 
-\hh{Participants should only see one of figures~\ref{fig:fanned} or~\ref{fig:fanned2}, because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel as shown before. While this chance is slim in practice, we ensured in the user study to expose participants to only one of a set of of dependent lineups.  }
+Participants should only see one of figures~\ref{fig:fanned} or~\ref{fig:fanned2}, because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel as shown before. While this chance is slim in practice, we ensured in the user study to expose participants to only one of a set of of dependent lineups.  
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
 %This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. 
@@ -550,19 +550,19 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 	\centering
 	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-bp-19.pdf}
 	\caption{\label{fig:constvar2.bp} 
-	\hh{Alternative box plot } Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+	Alternative box plot  Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
 
-\al{Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}).
+Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}).
 If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases; however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
- In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. }
+ In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. 
  \hhnote{discuss reason that participants gave for their choice.}
 
 
 
-\hh{Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} -- with the  difference that pressure is categorized into seven categories, and residuals are shown in form of boxplots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data. XXX This is consistent with the other design XXX}
+Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} -- with the  difference that pressure is categorized into seven categories, and residuals are shown in form of boxplots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data. \hh{XXX This is consistent with the other design XXX}
 
 
 
@@ -581,7 +581,7 @@ If any panel of this lineup is considered separately, an analyst may come to the
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
-\hh{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
+Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
 Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
 %Outliers       Large spread       Trend       Asymmetry       Other
 % dialyzerhomogeneous
@@ -594,7 +594,7 @@ Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.
 %2    TRUE 45.31162 37.28243  8.422235  7.29927 1.684447
 
 The reason for the box plot design being so much more significant might not be so much of an issue of homogeneity being violated as much as a difference in the error distribution between the data and the nulls. Null data comes from a parametric bootstrap where residuals are simulated under a normal error assumption. Outliers in small samples are indicative of the sample being from a distribution with heavy tails.
-Regardless of the reasoning, the second lineup design enables us to diagnose a problem with the model that makes the data stand out from a set of nulls.  The two designs therefore represent two very similar tests with different power.}
+Regardless of the reasoning, the second lineup design enables us to diagnose a problem with the model that makes the data stand out from a set of nulls.  The two designs therefore represent two very similar tests with different power.
 
 
 
@@ -656,7 +656,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
-\hh{Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. Similar XXX??? -need the $p$-value first! XXX to the above $p$-value, homogeneity is not rejected based on this lineup.  Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup.}
+Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup.
 
 \alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
 
@@ -735,8 +735,8 @@ Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of line
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
 Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots (none of 68 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
 be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
-Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by \hh{29 out of 68 observers. Other panels  selected at least four times were \#1, 13,14, 16, and 18. }
-Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. \hh{This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.} 
+Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 29 out of 68 observers. Other panels  selected at least four times were \#1, 13,14, 16, and 18. 
+Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
@@ -979,6 +979,10 @@ The data consist of a stratified random sample of 919 owner-occupied homes in 85
 %------------------------------------------------------------------------------------
 \subsection{Experimental Setup}
 How did we get the data? Some information on Amazon Turk, and setup of experiments.
+
+\hhnote{Data collected for each response: time taken, answer(s), confidence level and reason for choice - four suggestions in form of check boxes, one text box;
+data collected on each participant: gender, age group, education level, geography (from ip address), nickname to match responses from the same individual. }
+
 %------------------------------------------------------------------------------------
 \subsection{Additional lineups included in the study}\label{app:morelineups}
 %------------------------------------------------------------------------------------
@@ -1016,7 +1020,7 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 % Tue Jun  4 23:00:42 2013
 \begin{table}[ht]
 \centering
-\caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown.  \hh{$p$-values and significances are based on the calculations as described in section~\ref{sec:pvalues}}} 
+\caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown.  $p$-values and significances are based on the calculations as described in section~\ref{sec:pvalues}} 
 \begin{tabular}{Mrrlrlrlrlrlc}
   \hline
 &  & \multicolumn{9}{c}{Replicate} && Overall \\ \cline{3-12} 
@@ -1171,8 +1175,6 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 
 \hhnote{Explain how we deal with five $p$-values from five lineups with the same data and different null sets }
 
-\hhnote{Data collected for each response: time taken, answer(s), confidence level and reason for choice - four suggestions in form of check boxes, one text box;
-data collected on each participant: gender, age group, education level, geography (from ip address), nickname to match responses from the same individual. }
 
 \clearpage
 %------------------------------------------------------------------------------------
