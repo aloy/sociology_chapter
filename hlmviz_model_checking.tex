@@ -124,8 +124,8 @@ Recent developments in graphics methodology provide us with a rigorous framework
 
 In order to develop such graphical tools as complements to conventional tests, we must first define the inferential framework on which we rely.
 
-\alnote{Do we need more of a transition here? When I was reading this I realized this was the end of the ``general introduction'' and the following sections introduce specific topics/issues. Would it make sense to go back to subheadings?}
-\hhnote{subheadings will be a bit tricky at the end of the introduction, when we are going into the purpose of the paper - but if you have good ideas, go ahead with the subheadings.}
+%\alnote{Do we need more of a transition here? When I was reading this I realized this was the end of the ``general introduction'' and the following sections introduce specific topics/issues. Would it make sense to go back to subheadings?}
+%\hhnote{subheadings will be a bit tricky at the end of the introduction, when we are going into the purpose of the paper - but if you have good ideas, go ahead with the subheadings.}
 %%------------------------------------------------------------------------------------
 \subsection{Visual inference}\label{sec:vi}
 %%------------------------------------------------------------------------------------
@@ -237,7 +237,8 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 %
 In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
 
-\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
+%\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
+\subsection{Issues with model exploration and diagnostics}
 The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
 Some of the problems which we address in this paper are:
@@ -248,9 +249,9 @@ For example, the empirical distribution of the predicted random effects  does no
 \alnote{Seems like a nice place to cite the supplement of the JCGS paper}
 
 \item[Artifacts due to the data structure: ] Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve} 
-\hhnote{XXX I'm not quite sure how that would look like}.  
-\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
+This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
+%\hhnote{XXX I'm not quite sure how that would look like}.  
+%\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
 Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
 
 
@@ -381,17 +382,17 @@ The resulting scores for each school are regressed on LRT results and shown as l
 	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model. Which plot is the most different of the others?}
 \end{figure}
 
-\alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
-\hhnote{yes, I agree - we actually need another lineup on this for the new experiment ***LINEUP***(added to folder) I would suggest to include the random slope in the model from which you simulate the null and draw the same picture again. Hopefully the data disappears.}
-\alnote{Here is a lineup with the random slope. Can you find the data?\\[1em]
-
-A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
-\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
+%\alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
+%\hhnote{yes, I agree - we actually need another lineup on this for the new experiment ***LINEUP***(added to folder) I would suggest to include the random slope in the model from which you simulate the null and draw the same picture again. Hopefully the data disappears.}
+%\alnote{Here is a lineup with the random slope. Can you find the data?\\[1em]
+%
+%A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
+%\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
 \hh{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot (in panel\#$(2\cdot 3^2)$). }
 
-\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
-\alnote{I think that is a good idea!}
+%\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
+%\alnote{I think that is a good idea!}
 
 \hh{Participants should only see one of figures~\ref{fig:fanned} or~\ref{fig:fanned2}, because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel as shown before. While this chance is slim in practice, we ensured in the user study to expose participants to only one of a set of of dependent lineups.  }
 
@@ -915,6 +916,12 @@ design is important for power, but visual inference also allows us to assess pow
 con: turk studies are cheap, but not as cheap as just running a test. They also take some  time (approx.~1h for about 400 evaluations) and need the framework.
 pro: lineups allow us to ask for distinguishing features, effectively differentiating the set of all possible alternatives into groups.
   }
+  
+\hhnote{One of the advantages visual testing in the lineup protocol is that in practice its results are decisive, resulting in $p$-values that are either very small or very close to 1, making decisions rarely dependent on the exact choice of significance level.  }
+  
+\hhnote{approach to practical relevance versus statistical significance: if we see it, it is there}  
+
+\hhnote{design choices are important -- some designs are better at detecting anomalies than others. On an individual level this is, of course, subjective. At a population level, the results are surprisingly(?) stable. This is reassuring and allows us to introduce the concept of power of tests into visual inference. At the moment design choices have to be made using best judgment based on our own experience and results from cognitive psychology. As we implement more studies we will learn more about the power of designs and be able to make more informed decisions on designs.}
 %\todo[inline]{discussion for visual inference: what could go wrong; for Amazon Turk studies use \citep{kosara:2010, heer:2010} to say that previous studies \citet{cleveland:1984} have been re-done with similar results.}
 
 We have presented a graphical approach to model selection and diagnosis based on simulating from the model fit to the true data. Use of the lineup protocol enables the creation of graphical tests, which enable not only the testing of hypotheses but subsequent exploration of the plots in the lineup to gain additional insight into the data structure. This approach relies only on the simulation process, graphics created, and observers recruited, avoiding the need to rely on asymptotic reference distributions; thus avoiding the pitfalls of many commonly used diagnostic tests. 
