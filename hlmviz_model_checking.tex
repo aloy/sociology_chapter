@@ -148,8 +148,7 @@ the true plot is randomly embedded.  \hh{These lineups are then presented to ind
 \hh{This  allows for the estimation of a $p$-value associated with the lineup.}
  Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
 If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, \hh{but adjusted for the dependency inherent to the application of lineups in a human subject study.} 
-\hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
-\alnote{Can we cite the R package? Having a citation might help with this.}
+
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 %\begin{equation}\label{eqn.pvalue}
 %\widehat{p\text{-value}} = P(X \ge x) = \sum_{k= x}^N {N \choose k} \left(1/m\right)^k \left(1 - 1/m\right)^{N-k}.
@@ -169,12 +168,6 @@ Observers are asked to identify the plot that is the most different from the oth
 
 Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$. 
 
-\hhnote{Only three out of five replicates are providing significant results against the null hypothesis.}
-
-\hhnote{Explain how we deal with five $p$-values from five lineups with the same data and different null sets }
-
-\hhnote{Data collected for each response: time taken, answer(s), confidence level and reason for choice - four suggestions in form of check boxes, one text box;
-data collected on each participant: gender, age group, education level, geography (from ip address), nickname to match responses from the same individual. }
 
 Unlike classical hypothesis tests, visual inference also allows us to collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
@@ -305,11 +298,12 @@ In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:chec
 % as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two models are not nested when one model cannot be viewed as a special case of the other. For example, if two models contain different sets of fixed effects.
  Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. 
  \hh{For comparing non-nested models we usually make use of  AIC or BIC  \citep{anderson1998}.}
- In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models.
+ In this section we discuss how to use visual inference as a unified testing framework for model selection for both nested and non-nested models. 
 
 
 
 %\subsubsection{Conventional practices}
+%\subsection{Comparing nested models}\label{sec:select-fixed}
 \subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 
@@ -373,8 +367,8 @@ The resulting scores for each school are regressed on LRT results and shown as l
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
  If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
-  thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test, and did not require the use of an asymptotic distribution to calculate the $p$-value. \hhnote{XXX do we have a $p$-value for that?}
-\alnote{The p-value is $<$ 1e-4.}
+  thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test (which shows significance at a level of less than 1e-4), and did not require the use of an asymptotic distribution to calculate the $p$-value. 
+%\alnote{The p-value is $<$ 1e-4.}
   
 \begin{figure}
 	\centering
@@ -403,9 +397,9 @@ The slopes of the regression lines are indicative of the amount of correlation.
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
 The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model, avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.
-  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects.
-  \hhnote{What does the $p$-value of the classical LRT say?}
-  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
+  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical LRT.
+%  \hhnote{What does the $p$-value of the classical LRT say?}
+%  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
 
 \begin{figure}[hbt]
 	\centering
@@ -432,12 +426,12 @@ The lineup allows us to gauge the amount of correlation between the random effec
 %Additional complications arise in the computation of a $p$-value for the likelihood ratio test for covariance parameters on the boundary of the parameter space. In this case, the asymptotic reference distribution is not $\chi^2$ with degrees of freedom equal to the difference in the number of parameters. \cite{Stram:1994wd} suggest the use of a 50:50 mixture of $\chi^2$ distributions with $q$ and $q + 1$ degrees of freedom when testing $q$ versus $q + 1$ random effects. While this approximation has been shown to be useful \citep{Morrell:1998ua}, it does not apply to every case.  We refer the reader \citet[Section 2.4.1]{Pinhiero:2000vf} for an example of when a this approximation is not successful. The lack of a general rule for approximating the distribution of the likelihood ratio test statistic reveals the need for a more transparent procedure for determining whether a random effect should be included in the model.
 
 
-\subsection{Comparing non-nested models}
-%------------------------------------------------------------------------------------
-If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only an index and does not address whether the model with the smaller AIC is significantly ``better'' than the other. To do this, we propose using lineups to investigate the goodness-of-fit of each model. If inadequacies are discovered in one model but not in the other, then this supports the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model, but by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why a model is preferred.
-%
-\hhnote{Do we have a lineup for this, or an idea of how to do a lineup checking for the goodness of fit?}
-\alnote{No, we don't have a lineup for this. I added this in the original manuscript ``to be complete,'' but I think that it could be omitted. It doesn't add much and length could be an issue.}
+%\subsection{Comparing non-nested models}
+%%------------------------------------------------------------------------------------
+%If two models are not nested, then the likelihood ratio test cannot be used to determine the preferred model. In this case, it is conventional practice to use the Akaike Information Criterion (AIC) as an index enabling model comparison, where the model with the smaller AIC is preferred. While AIC provides a concise and convenient way to compare non-nested models, it is only an index and does not address whether the model with the smaller AIC is significantly ``better'' than the other. To do this, we propose using lineups to investigate the goodness-of-fit of each model. If inadequacies are discovered in one model but not in the other, then this supports the use of the properly specified model. This approach is similar in concept to comparing the AIC from each model, but by focusing on an investigation of how the true data depart from the assumptions made by the model we can see why a model is preferred.
+%%
+%\hhnote{Do we have a lineup for this, or an idea of how to do a lineup checking for the goodness of fit?}
+%\alnote{No, we don't have a lineup for this. I added this in the original manuscript ``to be complete,'' but I think that it could be omitted. It doesn't add much and length could be an issue.}
 
 %\subsubsection{Proposals for visual inference}\label{model-selection}
 %------------------------------------------------------------------------------------
@@ -1169,6 +1163,17 @@ The results of the evaluations for all lineups other than Figure~\ref{fig:qqline
 Let $Y$ be the number of evaluations of a lineup, in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \hh{reference to technical report}, where $s$ delineates scenario III, i.e.~the same lineup is shown to all $K$ observers. The $p$-values in table~\ref{tab:results} for each of the five replicates is calculated this way.
 For the overall $p$-value, we use a simulation based approach to combine the five results. Using the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal. We assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability to pick a particular plot during an evaluation is allocated proportionally to its signal. For each 'data plot'' we create five sets of null plots to be evaluated simultaneously $(K_1, ..., K_5)$ times.  
 $p$-values are then based on a comparison of the sum of data picks from  five no-signal lineups and  the observed number of data picks from the actual lineups. The column on the right of table~\ref{tab:results} shows $p$-values based on $10^5$ simulation runs.
+
+\hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
+\alnote{Can we cite the R package? Having a citation might help with this.}
+
+\hhnote{Only three out of five replicates are providing significant results against the null hypothesis.}
+
+\hhnote{Explain how we deal with five $p$-values from five lineups with the same data and different null sets }
+
+\hhnote{Data collected for each response: time taken, answer(s), confidence level and reason for choice - four suggestions in form of check boxes, one text box;
+data collected on each participant: gender, age group, education level, geography (from ip address), nickname to match responses from the same individual. }
+
 \clearpage
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
