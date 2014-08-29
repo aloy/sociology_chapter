@@ -699,18 +699,18 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 
 To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
 
-\hhnote{we wanted to talk about how this is the most familiar situation and is entirely solvable with tools straight from linear models. Did Cook and Weisberg name those? I think I've seen the name partial residual plots at times. 
-We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyzer example to have a better mean structure.}
-\alnote{See the above note for a comment on the mean structure.\\[1em] 
-
-
-I am not sure if Cook and Weisberg named the scatterplots with smoothers, but they are not quite partial residual plots. Partial residual plots use the augmented (larger) model to construct residuals using fixed effects estimates for a reduced set of variables. Added variable plots are also similar in spirit to partial residual plots, though they are more involved. Partial residual plots have been discussed for mixed models (Hilden-Minton (1995); Hodges (1998)), but what we are doing is simpler in my mind. It might be interesting to pull this parallel into the paper, and maybe even compare what we see in an added variable plot and in the lineup. An extra perk of the lineup here is that added variable plots for LME models are not implement in R, but lineups are easy to create.\\[1em]
-
-Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hierarchical models, applied to diagnostics. \emph{Journal of the Royal Statistical Society. Series B (Statistical Methodology)}, 60(3), 497--536.\\[1em]
-
-Based on the examples I have seen, visual inference seems to overcome the problems of interpreting slopes observed on residual plots that was pointed out by Atkinson (1985, p. 67), though I have not formally tested this in any way. Perhaps it would be interesting to do that? Of course, this is most straightforward in the OLS regression setting. 
-}
-\hhnote{this is where we want to extend the discussion a bit: the partial residual plots and our approach is like the difference between type I and type III sums of squares - i.e. looking at the contribution of covariates either without regarding any of the covariates (type III) or only after adjusting for everything else, in which case we need to fit the model first before we can look into the relationship between $Y$ and $X_i$}
+%\hhnote{we wanted to talk about how this is the most familiar situation and is entirely solvable with tools straight from linear models. Did Cook and Weisberg name those? I think I've seen the name partial residual plots at times. 
+%We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyzer example to have a better mean structure.}
+%\alnote{See the above note for a comment on the mean structure.\\[1em] 
+%
+%
+%I am not sure if Cook and Weisberg named the scatterplots with smoothers, but they are not quite partial residual plots. Partial residual plots use the augmented (larger) model to construct residuals using fixed effects estimates for a reduced set of variables. Added variable plots are also similar in spirit to partial residual plots, though they are more involved. Partial residual plots have been discussed for mixed models (Hilden-Minton (1995); Hodges (1998)), but what we are doing is simpler in my mind. It might be interesting to pull this parallel into the paper, and maybe even compare what we see in an added variable plot and in the lineup. An extra perk of the lineup here is that added variable plots for LME models are not implement in R, but lineups are easy to create.\\[1em]
+%
+%Reference to Hodges (1998): Hodges, J. (1998). Some algebra and geometry for hierarchical models, applied to diagnostics. \emph{Journal of the Royal Statistical Society. Series B (Statistical Methodology)}, 60(3), 497--536.\\[1em]
+%
+%Based on the examples I have seen, visual inference seems to overcome the problems of interpreting slopes observed on residual plots that was pointed out by Atkinson (1985, p. 67), though I have not formally tested this in any way. Perhaps it would be interesting to do that? Of course, this is most straightforward in the OLS regression setting. 
+%}
+%\hhnote{this is where we want to extend the discussion a bit: the partial residual plots and our approach is like the difference between type I and type III sums of squares - i.e. looking at the contribution of covariates either without regarding any of the covariates (type III) or only after adjusting for everything else, in which case we need to fit the model first before we can look into the relationship between $Y$ and $X_i$}
 
 \hhnote{Another aspect that we can highlight at this point, is that lineups are omnibus tests - we can use the same setup, and depending on where we are in the modeling process, we will get a test result: as long as the mean structure is not right, it is most likely the most distinguishing feature, Once the mean structure is taken care of, the lineups change to test for homogeneity of variance. }
 
