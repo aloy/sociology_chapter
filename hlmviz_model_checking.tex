@@ -641,15 +641,15 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 	H = \sum_{i=1}^{g^*} d_i^2
 \end{equation}
 %
-which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is computationally more demanding than the generation of 19 null plots.
+which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. \al{Performing this simulation-based version of this test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. }
 
-\alnote{I need to go back and really emphasize the lack of effective conventional tests here}
-\hhnote{what is the result - in $p$-value for the conventional test? it would be nice if it were inconclusive :) }
-\alnote{Unfortunately, the result was not inconclusive ($p$-value $<$ 1e-4), however, the test statistic is based on LS regression using only 4 or 5 observations for each model. This seems dubious!}
-
-\hhnote{and we need a second cyclone plot (that probably ends up in the supplementary material, but still ... ***LINEUP***  to show a situation with different group sizes, i.e. the cyclone structure, but non significant variability.}
-\alnote{Here is a cyclone plot made from a reduced set of the radon data. I used the EB residuals here, so not everything is centered around 0, but we could use the LS residuals to overcome that.}
-\hhnote{The centered residuals might work better - or we need to sort differently. Lineups with LS residuals in cyclone plots are added to the study}
+%\alnote{I need to go back and really emphasize the lack of effective conventional tests here}
+%\hhnote{what is the result - in $p$-value for the conventional test? it would be nice if it were inconclusive :) }
+%\alnote{Unfortunately, the result was not inconclusive ($p$-value $<$ 1e-4), however, the test statistic is based on LS regression using only 4 or 5 observations for each model. This seems dubious!}
+%
+%\hhnote{and we need a second cyclone plot (that probably ends up in the supplementary material, but still ... ***LINEUP***  to show a situation with different group sizes, i.e. the cyclone structure, but non significant variability.}
+%\alnote{Here is a cyclone plot made from a reduced set of the radon data. I used the EB residuals here, so not everything is centered around 0, but we could use the LS residuals to overcome that.}
+%\hhnote{The centered residuals might work better - or we need to sort differently. Lineups with LS residuals in cyclone plots are added to the study}
 
 \begin{figure}[hbt]
 	\centering
@@ -657,9 +657,11 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
-Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup.
-
-\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
+Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. 
+%Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
+Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity \alnote{XXX Do we want to use the combined p-value? XXX}. \al{In this situation the ``conventional'' test agrees with the visual test with a $p$-value of 0.149, if counties with fewer than 10 observations are excluded. If only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185. This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because boxplots are not appropriate for such small group sizes. While we are still slightly constrained with group sizes, we are far less constrained than in the conventional test.}
+ 
+%\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
 
 %\begin{figure}
 %	\centering

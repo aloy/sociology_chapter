@@ -52,13 +52,33 @@ test.df <- ddply(reduced.ahd, .(subject), calc_s_df, formula = sbvalue ~ week + 
 test.df <- transform(test.df, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
 
 H <- sum(test.df$d^2)
-pchisq(H, df = nrow(test.df) - 1, lower.tail = FALSE)
+pchisq(H, df = nrow(test.df) - 1, lower.tail = FALSE) ## we can't trust this p-value!
 
 # Making sure I coded the above correctly
 # ls.pooled <- (1/sum(test.df$df)) * sum(test.df$df * log(test.df$s^2))
 # H <- sum( (test.df$df/2) * (log(test.df$s^2) - ls.pooled)^2 )
 
+# Checking the p-value via simulation
+set.seed(920832689)
 
+system.time({
+  sim.ys <- simulate(fm, nsim = 1e4)
+  sim.df <- lapply(sim.ys, function(y) {
+    df <- fm@frame
+    df$sbvalue <- y
+    return(df)
+  })
+  
+  sim.h <- sapply(sim.df, FUN = function(x){
+    reduced.df <- subset(x, !subject %in% few.obs)
+    df <- ddply(reduced.df,  .(subject), calc_s_df, formula = sbvalue ~ week + I(week^2))
+    df <- transform(df, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
+    return(sum(df$d^2))
+  })
+})
+
+# p-value from simulation
+mean(sim.h >= H)
 
 ### Checking homogeneity between groups
 ### Data set: radon
@@ -68,6 +88,7 @@ radon <- ddply(radon, .(county), transform, n = length(county))
 
 # Model from which cyclone lineup was created
 fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n > 9))
+fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n > 5))
 
 test.df2 <- ddply(fm@frame, .(county), calc_s_df, formula = log.radon ~ basement)
 test.df2 <- transform(test.df2, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
@@ -78,7 +99,7 @@ pchisq(H2, df = nrow(test.df2) - 1, lower.tail = FALSE)
 
 # Checking the p-value via simulation
 set.seed(987654321)
-sim.ys <- simulate(fm, nsim = 1000)
+sim.ys <- simulate(fm, nsim = 1e4)
 sim.df <- lapply(sim.ys, function(y) {
   df <- fm@frame
   df$log.radon <- y
@@ -90,3 +111,5 @@ sim.h <- sapply(sim.df, FUN = function(x){
   df <- transform(df, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
   return(sum(df$d^2))
 })
+
+mean(sim.h >= H2)
