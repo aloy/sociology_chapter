@@ -164,16 +164,20 @@ If $X=x$ is  the number of observers, out of $N$, who chose the data plot from t
 Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
 Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. What is your choice for the most different plot?
 
-\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
+%\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
-Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. The data in this first lineup is shown in panel  $\sqrt{144} + 4$. 
+Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
+is consistent with the model that generated the data on which all of the other plots are based on. The  model in question, the corresponding null hypothesis and the calculation of $p$-values are explained in detail in Sections~\ref{sec:select} and Appendix~\ref{sec:pvalues}. 
+
+The data in this first lineup is shown in panel  $\sqrt{144} + 4$. 
 
 
-Unlike classical hypothesis tests, visual inference also allows us to collect information on what aspect of the display led each observer to their choice. 
+Unlike classical hypothesis tests, visual inference  allows us to additionally collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-This additional information helps us assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. 
-\hhnote{Should we give the reasons for the first example?}
-\alnote{That's a good idea. I think we can give both the common choices from MTurk, and our own analysis of the plot, since it is possible to get both from a lineup.}
+This  information helps us assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. 
+In the example of the first lineup of figure~\ref{fig:fanned} `spread' as the reason for their choice increased observers' chances to pick the data over a null plot. 
+%\hhnote{Should we give the reasons for the first example?}
+%\alnote{That's a good idea. I think we can give both the common choices from MTurk, and our own analysis of the plot, since it is possible to get both from a lineup.}
 
 %\subsection{Model notation and formulation} 
 \subsection{Linear mixed-effects models} 
@@ -740,12 +744,12 @@ Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of line
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
 Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots (none of 68 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
 be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
-Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 29 out of 68 observers. Other panels  selected at least four times were \#1, 13,14, 16, and 18. 
+Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 29 out of 68 observers. Other panels  selected at least four times were \#1, 13, 14, 16, and 18. 
 Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
-To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. \al{Twenty nine out of 70} identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
  The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach.%, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
@@ -1145,7 +1149,7 @@ The results show that for all but the Q-Q plots of the random slopes, enough obs
 \begin{table}[ht]
 \centering
 \caption{\label{tab:reasons} Overview of the reasoning given by participants for their choice for each lineup. Choices are given separated by resulting pick of null or data.
- Weighting was used to accommodate  multiple reasons.}
+ Weighting was used to accommodate  multiple reasons. \hhnote{something went wrong - the numbers don't match up with the lineups.}}
 \begin{tabular}{Mllrrrrrr}
   \hline
   &&& \multicolumn{5}{c}{Choice} & \multicolumn{1}{c}{Total}\\ \cline{4-8}
