@@ -276,10 +276,10 @@ This approach allows us to  tap into the (orthogonal) power of graphical diagnos
  Some diagnostics are new, addressing practical needs. An example of this is the cyclone plots of Figure~\ref{fig:badcyclone}. The purpose of  these examples is to show a variety of graphical diagnostics and emphasize that they all fit within the graphical inference framework.  We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
 
 \al{The remainder of this paper is organized as follows.}
-In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. \al{Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools.}
+In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. \al{Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools.} \hh{All example datasets are readily available for public use. A short description of each of them can be found in appendix~\ref{sec:datasets}}
 
-\alnote{Should we include another pointer to the descriptions of the data sets?}
-\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
+%\alnote{Should we include another pointer to the descriptions of the data sets?}
+%\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
 
 %We also show results of a study investigating the power of three different versions of the familiar Q-Q plot. 
 
@@ -388,7 +388,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
 %\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
-\hh{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot (in panel\#$(2\cdot 3^2)$). }
+\hh{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot in panel\#$(2\cdot 3^2)$. }
 
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
@@ -561,7 +561,9 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 
 
 Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}).
-If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
+If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
+\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
+however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
  In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. 
  \hhnote{discuss reason that participants gave for their choice.}
 
@@ -686,9 +688,10 @@ Only one out of  59 participants identified the data plot shown in panel \#$(4^2
 %------------------------------------------------------------------------------------
 
 Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required. 
-\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
-\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
-\hhnote{Oh, ok - we should still write up a sentence on this}
+%\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
+%\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
+%\hhnote{Oh, ok - we should still write up a sentence on this}
+\hh{Once a polynomial of degree four is included in the mean structure of the fixed effects, a smooth line through the residuals is flattened out -- a lineup of this situation is shown in figure~\ref{fig:constvar2}. In this lineup, the data is picked out for heteroscedasticity in the residuals by pressure.  This highlights the use of lineups as omnibus tests. Using the same setup we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the most distinguishing feature. Once the mean structure is taken care of, the lineup changes to test for homogeneity of variance. }
 
 \begin{figure}
 	\centering
@@ -716,7 +719,6 @@ To extend checks of linearity to group-level variables we suggest the use of the
 %}
 %\hhnote{this is where we want to extend the discussion a bit: the partial residual plots and our approach is like the difference between type I and type III sums of squares - i.e. looking at the contribution of covariates either without regarding any of the covariates (type III) or only after adjusting for everything else, in which case we need to fit the model first before we can look into the relationship between $Y$ and $X_i$}
 
-\hhnote{Another aspect that we can highlight at this point, is that lineups are omnibus tests - we can use the same setup, and depending on where we are in the modeling process, we will get a test result: as long as the mean structure is not right, it is most likely the most distinguishing feature, Once the mean structure is taken care of, the lineups change to test for homogeneity of variance. }
 
 \subsection{Normality}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
@@ -950,7 +952,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697. A
 
 %------------------------------------------------------------------------------------
 \appendix
-\section{Data sets}
+\section{Data sets}\label{sec:datasets}
 %------------------------------------------------------------------------------------
 
 All of the data sets used in this paper are publicly available: the General Certificate of Secondary Education Exam data set is available in the R package mlmRev \citep{mlmRev}; the Dialyzer data set is available in the R package MEMSS \citep{MEMSS}; all other data sets can be found in the R package HLMdiag \citep{HLMDiag}.
@@ -987,13 +989,12 @@ The data consist of a stratified random sample of 919 owner-occupied homes in 85
 \section{Experimental Setup and Results}\label{study}
 %------------------------------------------------------------------------------------
 \subsection{Experimental Setup}\label{sec:pvalues}
-For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 90 different lineups. These were evaluated by 580 participants in altogether 6223 evaluations. For each lineup, observers were instructed to identify the plot that is most different and asked what feature led them to their choice. 
-For each lineup, observers were instructed to identify the plot that is most different and asked what feature led them to their choice. These choices came in form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time was taken to answer and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Demographics were collected: age category, gender,  education range, and geographic location (from parts of the ip address). 
+For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 90 different lineups. These were evaluated by 580 participants in altogether 6223 evaluations. For each lineup, observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
+These choices came in form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time was taken to answer and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of the ip address). 
 
 The results of the evaluations for all lineups  are displayed in Table~\ref{tab:results} and the observers' reasons for identifying plots are summarized in Table~\ref{tab:reasons}. 
-The significances in Table~\ref{tab:results} are based on the number of evaluations and the times that the data is being identified. 
-Let $Y$ be the number of evaluations of a lineup, in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \hh{reference to technical report}, where $s$ delineates scenario III, i.e.~the same lineup is shown to all $K$ observers. The $p$-values in table~\ref{tab:results} for each of the five replicates is calculated this way.
-For the overall $p$-value, we use a simulation based approach to combine the five results. Using the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal. We assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability to pick a particular plot during an evaluation is allocated proportionally to its signal. For each ``data plot'' we create five sets of null plots to be evaluated simultaneously $(K_1, ..., K_5)$ times.  
+The significances in Table~\ref{tab:results} are based on the number of evaluations and the times that the data is being identified. For that, we introduce random variable $Y$ as the  number of evaluations of a lineup, in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \hh{reference to technical report}, where $s$ delineates scenario III, i.e.~the same lineup is shown to all $K$ observers. The $p$-values in table~\ref{tab:results} for each of the five replicates are calculated this way.
+For the overall $p$-value, we use a simulation based approach to combine the five results. Treating the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal as follows: we assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability an observer picks a  plot  is allocated proportionally to its signal. For each ``data plot'' we create five sets of null plots to be evaluated simultaneously $(K_1, ..., K_5)$ times.  
 $p$-values are then based on a comparison of the sum of data picks from  five no-signal lineups and  the observed number of data picks from the actual lineups. The column on the right of table~\ref{tab:results} shows $p$-values based on $10^5$ simulation runs.
 
 
@@ -1015,12 +1016,12 @@ The results show that for all but the Q-Q plots of the random slopes, enough obs
 
 
 
-\hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
-\alnote{Can we cite the R package? Having a citation might help with this.}
-
-\hhnote{Only three out of five replicates are providing significant results against the null hypothesis.}
-
-\hhnote{Explain how we deal with five $p$-values from five lineups with the same data and different null sets }
+%\hhnote{I'm not sure how much more detail we can give here - we're in the process of writing up the exact distribution, but the vinference package on my github site already allows for a calculation of the corrected $p$-values.}
+%\alnote{Can we cite the R package? Having a citation might help with this.}
+%
+%\hhnote{Only three out of five replicates are providing significant results against the null hypothesis.}
+%
+%\hhnote{Explain how we deal with five $p$-values from five lineups with the same data and different null sets }
 
 
 %\hh{There are five different null sets for each data set. Throughout the paper we show lineups for the first replicate. In all of the lineups with the exception of figure~\ref{fig:qqlineup-1} observers are identifying the data plot to a degree that we have to reject the null hypotheses of the data being consistent with the null model. }
@@ -1071,7 +1072,7 @@ The results show that for all but the Q-Q plots of the random slopes, enough obs
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
 % Fri Aug 29 22:42:40 2014
 \begin{table}[ht]
-\caption{Percent of data picks given reason for the choice of plot from the lineup. }
+\caption{\label{tab:reasons} Percent of data picks given reason for the choice of plot from the lineup. }
 \centering
 \begin{tabular}{Mrrrrrrr}
   \hline
