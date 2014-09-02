@@ -315,7 +315,18 @@ It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
-\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. \al{Additionally, if one uses $t$-tests or $F$-tests rather than likelihood ratio tests a different complication is encountered, defining the degrees of freedom. }
+\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. \al{Additionally, if one uses $t$-or $F$-tests a different complication is encountered: defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. When there are few groups the approximate $F$-test is more problematic, having inflated Type I error rates and low power \citep{Catellier:2000vr}. 
+
+XXX Need to reread the below references to check accuracy of these summaries:
+
+\cite{Kenward:1997ft} propose the use of a scaled Wald statistic that has a sampling distribution that is well approximated by an $F$ distribution 
+
+Problems with Kenward and Roger's method: has inflated type I error rates for some small sample cases  \citep{Gomez:2005dw}
+
+An alternative to the Kenward-Roger approximation that achieves nominal type I error rates but have low power \citep{Skene:2010kf}.
+
+}
+
 \alnote{I could also mention the messy business of defining the degrees of freedom here.}
 \hhnote{yes, a bit of that discussion would be good. I'm not sure that we can cite Bates - but maybe by now he's actually published something on that discussion, which is the main reason for his aversion of putting in p values.}
 \alnote{I am taking a look through the literature. I did find Bates' ``rant'' (which is quite hilarious and interesting) \url{https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html}, and I also found a paper by Hodges that might be applicable, but I need to read it to make that determination:
