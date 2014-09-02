@@ -315,7 +315,7 @@ It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
-\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
+\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. \al{Additionally, if one uses $t$-tests or $F$-tests rather than likelihood ratio tests a different complication is encountered, defining the degrees of freedom. }
 \alnote{I could also mention the messy business of defining the degrees of freedom here.}
 \hhnote{yes, a bit of that discussion would be good. I'm not sure that we can cite Bates - but maybe by now he's actually published something on that discussion, which is the main reason for his aversion of putting in p values.}
 \alnote{I am taking a look through the literature. I did find Bates' ``rant'' (which is quite hilarious and interesting) \url{https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html}, and I also found a paper by Hodges that might be applicable, but I need to read it to make that determination:
