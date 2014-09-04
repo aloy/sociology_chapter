@@ -315,29 +315,27 @@ It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
-\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. \al{Additionally, if one uses $t$-or $F$-tests a different complication is encountered: defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. When there are few groups the approximate $F$-test is more problematic, having inflated Type I error rates and low power \citep{Catellier:2000vr}. 
+\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. \al{Additionally, if one uses $t$- or $F$-tests a different complication is encountered: defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. When there are few groups the approximate $F$-test is more problematic, having inflated Type I error rates and low power \citep{Catellier:2000vr}. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach does have inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are certainly more complicated than they may first seem.}
+%XXX Need to reread the below references to check accuracy of these summaries:
+%
+%\cite{Kenward:1997ft} propose the use of a scaled Wald statistic that has a sampling distribution that is well approximated by an $F$ distribution 
+%
+%Problems with Kenward and Roger's method: has inflated type I error rates for some small sample cases  \citep{Gomez:2005dw}
+%
+%An alternative to the Kenward-Roger approximation that achieves nominal type I error rates but have low power \citep{Skene:2010kf}.
 
-XXX Need to reread the below references to check accuracy of these summaries:
 
-\cite{Kenward:1997ft} propose the use of a scaled Wald statistic that has a sampling distribution that is well approximated by an $F$ distribution 
-
-Problems with Kenward and Roger's method: has inflated type I error rates for some small sample cases  \citep{Gomez:2005dw}
-
-An alternative to the Kenward-Roger approximation that achieves nominal type I error rates but have low power \citep{Skene:2010kf}.
-
-}
-
-\alnote{I could also mention the messy business of defining the degrees of freedom here.}
-\hhnote{yes, a bit of that discussion would be good. I'm not sure that we can cite Bates - but maybe by now he's actually published something on that discussion, which is the main reason for his aversion of putting in p values.}
-\alnote{I am taking a look through the literature. I did find Bates' ``rant'' (which is quite hilarious and interesting) \url{https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html}, and I also found a paper by Hodges that might be applicable, but I need to read it to make that determination:
-
-Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
-}
+%\alnote{I could also mention the messy business of defining the degrees of freedom here.}
+%\hhnote{yes, a bit of that discussion would be good. I'm not sure that we can cite Bates - but maybe by now he's actually published something on that discussion, which is the main reason for his aversion of putting in p values.}
+%\alnote{I am taking a look through the literature. I did find Bates' ``rant'' (which is quite hilarious and interesting) \url{https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html}, and I also found a paper by Hodges that might be applicable, but I need to read it to make that determination:
+%
+%Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
+%}
 \item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal leading to either conservative or anti-conservative decisions. 
 \end{description}
 
 
-Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of independent observers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
+Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space, \al{and they avoid the tricky business of defining degrees of freedom}. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of independent observers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
 
 \subsection{Fixed effects} 
 To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest with the values of that variable. 
