@@ -346,7 +346,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{autism2-ordered-10.pdf}
-	\caption{\label{fig:boxplot-ordered} \hh{Lineup of level-1 residuals in box plots  by groups to test significance of a discrete covariate.}
+	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in box plots  by groups to test significance of a discrete covariate.}
 %	\todo[inline]{I'm starting to get nitpicky again :)
 %	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
 %	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
@@ -397,7 +397,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
 %\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
-\hh{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot in panel\#$(2\cdot 3^2)$. }
+{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
 
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
@@ -560,25 +560,17 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-bp-19.pdf}
-	\caption{\label{fig:constvar2.bp} 
-	Alternative box plot  Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
-%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
-\end{figure}
 
 
 Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}).
-If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
-\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
-however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
+%If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
+%\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
+%however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
  In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. 
- \hhnote{discuss reason that participants gave for their choice.}
+ %\hhnote{discuss reason that participants gave for their choice.}
 
 
 
-Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} -- with the  difference that pressure is categorized into seven categories, and residuals are shown in the form of boxplots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data. \hh{XXX This is consistent with the other design XXX}
 
 
 
@@ -598,9 +590,10 @@ Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same dat
 \end{figure}
 
 Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
-\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
+%\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
 
-Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
+Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance increases across the $x$ axis.  However, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
+The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
 %Outliers       Large spread       Trend       Asymmetry       Other
 % dialyzerhomogeneous
 %  correct        1        2        3        4        5
@@ -630,7 +623,7 @@ Comparing the two lineups reveals that the patterns that can be expected in any 
 %%	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 %\end{figure}
 
-\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
+%\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
 
 %\paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not investigate potential differences in variability between groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
@@ -1121,7 +1114,21 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 \subsection{Additional lineups included in the study}\label{app:morelineups}
 %------------------------------------------------------------------------------------
 
-This section includes two lineups that were included in the Amazon MTurk study, but were not discussed in the paper. Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot (panel $\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
+This section includes two lineups that were included in the Amazon MTurk study, but were not discussed in the paper. 
+
+Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} -- with the  difference that pressure is categorized into seven categories, and residuals are shown in the form of boxplots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-bp-19.pdf}
+	\caption{\label{fig:constvar2.bp} 
+	Alternative box plot  Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
+
+
+Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot (panel $\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
 
 \begin{figure}
 	\centering
@@ -1134,6 +1141,7 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 %	\includegraphics[width=0.8\textwidth]{autism2-unordered-10.pdf}
 %	\caption{\label{fig:boxplot-unordered} An alternative layout of Figure~\ref{fig:boxplot-ordered}, where the boxplots are ordered as they are for inference. Which of the plots is the most different? Which feature led you to your choice?}
 %\end{figure}
+
 
 \clearpage
 %------------------------------------------------------------------------------------
