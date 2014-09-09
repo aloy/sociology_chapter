@@ -272,12 +272,9 @@ The above issues are well-known, and in special circumstances adjustments to the
 The purpose of this paper is to discuss visual inference in the framework of diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. 
 This approach allows us to  tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
 
-\hhnote{The next paragraph should be broken into two; and all the discussion should go into the back}
-\hh{We do not intend for this paper to include an exhaustive discussion of all possible tests or testing situations, but rather we include some suggestions of specific diagnostics to alleviate some of the problems inherent to mixed effects models. The diagnostics in this paper draw from various sources. Some of the diagnostics presented here, are well known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models, such as XXX.
- Some diagnostics are new, addressing practical needs. An example of this is the cyclone plots of Figure~\ref{fig:badcyclone}. The purpose of  these examples is to show a variety of graphical diagnostics and emphasize that they all fit within the graphical inference framework.  We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
 
-\al{The remainder of this paper is organized as follows.}
-In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. \al{Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools.} \hh{All example datasets are readily available for public use. A short description of each of them can be found in appendix~\ref{sec:datasets}}
+The remainder of this paper is organized as follows.
+In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools.All example datasets are readily available for public use. A short description of each of them can be found in appendix~\ref{sec:datasets}.
 
 %\alnote{Should we include another pointer to the descriptions of the data sets?}
 %\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
@@ -316,7 +313,8 @@ It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
-\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. \al{Additionally, if one uses $t$- or $F$-tests a different complication is encountered: defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. When there are few groups the approximate $F$-test is more problematic, having inflated Type I error rates and low power \citep{Catellier:2000vr}. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach does have inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are certainly more complicated than they may first seem.}
+\item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
+When using  $t$- or $F$-tests we encounter another  complication in defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach does have inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are certainly more complicated than they may first seem.
 %XXX Need to reread the below references to check accuracy of these summaries:
 %
 %\cite{Kenward:1997ft} propose the use of a scaled Wald statistic that has a sampling distribution that is well approximated by an $F$ distribution 
@@ -336,7 +334,7 @@ While statistical software has made performing many of these tests easy, situati
 \end{description}
 
 
-Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space, \al{and they avoid the tricky business of defining degrees of freedom}. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of independent observers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
+Visual inference provides an alternative to conventional hypothesis tests that does not require different rules based on the method of estimation or location of a parameter in the parameter space, and they avoid the tricky business of defining degrees of freedom. Rather, visual inference depends on the choice of an appropriate plot highlighting the aspect of the model in question, the number of null plots, and the number of independent observers. Below we discuss how visual inference can be utilized to test the significance of fixed and random effects.
 
 \subsection{Fixed effects} 
 To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest with the values of that variable. 
@@ -347,7 +345,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{autism2-ordered-10.pdf}
-	\caption{\label{fig:boxplot-ordered} \hh{Lineup of level-1 residuals in box plots  by groups to test significance of a discrete covariate.}
+	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in box plots  by groups to test significance of a discrete covariate.}
 %	\todo[inline]{I'm starting to get nitpicky again :)
 %	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
 %	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
@@ -398,7 +396,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
 %\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
-\hh{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot in panel\#$(2\cdot 3^2)$. }
+{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
 
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
@@ -561,25 +559,17 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-bp-19.pdf}
-	\caption{\label{fig:constvar2.bp} 
-	Alternative box plot  Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
-%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
-\end{figure}
 
 
 Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Appendix~\ref{data:dialyzer}).
-If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
-\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
-however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
+%If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
+%\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
+%however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
  In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. 
- \hhnote{discuss reason that participants gave for their choice.}
+ %\hhnote{discuss reason that participants gave for their choice.}
 
 
 
-Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} -- with the  difference that pressure is categorized into seven categories, and residuals are shown in the form of boxplots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data. \hh{XXX This is consistent with the other design XXX}
 
 
 
@@ -599,9 +589,10 @@ Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same dat
 \end{figure}
 
 Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
-\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
+%\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
 
-Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
+Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance increases across the $x$ axis.  However, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
+The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
 %Outliers       Large spread       Trend       Asymmetry       Other
 % dialyzerhomogeneous
 %  correct        1        2        3        4        5
@@ -631,12 +622,12 @@ Comparing the two lineups reveals that the patterns that can be expected in any 
 %%	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 %\end{figure}
 
-\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
+%\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
 
 %\paragraph{Testing homoscedasticity across groups.}
 Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not investigate potential differences in variability between groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots \al{(by 50 of 75 observers)} revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
 
 
 \begin{figure}[hbt]
@@ -659,7 +650,7 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 	H = \sum_{i=1}^{g^*} d_i^2
 \end{equation}
 %
-which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. \al{Performing this simulation-based version of this test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. }
+which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. Performing this simulation-based version of this test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. 
 
 %\alnote{I need to go back and really emphasize the lack of effective conventional tests here}
 %\hhnote{what is the result - in $p$-value for the conventional test? it would be nice if it were inconclusive :) }
@@ -677,7 +668,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 
 Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
-Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity \alnote{XXX Do we want to use the combined p-value? XXX}. \al{In this situation the ``conventional'' test agrees with the visual test with a $p$-value of 0.149, if counties with fewer than 10 observations are excluded. If only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185. This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because boxplots are not appropriate for such small group sizes. While we are still slightly constrained with group sizes, we are far less constrained than in the conventional test.}
+Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test agrees with the visual test with a (combined) $p$-value of 0.149 (see appendix~\ref{sec:pvalues} for details), if counties with fewer than 10 observations are excluded. If only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185. This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because boxplots are not appropriate for such small group sizes, \hh{but could be included in the representation as dot plots}. While we are still slightly constrained with group sizes, we are far less constrained than in the conventional test.
  
 %\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
 
@@ -701,7 +692,7 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 %\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 %\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
 %\hhnote{Oh, ok - we should still write up a sentence on this}
-\hh{Once a polynomial of degree four is included in the mean structure of the fixed effects, a smooth line through the residuals is flattened out -- a lineup of this situation is shown in figure~\ref{fig:constvar2}. In this lineup, the data is picked out for heteroscedasticity in the residuals by pressure.  This highlights the use of lineups as omnibus tests. Using the same setup we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the most distinguishing feature. Once the mean structure is taken care of, the lineup changes to test for homogeneity of variance. }
+Once a polynomial of degree four is included in the mean structure of the fixed effects, a smooth line through the residuals is flattened out -- a lineup of this situation is shown in figure~\ref{fig:constvar2}. In this lineup, the data is picked out for heteroscedasticity in the residuals by pressure.  This highlights the use of lineups as omnibus tests. Using the same setup we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the most distinguishing feature. With the mean structure is taken care of, the lineup changes to test for homogeneity of variance. 
 
 \begin{figure}
 	\centering
@@ -923,6 +914,10 @@ To determine whether lineups can detect distributional violations we constructed
 %------------------------------------------------------------------------------------
 \section{Discussion and Conclusion}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
+
+\hh{We do not intend for this paper to include an exhaustive discussion of all possible tests or testing situations, but rather we include some suggestions of specific diagnostics to alleviate some of the problems inherent to mixed effects models. The diagnostics in this paper draw from various sources. Some of the diagnostics presented here, are well known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models, such as XXX.
+ Some diagnostics are new, addressing practical needs. An example of this is the cyclone plots of Figure~\ref{fig:badcyclone}. The purpose of  these examples is to show a variety of graphical diagnostics and emphasize that they all fit within the graphical inference framework.  We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
+
 \hhnote{overarching results;  variability in results due to  sample of null sets}
 
 \hhnote{points to touch upon: pro: lineups are omnibus tests
@@ -959,7 +954,12 @@ Throughout this paper we have provided examples of graphical diagnostics that we
 %------------------------------------------------------------------------------------
 We would like to thank Mahbubul Majumder and Eric Hare, who conducted the Amazon MTurk study (\url{mahbub.stat.iastate.edu/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4} and HLMdiag \citep{HLMDiag} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
+%------------------------------------------------------------------------------------
 
+\bibliographystyle{asa}
+\bibliography{hlmviz_bib}
+
+\clearpage
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 
@@ -1005,7 +1005,7 @@ The data consist of a stratified random sample of 919 owner-occupied homes in 85
 %------------------------------------------------------------------------------------
 \section{Experimental Setup and Results}\label{study}
 %------------------------------------------------------------------------------------
-\subsection{Experimental Setup}\label{sec:pvalues}
+\subsection{Experimental Setup and Calculation of $p$-values}\label{sec:pvalues}
 For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 75 different lineups. These were evaluated by 487 participants in altogether 4927 evaluations. For each lineup, observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
 These choices came in form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time was taken to answer and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of the ip address). 
 
@@ -1129,7 +1129,21 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 \subsection{Additional lineups included in the study}\label{app:morelineups}
 %------------------------------------------------------------------------------------
 
-This section includes two lineups that were included in the Amazon MTurk study, but were not discussed in the paper. Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot (panel $\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
+This section includes two lineups that were included in the Amazon MTurk study, but were not discussed in the paper. 
+
+Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2} -- with the  difference that pressure is categorized into seven categories, and residuals are shown in the form of boxplots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-bp-19.pdf}
+	\caption{\label{fig:constvar2.bp} 
+	Alternative box plot  Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
+
+
+Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot (panel $\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
 
 \begin{figure}
 	\centering
@@ -1142,6 +1156,7 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 %	\includegraphics[width=0.8\textwidth]{autism2-unordered-10.pdf}
 %	\caption{\label{fig:boxplot-unordered} An alternative layout of Figure~\ref{fig:boxplot-ordered}, where the boxplots are ordered as they are for inference. Which of the plots is the most different? Which feature led you to your choice?}
 %\end{figure}
+
 
 
 \end{document}
