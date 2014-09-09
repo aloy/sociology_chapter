@@ -80,6 +80,7 @@
 \maketitle
 \begin{abstract}
 Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power.
+\keywords{Statistical graphics; Lineup; Model diagnostics;...}
 \end{abstract}
 
 %\tableofcontents
@@ -960,6 +961,13 @@ We would like to thank Mahbubul Majumder and Eric Hare, who conducted the Amazon
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
 
 %------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+
+\bibliographystyle{asa}
+\bibliography{hlmviz_bib}
+
+%------------------------------------------------------------------------------------
+\clearpage
 \appendix
 \section{Data sets}\label{sec:datasets}
 %------------------------------------------------------------------------------------
@@ -1135,11 +1143,5 @@ This section includes two lineups that were included in the Amazon MTurk study, 
 %	\caption{\label{fig:boxplot-unordered} An alternative layout of Figure~\ref{fig:boxplot-ordered}, where the boxplots are ordered as they are for inference. Which of the plots is the most different? Which feature led you to your choice?}
 %\end{figure}
 
-\clearpage
-%------------------------------------------------------------------------------------
-%------------------------------------------------------------------------------------
-
-\bibliographystyle{asa}
-\bibliography{hlmviz_bib}
 
 \end{document}
