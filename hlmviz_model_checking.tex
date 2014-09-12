@@ -76,6 +76,7 @@
 \author{{Adam Loy, Heike Hofmann, Dianne Cook}
 \thanks{Adam Loy is an Assistant Professor (e-mail: adam.m.loy@lawrence.edu) in the Department of Mathematics, Lawrence University, Appleton, WI 54911. Heike Hofmann is a Professor in the Department of Statistics and Statistical Laboratory, Iowa State University, Ames, IA 50011. Dianne Cook is a Professor in the Department of Statistics and Statistical Laboratory, Iowa State University, Ames, IA 50011.}}
 
+
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -89,11 +90,12 @@ Valid model-based statistical inference relies on proper specification of a mode
 %------------------------------------------------------------------------------------
 %\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship, take it out of the data, and search in the residuals for additional structure that is yet unexplained; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
+Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship, take it out of the data, and search the residuals for additional structure that is yet unexplained; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
+\alnote{I felt like the next sentence was a bit out of place now.}
 Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. Graphical methods are commonly used to check the assumptions of a model. Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}. In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit. 
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
 While the use of statistical graphics is wide-spread in exploratory data analysis and informal validation, graphics are often considered to be too subjective to be the sole basis for model selection or validation. 
-At the core of this criticism is the fact that decisions are  based on a single plot. With only a single plot,  the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, in complex models we observe structures 
+At the core of this criticism is the fact that decisions are  based on a single plot. With only a single plot,  the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, in complex models we \al{often} observe structures 
 %artificial structures are often observed 
 in their residuals, even when models are properly specified \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
 These drawbacks lead to an over-reliance on conventional hypothesis tests %for model selection and validation 
@@ -114,7 +116,7 @@ Recent developments in graphics methodology provide us with a rigorous framework
  to overcome common difficulties  with conventional hypothesis tests 
 % and statistical graphics 
  %that are encountered 
- in the selection and validation of linear mixed-effects (LME) models. 
+ in the selection and validation of linear mixed-effects models. 
 % This approach is able to enhance familiar statistical graphics to avoid the detection of artificial structures. 
 
 
@@ -138,9 +140,9 @@ Classical statistical inference consists of
 	(ii) calculating a test statistic of the observed data,
 	(iii) comparing the test statistic to a reference (null) distribution,
 	(iv) and deriving a $p$-value on which we base our conclusion.
-Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of linear mixed-effects models, we want to highlight  parallels there. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
+Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of linear mixed-effects models, we highlight  parallels \al{in this setting}. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
 while
-the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption which allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternate hypotheses. 
+the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption that allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternate hypotheses. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
 If the model assumption holds, the plot of the observed data will be indistinguishable from the null plots. 
 For the lineup protocol a sample of the null distribution is taken, in which
@@ -149,6 +151,7 @@ the true plot is randomly embedded.  These lineups are then presented to indepen
 This  allows for the estimation of a $p$-value associated with the lineup.
  Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
 If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependency inherent to the application of lineups in a human subject study.
+\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
 %\begin{equation}\label{eqn.pvalue}
@@ -168,14 +171,14 @@ Observers are asked to identify the plot that is the most different from the oth
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
 Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
-is consistent with the model that generated the data on which all of the other plots are based on. The  model in question, the corresponding null hypothesis and the calculation of $p$-values are explained in detail in Sections~\ref{sec:select} and Appendix~\ref{sec:pvalues}. 
-
+is consistent with the model that generated the data on which all of the other plots are based. The  model in question, the corresponding null hypothesis and the calculation of $p$-values are explained in detail in Sections~\ref{sec:select} and Appendix~\ref{sec:pvalues}. 
 The data in this first lineup is shown in panel  $\sqrt{144} + 4$. 
 
 
 Unlike classical hypothesis tests, visual inference  allows us to additionally collect information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
 This  information helps us assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. 
+\alnote{The sentence below needs some rewording}
 In the example of the first lineup of figure~\ref{fig:fanned} `spread' as the reason for their choice increased observers' chances to pick the data over a null plot. 
 %\hhnote{Should we give the reasons for the first example?}
 %\alnote{That's a good idea. I think we can give both the common choices from MTurk, and our own analysis of the plot, since it is possible to get both from a lineup.}
@@ -269,7 +272,7 @@ The above issues are well-known, and in special circumstances adjustments to the
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-The purpose of this paper is to discuss visual inference in the framework of diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inference are violated. 
+The purpose of this paper is to discuss visual inference in the framework of diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional \al{inferential procedure} are violated. 
 This approach allows us to  tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
 
 
@@ -297,7 +300,7 @@ In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:chec
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}
 %% with respect to both fixed and random effects, 
 % as well as some additional component(s). For example, the larger model may include additional fixed effects, or include additional random effects. Two models are not nested when one model cannot be viewed as a special case of the other. For example, if two models contain different sets of fixed effects.
- Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components of the model. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. 
+ Model selection for linear mixed-effects models relies on the comparison of nested models for the selection of both the fixed and random components. To select fixed effects $t$- and $F$-tests are commonly used, while likelihood ratio tests are used to select the random effects. 
 % \hh{For comparing non-nested models we usually make use of  AIC or BIC  \citep{anderson1998}.}
  In this section we discuss how to use visual inference as a unified testing framework for model selection of both fixed and random effects.
  % for both nested and non-nested models. 
@@ -307,14 +310,14 @@ In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:chec
 %\subsubsection{Conventional practices}
 %\subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
-
+\alnote{This paragraph is a lot of repeat from the last paragraph, other than the intro to complications. I need to think about ways to resolve this.}
 It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability in a linear mixed-effects model. Likelihood ratio tests are more generally applicable in comparing nested models, but are  commonly used in the selection of random effects. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
 
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
-When using  $t$- or $F$-tests we encounter another  complication in defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach does have inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are certainly more complicated than they may first seem.
+When using  $t$- or $F$-tests we encounter another  complication in defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach has inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are certainly more complicated than they may first seem.
 %XXX Need to reread the below references to check accuracy of these summaries:
 %
 %\cite{Kenward:1997ft} propose the use of a scaled Wald statistic that has a sampling distribution that is well approximated by an $F$ distribution 
@@ -330,7 +333,7 @@ When using  $t$- or $F$-tests we encounter another  complication in defining the
 %
 %Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
 %}
-\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation, or utilize the rule of thumb suggested by \citeauthor{Stram:1994wd} with the knowledge that the results may be sub-optimal leading to either conservative or anti-conservative decisions. 
+\item[\bf Random components: ] When the covariance parameter being tested lies on the boundary of the parameter space the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation. \al{Alternatively,} the rule of thumb suggested by \citeauthor{Stram:1994wd} \al{can be utilized} with the knowledge that the results may be sub-optimal, leading to either conservative or anti-conservative decisions. 
 \end{description}
 
 
@@ -353,7 +356,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
-Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five of them identified the data plot (panel $2^3 + 2$), 
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five \al{observers} identified the data plot (panel $2^3 + 2$), 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
@@ -372,8 +375,8 @@ to determine whether a child's language development at age two (low, medium, or 
 \subsection{Random effects} 
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-The lineup in Figure~\ref{fig:fanned} is chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Appendix~\ref{data:GCSE} for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
-The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  is  created by simulating GCSEE scores from a model with only a single random effect, the random intercept.
+The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Appendix~\ref{data:GCSE} for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
+The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with only a single random effect, the random intercept.
 The resulting scores for each school are regressed on LRT results and shown as lines.
 %\al{and overlaying linear smoothers for each school.}
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
@@ -396,21 +399,22 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
 %\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
-{Note that participants are unable to identify the true data from a lineup (see  Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
+{Note that participants are unable to identify the true data from a lineup (Figure~\ref{fig:fanned2}) showing lines stemming from regression fits of null data from a model including the random slope.  All panels show data from the same distribution and the true data should therefore not be identifiable.  None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
 
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
 
-Participants should only see one of figures~\ref{fig:fanned} or~\ref{fig:fanned2}, because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel as shown before. While this chance is slim in practice, we ensured in the user study to expose participants to only one of a set of of dependent lineups.  
+Participants should only see one of figures~\ref{fig:fanned} or~\ref{fig:fanned2}, because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel as shown before. While this chance is slim in practice, we \al{we only exposed participants to one of a set of dependent lineups.}
+%ensured in the user study to expose participants to only one of a set of of dependent lineups.  
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
 %This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. 
- The null plots in the lineup are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from a model allowing for correlation between the random effects.
+ The null plots in the lineup are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from such a model \al{fit to the observed data.}
 The slopes of the regression lines are indicative of the amount of correlation. 
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
 The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model, avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.
-  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical LRT.
+  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
 %  \hhnote{What does the $p$-value of the classical LRT say?}
 %  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
 
