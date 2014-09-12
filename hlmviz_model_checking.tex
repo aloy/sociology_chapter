@@ -515,7 +515,7 @@ The lineup allows us to gauge the amount of correlation between the random effec
 \section{Model checking}\label{sec:checking}
 %------------------------------------------------------------------------------------
 
-In the formulation of model \eqref{eq:hlm} we make a number of assumptions that must be satisfied. In this section we discuss how residual plots can be used with lineups to check the assumptions of homogeneous residual variance, linearity, and normality of the random effects. While we only focus on these assumptions, the discussion is general enough to reveal how visual inference could be extended to check other aspects of the model.
+In the formulation of model \eqref{eq:hlm} we make a number of assumptions that must be satisfied. In this section we discuss how residual plots can be used with lineups to check the assumptions of homogeneous residual variance, linearity, and normality of the random effects. While we only focus on these assumptions, the discussion is general enough to reveal how visual inference can be extended to check other aspects of the model.
 
 %
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
@@ -592,6 +592,9 @@ Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals a
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
+
+\alnote{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} are really no different from the cyclone plots, aside from showing two different designs. I am not sure whether they add anything to the discussion in this section. To me they seem to detract from the cyclone plot discussion. One idea is to move them to the appendix where we can highlight the difference in designs. I don't think moving this would detract from how ``novel'' our contribution is.}
+
 Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
 %\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
 
@@ -629,9 +632,11 @@ Comparing the two lineups reveals that the patterns that can be expected in any 
 %\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
 
 %\paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not investigate potential differences in variability between groups. To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
+Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not investigate potential differences in variability between groups. 
+\alnote{Rethinking this, scatterplots can be used for this (figure 6 shows this!), but there are more effective plots.}
+To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that cannot be detected by other residual plots. 
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that cannot be detected by other residual plots \al{XXX the tail end of this comment may not be true...}. 
 
 
 \begin{figure}[hbt]
@@ -642,19 +647,19 @@ To overcome this difficulty, we create a lineup of side-by-side boxplots for eac
 %	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
-An alternative approach to detect homoscedasticity of the level-1 residuals across groups is to use a test  \citep{Raudenbush:2002} based on the standardized measure of dispersion given by
+An alternative approach to detect homoscedasticity of the level-1 residuals across groups is to use a test based on the standardized measure of dispersion given by
 %
 \begin{equation}\label{eq:d}
 	d_i = \frac{\log\left( s_i^2 \right) - \left[ \sum_i (n_i - r_i) \log\left( s_i^2 \right) / \sum_i  (n_i - r_i) \right]}{\left(2 / (n_i - r_i)\right)^{1/2}}
 \end{equation}
 %
-where $s_i^2$ is the residual variance within each group based on separate ordinary least squares regressions and $r_i$ is the rank of the corresponding model matrix. The test statistic is then
+where $s_i^2$ is the residual variance within each group based on separate ordinary least squares regressions and $r_i$ is the rank of the corresponding model matrix  \citep{Raudenbush:2002}. The test statistic is then
 %
 \begin{equation}
 	H = \sum_{i=1}^{g^*} d_i^2
 \end{equation}
 %
-which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. Performing this simulation-based version of this test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. 
+which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. Performing the simulation-based version of the test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. 
 
 %\alnote{I need to go back and really emphasize the lack of effective conventional tests here}
 %\hhnote{what is the result - in $p$-value for the conventional test? it would be nice if it were inconclusive :) }
@@ -670,6 +675,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 	\caption{\label{fig:goodcyclone} Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
+\alnote{I think that this is the first reference to the radon example in the text. Should we include a bit more info? Also, we need to include a reference to the appendix.}
 Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots. Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
 Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test agrees with the visual test with a (combined) $p$-value of 0.149 (see appendix~\ref{sec:pvalues} for details), if counties with fewer than 10 observations are excluded. If only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185. This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because boxplots are not appropriate for such small group sizes, \hh{but could be included in the representation as dot plots}. While we are still slightly constrained with group sizes, we are far less constrained than in the conventional test.
@@ -696,7 +702,9 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 %\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 %\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
 %\hhnote{Oh, ok - we should still write up a sentence on this}
-Once a polynomial of degree four is included in the mean structure of the fixed effects, a smooth line through the residuals is flattened out -- a lineup of this situation is shown in figure~\ref{fig:constvar2}. In this lineup, the data is picked out for heteroscedasticity in the residuals by pressure.  This highlights the use of lineups as omnibus tests. Using the same setup we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the most distinguishing feature. With the mean structure is taken care of, the lineup changes to test for homogeneity of variance. 
+Once a polynomial of degree four is included in the mean structure of the fixed effects, a smooth line through the residuals is flattened out -- a lineup of this situation is shown in figure~\ref{fig:constvar2}. In this lineup, the data is picked out for heteroscedasticity in the residuals by pressure.  This highlights the use of lineups as omnibus tests. 
+\alnote{Would ``a unified framework'' be more accurate? I am still milling this over.}
+Using the same setup we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the most distinguishing feature. Once the mean structure is taken properly specified, the lineup changes to test for homogeneity of variance. 
 
 \begin{figure}
 	\centering
@@ -710,6 +718,7 @@ Once a polynomial of degree four is included in the mean structure of the fixed 
 \end{figure}
 
 To extend checks of linearity to group-level variables we suggest the use of the level-2 residuals. Additionally, when categorical predictors are investigated, side-by-side boxplots should be used.
+\alnote{If we're looking for anything to cut, the last sentence is a prime target.}
 
 %\hhnote{we wanted to talk about how this is the most familiar situation and is entirely solvable with tools straight from linear models. Did Cook and Weisberg name those? I think I've seen the name partial residual plots at times. 
 %We need another ***LINEUP*** here, we agreed to use a quartic term in the dialyzer example to have a better mean structure.}
@@ -756,8 +765,8 @@ Additionally, this example shows that even the null plots that were generated fr
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
-To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
- The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach.%, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 \al{observers} identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
+ The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach. %, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
