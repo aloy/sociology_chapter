@@ -928,14 +928,15 @@ To determine whether lineups can detect distributional violations we constructed
 \section{Discussion and Conclusion}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
 
+\alnote{We use a parametric bootstrap here, so we can't claim that the simulation is non-parametric.}
 We have presented a graphical approach to model selection and diagnosis based on non-parametric simulation from the model. % fit to the true data. 
-Lineup tests provide us with the framework to test hypothesis and also allow a  subsequent exploration of the plots in the lineup  for additional insight into the data structure. This approach relies  on the simulation process, the design of the graphics created, and observers, but avoids the reliance on asymptotic reference distributions; thereby circumventing the pitfalls of many commonly used diagnostic tests. 
+Lineup tests provide us with the framework to test hypotheses and also allow a  subsequent exploration of the plots in the lineup  for additional insight into the data structure. This approach relies  on the simulation process, the design of the graphics created, and observers, but avoids the reliance on asymptotic reference distributions; thereby circumventing the pitfalls of many commonly used diagnostic tests. 
 %It is important to note that simulation-based diagnostics for linear mixed-effects models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
 
 
 %\hhnote{now we need to say something on each of the pieces that lineups rely on}
 
-As results of visual inference rely on the choices of the observers,  the quality of their responses compared to those in more traditional lab settings is  of concern. Studies in this direction show promising results: a replicate of the  study by \citet{cleveland:1984} using the Amazon MTurk service \cite{heer:2010} achieved matching results. \cite{kosara:2010} found similar results between a lab study and one performed using MTurk. The studies also discuss tactics that can be used to avoid people ``gaming the system,'' which provide further protection from irrelevant responses.
+As results of visual inference rely on the choices of the observers,  the quality of their responses compared to those in more traditional lab settings is  of concern. Studies in this direction show promising results: a replicate of the  study by \citet{cleveland:1984} using the Amazon MTurk service achieved matching results \citep{heer:2010}. \cite{kosara:2010} found similar results between a lab study and one performed using MTurk. The studies also discuss tactics that can be used to avoid people ``gaming the system,'' which provide further protection from irrelevant responses.
 
 \hh{Design choices are important -- some designs are better at detecting anomalies than others. On an individual level this is, of course, subjective. At a population level, the results are surprisingly(?) stable. This is reassuring and allows us to introduce the concept of power of tests into visual inference. At the moment design choices have to be made using best judgment based on  experience and results from cognitive psychology. As we implement more studies we will learn more about the power of designs and be able to make more informed decisions on designs.
 }
