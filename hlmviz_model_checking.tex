@@ -521,7 +521,7 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
 
-\subsection{Homogeneity of variance}
+\subsection{Homogeneity of variance}\label{sec:homogeneity}
 %\subsubsection{Conventional practices}\label{sec:conv-check}
 %------------------------------------------------------------------------------------
 
@@ -575,47 +575,8 @@ Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals a
 
 
 
-
-
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=0.8\textwidth]{dialyzerhomogeneous-dots-1-19.pdf}
-	\caption{\label{homogeneous-1}
-	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
-%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
-\end{figure}
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=0.8\textwidth]{dialyzerhomogeneous-1-19.pdf}
-	\caption{ \label{homogeneous-2}
-	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
-%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
-\end{figure}
-
-
-\alnote{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} are really no different from the cyclone plots, aside from showing two different designs. I am not sure whether they add anything to the discussion in this section. To me they seem to detract from the cyclone plot discussion. One idea is to move them to the appendix where we can highlight the difference in designs. I don't think moving this would detract from how ``novel'' our contribution is.}
-
-Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show a second example of lineups testing for homogeneous variance.
-%\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
-
-Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance increases across the $x$ axis.  However, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
-The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
-%Outliers       Large spread       Trend       Asymmetry       Other
-% dialyzerhomogeneous
-%  correct        1        2        3        4        5
-%1   FALSE 38.86852 33.89209 13.35778 12.46726 1.414353
-%2    TRUE 25.35211 28.16901 29.57746 16.90141       NA
-% dialyzerhomogeneous-bp
-%  correct        1        2        3        4        5
-%1   FALSE 29.09350 25.72378 28.286664 12.05505 4.841006
-%2    TRUE 45.31162 37.28243  8.422235  7.29927 1.684447
-
-The reason for the box plot design being so much more significant might not be so much of an issue of homogeneity being violated as much as a difference in the error distribution between the data and the nulls. Null data comes from a parametric bootstrap where residuals are simulated under a normal error assumption. Outliers in small samples are indicative of the sample being from a distribution with heavy tails.
-Regardless of the reasoning, the second lineup design enables us to diagnose a problem with the model that makes the data stand out from a set of nulls.  The two designs therefore represent two very similar tests with different power.
-
-
-
-
+\hh{An example for the use of a lineup where observers do not detect heteroscedasticity and an accompanying discussion can be found in appendix~\ref{app:morelineups}.}
+\hhnote{where should the next sentence go? also in the appendix? - it's making a nice point, though}
 Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
 
 
@@ -632,11 +593,12 @@ Comparing the two lineups reveals that the patterns that can be expected in any 
 %\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
 
 %\paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not investigate potential differences in variability between groups. 
+Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not \hh{show the same power as box plots when they} investigate potential differences in variability between groups \hh{as can be seen in the example of the lineups in figs.~\ref{homogeneous-1} and~\ref{homogeneous-2} of  appendix~\ref{app:morelineups}}. 
 \alnote{Rethinking this, scatterplots can be used for this (figure 6 shows this!), but there are more effective plots.}
 To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that cannot be detected by other residual plots \al{XXX the tail end of this comment may not be true...}. 
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that \hh{might not be apparent  in other residual plots.}
+%cannot be detected by other residual plots \al{XXX the tail end of this comment may not be true...}. 
 
 
 \begin{figure}[hbt]
@@ -1167,8 +1129,50 @@ Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same dat
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%
 
 
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.8\textwidth]{dialyzerhomogeneous-dots-1-19.pdf}
+	\caption{\label{homogeneous-1}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.8\textwidth]{dialyzerhomogeneous-1-19.pdf}
+	\caption{ \label{homogeneous-2}
+	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+%	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
+\end{figure}
+
+
+\alnote{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} are really no different from the cyclone plots, aside from showing two different designs. I am not sure whether they add anything to the discussion in this section. To me they seem to detract from the cyclone plot discussion. One idea is to move them to the appendix where we can highlight the difference in designs. I don't think moving this would detract from how ``novel'' our contribution is.}
+
+Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show another example of testing for homogeneity in the variance following the approach taken in section~\ref{sec:homogeneity}.
+%\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
+
+Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance increases across the $x$ axis.  However, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
+The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
+%Outliers       Large spread       Trend       Asymmetry       Other
+% dialyzerhomogeneous
+%  correct        1        2        3        4        5
+%1   FALSE 38.86852 33.89209 13.35778 12.46726 1.414353
+%2    TRUE 25.35211 28.16901 29.57746 16.90141       NA
+% dialyzerhomogeneous-bp
+%  correct        1        2        3        4        5
+%1   FALSE 29.09350 25.72378 28.286664 12.05505 4.841006
+%2    TRUE 45.31162 37.28243  8.422235  7.29927 1.684447
+
+The reason for the box plot design being so much more significant might not be so much of an issue of homogeneity being violated as much as a difference in the error distribution between the data and the nulls. Null data comes from a parametric bootstrap where residuals are simulated under a normal error assumption. Outliers in small samples are indicative of the sample being from a distribution with heavy tails.
+Regardless of the reasoning, the second lineup design enables us to diagnose a problem with the model that makes the data stand out from a set of nulls.  The two designs therefore represent two very similar tests with different power.
+
+
+
+
+
+\hhnote{reference to corresponding lineup in main paper}
 Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot (panel $\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
 
 \begin{figure}
