@@ -172,7 +172,7 @@ Observers are asked to identify the plot that is the most different from the oth
 
 Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
 is consistent with the model that generated the data on which all of the other plots are based. The  model in question, the corresponding null hypothesis and the calculation of $p$-values are explained in detail in Sections~\ref{sec:select} and Appendix~\ref{sec:pvalues}. 
-The data in this first lineup is shown in panel  $\sqrt{144} + 4$. 
+The data in this first lineup is shown in panel  (\#$\sqrt{144} + 4$). 
 
 
 Unlike classical hypothesis tests, visual inference  allows us to additionally collect information on what aspect of the display led each observer to their choice. 
@@ -355,7 +355,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
-Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five \al{observers} identified the data plot (panel $2^3 + 2$), 
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five \al{observers} identified the data plot in panel \#($2^3 + 2$), 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
@@ -380,7 +380,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %\al{and overlaying linear smoothers for each school.}
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot (panel $\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
+ If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot in panel \#($\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test (which shows significance at a level of less than 1e-4), and did not require the use of an asymptotic distribution to calculate the $p$-value. 
 %\alnote{The p-value is $<$ 1e-4.}
@@ -413,7 +413,7 @@ The slopes of the regression lines are indicative of the amount of correlation.
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
 The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model, avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.
-  In Figure~\ref{fig:ranef-corr} the true plot (panel~$10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
+  In Figure~\ref{fig:ranef-corr} the true plot in panel~\#($10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
 %  \hhnote{What does the $p$-value of the classical LRT say?}
 %  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
 
@@ -568,7 +568,7 @@ Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals a
 %If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
 %\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
 %however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
- In this example 29 of 85 observers identified the true plot (panel $2^4 +3$), providing evidence of heteroscedasticity. 
+ In this example 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
  %\hhnote{discuss reason that participants gave for their choice.}
 
 
@@ -597,7 +597,7 @@ Residual scatterplots are useful in checking that level-1 residuals are homosced
 
 To visualize this assumption, we suggest using side-by-side boxplots of the level-1 residuals. When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot (panel $2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
+To overcome this difficulty, we create a lineup of side-by-side boxplots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
 
 \alnote{Smooth this discussion out:}
@@ -667,7 +667,7 @@ Only one out of  59 participants identified the data plot shown in panel \#$(4^2
 \subsection{Linearity}
 %------------------------------------------------------------------------------------
 
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot (panel $2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required. 
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot in panel \#($2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only a linear and quadratic terms for transmembrane pressure (see Appendix~\ref{data:dialyzer} for details on the data). It is clear that a higher-order polynomial is required. 
 %\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 %\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
 %\hhnote{Oh, ok - we should still write up a sentence on this}
@@ -728,14 +728,14 @@ Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of line
 \end{figure}
 
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
-Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in Figure~\ref{fig:qqlineup-1} (panel $2^4 - 6$) is indistinguishable from the null plots (none of 68 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
+Confidence bands based on the normal distribution were applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. While such confidence bands show the relationship of the predicted random effects to the hypothesized distribution, it is known that this is an ill conceived comparison in many cases; however, the lineups are not comparing the predicted random effects to the normal distribution, but rather are comparing the empirical distribution of the random effects between the null and observed plots. Consequently, the conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in panel \#($2^4 - 6$) in Figure~\ref{fig:qqlineup-1}  is indistinguishable from the null plots (none of 68 observers identified this plot), providing no evidence of a violation of normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
 be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
 Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 29 out of 68 observers. Other panels  selected at least four times were \#1, 13, 14, 16, and 18. 
 Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
-To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 observers identified the true plot (panel $\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 observers identified the true plot in panel \#($\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
  The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach. %, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
@@ -1184,7 +1184,7 @@ Regardless of the reasoning, the second lineup design enables us to diagnose a p
 
 
 \hhnote{reference to corresponding lineup in main paper}
-Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot (panel $\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
+Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot in panel \#($\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
 
 \begin{figure}
 	\centering
