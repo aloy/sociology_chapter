@@ -95,9 +95,9 @@ Statistical modeling involves a cyclical process consisting of exploration, esti
 Graphical methods are commonly used in model validation \citep{GelmanHill:2007}. Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}. In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit. 
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
 While the use of statistical graphics is wide-spread in exploratory data analysis and informal validation, graphics are often considered to be too subjective to be the sole basis for model selection or validation. 
-At the core of this criticism is the fact that decisions are  based on a single plot. With only a single plot,  the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, in complex models we often observe structures 
+At the core of this criticism is the fact that decisions are  based on a single plot. With only a single plot,  the detection of any unexpected structure leads to the conclusion that the model is inappropriate; however, in complex models we often observe structure 
 %artificial structures are often observed 
-in their residuals, even when models are properly specified \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
+in the residuals, even when models are properly specified \citep[c.f.,][]{Morrell:2000ve, Gelman:2000dr}. 
 These drawbacks lead to an over-reliance on conventional hypothesis tests %for model selection and validation 
 for complex models where such procedures often perform sub-optimally.
 
@@ -111,7 +111,7 @@ for complex models where such procedures often perform sub-optimally.
 %Until now, when such situations were encountered an analyst was forced to either accept the approximate results offered by conventional hypothesis tests or appeal to simulation via the parametric bootstrap to adjust results \citep[c.f.,][]{Longford:2001wy}. 
 %\todo[inline]{what makes the parametric bootstrap solution unsatisfactory? -- we shouldn't bring it up unless there's a good reason to not use it. }
 %\alnote{I refer to the fact that they require more computation time than the lineups later in the paper. Also, like classical hypothesis tests, they only provide decisions whereas lineups provide additional information.}
-Recent developments in graphics methodology provide us with a rigorous framework for graphical discovery: visual inference  \citep{Buja:2009hp}  allows for the quantification of the significance of graphical findings. In simulation-based studies visual inference has been shown to perform similarly to classical tests  \citep{mahbub:2013}. Using visual inference, we suggest and validate a framework
+Recent developments in graphics methodology provide a rigorous framework for graphical discovery: visual inference  \citep{Buja:2009hp}  allows for the quantification of the significance of graphical findings. In simulation-based studies visual inference has been shown to perform similarly to classical tests  \citep{mahbub:2013}. Using visual inference, we suggest and validate a framework
  that enables us 
  to overcome common difficulties  with conventional hypothesis tests 
 % and statistical graphics 
@@ -137,20 +137,20 @@ In order to develop such graphical tools as complements to conventional tests, w
 
 Classical statistical inference consists of 
 (i) formulating  null and alternative hypotheses,
-	(ii) calculating a test statistic of the observed data,
+	(ii) calculating a test statistic from the observed data,
 	(iii) comparing the test statistic to a reference (null) distribution,
 	(iv) and deriving a $p$-value on which we base our conclusion.
 Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of linear mixed-effects models, we highlight  parallels in this setting. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
 while
-the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption that allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternate hypotheses. 
+the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption that allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternative hypotheses. 
 A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
 If the model assumption holds, the plot of the observed data will be indistinguishable from the null plots. 
 For the lineup protocol a sample of the null distribution is taken, in which
 the true plot is randomly embedded.  These lineups are then presented to independent observers for evaluation. 
 
-This  allows for the estimation of a $p$-value associated with the lineup.
+\al{Evaluation by independent observers,}  allows for the estimation of a $p$-value associated with the lineup.
  Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
-If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that   $x$ or more observers choose the data plot, given that the data plot is not any different from the other plots in the lineup, i.e.~the null hypothesis is true. Under the null hypothesis the probability for choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependency inherent to the application of lineups in a human subject study (see a detailed appendix~\ref{sec:pvalues} for a detailed discussion).
+If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that  \al{at least} $x$ observers choose the data plot, given that the data plot is not any different from the other plots in the lineup (i.e.~the null hypothesis is true). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependency inherent to the application of lineups in a human subject study (see appendix~\ref{sec:pvalues} for a detailed discussion).
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
@@ -161,21 +161,23 @@ If $X=x$ is  the number of observers, out of $N$, who chose the data plot from t
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{normexam_fanned_lineup16.pdf}
-	\caption{\label{fig:fanned} Lineup of size 20. Which plot is the most different from the other plots? What makes your plot different from the other plots?
+	\caption{\label{fig:fanned} A lineup of size 20. Which plot is the most different from the other plots? What makes that plot different from the other plots?
 	}
 \end{figure}
 
 Figure~\ref{fig:fanned} gives a first example of a lineup. Each panel shows  line segments of different lengths  with varying slopes. 
-Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is  withheld on purpose to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. What is your choice for the most different plot?
+Observers are asked to identify the plot that is the most different from the other plots.    Any additional information is deliberately withheld to prevent observers from (subconsciously)  introducing preconceived notions and making decisions that are not purely based on the data display. \al{Which plot do you think is most different?}
 
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
+\alnote{Do we need a citation for Amazon MTurk here? Also, we should be consistent: do we say MTurk or Amazon MTurk?}
+
 Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
-is consistent with the model that generated the data on which all of the other plots are based. The  model in question, the corresponding null hypothesis and the calculation of $p$-values are explained in detail in Sections~\ref{sec:select} and Appendix~\ref{sec:pvalues}. 
-The data in this first lineup is shown in panel  (\#$\sqrt{144} + 4$). 
+is consistent with the model that generated the data, on which all of the other plots are based. The  model in question, the corresponding null hypothesis and the calculation of $p$-values are explained in detail in Sections~\ref{sec:select} and Appendix~\ref{sec:pvalues}. 
+The data in this first lineup is shown in panel  \#($\sqrt{144} + 4$). 
 
 
-Unlike classical hypothesis tests, visual inference  allows us to additionally collect information on what aspect of the display led each observer to their choice. 
+Unlike classical hypothesis tests, visual inference  allows us to collect additional information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
 This  information helps us assess which part of the null hypothesis seems to be violated, something that we are not able to extract from  classical hypothesis tests. For example, observers identifying ``spread'' as the reason for their choice in figure~\ref{fig:fanned} was associated with the highest probability of picking the data over a null plot (see table~\ref{tab:reasons}).
 
@@ -199,7 +201,7 @@ let us  consider a continuous response linear mixed-effects model for each group
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. We further assume that the random effects,  $\bm{b}$,  are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms,  $\bm{\varepsilon}$, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I})$. %\bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. We further assume that the random effects,  $\bm{b}_i$,  are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms,  $\bm{\varepsilon}_i$, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_i)$. %\bm{R}_i)$. 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
 
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
@@ -211,7 +213,7 @@ Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given b
 where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is defined as
 %
 \begin{equation}\label{eq:conditionalmod}
-\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \bm\sigma^2 \bm{I}_i \right).
+\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \sigma^2 \bm{I}_i \right).
 \end{equation}
 %
 
@@ -225,7 +227,7 @@ Similar to the classical linear model with uncorrelated error structure, residua
 \item and the \emph{level-2 residuals}, i.e.~the predicted random effects $\widehat{\bm{b}}_i$
 \end{itemize}
 %
-where $\widehat{\bm{\beta}}$ is an estimate of the fixed effects (for known $\bm{V}$),
+where $\widehat{\bm{\beta}}$ is an estimate of the fixed effects, % (for known $\bm{V}$),
 \begin{equation}\label{eq:glsb}
 	\widehat{\bm{\beta}} = 
 	\left(\sum^g_{i=1} \bm{X}\trans_i \bm{V}^{-1}_i \bm{X}_i \right)^{-1} 
@@ -237,13 +239,13 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right).
 \end{equation}
 %
-In practice $\bm{V}$ is unknown, so estimates for $\bm{D}$ and $\bm{V}$ are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
+When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
 
 %\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
 \subsection{Issues with model exploration and diagnostics}
 The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
-Some of the problems which we address in this paper are:
+Some of the problems that we address in this paper are:
 \begin{description}
 
 \item[Breakdown of  asymptotic results: ] Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
@@ -273,12 +275,12 @@ The above issues are well-known, and in special circumstances adjustments to the
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-The purpose of this paper is to discuss visual inference in the framework of diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional \al{inferential procedure} are violated. 
+The purpose of this paper is to discuss visual inference in the framework of diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inferential procedures are violated. 
 This approach allows us to  tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
 
 
 The remainder of this paper is organized as follows.
-In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools.All example datasets are readily available for public use. A short description of each of them can be found in appendix~\ref{sec:datasets}.
+In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools. All example data sets are readily available for public use. A short description of each data set can be found in appendix~\ref{sec:datasets}.
 
 %\alnote{Should we include another pointer to the descriptions of the data sets?}
 %\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
