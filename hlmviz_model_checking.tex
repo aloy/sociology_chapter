@@ -37,6 +37,7 @@
 \usepackage{todonotes}
 \newcommand{\alnote}[1]{\todo[inline,color=green!40]{#1}} %% nice template!!
 \newcommand{\hhnote}[1]{\todo[inline,color=orange!40]{#1}} 
+\newcommand{\dcnote}[1]{\todo[inline,color=blue!40]{#1}} 
 
 % title formatting
 %\usepackage[compact,small]{titlesec}
@@ -79,8 +80,11 @@
 
 \begin{document}
 \maketitle
+
+\dcnote{Suggest changing title to "Better Diagnostics for Linear Mixed-Effects Models Using Visual Inference"}
+
 \begin{abstract}
-Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power.
+ Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power. \dcnote{Abstracts get changed at last stage of writing so maybe not ready to edit yet. Needs to be more specific: what is the problem with diagnostics for linear mixed-effects models?}
 \keywords{Statistical graphics; Lineup protocol; Visual tests; Model diagnostics;  ...}
 \end{abstract}
 
@@ -90,7 +94,7 @@ Valid model-based statistical inference relies on proper specification of a mode
 %------------------------------------------------------------------------------------
 %\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship, take it out of the data, and search the residuals for additional structure that is yet unexplained; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
+\dcnote{Can we take out everything from here through to the start of visual inference, and begin the paper with the material in the ``linear mixed effects models'' section?} Statistical modeling involves a cyclical process consisting of exploration, estimation, and validation. When a structure of interest is identified in the data we model this relationship, take it out of the data, and search the residuals for additional structure that is yet unexplained; thus, exploratory and confirmatory methods in statistical modeling are inherently linked \citep{tukey:eda}.
 %Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to the analytic process. 
 Graphical methods are commonly used in model validation \citep{GelmanHill:2007}. Depending on methodology, different diagnostics are suggested for assessing distributional assumptions and assessing model fits in detail. In the linear model setting, Quantile-Quantile (Q-Q) plots and scatterplots with smoothers are often used \citep{Cook:1999}. In the Bayesian framework, \citet{Gelman:2004gg} proposes simulation from posteriors to assess goodness-of-fit. 
 %In the Bayesian framework simulation from the posterior predictive distribution have been proposed to assess goodness-of-fit, which can displayed graphically \citep{Gelman:2004gg}. 
