@@ -149,17 +149,14 @@ When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in th
 The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
 Problems addressed in this paper are:
-\begin{enumerate}
 
+\dcnote{This section needs to match the rest of the paper, which I think boils down to model selections and model checking.}
+
+\begin{enumerate}
+\item {\em Model selection:}
+\begin{enumerate}
 \item {\em Breakdown of  asymptotic results:} Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
 For example, the empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment \cite[see the supplement of][for supporting simulation results]{adam}.
-
-\item {\em Artifacts due to the data structure:} Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
-%\hhnote{XXX I'm not quite sure how that would look like}.  
-%\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
-Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
-
 
 \item {\em Boundary issues  in the comparison of nested models: } 
 When evaluating the significance of terms in the random effects structure, the likelihood ratio test statistic does not have the usual $\chi^2$ reference distribution if we are testing whether a variance component lies on the boundary of the parameter space. This results in tests for the random effects that tend to be conservative.
@@ -167,6 +164,14 @@ When evaluating the significance of terms in the random effects structure, the l
 
 %\item[Incomparability  of nested models due to estimation procedure: ]
 % Comparison of nested models with different fixed effects not possible with REML estimation, too liberal for ML. 
+\end{enumerate}
+
+
+\item {\em Model checking:} Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
+This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
+%\hhnote{XXX I'm not quite sure how that would look like}.  
+%\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
+Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
 
 \end{enumerate}
 
