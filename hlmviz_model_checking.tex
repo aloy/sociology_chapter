@@ -718,6 +718,13 @@ Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineu
 Additionally, this example shows that even the null plots that were generated from a normal distribution no longer look normal after  model estimation---in fact, 16 of the null plots fail the Anderson-Darling test of normality at a significance level of 0.05. This is due to confounding between the different levels of the mixed-effects model  \citep{adam}.
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{radontranef-19.pdf}
+	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of random slopes with error terms simulated from a $t_3$ distribution. Which of the plots is the most different? Which feature led you to your choice?}
+\end{figure}
+
+
 % In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
 To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 observers identified the true plot in panel \#($\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
  The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach. %, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
@@ -725,12 +732,6 @@ To determine whether lineups can detect distributional violations we constructed
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
 
 %\hhnote{ I think we should include both a positive and a negative result for the Q-Q plot tests for normality - I am including five sets each of random intercepts and random slopes for the radon study. They all turned out negative ... }
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup  testing for normality of random slopes with error terms simulated from a $t_3$ distribution. Which of the plots is the most different? Which feature led you to your choice?}
-\end{figure}
 
 
 
@@ -882,23 +883,25 @@ To determine whether lineups can detect distributional violations we constructed
 \section{Discussion and Conclusion}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
 
-We have presented a graphical approach to model selection and diagnosis based on simulation from the model. % fit to the true data. 
+We have presented a graphical approach to model selection and diagnosis, using lineups constructed by simulation from the model. % fit to the true data. 
 Lineup tests provide us with the framework to test hypotheses and also allow a  subsequent exploration of the plots in the lineup  for additional insight into the data structure. This approach relies  on the simulation process, the design of the graphics created, and observers, but avoids the reliance on asymptotic reference distributions; thereby circumventing the pitfalls of many commonly used tests. 
 %It is important to note that simulation-based diagnostics for linear mixed-effects models have been discussed previously \citep{Longford:2001wy}, but graphical diagnosis was not the focus. A key advantage of the graphical approach is that fewer simulations are required, greatly reducing the computational burden of simulation-based diagnostics.
 
 %\hhnote{now we need to say something on each of the pieces that lineups rely on}
 
-With independence from asymptotics gained, we have  to pay attention to each of the dependencies of graphical testing a bit more:
-Results of visual inference rely on the choices of the observers, therefore the quality of their responses compared to those in more traditional lab settings is  of concern. Studies in this direction show promising results. In a replicate of the  study by \citet{cleveland:1984} using the MTurk service \citet{heer:2010} achieved matching results.
- \citet{kosara:2010} found similar results between a lab study and one performed using MTurk. Both of these studies also discuss tactics employed to avoid people ``gaming the system,'' which provide further protection from irrelevant responses.
+%With independence from asymptotics gained, we have  to pay attention to each of the dependencies of graphical testing a bit more:
+The graphical approach is relatively new, and involves working with human observers recruited on the web. There is a vast experience in statistics in engaging subjects in a traditional lab setting, where researchers are closely engaged with the experiment. With MTurk, researchers are working with subjects in a long distance relationship, and there are some participants who will try to ``game the system''. Nevertheless, results thus far are promising: experiments replicated in both environments, a replicate of the  study by \citet{cleveland:1984} using the MTurk service \citet{heer:2010} achieved matching results, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
 
 
-Design choices are also important---some designs are better at detecting anomalies than others. On an individual level this is, of course, subjective. At a population level, the results are surprisingly stable. This is reassuring and allows us to introduce the concept of power of tests into visual inference. In this paper design choices were made using best judgment based on  experience and results from cognitive psychology. As we implement more studies we will learn more about the power of designs and be able to make more informed decisions about designs \citep{infovis:2012}.
+Design of plots is important---some designs are better for revealing anomalies than others. At a population level, the results obtained from the same plot design are very stable. %This is reassuring and allows us to introduce the concept of power of tests into visual inference. 
+In this paper design choices were made using best judgment based on  experience and results from cognitive psychology. As more studies are conducted more about the power of designs for model diagnostics will be learned, enabling more informed decisions about best practices \citep{infovis:2012}.
 
 
-Further, we have to be careful in the application of lineup tests to maintain unbiasedness of observers. Biasing observers is relatively easy, but it also easy to avoid. We have to avoid leading questions (in our study we instead asked observers to pick the plot with the most different features), we need to make sure to remove any information from lineups that might identify the context, such as labels, axis tick marks, and titles to avoid expectation error \citep{meilgaard}, and we have to  ensure that multiple views of the same data are shown to different observers (such as in the testing sequence of Figures~\ref{fig:fanned} and~\ref{fig:fanned2} or the different designs of Figures~\ref{fig:constvar2} and~\ref{fig:constvar2.bp}).
+As with constructing surveys, avoiding leading questions is very importatnt. Mostly, the questions are very generic, asking observers to pick the plot with the most different features. Contextual information, such as labels, axis tick marks, and titles, are removed to avoid subjective bias. Care is taken, in constructnig lineup sequences and different plot designs, so that observers see the data only once. Because of the finite nature of the comparisons, multiple replications of lineups are constructed with different sets of $m-1$ null plots. In our studies five replicates were used.
+
+%Further, we have to be careful in the application of lineup tests to maintain unbiasedness of observers. Biasing observers is relatively easy, but it also easy to avoid. We have to avoid leading questions (in our study we instead asked observers to pick the plot with the most different features), we need to make sure to remove any information from lineups that might identify the context, such as labels, axis tick marks, and titles to avoid expectation error \citep{meilgaard}, and we have to  ensure that multiple views of the same data are shown to different observers (such as in the testing sequence of Figures~\ref{fig:fanned} and~\ref{fig:fanned2} or the different designs of Figures~\ref{fig:constvar2} and~\ref{fig:constvar2.bp}).
  
-One of the advantages of visual testing using the lineup protocol is that in practice its results are decisive, resulting in $p$-values that are either very small or very close to 1; thus, decisions are rarely dependent on the exact choice of significance level. We have to be aware of the variability that is brought into the test by the choice of null plots. These $m-1$ plots are all that represent the null distribution, which is theoretically made up of infinitely many representatives. We are bound to see some ``odd'' null plots just by chance. Their influence on an individual lineup is then much higher than their nominal probability, and  affects the number of times the data plot is picked by observers. In the study underlying this paper we have accommodated for this variability by using five sets of null plots for each testing situation, and report only the $p$-value based on the combined situation.
+%One of the advantages of visual testing using the lineup protocol is that in practice its results are decisive, resulting in $p$-values that are either very small or very close to 1; thus, decisions are rarely dependent on the exact choice of significance level. We have to be aware of the variability that is brought into the test by the choice of null plots. These $m-1$ plots are all that represent the null distribution, which is theoretically made up of infinitely many representatives. We are bound to see some ``odd'' null plots just by chance. Their influence on an individual lineup is then much higher than their nominal probability, and  affects the number of times the data plot is picked by observers. In the study underlying this paper we have accommodated for this variability by using five sets of null plots for each testing situation, and report only the $p$-value based on the combined situation.
 
 By asking observers for the distinguishing feature(s) of the plot they chose,  graphical tests also provide us with information about the alternative hypothesis. This allows us to group responses by reasons for rejection and assess individual sub-hypotheses. In particular, it enables us to further investigate different types of errors. For example, in Figure~\ref{fig:qqlineup-t} we observed participants choosing plots for showing the ``most straight line'' or ``closest fit'' to the line of the theoretical distribution. This is why we failed to reject (type II error) in lineups 3 and 5 of this testing situation.
 Similarly, we can also identify  type III errors \citep{mosteller:1948}, where we reject the hypothesis for the wrong reason, based on the reasons given by participants for their choice.
