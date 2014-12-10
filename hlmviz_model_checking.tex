@@ -96,7 +96,7 @@ Linear mixed-effects models are versatile models that account for dependence str
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
 Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). The additional flexibility offered by these models allows data to be incorporated at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
 
-For data organized in $g$ groups, consider a continuous response linear mixed-effects model for each group $i$, $i=1, \ldots, g$:
+For data organized in $g$ groups, consider a continuous response linear mixed-effects model (LME model) for each group $i$, $i=1, \ldots, g$:
 %
 \begin{equation}\label{eq:hlm}
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
@@ -182,7 +182,7 @@ The above issues are well-known, and in special circumstances adjustments to the
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-The purpose of this paper is to illustrate the use of visual inference for diagnosinglinear mixed-effects model fits, and propose graphical tests that can be broadly used in situations where the assumptions of conventional inferential procedures are violated. This approach allows us to harness the power of graphical diagnostics and, with the rigor of the visual inference framework, construct tests that address some of these problems without requiring additional assumptions. 
+The purpose of this paper is to illustrate the use of visual inference for diagnosing LME model fits, and propose graphical tests that can be broadly used in situations where the assumptions of conventional inferential procedures are violated. This approach allows us to harness the power of graphical diagnostics and, with the rigor of the visual inference framework, construct tests that address some of these problems without requiring additional assumptions. 
 
 
 The remainder of this paper is organized as follows. 
