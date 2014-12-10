@@ -292,7 +292,7 @@ While statistical software has made performing many of these tests easy, situati
 
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
-When using  $t$- or $F$-tests we encounter another  complication in defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach has inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are \al{complicated by the number of special cases must be considered.}
+When using  $t$- or $F$-tests we encounter another  complication in defining the degrees of freedom. There are various approximate $F$-tests proposed in the literature that focus on estimating the degrees of freedom for these tests, which typically lead to different results \citep{Verbeke:2000fh}. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach has inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. From the literature it can be seen that tests for fixed effects are not always problematic, but they are complicated by the number of special cases that must be considered.
 %XXX Need to reread the below references to check accuracy of these summaries:
 %
 %\cite{Kenward:1997ft} propose the use of a scaled Wald statistic that has a sampling distribution that is well approximated by an $F$ distribution 
@@ -358,7 +358,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
  If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot in panel \#($\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
-  thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test (which shows significance at a level of less than 1e-4), and did not require the use of an asymptotic distribution to calculate the $p$-value. 
+  thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test (which shows significance at a level of less than 0.0001), and did not require the use of an asymptotic distribution to calculate the $p$-value. 
 %\alnote{The p-value is $<$ 1e-4.}
   
 \begin{figure}
@@ -374,7 +374,7 @@ The resulting scores for each school are regressed on LRT results and shown as l
 %A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
 %\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
-{Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) \al{where the random slope was included in the model.}
+{Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) where the random slope was included in the model.
 %showing lines stemming from regression fits of null data from a model including the random slope.  
 All panels show data from the same distribution and the true data should therefore not be identifiable.  None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
 
@@ -570,10 +570,10 @@ Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals a
 %\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
 
 %\paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not show the same power as box plots when they investigate potential differences in variability between groups, as can be seen in the example of the lineups in figs.~\ref{homogeneous-1} and~\ref{homogeneous-2} of  Appendix~\ref{app:morelineups}. 
+Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not show the same power as box plots when they investigate potential differences in variability between groups, as can be seen in the example of the lineups in Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} of  Appendix~\ref{app:morelineups}. 
 %\alnote{Rethinking this, scatterplots can be used for this (figure 6 shows this!), but there are more effective plots.}
 To visualize this assumption, we suggest using side-by-side box plots of the level-1 residuals. 
-\al{While box plots are more powerful, they still require the use of lineups.}
+While box plots are more powerful, they still require the use of lineups.
 When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
 To overcome this difficulty, we create a lineup of side-by-side box plots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
@@ -626,6 +626,8 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 	\includegraphics[width=0.8\textwidth]{radon_cyclone10.pdf}
 	\caption{\label{fig:goodcyclone} Lineup of 20 box plots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
+
+\alnote{Construct table of $p$-values for the conventional test with varying group size restrictions.}
 
 %\alnote{Intro data and reference appendix. }
 Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots.  The data underlying this example are radon measurements across counties in Minnesota (see Section~\ref{data:radon} for details).
