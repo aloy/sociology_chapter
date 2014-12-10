@@ -92,41 +92,41 @@
 %------------------------------------------------------------------------------------
 %\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-Linear mixed-effects models are versatile models that allow us to account for dependence structures when data are organized in groups.
+Linear mixed-effects models are versatile models that account for dependence structures when data are organized in groups.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
-Such structures occur, for example, when individuals are naturally grouped by organization (e.g.~students within schools), geography (e.g.~voters within states), or design (e.g.~respondents assigned to  interviewers). The additional flexibility offered by these models enables us to incorporate data at the observation-level and the group-level while also accommodating for dependencies between individuals within the same group. 
+Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). The additional flexibility offered by these models enables us to incorporate data at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
 
-For data organized into $g$ groups, 
-let us  consider a continuous response linear mixed-effects model for each group $i$, $i=1, \ldots, g$:
+For data organized in $g$ groups, consider a continuous response linear mixed-effects model for each group $i$, $i=1, \ldots, g$:
 %
 \begin{equation}\label{eq:hlm}
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. We further assume that the random effects,  $\bm{b}_i$,  are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms,  $\bm{\varepsilon}_i$, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_i)$. %\bm{R}_i)$. 
-Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively. $\bm{\beta}$ is a vector of $p$ fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of $q$ random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. We further assume that the random effects,  $\bm{b}_i$,  are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms,  $\bm{\varepsilon}_i$, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_{n_i})$. %\bm{R}_i)$. 
+Here, $\bm{D}$ is a positive-definite $q \times q$ covariance matrix and $\bm{I}_{n_i}$ denotes the $n_i \times n_i$ identity matrix.
+Finally, we assume a covariance of zero for all between group effects.
 
-Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ is given by
+Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
+Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ for all $i = 1, \ldots, g$ is given by
 %
 \begin{equation}\label{eq:marginalmod}
 \bm{y}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta},\ \bm{V}_i \right),
 \end{equation}
 %
-where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_i$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is defined as
+where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_{n_i}$, and the conditional distribution of $\bm{y}_i$ given $\bm{b}_i$ is defined as
 %
 \begin{equation}\label{eq:conditionalmod}
-\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \sigma^2 \bm{I}_i \right).
+\bm{y}_i | \bm{b}_i \sim \mathcal{N}\left(\bm{X}_i\bm{\beta} + \bm{Z}_i \bm{b}_i, \ \sigma^2 \bm{I}_{n_i} \right).
 \end{equation}
 %
 
 
-
-Similar to the classical linear model with uncorrelated error structure, residuals are central to the exploration of a linear mixed-effects model. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking that we consider here are:
+Residuals are central to the exploration of a linear mixed-effects model, similar to the classical linear model with uncorrelated error structure. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
 %
 \begin{itemize}
-\item the \emph{level-1 residuals}, i.e.~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
+\item the \emph{level-1 (observation-level) residuals}, i.e.~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
 
-\item and the \emph{level-2 residuals}, i.e.~the predicted random effects $\widehat{\bm{b}}_i$
+\item and the \emph{level-2 (group-level) residuals}, i.e.~the predicted random effects $\widehat{\bm{b}}_i$
 \end{itemize}
 %
 where $\widehat{\bm{\beta}}$ is an estimate of the fixed effects, % (for known $\bm{V}$),
@@ -138,7 +138,7 @@ where $\widehat{\bm{\beta}}$ is an estimate of the fixed effects, % (for known $
 and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 \begin{equation}\label{eq:eb}
 	\widehat{\bm{b}}_i = \bm{D} \bm{Z}_i\trans \bm{V}_i^{-1} 
-	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right).
+	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right), \ \ \ \ \forall\ i = 1, \ldots, g.
 \end{equation}
 %
 When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
@@ -150,7 +150,6 @@ The additional flexibility of random effects models comes at the cost of complic
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
 Problems addressed in this paper are:
 
-\dcnote{This section needs to match the rest of the paper, which I think boils down to model selections and model checking.}
 
 \begin{enumerate}
 \item {\em Model selection:}
@@ -167,8 +166,8 @@ When evaluating the significance of terms in the random effects structure, the l
 \end{enumerate}
 
 
-\item {\em Model checking:} Residual plots might display noticeable patterns that are artifacts of the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for  scatterplots comparing the predicted random effects. Such plots can display points lying along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
+\item {\em Model checking:} Residual plots might display noticeable patterns that are artifacts of both the data structure and the model estimation procedure rather than indications of lack of fit. 
+This problem is especially pronounced for  scatterplots comparing predicted random effects. Such plots can display points falling along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
 %\hhnote{XXX I'm not quite sure how that would look like}.  
 %\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
 Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
@@ -184,11 +183,14 @@ The above issues are well-known, and in special circumstances adjustments to the
 
 
 The purpose of this paper is to examine the use of visual inference for diagnosing fitted linear mixed-effects models and suggest  graphical tests in situations where the assumptions of conventional inferential procedures are violated. 
-This approach allows us to  tap into the (orthogonal) power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
+This approach allows us to  tap into the orthogonal power of graphical diagnostics and, together with the rigor of the visual inference framework, construct tests that address some of these problems without introducing  further assumptions. 
 
 
-The remainder of this paper is organized as follows.
-In Section~\ref{sec:select} we focus on model building. In Section~\ref{sec:checking} we present graphical tests for model validation. Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools. All example data sets are readily available for public use. A short description of each data set can be found in appendix~\ref{sec:datasets}.
+The remainder of this paper is organized as follows. 
+Section~\ref{sec:vi} provides an introduction to the framework of visual inference and the lineup protocol.
+In Sections~\ref{sec:select} and \ref{sec:checking} we focus on the  previously mentioned problems in model selection and model checking, respectively. 
+%In Section~\ref{sec:checking} we present graphical tests for model validation. 
+Throughout both sections we provide multiple examples of the use of visual inference and draw comparisons with conventional tools. All example data sets are readily available for public use. A short description of each data set can be found in appendix~\ref{sec:datasets}.
 
 %\alnote{Should we include another pointer to the descriptions of the data sets?}
 %\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
@@ -209,18 +211,27 @@ Classical statistical inference consists of
 (i) formulating  null and alternative hypotheses,
 	(ii) calculating a test statistic from the observed data,
 	(iii) comparing the test statistic to a reference (null) distribution,
-	(iv) and deriving a $p$-value on which we base our conclusion.
-Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. As we will apply visual inference in the setting of linear mixed-effects models, we highlight  parallels in this setting. Assume that  the question of interest involves  some assumption about a model, e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
-while
-the alternative hypothesis encompasses any violation of this model assumption. For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption that allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternative hypotheses. 
-A plot of data generated consistently with the null hypothesis is called a null plot. The set of all null plots makes the reference distribution. 
-If the model assumption holds, the plot of the observed data will be indistinguishable from the null plots. 
-For the lineup protocol a sample of the null distribution is taken, in which
-the true plot is randomly embedded.  These lineups are then presented to independent observers for evaluation. 
+	and (iv) deriving a $p$-value on which a conclusion is based.
+Each of these steps has a direct analog in visual inference, as outlined by \cite{Buja:2009hp}. 
+%As we will apply visual inference in the setting of linear mixed-effects models, 
+We will highlight  parallels between conventional hypothesis tests and visual inference in the setting of linear mixed-effects models.
+%in this setting. 
 
-\al{Evaluation by independent observers,}  allows for the estimation of a $p$-value associated with the lineup.
- Let $X$ be the random variable describing  the number  of observers choosing the data plot. 
-If $X=x$ is  the number of observers, out of $N$, who chose the data plot from the lineup, then the  $p$-value is  the probability that  \al{at least} $x$ observers choose the data plot, given that the data plot is not any different from the other plots in the lineup (i.e.~the null hypothesis is true). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependency inherent to the application of lineups in a human subject study (see appendix~\ref{sec:pvalues} for a detailed discussion).
+Assume that  the question of interest involves  some assumption about a model (such as a null hypothesis of homogeneity of residual variance) while the alternative hypothesis  encompasses any violation of this model assumption. 
+%e.g.~let us assume that the null hypothesis is  homogeneity of residual variance,
+%while
+%the alternative hypothesis encompasses any violation of this model assumption. 
+For visual inference, the test statistic corresponds to a plot  that displays an aspect of  the model assumption and allows the observer to distinguish between scenarios under the null hypothesis from scenarios under alternative hypotheses. 
+Plots drawn from data generated consistently with the null hypothesis are called \emph{null plots}. The set of all null plots constitutes the reference distribution; thus, the plot of the observed data is indistinguishable from the null plots if the model assumption holds.
+%If the model assumption holds, the plot of the observed data is indistinguishable from the null plots. 
+In the lineup protocol the plot of the observed data is randomly embedded
+ among a sample of, usually 19, null plots drawn from the reference distribution.  These \emph{lineups} are then presented to independent observers for evaluation. 
+
+Evaluation by independent observers  allows for the estimation of a $p$-value associated with the lineup.
+ Let $X$ be the random variable describing  the number  of observers, out of $N$, identifying the data plot. 
+If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup
+%inherent to the application of lineups in a human subject study 
+(see appendix~\ref{sec:pvalues} for a detailed discussion).
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
