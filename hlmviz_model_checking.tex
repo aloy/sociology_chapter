@@ -92,9 +92,9 @@
 %------------------------------------------------------------------------------------
 %\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-Linear mixed-effects models are versatile models that account for dependence structures when data are organized in groups.
+Linear mixed-effects models are versatile models that account for dependence structures when data are composed of groups.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
-Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). The additional flexibility offered by these models enables us to incorporate data at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
+Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). The additional flexibility offered by these models data to be incorporated at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
 
 For data organized in $g$ groups, consider a continuous response linear mixed-effects model for each group $i$, $i=1, \ldots, g$:
 %
@@ -102,9 +102,9 @@ For data organized in $g$ groups, consider a continuous response linear mixed-ef
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively. $\bm{\beta}$ is a vector of $p$ fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of $q$ random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. We further assume that the random effects,  $\bm{b}_i$,  are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the level-1 error terms,  $\bm{\varepsilon}_i$, for which we assume a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_{n_i})$. %\bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of $p$ fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of $q$ random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. The random effects,  $\bm{b}_i$,  are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and independent from the level-1 error terms,  $\bm{\varepsilon}_i$, for which are assumed to follow a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_{n_i})$. %\bm{R}_i)$. 
 Here, $\bm{D}$ is a positive-definite $q \times q$ covariance matrix and $\bm{I}_{n_i}$ denotes the $n_i \times n_i$ identity matrix.
-Finally, we assume a covariance of zero for all between group effects.
+Finally, it is assumed that all between group effects have a covariance of zero.
 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ for all $i = 1, \ldots, g$ is given by
@@ -124,9 +124,9 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{I}_{n_i}$, and the con
 Residuals are central to the exploration of a linear mixed-effects model, similar to the classical linear model with uncorrelated error structure. For linear mixed-effects models, residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
 %
 \begin{itemize}
-\item the \emph{level-1 (observation-level) residuals}, i.e.~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
+\item the \emph{level-1 (observation-level) residuals}, ~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
 
-\item and the \emph{level-2 (group-level) residuals}, i.e.~the predicted random effects $\widehat{\bm{b}}_i$
+\item and the \emph{level-2 (group-level) residuals}, ~the predicted random effects $\widehat{\bm{b}}_i$
 \end{itemize}
 %
 where $\widehat{\bm{\beta}}$ is an estimate of the fixed effects, % (for known $\bm{V}$),
