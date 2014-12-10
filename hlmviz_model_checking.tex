@@ -229,7 +229,7 @@ Evaluation by independent observers  allows for the estimation of a $p$-value as
  Let $X$ be the random variable describing  the number  of observers, out of $N$, identifying the data plot. 
 If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup
 %inherent to the application of lineups in a human subject study 
-(\citet{mahbub:2013} introduces visual $p$-values, for detailed calculations see Appendix~\ref{sec:pvalues}).
+(\citet{mahbub:2013} introduce visual $p$-values, for detailed calculations see Appendix~\ref{sec:pvalues}).
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
@@ -249,9 +249,7 @@ Observers were asked the question `Which plot is the most different?'.
    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard} and prevent observers from making decisions that are not purely based on the data display. 
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
-\alnote{Do we need a citation for Amazon MTurk here? Also, we should be consistent: do we say MTurk or Amazon MTurk?}
-
-Based on a human subject study (described in more detail in appendix~\ref{study}) run through the MTurk service, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
+Based on a human subject study (described in more detail in appendix~\ref{study}) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot from the lineup in Figure~\ref{fig:fanned}. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
 is consistent with the model that generated the data, on which all of the other plots are based. The  model and its corresponding null hypothesis  are explained in detail in Sections~\ref{sec:select} . 
 The data in this first lineup is shown in panel  \#($\sqrt{144} + 4$). 
 
@@ -1118,7 +1116,7 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 \subsection{Additional lineups included in the study}\label{app:morelineups}
 %------------------------------------------------------------------------------------
 
-This section includes two lineups that were included in the Amazon MTurk study, but were not discussed in the paper. 
+This section includes two lineups that were included in the  MTurk study, but were not discussed in the paper. 
 
 Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as figure~\ref{fig:constvar2}, with the  difference that pressure is categorized into seven categories, and residuals are shown in the form of box plots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
 
