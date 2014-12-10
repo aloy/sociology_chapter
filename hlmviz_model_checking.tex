@@ -268,6 +268,7 @@ This  information makes it possible us assess which part of the null hypothesis 
 \section{Model selection}\label{sec:select}
 %------------------------------------------------------------------------------------
 
+\noindent
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. 
 %In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
@@ -286,9 +287,13 @@ This  information makes it possible us assess which part of the null hypothesis 
 %------------------------------------------------------------------------------------
 %\alnote{This paragraph is a lot of repeat from the last paragraph, other than the intro to complications. I need to think about ways to resolve this.}
 It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability. % in a linear mixed-effects model. 
-Likelihood ratio tests are more generally applicable in comparing nested models, but are  most commonly used in the selection of random effects. 
+%Likelihood ratio tests are more generally applicable in comparing nested models, but are  most commonly used in the selection of random effects. 
+For selecting random effects likelihood ratio tests are most commonly used. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
-While statistical software has made performing many of these tests easy, situations often arise that complicate such tests. Below we outline such situations.
+%While statistical software has made performing many of these tests easy, 
+However, situations often arise that complicate such tests. 
+%Below we outline such situations.
+Some of these are outlined below:
 
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
