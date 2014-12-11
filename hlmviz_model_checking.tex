@@ -341,7 +341,7 @@ Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
-to determine whether a child's language development at age two (low, medium, or high) helps explain the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder (see Appendix~\ref{data:autism} for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
+to determine whether a child's language development (low, medium, or high) at age two  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Appendix~\ref{data:autism} for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
 %Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
 
@@ -357,12 +357,12 @@ to determine whether a child's language development at age two (low, medium, or 
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
 The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Appendix~\ref{data:GCSE} for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
-The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with only a single random effect, the random intercept.
-The resulting scores for each school are regressed on LRT results and shown as lines.
+The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only effect, .
+The resulting scores for each school are regressed on LRT scores and model fits are shown as lines.
 %\al{and overlaying linear smoothers for each school.}
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then the overall pattern of the lines in the null plots should resemble the observed data. In this example, we find that the true plot in panel \#($\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
+ If the model is appropriate, then    the observed data should resemble the overall pattern of the lines in the null plots. In this example, we find that the true plot in panel \#($\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test (which shows significance at a level of less than 0.0001), and did not require the use of an asymptotic distribution to calculate the $p$-value. 
 %\alnote{The p-value is $<$ 1e-4.}
@@ -382,7 +382,10 @@ The resulting scores for each school are regressed on LRT results and shown as l
 
 {Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) where the random slope was included in the model.
 %showing lines stemming from regression fits of null data from a model including the random slope.  
-All panels show data from the same distribution and the true data should therefore not be identifiable.  None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
+Data for the null plots was generated from a parametric bootstrap using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
+None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
+The covariance structure for the LRT scores as  given in the model of the null hypothesis    can therefore not be rejected as improperly specified. 
+
 
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
