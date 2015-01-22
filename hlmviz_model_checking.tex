@@ -107,6 +107,7 @@ where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group 
 Here, $\bm{D}$ is a positive-definite $q \times q$ covariance matrix and $\bm{I}_{n_i}$ denotes the $n_i \times n_i$ identity matrix.
 Finally, it is assumed that all between group effects have a covariance of zero.
 \alnote{One comment I could see coming back is the fact that LME models allow for more general covariance structures than we specify above. Using $\sigma^2 \bm{R}$ would be a common general formulation, where $\bm{R}$ must be positive definite. We could use the general form and then state we use examples with the similar form. I don't know if this is a big deal at all, I was just trying to think critically.}
+\hhnote{Let's go with the positive definite $R$, it's not going to change anything in the type of charts we are looking at ... }
 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ for all $i = 1, \ldots, g$ is given by
@@ -146,6 +147,7 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
 \alnote{Do we need citations for ML and REML? It is so well known that I didn't include them, but would convention dictate that we do?}
 
+\hhnote{I don't think that we'd need them ... }
 %\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
 %\subsection{Issues with model exploration and diagnostics}
 
@@ -1015,8 +1017,7 @@ For each of the lineup designs described in the paper we constructed five replic
 These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time was taken to answer was recorded and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of the ip address). 
 
 The results of the evaluations for all lineups  are displayed in Table~\ref{tab:results} and the observers' reasons for identifying plots are summarized in Table~\ref{tab:reasons}. 
-The significances in Table~\ref{tab:results} are based on the number of evaluations and the times that the data plot was identified. For that, we the introduce random variable $Y$ as the  number of evaluations of a lineup in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \hh{reference to technical report}, 
-\alnote{We need to be able to cite this report before submission.}
+The significances in Table~\ref{tab:results} are based on the number of evaluations and the times that the data plot was identified. For that, we the introduce random variable $Y$ as the  number of evaluations of a lineup in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \citet{hofmann:2015}.
 where $s$ delineates scenario III---i.e.,the same lineup is shown to all $K$ observers. The $p$-values in Table~\ref{tab:results} for each of the five replicates are calculated this way.
 For the overall $p$-value, we use a simulation based approach to combine the five results. Treating the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal as follows: we assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability an observer picks a  plot  is allocated proportionally to its signal. For each ``data plot'' we create five sets of null plots to be evaluated simultaneously $(K_1, ..., K_5)$ times.  
 $p$-values are then based on a comparison of the sum of data picks from  five no-signal lineups and  the observed number of data picks from the actual lineups. The column on the right of Table~\ref{tab:results} shows $p$-values based on $10^5$ simulation runs.
