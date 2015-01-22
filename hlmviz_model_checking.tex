@@ -84,6 +84,7 @@
 \begin{abstract}
  Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power. \dcnote{Abstracts get changed at last stage of writing so maybe not ready to edit yet. Needs to be more specific: what is the problem with diagnostics for linear mixed-effects models?}
 \keywords{Statistical graphics; Lineup protocol; Visual tests; Model diagnostics;  ...}
+\alnote{We also need to decide on keywords}
 \end{abstract}
 
 %\tableofcontents
@@ -102,9 +103,10 @@ For data organized in $g$ groups, consider a continuous response linear mixed-ef
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
-where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of $p$ fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of $q$ random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. The random effects,  $\bm{b}_i$,  are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and independent from the level-1 error terms,  $\bm{\varepsilon}_i$, for which are assumed to follow a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_{n_i})$. %\bm{R}_i)$. 
+where $\bm{y}_i$ is the vector of outcomes for the $n_i$ level-1 units in group $i$, $\bm{X}_i$ and $\bm{Z}_i$ are design matrices for the fixed and random effects, respectively, $\bm{\beta}$ is a vector of $p$ fixed effects governing the global mean structure, $\bm{b}_i$ is a vector of $q$ random effects describing the between-group covariance structure, and $\bm{\varepsilon}_i$ is a vector of level-1 error terms accounting for the within-group covariance structure. The random effects,  $\bm{b}_i$,  are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and independent from the level-1 error terms,  $\bm{\varepsilon}_i$, which are assumed to follow a distribution of $\mathcal{N}(\bm{0},\sigma^2 \bm{I}_{n_i})$. %\bm{R}_i)$. 
 Here, $\bm{D}$ is a positive-definite $q \times q$ covariance matrix and $\bm{I}_{n_i}$ denotes the $n_i \times n_i$ identity matrix.
 Finally, it is assumed that all between group effects have a covariance of zero.
+\alnote{One comment I could see coming back is the fact that LME models allow for more general covariance structures than we specify above. Using $\sigma^2 \bm{R}$ would be a common general formulation, where $\bm{R}$ must be positive definite. We could use the general form and then state we use examples with the similar form. I don't know if this is a big deal at all, I was just trying to think critically.}
 
 Inference typically centers around either the marginal or conditional distribution of $\bm{y}_i$, depending on whether global or group-specific questions are of interest.
 Based on model \eqref{eq:hlm} the marginal distribution of $\bm{y}_i$ for all $i = 1, \ldots, g$ is given by
@@ -142,6 +144,7 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 \end{equation}
 %
 When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
+\alnote{Do we need citations for ML and REML? It is so well known that I didn't include them, but would convention dictate that we do?}
 
 %\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
 %\subsection{Issues with model exploration and diagnostics}
@@ -182,7 +185,7 @@ The above issues are well-known, and in special circumstances adjustments to the
 %Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
 
 
-The purpose of this paper is to illustrate the use of visual inference for diagnosing LME model fits, and propose graphical tests that can be broadly used in situations where the assumptions of conventional inferential procedures are violated. This approach allows us to harness the power of graphical diagnostics and, with the rigor of the visual inference framework, construct tests that address some of these problems without requiring additional assumptions. 
+The purpose of this paper is to illustrate the use of visual inference for diagnosing LME model fits, and propose graphical tests that can be broadly used in situations where the assumptions of conventional inferential procedures are violated. This approach harnesses the power of graphical diagnostics and, with the rigor of the visual inference framework, construct tests that address some of these problems without requiring additional assumptions. 
 
 
 The remainder of this paper is organized as follows. 
@@ -227,9 +230,9 @@ In the lineup protocol the plot of the observed data is randomly embedded
 
 Evaluation by independent observers  allows for the estimation of a $p$-value associated with the lineup.
  Let $X$ be the random variable describing  the number  of observers, out of $N$, identifying the data plot. 
-If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup.
+If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup
 %inherent to the application of lineups in a human subject study 
-(\citet{mahbub:2013} introduced visual $p$-values. Details of their calculation for this LME application are in Appendix~\ref{sec:pvalues}.)
+(\citet{mahbub:2013} introduced visual $p$-values. Details of their calculation for this LME application are in Appendix~\ref{sec:pvalues}.).
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
@@ -244,16 +247,16 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 	}
 \end{figure}
 
-Figure~\ref{fig:fanned} shows a lineup. Each panel shows  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'.    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring observers from make decisions that were based purely on the data display. 
+Figure~\ref{fig:fanned} shows a lineup. Each panel shows  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'.    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring observers make decisions that were based purely on the data display. 
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
 Based on a human subject study (described in more detail in Appendix~\ref{study}) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot, shown in panel  \#($\sqrt{144} + 4$) of the lineup in Figure~\ref{fig:fanned}, resulting in a visual $p$-value of 0.0171. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
-is consistent with the model that generated the data, on which all of the other plots are based. The  model and its corresponding null hypothesis  are explained in detail in Section~\ref{sec:select} .  
+is consistent with the model that generated the data, on which all of the other plots are based. The  model and its corresponding null hypothesis  are explained in detail in Section~\ref{sec:select}.  
 
 
 Unlike classical hypothesis tests, visual inference  allows us to collect additional information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-This  information makes it possible us assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data over a null plot (see Table~\ref{tab:reasons}).
+This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data over a null plot (see Table~\ref{tab:reasons}).
 
 %\alnote{The sentence below needs some rewording}
 %In the example of the first lineup of figure~\ref{fig:fanned} `spread' as the reason for their choice increased observers' chances to pick the data over a null plot. 
@@ -288,7 +291,7 @@ This  information makes it possible us assess which part of the null hypothesis 
 %\alnote{This paragraph is a lot of repeat from the last paragraph, other than the intro to complications. I need to think about ways to resolve this.}
 It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability. % in a linear mixed-effects model. 
 %Likelihood ratio tests are more generally applicable in comparing nested models, but are  most commonly used in the selection of random effects. 
-For selecting random effects likelihood ratio tests are most commonly used. 
+When selecting random effects, likelihood ratio tests are most commonly used. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
 %While statistical software has made performing many of these tests easy, 
 However, situations often arise that complicate such tests. 
@@ -297,7 +300,7 @@ Some of these are outlined below:
 
 \begin{description}
 \item[\bf Fixed effects: ] Likelihood ratio tests based on REML estimation cannot be used to test different fixed effects structures. Maximum likelihood estimation allows for such comparisons, but is anti-conservative. 
-Defining the appropriate degrees of freedom in using  $t$- or $F$-tests provide another  complication in testing scenarios of LME models. Various approximate $F$-tests \citep{Verbeke:2000fh} propose solutions for estimating the degrees of freedom for these tests, but these typically lead to different results. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach has inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. 
+Defining the appropriate degrees of freedom for  $t$- or $F$-tests provides another  complication in testing scenarios of LME models. Various approximate $F$-tests \citep{Verbeke:2000fh} propose solutions for estimating the degrees of freedom for these tests, but these typically lead to different results. Inflated Type I error rates and low power \citep{Catellier:2000vr}  become a problem  in the  approximate $F$-test when there are a few groups. \cite{Kenward:1997ft} propose the use of a scaled Wald statistic  that has a sampling distribution that is well approximated by an $F$ distribution; however, this approach has inflated type I error rates in some small sample cases  \citep{Gomez:2005dw}. \cite{Skene:2010kf} propose an alternative to the Kenward-Roger approximation that achieves nominal type I error rates, but this procedure suffers from low power. 
 %From the literature it can be seen that tests for fixed effects are not always problematic, but they are complicated by the number of special cases that must be considered.
 %XXX Need to reread the below references to check accuracy of these summaries:
 %
@@ -357,7 +360,7 @@ to determine whether a child's language development (low, medium, or high) at ag
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
 The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Appendix~\ref{data:GCSE} for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
-The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only effect, .
+The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only effect.
 The resulting scores for each school are regressed on LRT scores and model fits are shown as lines.
 %\al{and overlaying linear smoothers for each school.}
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
@@ -382,7 +385,7 @@ The resulting scores for each school are regressed on LRT scores and model fits 
 
 {Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) where the random slope was included in the model.
 %showing lines stemming from regression fits of null data from a model including the random slope.  
-Data for the null plots was generated from a parametric bootstrap using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
+Data for the null plots were generated from a parametric bootstrap using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
 None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
 The covariance structure for the LRT scores as  given in the model of the null hypothesis    can therefore not be rejected as improperly specified. 
 
@@ -390,7 +393,7 @@ The covariance structure for the LRT scores as  given in the model of the null h
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
 
-Participants should only see one of Figures~\ref{fig:fanned} or~\ref{fig:fanned2} because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because theoretically the data from the  second lineup could be identified by recognizing it as the same panel that was previously shown. While the chance of this is slim in practice, we only exposed participants to one of a set of dependent lineups.
+Participants should only see one of Figures~\ref{fig:fanned} or~\ref{fig:fanned2} because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because, theoretically, the data from the  second lineup could be identified by recognizing it as the same panel that was previously shown. While the chance of this is slim, we only exposed participants to one of a set of dependent lineups.
 %ensured in the user study to expose participants to only one of a set of of dependent lineups.  
 
 Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
@@ -585,12 +588,12 @@ To visualize this assumption, we suggest using side-by-side box plots of the lev
 While box plots are more powerful, they still require the use of lineups.
 When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create a lineup of side-by-side box plots for each group ordered by their interquartile range (IQR), which we have come to call a ``cyclone'' plot. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
+To overcome this difficulty, we create a lineup of side-by-side box plots for each group ordered by their interquartile range (IQR), which we have come to call a \emph{cyclone plot}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
-While the data plot is \al{easily identified}, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that within-group variance increases across the vertical axis. However, \al{placing} the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data rather than evidence against the hypothesis of homogeneity. The fact that observers are able to still identify the data plot, indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
+While the data plot is \al{easily identified}, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that within-group variance increases across the vertical axis. However, \al{placing} the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data rather than evidence against the hypothesis of homogeneity. The fact that observers are able to still identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
 
-\hhnote{how about the above change? we've got the additional complication that overall the test is significant, while individually each lineup panel shows very similar structure that -surprisingly- is not yet indicative of non-homogeneity.}
-\alnote{I like the change! I commented out the original comment/paragraph.}
+%\hhnote{how about the above change? we've got the additional complication that overall the test is significant, while individually each lineup panel shows very similar structure that -surprisingly- is not yet indicative of non-homogeneity.}
+%\alnote{I like the change! I commented out the original comment/paragraph.}
 
 %\alnote{Smooth this discussion out:}
 %
@@ -642,7 +645,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots.  The data underlying this example are radon measurements across counties in Minnesota (see Section~\ref{data:radon} for details).
 Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
-Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test yields a $p$-value of 0.149, if counties with fewer than 10 observations are excluded, thereby agreeing with the visual inference result. However, if only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185. This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained with group sizes, we are far less constrained than with the conventional test.
+Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test yields a $p$-value of 0.149, if counties with fewer than 10 observations are excluded, thereby agreeing with the visual inference result. However, if only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185. This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained by group size, we are far less constrained than with the conventional test.
  
 %\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
 
@@ -901,16 +904,17 @@ Lineup tests provide us with the framework to test hypotheses and also allow a  
 %\hhnote{now we need to say something on each of the pieces that lineups rely on}
 
 %With independence from asymptotics gained, we have  to pay attention to each of the dependencies of graphical testing a bit more:
-The graphical approach is relatively new, and involves working with human observers recruited on the web. There is a vast experience in statistics in engaging subjects in a traditional lab setting, where researchers are closely engaged with the experiment. With MTurk, researchers are working with subjects in a long distance relationship, and there are some participants who will try to ``game the system''. Nevertheless, results thus far are promising: experiments replicated in both environments, a replicate of the  study by \citet{cleveland:1984} using the MTurk service \citet{heer:2010} achieved matching results, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
+The graphical approach is relatively new, and involves working with human observers recruited on the web. There is a vast experience in statistics in engaging subjects in a traditional lab setting, where researchers are closely engaged with the experiment. With MTurk, researchers are working with subjects in a long distance relationship, and there are some participants who will try to ``game the system''. Nevertheless, results thus far are promising. MTurk experiments have replicated studies conducted in the traditional lab setting. Specifically, \citet{heer:2010} achieved matching results to those of \citet{cleveland:1984} using MTurk, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
+%, a replicate of the  study by \citet{cleveland:1984} using the MTurk service \citet{heer:2010} achieved matching results, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
 
 
-As with conducting surveys, avoiding leading questions is very important. For this study, observers were generically asked to pick the plot with the most different features. Contextual information, such as labels, axis tick marks, and titles, were removed to avoid subjective bias. Care was taken, in constructing lineup sequences and different plot designs, so that observers saw the data only once. Because of the finite nature of possible comparison in a lineup, multiple replications of lineups (e.g. five, as in this study) are recommended using different sets of $m-1$ null plots. 
+As with conducting surveys, avoiding leading questions is very important. For this study, observers were generically asked to pick the plot with the most different features. Contextual information, such as labels, axis tick marks, and titles, were removed to avoid subjective bias. Care was taken, in constructing lineup sequences and different plot designs, so that observers saw the data only once. Because of the finite nature of possible comparison in a lineup, multiple replications of lineups (e.g., five, as in this study) are recommended using different sets of $m-1$ null plots. 
 
-By asking observers for the distinguishing feature(s) of the plot they chose,  graphical tests also provide us with information about the specific violation(s) of the null that is captured in a general alternative hypothesis. A fixed selection of reasons were provided for observers to choose from, but they could also enter a different reason for their picks in a text box.  This allows us to examine responses by reasons for selection to assess individual sub-hypotheses, and investigate different types of errors. For example, in Figure~\ref{fig:qqlineup-t} some participants chose plots because they showed the ``most straight line'' or ``closest fit'' to the line. These reasons would indicate that the person may not have had prior experience in reading normal probability plots, and mistakenly looked for compliance with a theoretical distribution. This can be interpreted as a Type II error. Type III errors \citep{mosteller:1948}, where the null hypothesis is rejected for the wrong reason, can also be detected by participants' choices.
+By asking observers for the distinguishing feature(s) of the plot they chose,  graphical tests also provide us with information about the specific violation(s) of the null that is captured in a general alternative hypothesis. A fixed selection of reasons were provided for observers to choose from, but they could also enter a different reason for their picks in a text box.  This allows us to examine responses by reasons for selection to assess individual sub-hypotheses, and investigate different types of errors. For example, in Figure~\ref{fig:qqlineup-t} some participants chose plots because they showed the ``most straight line'' or ``closest fit'' to the line. These reasons would indicate that the person may not have had prior experience in reading Q-Q plots, and mistakenly looked for compliance with a theoretical distribution. This can be interpreted as a Type II error. Type III errors \citep{mosteller:1948}, where the null hypothesis is rejected for the wrong reason, can also be detected by participants' choices.
 
 
-Design of plots is important---some designs are better for revealing anomalies than others. At a population level, the results obtained from the same plot design are very stable. %This is reassuring and allows us to introduce the concept of power of tests into visual inference. 
-In this paper design choices were made using best judgment based on  experience and results from cognitive psychology. As more studies are conducted more about the power of designs for model diagnostics will be learned, enabling more informed decisions about best practices \citep{infovis:2012}. A further benefit of using the graphical framework for testing is that graphics adapt relatively well to big data situations \citep{unwin:million}. This provides us with a viable approach to assess the practical relevance of a result versus results that show statistical significance purely based on the dimension of the problem. Barring bad design choices, graphical tests allow us to judge practical relevance of a result as ``If we do not see it, it might be there but not be relevant.'' 
+Plot design is important---some designs are better for revealing anomalies than others. At a population level, the results obtained from the same plot design are very stable. %This is reassuring and allows us to introduce the concept of power of tests into visual inference. 
+In this paper design choices were made using \al{our} best judgment based on  experience and results from cognitive psychology. As more studies are conducted, more about the power of designs for model diagnostics will be learned, enabling more informed decisions about best practices \citep{infovis:2012}. A further benefit of using the graphical framework for testing is that graphics adapt relatively well to big data situations \citep{unwin:million}. This provides us with a viable approach to assess the practical relevance of a result versus results that show statistical significance purely based on the dimension of the problem. Barring bad design choices, graphical tests allow us to judge practical relevance of a result as ``If we do not see it, it might be there but not be relevant.'' 
 
 
 %<<<<<<< HEAD
@@ -929,7 +933,7 @@ In this paper design choices were made using best judgment based on  experience 
 
 %Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and the examples it builds upon \citep{Buja:2009hp, mahbub:2013}, we believe the approach can be easily adapted.
 
-The diagnostics in this paper draw from various sources. Some of the diagnostics presented here, are well known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models. An example of a new diagnostic addressing a  practical need are the cyclone plots of Figure~\ref{fig:badcyclone}. The overarching purpose of  these examples is to show graphical diagnostics in a wide variety of situations, that all need special consideration in conventional hypothesis test, but that all fit within the same graphical inference framework.  Many situations, such as outlier detection, were not discussed in this paper, but the result extend to these problems also. The reader is encouraged to examine more examples provided by \citet{Buja:2009hp} and \citet{mahbub:2013}, and for biological applications \citet{RoyChowdhury:2014}.
+The diagnostics in this paper draw from various sources. Some of the diagnostics presented here, are well known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models. An example of a new diagnostic addressing a  practical need are the cyclone plots of Figure~\ref{fig:badcyclone}. The overarching purpose of  these examples is to show graphical diagnostics in a wide variety of situations that all need special consideration in the conventional hypothesis testing setting, but that all fit within the same graphical inference framework.  Many situations, such as outlier detection, were not discussed in this paper, but the results also extend to these problems. The reader is encouraged to examine more examples provided by \citet{Buja:2009hp} and \citet{mahbub:2013}, and for biological applications \citet{RoyChowdhury:2014}.
 
 %\hh{We do not intend for this paper to include an exhaustive discussion of all possible tests or testing situations, but rather we include some suggestions of specific diagnostics to alleviate some of the problems inherent to mixed effects models.   We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
 
@@ -964,7 +968,7 @@ This work was funded in part by National Science Foundation grant DMS 1007697. A
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 
-\bibliographystyle{asa}
+\bibliographystyle{apalike}
 \bibliography{hlmviz_bib}
 
 %------------------------------------------------------------------------------------
@@ -977,7 +981,7 @@ All of the data sets used in this paper are publicly available: the General Cert
 
 \subsection{General certificate of secondary education exam data}\label{data:GCSE}
 
-We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education Exam (GCSEE) in both mathematics and English. This exam is taken at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school. 
+We make use of a subset of examination results of 4,065 students nested within 65 inner-London schools discussed by \cite{Goldstein:1993wm}. The original analysis explored school effectiveness as defined by students' performance on the General Certificate of Secondary Education Exam (GCSEE) in both mathematics and English. This exam is taken at the end of compulsory education, typically when students are 16 years old.  To adjust for a student's ability when they began secondary education, the students' scores on the standardized London Reading Test (LRT) and verbal reasoning group (bottom 25\%, middle 50\%, or top 25\%) at age 11 were recorded. Additional information contained in the data set includes student gender, school gender, and the average LRT intake score for each school. 
 
 
 \subsection{Autism study}\label{data:autism}
@@ -996,7 +1000,7 @@ from which the Vineland Socialization Age Equivalent (VSAE) was computed as an o
 \subsection{Dialyzer study}\label{data:dialyzer}
 %------------------------------------------------------------------------------------
 
-\cite{Vonesh:1992us} describe a study characterizing the water transportation characteristics of 20 high flux membrane dialyzers, which were introduced to reduce the time a patient spends on hemodialysis. The 20 dialyzers were studied \emph{in vitro} using bovine blood at flow rates of either 200 or 300 ml/min, and the ultrafiltration rate (ml/hr) for each dialyzer was measured at seven transmembrane pressures (in mmHg). \cite{Vonesh:1992us} use nonlinear mixed-effects models to analyze these data; however, they can be modeled using polynomials in the linear mixed-effects framework \citep[Section 9.5]{Littell:2006}.
+\cite{Vonesh:1992us} describe a study characterizing the water transportation characteristics of 20 high flux membrane dialyzers, which were introduced to reduce the time a patient spends on hemodialysis. The 20 dialyzers were studied \emph{in vitro} using bovine blood at flow rates of either 200 or 300 ml/min, and the ultrafiltration rate (ml/hr) for each dialyzer was measured at seven transmembrane pressures (in mmHg). \cite{Vonesh:1992us} use nonlinear mixed-effects models to analyze these data; however, they can be modeled using polynomials in the linear mixed-effects framework \citep[see][Section 9.5]{Littell:2006}.
 
 \subsection{Radon study}\label{data:radon}
 %------------------------------------------------------------------------------------
@@ -1008,10 +1012,12 @@ The data consist of a stratified random sample of 919 owner-occupied homes in 85
 %------------------------------------------------------------------------------------
 \subsection{Experimental Setup and Calculation of $p$-values}\label{sec:pvalues}
 For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 75 different lineups. These were evaluated by 487 participants in altogether 4927 evaluations. For each lineup, observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
-These choices came in form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time was taken to answer and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of the ip address). 
+These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time was taken to answer was recorded and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of the ip address). 
 
 The results of the evaluations for all lineups  are displayed in Table~\ref{tab:results} and the observers' reasons for identifying plots are summarized in Table~\ref{tab:reasons}. 
-The significances in Table~\ref{tab:results} are based on the number of evaluations and the times that the data plot is being identified. For that, we introduce random variable $Y$ as the  number of evaluations of a lineup in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \hh{reference to technical report}, where $s$ delineates scenario III, i.e.~the same lineup is shown to all $K$ observers. The $p$-values in Table~\ref{tab:results} for each of the five replicates are calculated this way.
+The significances in Table~\ref{tab:results} are based on the number of evaluations and the times that the data plot was identified. For that, we the introduce random variable $Y$ as the  number of evaluations of a lineup in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \hh{reference to technical report}, 
+\alnote{We need to be able to cite this report before submission.}
+where $s$ delineates scenario III---i.e.,the same lineup is shown to all $K$ observers. The $p$-values in Table~\ref{tab:results} for each of the five replicates are calculated this way.
 For the overall $p$-value, we use a simulation based approach to combine the five results. Treating the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal as follows: we assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability an observer picks a  plot  is allocated proportionally to its signal. For each ``data plot'' we create five sets of null plots to be evaluated simultaneously $(K_1, ..., K_5)$ times.  
 $p$-values are then based on a comparison of the sum of data picks from  five no-signal lineups and  the observed number of data picks from the actual lineups. The column on the right of Table~\ref{tab:results} shows $p$-values based on $10^5$ simulation runs.
 
@@ -1049,7 +1055,7 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 % Tue Jun  4 23:00:42 2013
 \begin{table}[ht]
 \centering
-\caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown.  $p$-values and significances are based on the calculations as described in section~\ref{sec:pvalues}} 
+\caption{\label{tab:results} Overview of all lineup evaluations. Ratios comparing the number correct to the total number of evaluations are shown.  $p$-values and significances are based on the calculations as described in Section~\ref{sec:pvalues}} 
 \begin{tabular}{Mrrlrlrlrlrlc}
   \hline
 &  & \multicolumn{9}{c}{Replicate} && Overall \\ \cline{3-12} 
@@ -1091,7 +1097,7 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
 % Fri Aug 29 22:42:40 2014
 \begin{table}[ht]
-\caption{\label{tab:reasons} Percent of data picks given reason for the choice of plot from the lineup. }
+\caption{\label{tab:reasons} Percent of data picks,  given the reason for the choice of plot from the lineup. }
 \centering
 \begin{tabular}{Mrrrrrrr}
   \hline
@@ -1133,7 +1139,7 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 
 This section includes two lineups that were included in the  MTurk study, but were not discussed in the paper. 
 
-Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as Figure~\ref{fig:constvar2}, with the  difference that pressure is categorized into seven categories, and residuals are shown in the form of box plots. In order to preserve the appearance of continuity on the $x$-axis we have used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
+Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as Figure~\ref{fig:constvar2}, but categories pressure into seven categories, and shows residuals in the form of box plots. In order to preserve the appearance of continuity on the $x$-axis we used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
 
 \begin{figure}[hbt]
 	\centering
@@ -1150,7 +1156,7 @@ Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same dat
 
 
 %\hhnote{reference to corresponding lineup in main paper}
-Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification  (see section~\ref{sec:random}) using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot in panel \#($\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
+Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification  (see Section~\ref{sec:random}) using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot in panel \#($\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
 
 \begin{figure}
 	\centering
@@ -1185,7 +1191,7 @@ Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of th
 
 %\alnote{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} are really no different from the cyclone plots, aside from showing two different designs. I am not sure whether they add anything to the discussion in this section. To me they seem to detract from the cyclone plot discussion. One idea is to move them to the appendix where we can highlight the difference in designs. I don't think moving this would detract from how ``novel'' our contribution is.}
 
-Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show another example of testing for homogeneity in the variance following the approach taken in section~\ref{sec:homogeneity}. Both of these lineups are based on the dialyzer data. 
+Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show another example of testing for homogeneity in the variance following the approach taken in Section~\ref{sec:homogeneity}. Both of these lineups are based on the dialyzer data. 
 %\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
 
 Level-1 residuals are plotted by subject. Subjects are ordered by variance, i.e.~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance increases across the $x$ axis.  However, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
