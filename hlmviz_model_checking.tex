@@ -82,7 +82,16 @@
 \maketitle
 
 \begin{abstract}
- Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power. \dcnote{Abstracts get changed at last stage of writing so maybe not ready to edit yet. Needs to be more specific: what is the problem with diagnostics for linear mixed-effects models?}
+% Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power. \dcnote{Abstracts get changed at last stage of writing so maybe not ready to edit yet. Needs to be more specific: what is the problem with diagnostics for linear mixed-effects models?}
+Linear mixed-effects (LME) models are versatile models that account for dependence structures when data are composed of groups.
+The additional flexibility of random effects models comes at the cost of complicating model exploration and validation
+due to the breakdown of asymptotic results, boundary issues, and our ability to see patterns
+in diagnostic plots where none exist. While these issues are well known and adjustments
+have been proposed, they require one to keep track of all the special circumstances that
+may arise. In this paper we illustrate the use of visual inference for diagnosing LME 
+model fits and propose graphical tests that that can be broadly used in situations where 
+the assumptions of conventional inferential procedures are violated. This approach
+provides a unified framework for diagnosing LME model fits and does not require that one remember different rules of thumb for different circumstances.
 \keywords{Statistical graphics; Lineup protocol; Visual tests; Model diagnostics;  ...}
 \alnote{We also need to decide on keywords}
 \end{abstract}
@@ -145,11 +154,6 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 \end{equation}
 %
 When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
-\alnote{Do we need citations for ML and REML? It is so well known that I didn't include them, but would convention dictate that we do?}
-
-\hhnote{I don't think that we'd need them ... }
-%\alnote{If we use subheadings in the intro, then we need one here. I don't have a good idea for one right now... Maybe ``purpose'' or something since this is where we really outline what we're going to do and why.}
-%\subsection{Issues with model exploration and diagnostics}
 
 The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
@@ -592,7 +596,7 @@ When the plots are considered individually, unbalanced group sizes will cause ar
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
 To overcome this difficulty, we create a lineup of side-by-side box plots for each group ordered by their interquartile range (IQR), which we have come to call a \emph{cyclone plot}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
-While the data plot is \al{easily identified}, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that within-group variance increases across the vertical axis. However, \al{placing} the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data rather than evidence against the hypothesis of homogeneity. The fact that observers are able to still identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
+While the data plot is easily identified, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that within-group variance increases across the vertical axis. However, placing the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data rather than evidence against the hypothesis of homogeneity. The fact that observers are able to still identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
 
 %\hhnote{how about the above change? we've got the additional complication that overall the test is significant, while individually each lineup panel shows very similar structure that -surprisingly- is not yet indicative of non-homogeneity.}
 %\alnote{I like the change! I commented out the original comment/paragraph.}
