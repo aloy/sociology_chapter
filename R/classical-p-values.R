@@ -1,5 +1,5 @@
 ### Performing the "classical" analogs to the lineups
-### August 2014
+### August 2014, updated February 2015
 
 library(lme4)
 library(plyr)
@@ -87,29 +87,43 @@ data("radon", package = "HLMdiag")
 radon <- ddply(radon, .(county), transform, n = length(county))
 
 # Model from which cyclone lineup was created
-fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n > 9))
-fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n > 5))
+het.chisq.test <- function(cutoff) {
+  fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n >= cutoff))
 
-test.df2 <- ddply(fm@frame, .(county), calc_s_df, formula = log.radon ~ basement)
-test.df2 <- transform(test.df2, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
+  test.df2 <- ddply(fm@frame, .(county), calc_s_df, formula = log.radon ~ basement)
+  test.df2 <- transform(test.df2, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
+  
+  H2 <- sum(test.df2$d^2)
+  pval <- pchisq(H2, df = nrow(test.df2) - 1, lower.tail = FALSE)
+  
+  return(c(H = H2, p.val = pval))
+}
 
-H2 <- sum(test.df2$d^2)
-pchisq(H2, df = nrow(test.df2) - 1, lower.tail = FALSE)
-
+RES <- NULL
+for(i in 3:15) {
+  RES <- rbind(RES, c(n = i, het.chisq.test(cutoff = i)))
+}
+RES <- as.data.frame(RES)
 
 # Checking the p-value via simulation
-set.seed(987654321)
-sim.ys <- simulate(fm, nsim = 1e4)
-sim.df <- lapply(sim.ys, function(y) {
-  df <- fm@frame
-  df$log.radon <- y
-  return(df)
+RES$sim.p.val <- rep(NA, 13)
+for(i in 1:13) {
+  set.seed(987654321)
+  fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n >= RES$n[i]))
+  sim.ys <- simulate(fm, nsim = 1e3)
+  sim.df <- lapply(sim.ys, function(y) {
+    df <- fm@frame
+    df$log.radon <- y
+    return(df)
   })
+  
+    sim.h <- mclapply(sim.df, FUN = function(x){
+      df <- ddply(x,  .(county), calc_s_df, formula = log.radon ~ basement)
+      df <- transform(df, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
+      return(sum(df$d^2))
+    })
 
-sim.h <- sapply(sim.df, FUN = function(x){
-  df <- ddply(x,  .(county), calc_s_df, formula = log.radon ~ basement)
-  df <- transform(df, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
-  return(sum(df$d^2))
-})
+  RES$sim.p.val[i] <- mean(sim.h >= RES$H)
+  cat("Iteration", i, "complete \n", sep = " ")
+}
 
-mean(sim.h >= H2)
