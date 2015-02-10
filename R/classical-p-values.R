@@ -127,3 +127,5 @@ for(i in 1:13) {
   cat("Iteration", i, "complete \n", sep = " ")
 }
 
+library(xtable)
+print(xtable(RES, digits = c(0, 0, 1, 4, 4)), include.rownames=FALSE)
