@@ -82,19 +82,16 @@
 \maketitle
 
 \begin{abstract}
-% Valid model-based statistical inference relies on proper specification of a model, making diagnostic tools central to analysis. Graphical methods are commonly used for checking the assumptions of a model; however, they are often criticized as being too subjective since decisions are based on one plot. This has lead to the reliance on conventional hypothesis tests to make formal decisions. Recently, visual inference has been established, providing a rigorous framework for graphical discovery that allows for the quantification of strength of evidence. In this paper we use visual inference as a framework to overcome common difficulties with conventional hypothesis tests and statistical graphics that are encountered in the selection and validation of linear mixed-effects models. Additionally, we compare three versions of Quantile-Quantile plots with respect to power. \dcnote{Abstracts get changed at last stage of writing so maybe not ready to edit yet. Needs to be more specific: what is the problem with diagnostics for linear mixed-effects models?}
-\alnote{First attempt at new abstract}
 Linear mixed-effects (LME) models are versatile models that account for dependence structures when data are composed of groups.
 The additional flexibility of random effects models comes at the cost of complicating model exploration and validation
-due to the breakdown of asymptotic results, boundary issues, and our ability to see patterns
-in diagnostic plots where none exist. While these issues are well known and adjustments
-have been proposed, they require one to keep track of all the special circumstances that
+due to the breakdown of asymptotic results, boundary issues, and  patterns
+in diagnostic plots inherent to model structures. While these issues are well known and adjustments
+have been proposed, they require the analyst to keep track of all the special circumstances that
 may arise. In this paper we illustrate the use of visual inference for diagnosing LME 
-model fits and propose graphical tests that that can be broadly used in situations where 
+model fits based on graphical tests that that can be broadly used in situations where 
 the assumptions of conventional inferential procedures are violated. This approach
-provides a unified framework for diagnosing LME model fits and does not require that one remember different rules of thumb for different circumstances.
-\keywords{Statistical graphics; Lineup protocol; Visual tests; Model diagnostics;  ...}
-\alnote{We also need to decide on keywords}
+provides a unified framework for diagnosing LME model fits and for model selection.
+\keywords{Statistical graphics; Lineup protocol; Visual tests; Model diagnostics;  }
 \end{abstract}
 
 %\tableofcontents
@@ -650,7 +647,8 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 Below is a crude first draft of the table... it only relies on 1000 simulations in each setting. Upping that to 1e4 would be preferable for the final submission in my mind. 
 
 Should there be a d.f. column for the naive p-values?}
-
+\hhnote{df would be good! I think we also agreed to rename 'cutoff' to 
+'minimal number of records in county'}
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -678,7 +676,6 @@ Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots.  The data un
 Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
 Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test yields a $p$-value of 0.149, if counties with fewer than 10 observations are excluded, thereby agreeing with the visual inference result. However, if only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185.
-\al{XXX Did I make a transcription error here? My current code seems right... need to double check.}
  This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained by group size, we are far less constrained than with the conventional test.
  
 %\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
