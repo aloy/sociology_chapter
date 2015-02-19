@@ -253,7 +253,7 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 Figure~\ref{fig:fanned} shows a lineup. Each panel shows  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'.    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring observers make decisions that were based purely on the data display. 
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
-Based on a human subject study (described in more detail in Appendix~\ref{study}) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot, shown in panel  \#($\sqrt{144} + 4$) of the lineup in Figure~\ref{fig:fanned}, resulting in a visual $p$-value of 0.0171. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
+Based on a human subject study (described in more detail in Appendix~\ref{study}) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot, shown in panel  \#($\sqrt{144} + 4$)\footnote{The reason for writing the panel which shows the data encoded in a bit of arithmetic, is meant to pose a cognitive obstacle that allows the reader to evaluate the lineup before previously being biased by knowing the answer.} of the lineup in Figure~\ref{fig:fanned}, resulting in a visual $p$-value of 0.0171. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
 is consistent with the model that generated the data, on which all of the other plots are based. The  model and its corresponding null hypothesis  are explained in detail in Section~\ref{sec:select}.  
 
 
@@ -343,7 +343,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
-Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five observers identified the data plot in panel \#($2^3 + 2$)\footnote{The reason for writing the panel which shows the data encoded in a bit of calculus, is meant to pose a cognitive obstacle that allows the reader to evaluate the lineup before previously being biased by knowing the answer.}, 
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five observers identified the data plot in panel \#($2^3 + 2$), 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
@@ -614,7 +614,7 @@ While the data plot is easily identified, any panel from this lineup considered 
 %	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
 \end{figure}
 
-An alternative approach to detect homoscedasticity of the level-1 residuals across groups is to use a test based on the standardized measure of dispersion given by
+An alternative approach to detect heteroscedasticity of the level-1 residuals across groups is to use a test based on the standardized measure of dispersion given by
 %
 \begin{equation}\label{eq:d}
 	d_i = \frac{\log\left( s_i^2 \right) - \left[ \sum_i (n_i - r_i) \log\left( s_i^2 \right) / \sum_i  (n_i - r_i) \right]}{\left(2 / (n_i - r_i)\right)^{1/2}}
@@ -626,7 +626,7 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 	H = \sum_{i=1}^{g^*} d_i^2
 \end{equation}
 %
-which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. Performing the simulation-based version of the test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. 
+which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough''. Here we use $g^*$ because ``small'' groups may be excluded from the calculation as small group sizes provide less reliable information about the residual variance, but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. \al{Additionally, we have found it to be sensitive to the choice of the minimum group size (Table~\ref{tab:pvalues}).} Performing the simulation-based version of the test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. 
 
 %\alnote{I need to go back and really emphasize the lack of effective conventional tests here}
 %\hhnote{what is the result - in $p$-value for the conventional test? it would be nice if it were inconclusive :) }
@@ -650,24 +650,25 @@ Should there be a d.f. column for the naive p-values?}
 \hhnote{df would be good! I think we also agreed to rename 'cutoff' to 
 'minimal number of records in county'}
 \begin{table}[ht]
+\caption{\label{tab:pvalues} A comparison of the naive and the simulation-based version (based on 10,000 simulated statistics) of the conventional test of homoscedastic error terms across groups for the radon data. There is a clear discrepancy between the two, indicating a need for simulation-based methods. The sensitivity of the simulation-based test to the minimum group size is apparent.} 
 \centering
-\begin{tabular}{rrrrr}
+\begin{tabular}{rrrrrrr}
   \hline
- Cutoff & $H$ & Naive $p$-value  & Simulated $p$-value \\ 
+ Minimum group size & $H$ & d.f. & Naive $p$-value  & Simulated $p$-value \\ 
   \hline
-  3 & 116.6 & 0.0009 & 0.9140 \\ 
-  4 & 96.8 & 0.0031 & 0.8030 \\ 
-  5 & 77.9 & 0.0017 & 0.6130 \\ 
-  6 & 75.8 & 0.0003 & 0.5400 \\ 
-  7 & 59.0 & 0.0036 & 0.4630 \\ 
-  8 & 51.2 & 0.0066 & 0.4060 \\ 
-  9 & 39.6 & 0.0426 & 0.3500 \\ 
-  10 & 27.7 & 0.1490 & 0.2550 \\ 
-  11 & 26.6 & 0.1145 & 0.2330 \\ 
-  12 & 23.7 & 0.1281 & 0.2070 \\ 
-  13 & 23.7 & 0.0966 & 0.1900 \\ 
-  14 & 8.2 & 0.6940 & 0.1370 \\ 
-  15 & 5.1 & 0.6429 & 0.0710 \\ 
+  3 & 116.6 & & 0.0009 & 0.9140 \\ 
+  4 & 96.8 & & 0.0031 & 0.8030 \\ 
+  5 & 77.9 & & 0.0017 & 0.6130 \\ 
+  6 & 75.8 & & 0.0003 & 0.5400 \\ 
+  7 & 59.0 & & 0.0036 & 0.4630 \\ 
+  8 & 51.2 & & 0.0066 & 0.4060 \\ 
+  9 & 39.6 & & 0.0426 & 0.3500 \\ 
+  10 & 27.7 & & 0.1490 & 0.2550 \\ 
+  11 & 26.6 & & 0.1145 & 0.2330 \\ 
+  12 & 23.7 & & 0.1281 & 0.2070 \\ 
+  13 & 23.7 & & 0.0966 & 0.1900 \\ 
+  14 & 8.2 & & 0.6940 & 0.1370 \\ 
+  15 & 5.1 & & 0.6429 & 0.0710 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -675,8 +676,8 @@ Should there be a d.f. column for the naive p-values?}
 Figure~\ref{fig:goodcyclone} shows another lineup of cyclone plots.  The data underlying this example are radon measurements across counties in Minnesota (see Section~\ref{data:radon} for details).
 Here, level-1 residuals by county are plotted from a model, in which only counties with at least five observations were included. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
-Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test yields a $p$-value of 0.149, if counties with fewer than 10 observations are excluded, thereby agreeing with the visual inference result. However, if only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0185.
- This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained by group size, we are far less constrained than with the conventional test.
+Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. In this situation the conventional test yields a $p$-value of 0.149, if counties with fewer than 10 observations are excluded, thereby agreeing with the visual inference result. However, if only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0017.
+ This sensitivity to the group size is a clear weakness of the conventional test, and casts doubt on its usefulness in situations with small group sizes. \al{Table~\ref{tab:pvalues} provides further exploration of this sensitivity.} In contrast, the visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained by group size, we are far less constrained than with the conventional test.
  
 %\alnote{The ``conventional'' test yields a p-value of about 0.149 (if you use the $\ge 10$ suggestion, it yields a p-value of about .0017 if you use $\ge 5$. For the conventional test, the rule of thumb seems safer, though means we can apply the method only in situations with group sizes of $10+$, which we can emphasize!}
 
