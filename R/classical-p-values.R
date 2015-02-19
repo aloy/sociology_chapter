@@ -94,9 +94,10 @@ het.chisq.test <- function(cutoff) {
   test.df2 <- transform(test.df2, d = ( log(s^2) - ( sum(df * log(s^2)) / sum(df) ) ) / sqrt( 2 / df ) )
   
   H2 <- sum(test.df2$d^2)
-  pval <- pchisq(H2, df = nrow(test.df2) - 1, lower.tail = FALSE)
+  df <- nrow(test.df2) - 1
+  pval <- pchisq(H2, df = df, lower.tail = FALSE)
   
-  return(c(H = H2, p.val = pval))
+  return(c(H = H2, df = df, p.val = pval))
 }
 
 RES <- NULL
@@ -105,12 +106,13 @@ for(i in 3:15) {
 }
 RES <- as.data.frame(RES)
 
+library()
 # Checking the p-value via simulation
 RES$sim.p.val <- rep(NA, 13)
 for(i in 1:13) {
   set.seed(987654321)
   fm <- lmer(log.radon ~ basement + uranium + (basement | county), data = subset(radon, n >= RES$n[i]))
-  sim.ys <- simulate(fm, nsim = 1e3)
+  sim.ys <- simulate(fm, nsim = 1e4)
   sim.df <- lapply(sim.ys, function(y) {
     df <- fm@frame
     df$log.radon <- y
