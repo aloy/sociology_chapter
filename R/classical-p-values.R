@@ -106,7 +106,7 @@ for(i in 3:15) {
 }
 RES <- as.data.frame(RES)
 
-library()
+library(parallel)
 # Checking the p-value via simulation
 RES$sim.p.val <- rep(NA, 13)
 for(i in 1:13) {
@@ -130,4 +130,4 @@ for(i in 1:13) {
 }
 
 library(xtable)
-print(xtable(RES, digits = c(0, 0, 1, 4, 4)), include.rownames=FALSE)
+print(xtable(RES, digits = c(0, 0, 1, 0, 4, 4)), include.rownames=FALSE)
