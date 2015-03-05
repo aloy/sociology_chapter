@@ -30,3 +30,5 @@ lineups_data.zip
 .DS_Store
 
 R/.Rhistory
+
+*.history
