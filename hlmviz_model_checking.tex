@@ -5,9 +5,9 @@
 \usepackage{natbib}
 \usepackage{url} % not crucial - just used below for the URL 
 
-%\pdfminorversion=4
+\pdfminorversion=4
 % NOTE: To produce blinded version, replace "0" with "1" below.
-\newcommand{\blind}{0}
+\newcommand{\blind}{1}
 
 % DON'T change margins - should be 1 inch all around.
 \addtolength{\oddsidemargin}{-.5in}%
@@ -19,7 +19,7 @@
 
 % for citations
 %\usepackage[authoryear]{natbib} % natbib required for JASA
-\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+%\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 
 % for the fancy tables with the icons
 %\usepackage[margin=1.0in]{geometry}% http://ctan.org/pkg/margin
@@ -119,7 +119,7 @@ due to the breakdown of asymptotic results, boundary issues, and  patterns
 in diagnostic plots inherent to model structures. While these issues are well known and adjustments
 have been proposed, they require the analyst to keep track of all the special circumstances that
 may arise. In this paper we illustrate the use of visual inference for diagnosing LME 
-model fits based on graphical tests that that can be broadly used in situations where 
+model fits based on graphical tests that can be broadly used in situations where 
 the assumptions of conventional inferential procedures are violated. This approach
 provides a unified framework for diagnosing LME model fits and for model selection.
 \end{abstract}
@@ -1026,8 +1026,18 @@ The diagnostics in this paper draw from various sources. Some of the diagnostics
 %------------------------------------------------------------------------------------
 \section{Acknowledgments}
 %------------------------------------------------------------------------------------
+\if0\blind
+{
 We would like to thank Mahbubul Majumder and Eric Hare, who conducted the Amazon MTurk study (\url{mahbub.stat.iastate.edu/feedback_turk11/homepage.html}). R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4, lme4b} and HLMdiag \citep{HLMDiag, Loy:JSS} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
 This work was funded in part by National Science Foundation grant DMS 1007697. All studies were conducted with approval from the internal review board IRB 10-347.
+} \fi
+
+\if1\blind
+{
+R \citep{R} was used to implement all analyses and methods discussed in this paper: lme4 \citep{lme4, lme4b} and HLMdiag \citep{HLMDiag, Loy:JSS} were used for model fitting and  calculation of diagnostics, respectively.  ggplot2 \citep{ggplot2}, nullabor \citep{nullabor}, and gridSVG \citep{gridSVG} provided the basis for the visualizations.
+} \fi
+
+
 %------------------------------------------------------------------------------------
 
 
