@@ -7,7 +7,7 @@
 
 \pdfminorversion=4
 % NOTE: To produce blinded version, replace "0" with "1" below.
-\newcommand{\blind}{1}
+\newcommand{\blind}{0}
 
 % DON'T change margins - should be 1 inch all around.
 \addtolength{\oddsidemargin}{-.5in}%
@@ -82,7 +82,7 @@
 {
   \title{\bf Better Diagnostics for Linear Mixed-Effects Models Using Visual Inference}
   \author{{Adam Loy, Heike Hofmann, Dianne Cook}\thanks{
-    Adam Loy is an Assistant Professor in the Department of Mathematics, Lawrence University, Appleton, WI 54911 (e-mail: adam.m.loy@lawrence.edu). Heike Hofmann is a Professor in the Department of Statistics and Statistical Laboratory, Iowa State University, Ames, IA 50011 (e-mail: hofmann@iastate.edu). Dianne Cook is a Professor in the Department of Statistics and Statistical Laboratory, Iowa State University, Ames, IA 50011 (e-mail: dicook@iastate.edu).}\hspace{.2cm}\\
+    Adam Loy is an Assistant Professor in the Department of Mathematics, Lawrence University, Appleton, WI 54911 (e-mail: adam.m.loy@lawrence.edu). Heike Hofmann is a Professor in the Department of Statistics and Statistical Laboratory, Iowa State University, Ames, IA 50011 (e-mail: hofmann@iastate.edu). Dianne Cook is a Professor in the Department of Econometrics and Business Statistics, Monash University (e-mail: dicook@monash.edu).}\hspace{.2cm}\\
 %    Department of Mathematics, Lawrence University\\
 %    Heike Hofmann \\
 %    Department of Statistics and Statistical Laboratory, Iowa State University\\
@@ -161,12 +161,10 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 
 \item Can’t we also use parametric bootstrap to approximate the null distribution of an appropriate test statistic for the various problems considered in the paper, thereby avoiding the use of standard asymptotics, which is problematic in any case?
 
-\item Does the verification of each assumption require some of the other assumptions to hold? What happens if several assumptions are simultaneously violated? How can we be sure that the violation of the various assumptions are “not mixed up”? In what order should we test the various assumptions? Does it matter? At the end of Section 4.2, it is noted that “Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance.” Can lineups be constructed so as to automatically detect the assumption/assumptions being violated? Is the test for normality (explained in Secion 4.3) carried out after assessing the homogeneity of variances, and after identifying an appropriate model (as outlined in Section 4.2)?
+\item Does the verification of each assumption require some of the other assumptions to hold? What happens if several assumptions are simultaneously violated? How can we be sure that the violation of the various assumptions are “not mixed up”? In what order should we test the various assumptions? Does it matter? At the end of Section 4.2, it is noted that “Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance.” Can lineups be constructed so as to automatically detect the assumption/assumptions being violated? Is the test for normality (explained in Section 4.3) carried out after assessing the homogeneity of variances, and after identifying an appropriate model (as outlined in Section 4.2)?
 
 \item Noting the drastic differences between the two sets of p-values in Table 1, the authors comment on “a need for simulation-based methods.” I assume the simulated p-values in Table 1 are obtained under the normality assumption. So should one check the normality assumption first, and compute the simulation-based p-value only if the normality assumption is tenable? What happens otherwise? I believe that the simultaneous assessment of several model assumptions is a very important issue; see \citet{pena:2006} for an attempt in this direction.
 
-Pena, E. A. and Slate, E. H. (2006). Global Validation of Linear Model Assumptions.
-Journal of the American Statistical Association, 101, 341-354.
 
 
 \end{enumerate}
