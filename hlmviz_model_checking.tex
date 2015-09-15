@@ -17,6 +17,10 @@
 \addtolength{\topmargin}{-.8in}%
 
 
+
+
+
+
 % for citations
 %\usepackage[authoryear]{natbib} % natbib required for JASA
 %\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
@@ -72,6 +76,7 @@
 \renewcommand{\topfraction}{1}
 \renewcommand{\floatpagefraction}{1}
 
+
 \begin{document}
 
 \def\spacingset#1{\renewcommand{\baselinestretch}%
@@ -81,15 +86,16 @@
 \if0\blind
 {
   \title{\bf Better Diagnostics for Linear Mixed-Effects Models Using Visual Inference}
-  \author{{Adam Loy, Heike Hofmann, Dianne Cook}\thanks{
-    Adam Loy is an Assistant Professor in the Department of Mathematics, Lawrence University, Appleton, WI 54911 (e-mail: adam.m.loy@lawrence.edu). Heike Hofmann is a Professor in the Department of Statistics and Statistical Laboratory, Iowa State University, Ames, IA 50011 (e-mail: hofmann@iastate.edu). Dianne Cook is a Professor in the Department of Econometrics and Business Statistics, Monash University (e-mail: dicook@monash.edu).}\hspace{.2cm}\\
-%    Department of Mathematics, Lawrence University\\
-%    Heike Hofmann \\
-%    Department of Statistics and Statistical Laboratory, Iowa State University\\
-%    and \\
-%    Dianne Cook \\
-%    Department of Statistics and Statistical Laboratory, Iowa State University\\
-}
+  \author{Adam Loy\thanks{
+    The authors gratefully acknowledge funding from the National Science Foundation Grant \#DMS 1007697. All data collection has been conducted with approval from the Institutional Review Board IRB 10-347}\hspace{.2cm}\\
+    Department of Mathematics, Lawrence University\\
+    and \\
+    Heike Hofmann\\
+    Department of Statistics and Statistical Laboratory, Iowa State University\\
+    and \\
+    Dianne Cook\\
+    Department of Econometrics and Business Statistics, Monash University
+    }
   \maketitle
 } \fi
 
