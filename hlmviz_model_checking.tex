@@ -148,7 +148,7 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 
 \item  ``… against the null hypothesis on normality."  Should that be t(3) rather than normality since the random effects (for the 19 additional plots?) were simulated from a t(3) distribution? If “normality” is correct, the text needs to be clearer.
 
-{\it OK, text needs to be clearer.}
+{\it OK, text needs to be clearer. }
 
 \item  It is difficult to believe that the lineup plots help to identify problems with asymptotic approximations and boundary issues as suggested on pages 2-3. Although it is true that the distribution of the error term and random effects may be far from normal the lineup plots do not indicate the deviation of the beta- coefficients estimates from being normally distributed. 
 
@@ -854,8 +854,8 @@ Additionally, this example shows that even the null plots that were generated fr
 \end{figure}
 
 
-% In Figure~\ref{fig:qqlineup-t} we can identify the true plot (panel $\sqrt{49} - 1$) providing evidence that the assumption of normality is violated, which is in fact the case as the true plot was constructed from random effects simulated from a $t_3$ distribution. 
-To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution. This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 observers identified the true plot in panel \#($\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
+To determine whether lineups can detect distributional violations we constructed another lineup where the ``true plot'' was constructed from random effects simulated from a $t_3$ distribution\hh{, i.e.\ based on model~(\ref{eq:hlm}), error terms $\varepsilon \sim t_3$ are simulated and the model is re-fit, deriving a new set of residuals. For the null plots, error terms are simulated from a normal distribution and the model is re-fit to derive the corresponding residuals. }
+ This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 observers identified the true plot in panel \#($\sqrt{49} + 3\cdot4$), providing evidence against the null hypothesis of normality.  
  The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach. %, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
  The ability of a lineup to distinguish a $t$ distribution for the random effects in the radon study shows that the approach has fewer limitations than conventional approaches, justifying our preference.
 %The utility of lineups in this case relies on whether the empirical distributions of predicted random effects are expected to be different under model violations, which was the case in this example. We add this as a 
