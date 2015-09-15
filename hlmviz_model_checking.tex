@@ -141,7 +141,8 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 \begin{enumerate}
 \item Panels are provided a set of graphs and are asked to pick out the one that does not appear to fit with the rest.  How are these panels selected?  Apparently these observers are “recruited on the web” (p. 23, line 37). How? And are the members of the panel required to have some sense of data (should they be statisticians or have some statistical training)? How does one obtain a sufficient number of observers (as mentioned on p. 8, line 41)? While the ideas presented are nice, more details need to be given on how this would be implemented in practice. Would there be a sufficiently large pool of observers if many researchers submitted their diagnostic plots? And how quickly is the feedback obtained?
 
-{\it all of these are really details and easy to fix by a few extra sentences. }
+{\it all of these are really details and easy to fix by a few extra sentences. XXX the answers are in the appendix/ }
+
 
 \item  Model selection.  Some discussion of AIC and BIC should be included as these approaches can also be used in model selection.
 
@@ -373,7 +374,7 @@ This  information makes it possible to assess which part of the null hypothesis 
 %\subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 %\alnote{This paragraph is a lot of repeat from the last paragraph, other than the intro to complications. I need to think about ways to resolve this.}
-It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability. % in a linear mixed-effects model. 
+It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability. \hh{Often, likelihood-based criteria, such as AIC or BIC, are used to overcome the problem of being only able to deal with nested models.} % in a linear mixed-effects model. 
 %Likelihood ratio tests are more generally applicable in comparing nested models, but are  most commonly used in the selection of random effects. 
 When selecting random effects, likelihood ratio tests are most commonly used. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
