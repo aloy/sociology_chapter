@@ -139,36 +139,17 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 \hh{gist from the reviewers:
 
 \begin{enumerate}
-\item Panels are provided a set of graphs and are asked to pick out the one that does not appear to fit with the rest.  How are these panels selected?  Apparently these observers are “recruited on the web” (p. 23, line 37). How? And are the members of the panel required to have some sense of data (should they be statisticians or have some statistical training)? How does one obtain a sufficient number of observers (as mentioned on p. 8, line 41)? While the ideas presented are nice, more details need to be given on how this would be implemented in practice. Would there be a sufficiently large pool of observers if many researchers submitted their diagnostic plots? And how quickly is the feedback obtained?
-
-{\it all of these are really details and easy to fix by a few extra sentences. XXX the answers are in the appendix/ }
-
-
-\item  Model selection.  Some discussion of AIC and BIC should be included as these approaches can also be used in model selection.
-
-\item  ``… against the null hypothesis on normality."  Should that be t(3) rather than normality since the random effects (for the 19 additional plots?) were simulated from a t(3) distribution? If “normality” is correct, the text needs to be clearer.
-
-{\it OK, text needs to be clearer. }
-
-\item  It is difficult to believe that the lineup plots help to identify problems with asymptotic approximations and boundary issues as suggested on pages 2-3. Although it is true that the distribution of the error term and random effects may be far from normal the lineup plots do not indicate the deviation of the beta- coefficients estimates from being normally distributed. 
-
-{\it I don't get that statement - I am not sure who misunderstood what, but there is a misunderstanding.}
 
 \item There is indeed a problem of the classical likelihood ratio test on the boundary of variance parameters (page 4), but the authors do not mention the exact F-test which solves this problem (Demidenko E. "Mixed Models: Theory and Applications with R", 2013, page 136).
 
 {\it that might well be, but it does not solve the problem. We need to cite it and clarify that it does not help.}
 
 
-\item  I do not see how lineup plots help solve the problem of model selection or model checking as described on pages 3-4. How figures presented in the paper are connected to model formulation in equations (1-3)? The authors do not even describe how plots were generated and what parameters were used. How the eye ball assessment of the lineup plots points out to a variable omitted, nonlinearity, or abnormality? Being different is not sufficient, especially in view of the next point.
-
-{\it Reviewer didn't get the point of lineups. }
-
-\item I do not believe that the lineup plots are helpful in identifying outliers or testing the hypothesis at all.  {\it now I don't know which hypothesis the reviewer is talking about }
- Here is why: among any observations there a minimum and there is a maximum. The question “Which of the plots is the most different?” may simply point out to a plot with a maximum (or minimum) expressed feature. But identifying maximum (or minimum) feature in the plot, say, testing for normality of the random as in Figure 9, does not ‘prove’ by any means that the random slope is an outlier. It may be just a cluster with the maximal slope.
-
 \item Can’t we also use parametric bootstrap to approximate the null distribution of an appropriate test statistic for the various problems considered in the paper, thereby avoiding the use of standard asymptotics, which is problematic in any case?
 
 \item Does the verification of each assumption require some of the other assumptions to hold? What happens if several assumptions are simultaneously violated? How can we be sure that the violation of the various assumptions are “not mixed up”? In what order should we test the various assumptions? Does it matter? At the end of Section 4.2, it is noted that “Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance.” Can lineups be constructed so as to automatically detect the assumption/assumptions being violated? Is the test for normality (explained in Section 4.3) carried out after assessing the homogeneity of variances, and after identifying an appropriate model (as outlined in Section 4.2)?
+
+{\it simultaneous assessment of several model assumptions, order in which assumptions are tested, does dependency between (potentially violated) model assumption affect outcome of test? -- These are all good points, but we don't have an answer for them in classical tests, so we don't have to answer them here. }
 
 \item Noting the drastic differences between the two sets of p-values in Table 1, the authors comment on “a need for simulation-based methods.” I assume the simulated p-values in Table 1 are obtained under the normality assumption. So should one check the normality assumption first, and compute the simulation-based p-value only if the normality assumption is tenable? What happens otherwise? I believe that the simultaneous assessment of several model assumptions is a very important issue; see \citet{pena:2006} for an attempt in this direction.
 
