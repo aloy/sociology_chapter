@@ -383,7 +383,13 @@ Defining the appropriate degrees of freedom for  $t$- or $F$-tests provides anot
 %
 %Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
 %}
-\item[\bf Random components: ] When testing for the inclusion of a variance component, the parameter being tested lies on the boundary of the parameter space, and the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation. Alternatively, the rule of thumb suggested by \citeauthor{Stram:1994wd} can be utilized with the knowledge that the results may be sub-optimal, leading to either conservative or anti-conservative decisions. \al{\citet[Section 3.5]{Demidenko2013} presents an alternative approach, utilizing an exact $F$-test, but only for the null hypothesis $\mathbf{D} = \mathbf{0}$.}
+\item[\bf Random components: ] When testing for the inclusion of a variance component, the parameter being tested lies on the boundary of the parameter space, and the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. 
+\hh{Various approaches to deal with this problem have been suggested in the literature: }
+\al{\citet[Section 3.5]{Demidenko2013} presents an exact $F$-test in the  null hypothesis $\mathbf{D} = \mathbf{0}$.} \hh{Unfortunately, the all-or-nothing inclusion of random effectslimits the use of this test in practice.}
+%\al{\citet[Section 3.5]{Demidenko2013} presents an alternative approach, utilizing an exact $F$-test, but only for the null hypothesis $\mathbf{D} = \mathbf{0}$.}
+Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. 
+Alternatively, the rule of thumb suggested by \citeauthor{Stram:1994wd} can be utilized with the knowledge that the results may be sub-optimal, leading to either conservative or anti-conservative decisions. 
+This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation. 
 \end{description}
 
 
