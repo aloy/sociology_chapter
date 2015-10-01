@@ -135,23 +135,26 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 
 \clearpage
 \spacingset{1.45}
-\tableofcontents
-\hh{gist from the reviewers:
+%\tableofcontents
+%
+%\hh{gist from the reviewers:
+%
+%\begin{enumerate}
+%
+%\item Can’t we also use parametric bootstrap to approximate the null distribution of an appropriate test statistic for the various problems considered in the paper, thereby avoiding the use of standard asymptotics, which is problematic in any case?
+%
+%\item Does the verification of each assumption require some of the other assumptions to hold? What happens if several assumptions are simultaneously violated? How can we be sure that the violation of the various assumptions are “not mixed up”? In what order should we test the various assumptions? Does it matter? At the end of Section 4.2, it is noted that “Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance.” Can lineups be constructed so as to automatically detect the assumption/assumptions being violated? Is the test for normality (explained in Section 4.3) carried out after assessing the homogeneity of variances, and after identifying an appropriate model (as outlined in Section 4.2)?
+%
+%{\it simultaneous assessment of several model assumptions, order in which assumptions are tested, does dependency between (potentially violated) model assumption affect outcome of test? -- These are all good points, but we don't have an answer for them in classical tests, so we don't have to answer them here. }
+%
+%\item Noting the drastic differences between the two sets of p-values in Table 1, the authors comment on “a need for simulation-based methods.” I assume the simulated p-values in Table 1 are obtained under the normality assumption. So should one check the normality assumption first, and compute the simulation-based p-value only if the normality assumption is tenable? What happens otherwise? I believe that the simultaneous assessment of several model assumptions is a very important issue; see \citet{pena:2006} for an attempt in this direction.
+%
+%
+%
+%\end{enumerate}
+%}
 
-\begin{enumerate}
 
-\item Can’t we also use parametric bootstrap to approximate the null distribution of an appropriate test statistic for the various problems considered in the paper, thereby avoiding the use of standard asymptotics, which is problematic in any case?
-
-\item Does the verification of each assumption require some of the other assumptions to hold? What happens if several assumptions are simultaneously violated? How can we be sure that the violation of the various assumptions are “not mixed up”? In what order should we test the various assumptions? Does it matter? At the end of Section 4.2, it is noted that “Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance.” Can lineups be constructed so as to automatically detect the assumption/assumptions being violated? Is the test for normality (explained in Section 4.3) carried out after assessing the homogeneity of variances, and after identifying an appropriate model (as outlined in Section 4.2)?
-
-{\it simultaneous assessment of several model assumptions, order in which assumptions are tested, does dependency between (potentially violated) model assumption affect outcome of test? -- These are all good points, but we don't have an answer for them in classical tests, so we don't have to answer them here. }
-
-\item Noting the drastic differences between the two sets of p-values in Table 1, the authors comment on “a need for simulation-based methods.” I assume the simulated p-values in Table 1 are obtained under the normality assumption. So should one check the normality assumption first, and compute the simulation-based p-value only if the normality assumption is tenable? What happens otherwise? I believe that the simultaneous assessment of several model assumptions is a very important issue; see \citet{pena:2006} for an attempt in this direction.
-
-
-
-\end{enumerate}
-}
 %------------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------------
