@@ -220,7 +220,7 @@ Problems addressed in this paper include:
 \begin{enumerate}
 \item {\em Model selection:}
 \begin{enumerate}
-\item {\em Breakdown of  asymptotic results:} Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
+\item {\em \al{Assessment of asymptotic distributions}:} Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
 For example, the \al{unconditional} empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment \cite[see the supplement of][for supporting simulation results]{adam}.
 
 \item {\em Boundary issues  in the comparison of nested models: } 
@@ -799,7 +799,7 @@ To extend checks of linearity to group-level variables we suggest the use of the
 %\hhnote{this is where we want to extend the discussion a bit: the partial residual plots and our approach is like the difference between type I and type III sums of squares - i.e. looking at the contribution of covariates either without regarding any of the covariates (type III) or only after adjusting for everything else, in which case we need to fit the model first before we can look into the relationship between $Y$ and $X_i$}
 
 
-\subsection{Normality}
+\subsection{Distributional assessment}
 %\hh{This section consists of two parts: we first discuss how to assess distributional assumptions in linear mixed-effects models, which are complicated by confounding issues between levels of residual structures; in the second part we assess power of visual normality tests based on three different Q-Q plot designs.}
 %------------------------------------------------------------------------------------
 
@@ -808,7 +808,9 @@ To extend checks of linearity to group-level variables we suggest the use of the
 
 %Quantile-Quantile (Q-Q) plots \citep{Wilk:1968} are often used as an informal check of the distributional assumptions made on the level-1 and -2 residuals; however, an interrelationship between the residual quantities exists in hierarchical linear models that can render such an assessment inappropriate. 
 
-Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{R}_{i})$. \al{During the model fitting process, however, the predicted random effects are the conditional means of the random effects given the data. While in certain situations the empirical distributions of the residuals in the linear mixed-effects model to converge in probability to their true distributions, overly strong assumptions are required \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In practice, the predicted random effects (i.e., the level-2 residuals) will not resemble the unconditional distribution; thus, distributional tools such as individual Q-Q plots will lead to erroneous conclusions about the distributional assumptions. This complication can be overcome, at least partially, using lineups.}
+Recall that in model~\eqref{eq:hlm} we assume that the random effects, $\bm{b}_i$, are a random sample from $\mathcal{N}(\bm{0},\ \bm{D})$ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assumed to be a random sample from $\mathcal{N}(\bm{0},\ \sigma^2 \bm{R}_{i})$. \al{During the model fitting process, however, the predicted random effects are the conditional means of the random effects given the data. While in certain situations the empirical distributions of the residuals in the linear mixed-effects model do converge in probability to their true distributions, very strong assumptions that are not realistic in finite samples are required \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In practice, the predicted random effects (i.e., the level-2 residuals) will not resemble the unconditional distribution; thus, distributional tools such as individual Q-Q plots will lead to erroneous conclusions about the distributional assumptions. Lineups help to overcome this complication.}
+
+
 %In many situations, however, the predicted random effects are highly influenced (i.e., confounded) by the error terms. Consequently, traditional checks for normality such as Q-Q plots and the Anderson-Darling test are not appropriate. 
 %strong assumptions that are required for the empirical distributions of the residuals in the linear mixed-effects model to converge in probability to their true distributions \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. 
 %If these assumptions are not satisfied, then the empirical distribution of the residuals may not resemble the hypothesized distribution under a properly specified model. When this occurs, individual Q-Q plots will often lead to erroneous conclusions about the distributional assumptions which can be overcome, at least partially, using lineups.
