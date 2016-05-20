@@ -398,7 +398,7 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest with the values of that variable. 
 The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
 Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we make use of side-by-side box plots. 
-In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest. The true plot is constructed from the same model but uses the observed data. 
+In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~2.2 of the supplement}. The true plot is constructed from the same model but uses the observed data. 
 
 \begin{figure}[h]
 	\centering
@@ -1507,6 +1507,39 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 \end{tabular}
 \end{table}
 
+\clearpage
+%------------------------------------------------------------------------------------
+\subsection{Generating null plots}\label{app:nullplots}
+%------------------------------------------------------------------------------------
+\al{
+
+All of the lineups presented in this paper use a parametric bootstrap to generate plots consistent with the null hypothesis. This section outlines the parametric bootstrap for LME models and provides more detail about how the null plots for each situation were generated.
+
+For a fitted continuous response LME model (as outlined by Equations \eqref{eq:hlm}--\eqref{eq:conditionalmod} and the intermediate discussion) the parametric bootstrap proceeds as follows:
+
+\begin{enumerate}
+\item Generate a vector of $q$ random effects (i.e., level-2 residuals) from $\mathcal{N}(\bm{0},\ \widehat{\bm{D}})$ for each group; that is, generate $\bm{b}^*_i \sim \mathcal{N}(\bm{0},\ \widehat{\bm{D}})$ for $i = 1,\ldots, g$. 
+\item Generate a vector of residuals of length $n_i$ (i.e., level-1 residuals) from $\mathcal{N}(\bm{0},\ \widehat{\sigma}^2 \widehat{\bm{R}_i})$ for each group; that is, generate $\bm{\varepsilon}^*_i \sim \mathcal{N}(\bm{0},\ \widehat{\sigma}^2 \widehat{\bm{R}_i})$ for $i = 1,\ldots, g$.
+\item Generate a bootstrap sample $\bm{y}_i^*$ for each group $i=1,\ldots,g$ from $\bm{y}_i^* = \bm{X}_i \widehat{\beta} + \bm{Z}_i \bm{b}_i^* + \bm{\varepsilon}^*_i$.
+\item Refit the model to the bootstrap samples.
+\item Repeat steps 1--4 $B$ times.
+\end{enumerate}
+
+We detail the models suggested in the paper for use in model selection and model checking below. The parametric bootstrap was used to generate the null plots in each situation. During model selection the simpler models are used to generate the null plots from the parametric bootstrap, while model checking bootstraps the original model.
+
+\paragraph{Selecting fixed effects.} To use lineup tests to determine whether a variable should be included in the fitted model we must generate null plots from a model \emph{excluding} the variable in question. Let $\bm{X}_i^{(c)}$ denote the design matrix for the fixed effects with the $c$th column  deleted. We use the model 
+%
+\[
+\bm{y}_i = \bm{X}_i^{(c)} \beta + \bm{Z}_i \bm{b}_i + \bm{\varepsilon}_i
+\]
+%
+to generate the null plots.
+
+\paragraph{Selecting random effects structure.} To use a lineup test to determine whether a random effect should be included in the fitted model we must generate null plots from a model \emph{excluding} the random effect in question. This results in a model of the form of \eqref{eq:hlm} with the column of $\bm{Z}_i$ corresponding to the random effect in question deleted, and a random effects vector $\bm{b}_i$ of length $q-1$. To determine whether it is necessary to allow the random effects to be correlated, the null plots are generated using a model where the covariance matrix of the random effects $\bm{D}$ has zero entries in the appropriate off diagonal entries.
+
+\paragraph{Model checking.} Generating the null plots used for model checking is a direct application of the parametric bootstrap as detailed above to obtain $B$ fitted models from which the appropriate aspects are extracted.
+
+}
 
 %------------------------------------------------------------------------------------
 \subsection{Additional lineups included in the study}\label{app:morelineups}
