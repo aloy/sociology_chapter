@@ -1398,13 +1398,13 @@ The data consist of a stratified random sample of 919 owner-occupied homes in 85
 %------------------------------------------------------------------------------------
 \subsection{Experimental Setup and Calculation of $p$-values}\label{sec:pvalues}
 For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 75 different lineups. 
-487 participants were recruited through the MTurk service \citep{amazon}, each participant was asked to evaluate ten lineups, for a total of altogether 4927 evaluations. For each lineup, observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
-These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time taken to answer was recorded and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of their ip address). It has been shown by \citet{majumder:2014} that demographics and educational background of observers, while significant, do not have a practical impact on  detection rates of the true plot from a lineup. The MTurk service gives access to a large pool of participants, whose demographics reflect those of internet users (i.e.\ relative to the average U.S.\ population, participants are younger and more highly educated; the proportion of female participants is typically around 40\%). To be eligible to participate in the study, we required MTurk workers to have a record of at least 100 completed HITs (Human Intelligence Tasks) with a success rate of at least 90\%.  Assuming that these workers  have a vested interest in their reputation,  we hope that such a selection reduces the rate of participants gaming the system. While we do not require any statistical training from participants (training in mathematical reasoning has been found to significantly help with performance on lineup tests, see \citet{susan:infovis}, the pool of MTurk workers is large enough to allow for a very fast collection of lineup evaluations; all of the data presented here were collected within a few hours. 
+487 participants were recruited through the MTurk service \citep{amazon}, each participant was asked to evaluate ten lineups, for a total of altogether 4927 evaluations. For each lineup observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
+These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. For each lineup the time taken to answer was recorded and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of their ip address). It has been shown by \citet{majumder:2014} that demographics and educational background of observers, while significant, do not have a practical impact on  detection rates of the true plot from a lineup. The MTurk service gives access to a large pool of participants, whose demographics reflect those of internet users (i.e.\ relative to the average U.S.\ population, participants are younger and more highly educated; the proportion of female participants is typically around 40\%). To be eligible to participate in the study, we required MTurk workers to have a record of at least 100 completed HITs (Human Intelligence Tasks) with a success rate of at least 90\%.  Assuming that these workers  have a vested interest in their reputation,  we hope that such a selection reduces the rate of participants gaming the system. While we do not require any statistical training from participants, training in mathematical reasoning has been found to significantly help with performance on lineup tests \cite[see][]{susan:infovis}. The pool of MTurk workers is large enough to allow for very fast collection of lineup evaluations; all of the data presented here were collected within a few hours. 
 
 The results of the evaluations for all lineups  are displayed in Table~\ref{tab:results} and the observers' reasons for identifying plots are summarized in Table~\ref{tab:reasons}. 
 The significances in Table~\ref{tab:results} are based on the number of evaluations and the number of times that the data plot was identified. For that, we the introduce the random variable $Y$ as the  number of evaluations of a lineup in which the observer identifies the data plot. Assume that the lineup has size $m=20$, and it is shown to a total of $K$ independent observers.  Then $Y$ has a Visual distribution $V_{K, m, s=3}$ as defined in \citet{hofmann:2015},
 where $s$ delineates scenario III---i.e., the same lineup is shown to all $K$ observers. The $p$-values in Table~\ref{tab:results} for each of the five replicates are calculated this way.
-For the overall $p$-value, we use a simulation based approach to combine the five results. Treating the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal as follows: we assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability an observer picks a  plot  is allocated proportionally to its signal. For each ``data plot'' we create five sets of null plots to be evaluated simultaneously $(K_1, ..., K_5)$ times.  
+For the overall $p$-value, we use a simulation based approach to combine the five results. Treating the number of evaluations $(K_1, ..., K_5)$ as fixed, we simulate assessments of lineups without signal as follows: we assume that the signal in a plot is complementary to its $p$-value, which is i.i.d. $U[0,1]$ under the null hypothesis. We further assume that the probability an observer picks a  plot  is allocated proportionally to its signal. For each data plot we create five sets of null plots to be evaluated, simultaneously, $(K_1, ..., K_5)$ times.  
 $p$-values are then based on a comparison of the sum of data picks from  five no-signal lineups and  the observed number of data picks from the actual lineups. The column on the right of Table~\ref{tab:results} shows $p$-values based on $10^5$ simulation runs.
 
 
@@ -1525,24 +1525,26 @@ $p$-values are then based on a comparison of the sum of data picks from  five no
 %------------------------------------------------------------------------------------
 \al{
 
-All of the lineups presented in this paper use a parametric bootstrap to generate plots consistent with the null hypothesis. This section outlines the parametric bootstrap for LME models and provides more detail about how the null plots for each situation were generated.
+All of the lineups presented in this paper use a parametric bootstrap to generate plots consistent with the null hypothesis. This section outlines the parametric bootstrap for LME models and provides more detail about how the null plots were generated.
 
 For a fitted continuous response LME model (as outlined by Equations \eqref{eq:hlm}--\eqref{eq:conditionalmod} and the intermediate discussion) the parametric bootstrap proceeds as follows:
 
 \begin{enumerate}
 \item Generate a vector of $q$ random effects (i.e., level-2 residuals) from $\mathcal{N}(\bm{0},\ \widehat{\bm{D}})$ for each group; that is, generate $\bm{b}^*_i \sim \mathcal{N}(\bm{0},\ \widehat{\bm{D}})$ for $i = 1,\ldots, g$. 
 \item Generate a vector of residuals of length $n_i$ (i.e., level-1 residuals) from $\mathcal{N}(\bm{0},\ \widehat{\sigma}^2 \widehat{\bm{R}_i})$ for each group; that is, generate $\bm{\varepsilon}^*_i \sim \mathcal{N}(\bm{0},\ \widehat{\sigma}^2 \widehat{\bm{R}_i})$ for $i = 1,\ldots, g$.
-\item Generate a bootstrap sample $\bm{y}_i^*$ for each group $i=1,\ldots,g$ from $\bm{y}_i^* = \bm{X}_i \widehat{\beta} + \bm{Z}_i \bm{b}_i^* + \bm{\varepsilon}^*_i$.
+\item Generate a bootstrap sample $\bm{y}_i^*$ for each group $i=1,\ldots,g$ from $\bm{y}_i^* = \bm{X}_i \widehat{\bm{\beta}} + \bm{Z}_i \bm{b}_i^* + \bm{\varepsilon}^*_i$.
 \item Refit the model to the bootstrap samples.
 \item Repeat steps 1--4 $B$ times.
 \end{enumerate}
 
-We detail the models suggested in the paper for use in model selection and model checking below. The parametric bootstrap was used to generate the null plots in each situation. During model selection the simpler models are used to generate the null plots from the parametric bootstrap, while model checking bootstraps the original model.
+%We detail the models suggested in the paper for use in model selection and model checking below. 
+The parametric bootstrap was used to generate the null plots in each situation. 
+During model selection the simpler models are used to generate the null plots using the parametric bootstrap, while model checking bootstraps the original model to generate null plots.
 
 \paragraph{Selecting fixed effects.} To use lineup tests to determine whether a variable should be included in the fitted model we must generate null plots from a model \emph{excluding} the variable in question. Let $\bm{X}_i^{(c)}$ denote the design matrix for the fixed effects with the $c$th column  deleted. We use the model 
 %
 \[
-\bm{y}_i = \bm{X}_i^{(c)} \beta + \bm{Z}_i \bm{b}_i + \bm{\varepsilon}_i
+\bm{y}_i = \bm{X}_i^{(c)} \bm{\beta} + \bm{Z}_i \bm{b}_i + \bm{\varepsilon}_i
 \]
 %
 to generate the null plots.
@@ -1558,9 +1560,8 @@ to generate the null plots.
 %------------------------------------------------------------------------------------
 
 This section includes two lineups that were included in the  MTurk study, but were not discussed in the paper. 
-
-Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as Figure~5 in the paper, but categorizes pressure into seven categories, and shows residuals in the form of box plots. In order to preserve the appearance of continuity on the $x$-axis we used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
-
+Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same data as Figure~5 in the paper, but categorizes pressure into seven categories and shows residuals in the form of box plots. In order to preserve the appearance of continuity on the $x$-axis we used a color scheme to fill the boxes with deepening shades of blue from left to right. In this form 23 out of 70 observers identify the plot of the data.  This is consistent with the other design.
+%%%
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-bp-19.pdf}
@@ -1568,13 +1569,7 @@ Figure~\ref{fig:constvar2.bp} contains a box plot representation of the same dat
 	Alternative box plot  Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
-
-
 %%%%%%%%%%%%%%%%%%%
-
-
-
-
 %\hhnote{reference to corresponding lineup in main paper}
 Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of the random effects specification  (see Section~3.2 of the paper) using data from the autism study. The null plots were generated from a model containing only a linear random slope, so if the true plot in panel \#($\sqrt{16} + 12$) is identified it provides support for the inadequacy of this specification, and the need for additional random effects. %Figure~\ref{fig:boxplot-unordered} shows similar data  as Figure~\ref{fig:boxplot-ordered}, where categories were re-labelled to investigate whether the order might have an effect on people's choices. Interestingly, the power is the same, and observers still identify 'trend' as one of the top reason for their choice.
 
@@ -1614,7 +1609,7 @@ Figure~\ref{fig:autism-ranef} displays another lineup testing the adequacy of th
 Figures~\ref{homogeneous-1} and~\ref{homogeneous-2} show another example of testing for homogeneity in the variance following the approach taken in Section~4.1 of the paper. Both of these lineups are based on the dialyzer data. 
 %\alnote{I am confused by plots 7 and 8. What data set are they displaying?}
 Level-1 residuals are plotted by subject. Subjects are ordered by variance---i.e.,~we get some structure that might be taken for differences in variability, that are really just differences due to the imbalance in group size. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance increases across the $x$ axis.  However, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
-The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
+The dot plot version is not significant, but the box plot version is. When participants in the box plot design identify the data plot, about 45.3\% give outliers as the reason for their choice. In contrast to that, outliers, a large spread, or a trend are in a three-way tie for the reason for identifying the data plot in the lineup with the dot plot design.
 %Outliers       Large spread       Trend       Asymmetry       Other
 % dialyzerhomogeneous
 %  correct        1        2        3        4        5
