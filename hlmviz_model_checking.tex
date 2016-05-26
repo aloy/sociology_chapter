@@ -354,7 +354,7 @@ This  information makes it possible to assess which part of the null hypothesis 
 %\subsection{Comparing nested models}\label{sec:select-fixed}
 %------------------------------------------------------------------------------------
 %\alnote{This paragraph is a lot of repeat from the last paragraph, other than the intro to complications. I need to think about ways to resolve this.}
-It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability. Alternatively, likelihood-based criteria, such as AIC or BIC, are often used to overcome the problem of being only able to deal with nested models.  % in a linear mixed-effects model. 
+It is standard practice to use a $t$-test, $F$-test, or likelihood ratio test to determine whether a fixed effect describes a significant portion of the unexplained variability. Alternatively, likelihood-based criteria, such as AIC or BIC, are often used to overcome the problem of being able to only deal with nested models.  % in a linear mixed-effects model. 
 %Likelihood ratio tests are more generally applicable in comparing nested models, but are  most commonly used in the selection of random effects. 
 When selecting random effects, likelihood ratio tests are most commonly used. 
 %One statistical model is nested within another when the \emph{larger model} contains all components included in the \emph{smaller model}, with respect to both fixed and random effects, as well as some additional component(s). For example, the larger model could differ by including additional fixed effects, or by including additional random effects. 
@@ -383,8 +383,8 @@ Defining the appropriate degrees of freedom for  $t$- or $F$-tests provides anot
 %Hodges, J. S., \& Sargent, D. J. (2001). Counting degrees of freedom in hierarchical and other richly-parameterised models. \emph{Biometrika}, 88(2), 367--379.
 %}
 \item[\bf Random components: ] When testing for the inclusion of a variance component, the parameter being tested lies on the boundary of the parameter space, and the asymptotic distribution of the likelihood ratio is no longer a $\chi^2$ distribution. 
-Various approaches to deal with this problem have been suggested in the literature: 
-\citet[Section 3.5]{Demidenko2013} presents an exact $F$-test in the  null hypothesis $\mathbf{D} = \mathbf{0}$. Unfortunately, the all-or-nothing inclusion of random effects limits the use of this test in practice.
+Various approaches to deal with this problem have been suggested in the literature. 
+\citet[Section 3.5]{Demidenko2013} presents an exact $F$-test of the  null hypothesis $\mathbf{D} = \mathbf{0}$. Unfortunately, the all-or-nothing inclusion of random effects limits the use of this test in practice.
 %\al{\citet[Section 3.5]{Demidenko2013} presents an alternative approach, utilizing an exact $F$-test, but only for the null hypothesis $\mathbf{D} = \mathbf{0}$.}
 Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. 
 Alternatively, the rule of thumb suggested by \citeauthor{Stram:1994wd} can be utilized with the knowledge that the results may be sub-optimal, leading to either conservative or anti-conservative decisions. 
@@ -396,9 +396,9 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 
 \subsection{Fixed effects} 
 To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest with the values of that variable. 
-The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
+The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group-level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
 Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we make use of side-by-side box plots. 
-In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~2.2 of the supplement}. The true plot is constructed from the same model but uses the observed data. 
+In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~2.2 of the supplement}. The true plot is constructed from the same model, but is fit to the observed data. 
 
 \begin{figure}[h]
 	\centering
@@ -456,25 +456,27 @@ The resulting scores for each school are regressed on LRT scores and model fits 
 
 {Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) where the random slope was included in the model.
 %showing lines stemming from regression fits of null data from a model including the random slope.  
-Data for the null plots were generated from a parametric bootstrap using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
-None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$. }
-The covariance structure for the LRT scores as  given in the model of the null hypothesis    can therefore not be rejected as improperly specified. 
+Data for the null plots were generated from a parametric bootstrap \al{as outlined in Section XX of the supplment.
+%using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
+None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$, }
+\al{providing no evidence that the covariance structure for the LRT scores is misspecified.}
+%The covariance structure for the LRT scores as  given in the model of the null hypothesis    can therefore not be rejected as improperly specified. 
 
 
 %\hhnote{XXX what else would you like to say about this lineup test? -- we could talk about how this supports the validity of the lineup protocol: it picks up on actual differences and does not when we are dealing with a case where the data is consistent with the null hypothesis. }
 %\alnote{I think that is a good idea!}
 
-Participants should only see one of Figures~\ref{fig:fanned} or~\ref{fig:fanned2} because both show the same data, even in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because, theoretically, the data from the  second lineup could be identified by recognizing it as the same panel that was previously shown. While the chance of this is slim, we only exposed participants to one of a set of dependent lineups.
+Participants should only see one of Figures~\ref{fig:fanned} or~\ref{fig:fanned2} because both show the same data in the same design. After viewing the first of these figures we cannot, strictly speaking, assume that a participant is still an unbiased judge, because, theoretically, the data panel from the  second lineup could be identified by recognizing it as the same panel that was previously shown. While the chance of this is slim, we only exposed participants to one of a set of dependent lineups.
 %ensured in the user study to expose participants to only one of a set of of dependent lineups.  
 
-Having considered the value of a random slope in the model, we next consider whether the model needs to allow the random effects to be correlated ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
+Having considered the value of a random slope in the model, we next consider whether the model needs to allow correlation between the random effects ($H_1$). While this is an example of a standard likelihood ratio test problem---a correlation of zero is not on the boundary of the parameter space---using a lineup keeps all tests of the random effects in a unified framework. The lineup in Figure~\ref{fig:ranef-corr} shows scatterplots of the predicted random effects with overlaid regression lines. 
 %This type of plot is suggested by  \cite{Morrell:2000ve} as a visual diagnostic for assessing the amount of correlation. 
  The null plots in the lineup are created by simulation from the model that does not allow for correlation between the random effects, and the true plot is created using the predicted random effects from such a model fit to the observed data.
 The slopes of the regression lines are indicative of the amount of correlation. 
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
 The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model, avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.
-  In Figure~\ref{fig:ranef-corr} the true plot in panel~\#($10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
+  In Figure~\ref{fig:ranef-corr}, the true plot in panel~\#($10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
 %  \hhnote{What does the $p$-value of the classical LRT say?}
 %  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
 
@@ -629,7 +631,7 @@ Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals a
 %If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
 %\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
 %however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
- In this example 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
+ In this example, 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
  %\hhnote{discuss reason that participants gave for their choice.}
 
 
@@ -653,7 +655,9 @@ Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals a
 %\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
 
 %\paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not show the same power as box plots when they investigate potential differences in variability between groups. This can be seen in the example of the lineups in Figures~13 and~14 in Section~2.2 of the supplement. 
+Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not possess the same power as box plots when they investigate potential differences in variability between groups. 
+\al{Figures~13 and~14 in Section~2.2 of the supplement demonstrate this.}
+%This can be seen in the example of the lineups in Figures~13 and~14 in Section~2.2 of the supplement. 
 %\alnote{Rethinking this, scatterplots can be used for this (figure 6 shows this!), but there are more effective plots.}
 To visualize this assumption, we suggest using side-by-side box plots of the level-1 residuals. 
 While box plots are more powerful, they still require the use of lineups.
@@ -661,7 +665,7 @@ When the plots are considered individually, unbalanced group sizes will cause ar
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
 To overcome this difficulty, we create a lineup of side-by-side box plots for each group ordered by their interquartile range (IQR), which we have come to call a \emph{cyclone plot}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~1.3 of the supplement for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
-While the data plot is easily identified, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that within-group variance varies across the vertical axis. However, placing the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data rather than evidence against the hypothesis of homogeneity. The fact that observers are able to still identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
+While the data plot is easily identified, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that the within-group variance varies across the vertical axis. However, placing the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data structure rather than evidence against the hypothesis of homogeneity. The fact that observers are able to identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected \al{under a properly specified model}, eliminating the subjective interpretations encountered with the use of single plots. 
 
 %\hhnote{how about the above change? we've got the additional complication that overall the test is significant, while individually each lineup panel shows very similar structure that -surprisingly- is not yet indicative of non-homogeneity.}
 %\alnote{I like the change! I commented out the original comment/paragraph.}
@@ -695,10 +699,10 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 \end{equation}
 %
 which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough.'' Here we use $g^*$ because ``small'' groups may be excluded from the calculation as they provide less reliable information about the residual variance (assuming that there are enough observations to fit the model), but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. Additionally, we have found the $H$-statistic to be sensitive to the choice of the minimum group size.
-Table~\ref{tab:pvalues} shows at the example of the radon data set the huge difference in conventional $p$-values to those obtained through simulation based on 10,000 parametric bootstrap runs. There is a clear discrepancy between the two $p$-values, indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.  
+Table~\ref{tab:pvalues} shows the huge difference in conventional $p$-values to those obtained through simulation based on 10,000 parametric bootstrap runs for the radon data set. There is a clear discrepancy between the two $p$-values, indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.  
 
 \begin{table}[ht]
-\caption{\label{tab:pvalues} A comparison of the naive and the simulation-based version (based on 10,000 parametric bootstrap simulations) of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. There is a stark discrepancy between the two $p$-values, indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.} 
+\caption{\label{tab:pvalues} A comparison of the naive and the simulation-based version (based on 10,000 parametric bootstrap simulations) of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.} 
 \centering
 \begin{tabular}{rrrrrrr}
   \hline
@@ -731,7 +735,7 @@ Performing the simulation-based version of the test in this example results in a
 Here, level-1 residuals by county are plotted from a model that only includes counties with at least five observations. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
 Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. 
-The visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained by group size, we are far less constrained than with the conventional test.
+The visual test is not overly sensitive to group sizes. Counties with less than 5 observations were eliminated because box plots are not appropriate for such small group sizes, but could be included in the representation as dot plots. While we are still slightly constrained by group size, we are far less constrained than with the conventional test, \al{and have a clear way to choose the minimum group size based on our ability to render box plots.}
 
 \begin{figure}[hbt]
 	\centering
@@ -766,9 +770,9 @@ Scatterplots with smoothers can also be used to check that the relationship betw
 %\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 %\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
 %\hhnote{Oh, ok - we should still write up a sentence on this}
-Once a polynomial of degree four is included in the mean structure of the fixed effects, the nonlinear pattern in the residuals is removed---a lineup of this situation is shown in Figure~\ref{fig:constvar2}. In this lineup, the data plot is identified due to heteroscedasticity in the residuals.  This highlights the flexibility of lineups due to the general phrasing of the alternative hypothesis. By tracking observers' reasons for the choice of plot in a lineup, we can distinguish between different alternatives. 
+Once a polynomial of degree four is included in the mean structure of the fixed effects, the nonlinear pattern in the residuals is removed. A lineup for the quadratic model is shown in Figure~\ref{fig:constvar2}. In this lineup, the data plot is identified due to heteroscedasticity in the residuals.  This highlights the flexibility of lineups due to the general phrasing of the alternative hypothesis. By tracking observers' reasons for the choice of plot in a lineup, we can distinguish between different alternatives. 
 %\alnote{Would ``a unified framework'' be more accurate? I am still milling this over.}
-Using the same setup we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the distinguishing feature. Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance. 
+Using the same framework we will get test results based on where we are in the modeling process: as long as the mean structure is not correctly specified, it is most likely the distinguishing feature. Once the mean structure is properly specified, the lineup changes to test for homogeneity of variance. 
 
 \begin{figure}
 	\centering
