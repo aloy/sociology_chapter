@@ -583,7 +583,7 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 %The lineup protocol presents a unified approach to overcome the difficulties encountered when checking the validity of a hierarchical linear model. The only change necessary to utilize this approach to model checking is the generation of null plots, for which we use the parametric bootstrap. Consequently, the ``standard'' residuals plots can be used within this framework in order to overcome the subjectiveness of interpretation and identification of artificial structures, making visual inference a natural extension of conventional model checking. In this section we discuss several examples of lineups that we have found useful for model checking; however, we do not intend to present an exhaustive overview.
 
 
-\subsection{Homogeneity of variance}\label{sec:homogeneity}
+\subsection{Homogeneity of residual variance}\label{sec:homogeneity}
 %\subsubsection{Conventional practices}\label{sec:conv-check}
 %------------------------------------------------------------------------------------
 
@@ -608,59 +608,47 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 %\end{figure}
 
 
+
 Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify the homogeneity of the within-group residual variance across the levels of all explanatory variables and check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals. In order to guard against mis- or over-interpretation of the residual plots, we, again, employ lineups.
 
-%For example, consider investigating the appropriateness of this assumption for the GSCEE data. 
-%To check the homogeneity of variance across the values of the explanatory variables we utilize plots of the level-1 residuals.
-%Such plots are appropriate to check the assumptions of linearity and homoscedasticity at each level of the model. 
-%The lineup in 
-%Figure~\ref{fig:constvar1} shows a lineup of 20 plots of the level-1 residuals against a cubic fit in standardized LRT scores, one of the explanatory variables included in the model. If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as (standardized LRT scores)$^3$ increases; however, inserting the true plot into the lineup forces the analyst to consider the features such a plot will exhibit under the null hypothesis of homogenous variance. Based on the lineup, is there a violation of this model assumption? If we identify the true plot (panel $\sqrt{121} - 8$) this provides evidence of a violation, but if we are unable to, this provides evidence that any structure observed in the plot is artificial.
 
+
+\paragraph{Checking homogeneitiy of level-1 residual variance across covariates:}
+Residual plots are one of the most-often used tools for checking on the relationship between residuals and one of the model's covariates. 
+In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~1.4 of the supplement). For the null plots residuals are derived from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=0.8\textwidth]{dialyzerheterogeneous-19.pdf}
+	\includegraphics[width=0.75\textwidth]{dialyzerheterogeneous-19.pdf}
 	\caption{\label{fig:constvar2} 
-	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?}
+	Lineup testing homogeneity of the level-1 residuals with respect to  pressure. %Which of the plots is the most different? Which feature led you to your choice?
+	\hh{The data plot is in panel \#$2^4+3$. Inspecting only the data plot, we see that an increase in pressure coincides with an increase in the variability of level-1 residuals. The surrounding null plots provide a reference from a properly specified model which allows us to assess how different the data plot is.  }
+	}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
 
 
+%Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables.
 
-Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Section~1.4 of the supplement).
+%Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Section~1.4 of the supplement).
 %If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
 %\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
 %however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
- In this example, 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
+% In this example, 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
  %\hhnote{discuss reason that participants gave for their choice.}
 
 
 
-
-%\hh{An example for the use of a lineup where observers do not detect heteroscedasticity and an accompanying discussion can be found in appendix~\ref{app:morelineups}.}
-%\hhnote{where should the next sentence go? also in the appendix? - it's making a nice point, though}
-%Comparing the two lineups reveals that the patterns that can be expected in any given residual plot differ depending on the data set. The use of lineups incorporates the comparison of the data to what is expected, eliminating the subjective interpretations we encounter with the use of single plots. 
-%\alnote{Move the last sentence above into cyclone plot discussion -- any individual panel may lead someone to suspect structure where there is none.}
-
-
-%\begin{figure}
-%	\centering
-%:
-%	\includegraphics[width=\textwidth]{normexam_constvar_lineup3.png}
-%	\caption{\label{fig:constvar1} 
-%	Lineup testing homogeneity of the level-1 residuals. Which of the plots is the most different? Which feature led you to your choice?\hh{We need to figure out what to do with this example. }}
-%%	Lineup of 20 scatterplots of level-1 residuals against (standardized LRT)$^3$ used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?}
-%\end{figure}
-
-%\hhnote{I am not quite sure about the difference between cyclone plots and the last four lineups ... We should comment on that.}
-
-%\paragraph{Testing homoscedasticity across groups.}
-Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables, but they do not possess the same power as box plots when they investigate potential differences in variability between groups. 
+\paragraph{Checking homogeneitiy of level-1 residual variance between groups:}
+%When the covariate is discrete, boxplots provide a more powerful tool for assessing differences in variability between the groups. 
+%but  they do not possess the same power as box plots when they investigate potential differences in variability between groups. 
 \al{Figures~13 and~14 in Section~2.2 of the supplement demonstrate this.}
+\hh{XXX suggestion of boxplots is based on the results from lineups. XXX}
+
+
 %This can be seen in the example of the lineups in Figures~13 and~14 in Section~2.2 of the supplement. 
 %\alnote{Rethinking this, scatterplots can be used for this (figure 6 shows this!), but there are more effective plots.}
-\hh{XXX what is `this assumption' referrign to? }
-To visualize this assumption, we suggest using side-by-side box plots of the level-1 residuals. 
+To visually assess the assumption of homoscedasticity in this situation, we suggest using side-by-side box plots of the level-1 residuals across groups. 
 While box plots are more powerful, they still require the use of lineups.
 When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
