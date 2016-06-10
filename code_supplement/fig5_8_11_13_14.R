@@ -105,17 +105,23 @@ qplot(x = pressurecat, y = resid, data = fig11_df, geom = "boxplot", fill = pres
 # Figure 13: Lineup to test for homogeneity
 #-------------------------------------------------------------------------------
 
-# dframe <- ddply(dframe, .(sample, Subject), transform, var = var(resid))
-# dframe <- ddply(dframe, .(sample), transform, subid = rank(var, ties.method="min"))
-# 
-# 
-# qplot(subid, resid, data = dframe, geom = c("point"), fill=I("grey70"), alpha=I(0.5)) +
-#   facet_wrap(~ sample, ncol = 5) +
-#   geom_hline(yintercept=0, colour="red") +
-#   xlab(NULL) + ylab(NULL) +
-#   theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
-#         axis.ticks.x = element_blank(), axis.ticks.y = element_blank(), legend.position="none") +
-#   scale_x_continuous(expand = c(.075,.075))
+# Formatting data frame for plotting and sorting Subjects by residual variance
+true_pos <- sample(20, 1) # print to reveal position
+fig13_df <- nullabor:::add_true(m1.sim.resids, m1.resid.df, pos = true_pos)
+
+fig13_df <- ddply(fig13_df, .(.sample, Subject), transform, var = var(resid))
+fig13_df <- ddply(fig13_df, .(.sample), transform, subid = rank(var, ties.method="min"))
+
+
+qplot(subid, resid, data = fig13_df, geom = c("point"), fill=I("grey70"), alpha=I(0.5)) +
+  facet_wrap(~ .sample, ncol = 5) +
+  geom_hline(yintercept=0, colour="red") +
+  xlab(NULL) + 
+  ylab(NULL) +
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(), axis.ticks.y = element_blank(), 
+        legend.position="none") +
+  scale_x_continuous(expand = c(.075,.075))
 
 #-------------------------------------------------------------------------------
 # Figure 14: Lineup to test for homogeneity
