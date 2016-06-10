@@ -54,8 +54,7 @@ m1.sim.resids <- ldply(m1.refit, function(x) data.frame(x@frame, resid = resid(x
 m1.sim.resids$.n <- as.numeric(str_extract(m1.sim.resids$.id, "\\d+"))
 
 location <- sample(20, 1)
-qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth"),
-	method = "loess") %+%
+qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth")) %+%
   	lineup(true = m1.resid.df, samples = m1.sim.resids, pos=location) +
   	facet_wrap(~ .sample, ncol = 5) +
  	 xlab(NULL) + ylab(NULL) + 
