@@ -308,7 +308,7 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{normexam_fanned_lineup16.pdf}
-	\caption{\label{fig:fanned} A lineup of size 20. Which plot is the most different from the other plots? What makes that plot different from the other plots?
+	\caption{\label{fig:fanned} One of the lineups used in an Amazon Turk study. Participants were asked  to identify the most `different' plot and give a reason for their choice. 11 of the 73 observers identified the data plot as the most different. Further details on data, model and the location of the data plot are given in section~\ref{sec:random}.
 	}
 \end{figure}
 
@@ -404,19 +404,19 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{autism2-ordered-10.pdf}
-	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in box plots  by groups to test significance of a discrete covariate.}
+	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in side-by-side box plots to test significance of a discrete covariate. 65 out of 74 participants identified the data plot from the lineup. }}
 %	\todo[inline]{I'm starting to get nitpicky again :)
 %	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
 %	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
 %	\alnote{That is why I removed the outliers. It would be interesting to test.}
-	Which of the plots is the most different? Which feature led you to your choice?} 
+%	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
 Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five observers identified the data plot in panel \#($2^3 + 2$), 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
-to determine whether a child's language development (low, medium, or high) at age two  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Section~1.2 of the appendix for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
+to determine whether a child's language development (low, medium, or high) at age two (\hh{plotted on the $x$}-axis)  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Section~1.2 of the appendix for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
 %Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
 
@@ -431,13 +431,13 @@ to determine whether a child's language development (low, medium, or high) at ag
 \subsection{Random effects}\label{sec:random}
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~1.1 of the appendix for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
+The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~1.1 of the appendix for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for each student at a school. 
 The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only random effect.
 The resulting scores for each school are regressed on LRT scores and model fits are shown as lines.
 %\al{and overlaying linear smoothers for each school.}
 %Revisiting Figure~\ref{fig:fanned} we see an example of testing for the inclusion of a random effect. Recall that the initial model was a random intercept model using a student's score on the standardized London Reading Test to describe their age 16 score on the General Certificate of Secondary Education examination.
  %To construct this figure we used the parametric bootstrap to generate simulated GCSEE exam scores, fit separate regression models to the simulated responses, and then plotted the fitted model for each school. 
- If the model is appropriate, then    the observed data should resemble the overall pattern of the lines in the null plots. In this example, we find that the true plot in panel \#($\sqrt{144} + 4$) is identifiable:  11 of the 73 observers pick the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance of slopes than the null model allows;
+ If the model is appropriate, then    the observed data should resemble the overall pattern of the lines in the null plots. In this example, we find that the true plot in panel \#($\sqrt{144} + 4$) is identifiable:  11 of the 73 observers picked the data plot, resulting in a visual $p$-value of 0.0171. The main comments participants gave to explain their choice were the spread and trend of the line segments in the plot. This is consistent with a larger variance in the  slopes than the null model allows;
   %GCSEE scores   for higher scores on the standardized LRT than \hh{accommodated for} in the null plots; 
   thus, we find evidence supporting the inclusion of a random slope for standardized LRT. This conclusion agrees with the results of the likelihood ratio test (which shows significance at a level of less than 0.0001), and did not require the use of an asymptotic distribution to calculate the $p$-value. 
 %\alnote{The p-value is $<$ 1e-4.}
@@ -445,7 +445,7 @@ The resulting scores for each school are regressed on LRT scores and model fits 
 \begin{figure}
 	\centering
 	\includegraphics[width = 0.8\textwidth]{normexam_fanned_withslope_lineup18}
-	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model. Which plot is the most different of the others?}
+	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model from which the null plots are created. None of the 64 observers identified the data plot as the most different. }
 \end{figure}
 
 %\alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
@@ -455,9 +455,9 @@ The resulting scores for each school are regressed on LRT scores and model fits 
 %A similar thing can be done with the trajectories plotted for the autism data, should we do include that one too?}
 %\hhnote{I like this figure! I know which panel it is - by now I recognize the data, but Christian couldn't tell. Is the code included in lineups-study2.R?}
 
-{Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) where the random slope was included in the model.
+{Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) in which the random slope was included in the model from which the samples shown in the null plots were created (using a parametric bootstrap \al{as outlined in Section~\ref{app:nullplots} of the appendix.)
 %showing lines stemming from regression fits of null data from a model including the random slope.  
-Data for the null plots were generated from a parametric bootstrap \al{as outlined in Section~\ref{app:nullplots} of the appendix.
+%Data for the null plots were generated from 
 %using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
 None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$, }
 \al{providing no evidence that the covariance structure for the LRT scores is misspecified.}
@@ -484,7 +484,8 @@ The lineup allows us to gauge the amount of correlation between the random effec
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{examcorr-15.pdf}
-	\caption{\label{fig:ranef-corr} Lineup for testing the correlation between random effects. Which plot is the most different of the others? What feature in the panel led you to your choice?}
+	\caption{\label{fig:ranef-corr} Lineup for testing the correlation between random effects. \hh{Predicted random intercept values are plotted on $x$ against predictions of the corresponding random slopes on $y$. 41 out of 69 observers identified the data plot from the lineup, lending strong support for a non-zero correlation between the variables.  } %Which plot is the most different of the others? What feature in the panel led you to your choice?
+	}
 \end{figure}
 
 %\alnote{We could move the negative lineups that we did not include in the study to the appendix. I am thinking about this more from the perspective of when we submit to a journal with length restrictions}
@@ -638,12 +639,13 @@ In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the l
 % In this example, 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
  %\hhnote{discuss reason that participants gave for their choice.}
 
-\hh{If a covariate is discrete, we also have the choice to use side-by-side boxplots to visualize residuals.  For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the discrete design variable of pressure. } 
+\paragraph{(b) Checking homogeneity of level-1 residual variance between groups:}
+\hh{If a covariate is discrete, we  have the choice between different ways of visualizing residuals. When assessing the homogeneity of level-1 residual across groups, we are, by default, in the situation of comparing continuous values across a discrete range. 
+  For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the grouping variable (subjects). } 
 \al{Figures~13 and~14 in Section~2.2 of the appendix show the resulting lineups.}
 \hh{The results from the turk study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61) picked out the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots.  }
 
-\paragraph{(b) Checking homogeneity of level-1 residual variance between groups:}
-\hh{When assessing the homogeneity of level-1 residual across groups, we are, by default, in the situation of comparing continuous values across a discrete range. A further complication is introduced in this assessment when the group sizes are very unbalanced, because this introduces structures that are largely artificial. }
+\hh{ Very different group sizes make an assessment of homogeneity in the residual variance more complicated, because this imbalance introduces structures in the plot that are largely artificial. }
 %\hh{There are different ways to visually assess homogeneity of residual variance between groups. }
 %
 %%This can be seen in the example of the lineups in Figures~13 and~14 in Section~2.2 of the supplement. 
@@ -652,7 +654,7 @@ In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the l
 %%While box plots are more powerful, they still require the use of lineups.
 %When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create side-by-side box plots \hh{and order groups according to their interquartile range (IQR). Because of their shape,  we have come to call these plots  \emph{cyclone plots}}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the ability of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~1.3 of the supplement for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
+To overcome this difficulty, we create side-by-side box plots \hh{and order groups according to their interquartile range (IQR). Because of their shape,  we have come to call these plots  \emph{cyclone plots}}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the potential of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~1.3 of the supplement for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
 While the data plot is easily identified, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that the within-group variance varies across the vertical axis. However, placing the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data structure rather than evidence against the hypothesis of homogeneity. The fact that observers are able to identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected \al{under a properly specified model}, eliminating the subjective interpretations encountered with the use of single plots. 
 
