@@ -256,7 +256,7 @@ The purpose of this paper is to illustrate the use of visual inference for diagn
 The remainder of this paper is organized as follows. 
 Section~\ref{sec:vi} provides an introduction to the framework of visual inference and the lineup protocol. Sections~\ref{sec:select} and \ref{sec:checking} expand on the problems encountered in model selection and model checking, respectively, and presents solutions utilizing visual inference. 
 %In Section~\ref{sec:checking} we present graphical tests for model validation. 
-Throughout both sections multiple examples are used, and comparisons between conclusions on model building and fit from the new visual inference approach and existing diagnostic tools are provided. All example data sets are readily available for public use. A short description of each data set can be found in Section~1 of the supplement.
+Throughout both sections multiple examples are used, and comparisons between conclusions on model building and fit from the new visual inference approach and existing diagnostic tools are provided. All example data sets are readily available for public use. A short description of each data set can be found in Section~1 of the appendix.
 
 %\alnote{Should we include another pointer to the descriptions of the data sets?}
 %\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
@@ -293,11 +293,11 @@ Plots drawn from data generated consistently with the null hypothesis are called
 In the lineup protocol, the plot of the observed data is randomly embedded
  among a sample of, usually 19, null plots drawn from the reference distribution.  These \emph{lineups} are then presented to independent observers for evaluation. 
 
-Evaluation by independent observers  allows for the estimation of a $p$-value associated with the lineup.
+Evaluation by independent observers  allows for the estimation of a $p$-value associated with the lineup:
  Let $X$ be the random variable describing  the number  of observers, out of $N$, identifying the data plot. 
 If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.,~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup.
 %inherent to the application of lineups in a human subject study 
-\citep[][introduced visual $p$-values. Details of the calculation for this LME model application are in Section~2.1 of the supplement.]{mahbub:2013}
+\citep[][introduced visual $p$-values. Details of the calculation for this LME model application are given in Section~2.1 of the appendix.]{mahbub:2013}
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
@@ -312,17 +312,17 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 	}
 \end{figure}
 
-Figure~\ref{fig:fanned} shows a lineup. Each panel shows  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'.    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring that observers made decisions based purely on the data display. 
+Figure~\ref{fig:fanned} shows an example lineup. Each panel presents  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'.    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring that observers made decisions based purely on the data display. 
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
-Based on a human subject study (described in more detail in Section~2 of the supplement) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot, shown in panel  \#($\sqrt{144} + 4$)\footnote{We encode the panel number as a mathematical expression to pose a cognitive obstacle, allowing the reader to evaluate the lineup before being biased by knowing the answer.}
+Based on a human subject study (described in more detail in Section~2 of the appendix) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot, shown in panel  \#($\sqrt{144} + 4$)\footnote{We encode the panel number as a mathematical expression to pose a cognitive obstacle, allowing the reader to evaluate the lineup before being biased by knowing the answer.}
  of the lineup in Figure~\ref{fig:fanned}, resulting in a visual $p$-value of 0.0171. This leads us to reject the null hypothesis that the data plot %is consistent with the null model with a $p$-value of  0.0171. The actual model of the data and the null hypothesis are explained in detail in Section~\ref{sec:select}. 
 is consistent with the model that generated the data, on which all of the null plots are based. The  model and its corresponding null hypothesis  are explained in detail in Section~\ref{sec:select}.  
 
 
 Unlike classical hypothesis tests, visual inference  allows us to collect additional information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data plot over a null plot (see Table~2 of the supplement).
+This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data plot over a null plot (see Table~2 of the appendix).
 
 %\alnote{The sentence below needs some rewording}
 %In the example of the first lineup of figure~\ref{fig:fanned} `spread' as the reason for their choice increased observers' chances to pick the data over a null plot. 
@@ -399,7 +399,7 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest with the values of that variable. 
 The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group-level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
 Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we make use of side-by-side box plots. 
-In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~2.2 of the supplement}. The true plot is constructed from the same model, but is fit to the observed data. 
+In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~2.2 of the appendix}. The true plot is constructed from the same model, but is fit to the observed data. 
 
 \begin{figure}[h]
 	\centering
@@ -416,7 +416,7 @@ Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
-to determine whether a child's language development (low, medium, or high) at age two  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Section~1.2 of the supplement for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
+to determine whether a child's language development (low, medium, or high) at age two  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Section~1.2 of the appendix for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
 %Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
 
@@ -431,7 +431,7 @@ to determine whether a child's language development (low, medium, or high) at ag
 \subsection{Random effects}\label{sec:random}
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~1.1 of the supplement for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
+The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~1.1 of the appendix for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for all students at a school. 
 The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only random effect.
 The resulting scores for each school are regressed on LRT scores and model fits are shown as lines.
 %\al{and overlaying linear smoothers for each school.}
@@ -457,7 +457,7 @@ The resulting scores for each school are regressed on LRT scores and model fits 
 
 {Note that participants are unable to identify the true data from a follow-up lineup (Figure~\ref{fig:fanned2}) where the random slope was included in the model.
 %showing lines stemming from regression fits of null data from a model including the random slope.  
-Data for the null plots were generated from a parametric bootstrap \al{as outlined in Section~\ref{app:nullplots} of the supplement.
+Data for the null plots were generated from a parametric bootstrap \al{as outlined in Section~\ref{app:nullplots} of the appendix.
 %using a normal distribution for the error terms and random effects as specified in model~\ref{eq:hlm}. 
 None of the 64 observers identified the data plot in panel \#$(2\cdot 3^2)$, }
 \al{providing no evidence that the covariance structure for the LRT scores is misspecified.}
@@ -616,7 +616,7 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 
 \paragraph{(a) Checking homogeneity of level-1 residual variance across covariates:}
 Residual plots are one of the most-often used tools for checking on the relationship between residuals and one of the model's covariates. 
-In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~1.4 of the supplement). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
+In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~1.4 of the appendix). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
 
 \begin{figure}[hbt]
 	\centering
@@ -639,7 +639,7 @@ In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the l
  %\hhnote{discuss reason that participants gave for their choice.}
 
 \hh{If a covariate is discrete, we also have the choice to use side-by-side boxplots to visualize residuals.  For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the discrete design variable of pressure. } 
-\al{Figures~13 and~14 in Section~2.2 of the supplement show the resulting lineups.}
+\al{Figures~13 and~14 in Section~2.2 of the appendix show the resulting lineups.}
 \hh{The results from the turk study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61) picked out the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots.  }
 
 \paragraph{(b) Checking homogeneity of level-1 residual variance between groups:}
