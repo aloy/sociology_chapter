@@ -155,9 +155,9 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 %------------------------------------------------------------------------------------
 %\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-Linear mixed-effects models are versatile models that account for dependence structures when data are composed of groups.
+Linear mixed-effects models \dc{can} account for dependence structures when data are composed of groups.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
-Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). The additional flexibility offered by these models allows data to be incorporated at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
+Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). \dc{The models} allow data to be incorporated at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
 
 For data organized in $g$ groups, consider a continuous response linear mixed-effects model (LME model) for each group $i$, $i=1, \ldots, g$:
 %
@@ -184,13 +184,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{R}_i$, and the conditi
 \end{equation}
 %
 
-\begin{figure}
-	\centerline{\includegraphics[width=0.22\textwidth]{residual1.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual2.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual3.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual4.pdf}}
-	\caption{\label{fig:motivation} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model? (We need something like this right at the start.)}
-	}
-\end{figure}
-
-Residuals are central to the exploration of a LME model, similar to the classical linear model with uncorrelated error structure. For LME models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
+\dc{Similar to simple linear models, residuals for the diagnostic core of a LME model. But, LME model residual analysis is complicated} by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
 %
 \begin{itemize}
 \item the \emph{level-1 (observation-level) residuals}, ~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
@@ -210,9 +204,16 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right), \ \ \ \ \forall\ i = 1, \ldots, g.
 \end{equation}
 %
-When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). %
+When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). \dc{Figure \ref{fig:motivation} provides several residual plots from our studies, which each might alone indicate some inadequacies in the fitted model.} %
 
-The additional flexibility of random effects models comes at the cost of complicating model exploration and validation. %For example:
+\begin{figure}[!h]
+	\centerline{\includegraphics[width=0.22\textwidth]{residual1.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual2.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual3.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual4.pdf}}
+	\caption{\label{fig:motivation} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model? (We need something like this right at the start.)}
+	}
+\end{figure}
+
+
+The use of random effects models comes at the cost of complicating model exploration and validation. %For example:
 %\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
 Problems addressed in this paper include:
 
@@ -307,7 +308,7 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{normexam_fanned_lineup16.pdf}
-	\caption{\label{fig:fanned} One of the lineups used in an Amazon Turk study. Participants were asked  to identify the most `different' plot and give a reason for their choice. 11 of the 73 observers identified the data plot as the most different. Further details on data, model and the location of the data plot are given in section~\ref{sec:random}.
+	\caption{\label{fig:fanned} \dc{One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in the model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 73 observers, 11 identified the data plot as the most different. This is a a sufficiently large number to indicate that the data is recognizably different from the null plots, indicating the need to include a random slopes component in the model.} Further details on data, model and the location of the data plot are given in section~\ref{sec:random}.
 	}
 \end{figure}
 
@@ -403,7 +404,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{autism2-ordered-10.pdf}
-	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in side-by-side box plots to test significance of a discrete covariate. 65 out of 74 participants identified the data plot from the lineup. }}
+	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in side-by-side box plots to test significance of a discrete covariate. Of the 74 participants, 65  identified the data plot from the lineup.  This indicates that the covariate is necessary for the model.}}
 %	\todo[inline]{I'm starting to get nitpicky again :)
 %	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
 %	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
@@ -444,7 +445,7 @@ The resulting scores for each school are regressed on LRT scores and model fits 
 \begin{figure}
 	\centering
 	\includegraphics[width = 0.8\textwidth]{normexam_fanned_withslope_lineup18}
-	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model from which the null plots are created. None of the 64 observers identified the data plot as the most different. }
+	\caption{\label{fig:fanned2} A follow-up to Figure~\ref{fig:fanned} where the random slope has been included in the model from which the null plots are created. None of the 64 observers identified the data plot as the most different, indicating that this model component is unnecessary. }
 \end{figure}
 
 %\alnote{We should consider talking about the need for another lineup here. Originally, we only included one lineup to save space, but in practice we would need two: the first lineup associated with the original model in question, and a second to see if the addition of the random slope was enough. This was also brought up by Di during my defense.}
@@ -483,7 +484,7 @@ The lineup allows us to gauge the amount of correlation between the random effec
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{examcorr-15.pdf}
-	\caption{\label{fig:ranef-corr} Lineup for testing the correlation between random effects. \hh{Predicted random intercept values are plotted on $x$ against predictions of the corresponding random slopes on $y$. 41 out of 69 observers identified the data plot from the lineup, lending strong support for a non-zero correlation between the variables.  } %Which plot is the most different of the others? What feature in the panel led you to your choice?
+	\caption{\label{fig:ranef-corr} Lineup for testing the correlation between random effects. \hh{Predicted random intercept values are plotted on $x$ against predictions of the corresponding random slopes on $y$. Of the 69 observers, 41 identified the data plot from the lineup, lending strong support for a non-zero correlation between the variables.  } %Which plot is the most different of the others? What feature in the panel led you to your choice?
 	}
 \end{figure}
 
@@ -674,7 +675,7 @@ While the data plot is easily identified, any panel from this lineup considered 
 	\caption{\label{fig:badcyclone} 
 	Lineup \hh{of cyclone plots to} assess homogeneity of the level-1 residuals between groups. \hh{Residual values are plotted in horizontal side-by-side boxplots by groups. The order of the boxplots is determined by the interquartile range of the residuals. %Which of the plots is the most different? Which feature led you to your choice?
 %	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?
- 50 out of 75 observers chose the data plot as the most different, indicating a significant deviation from the assumptions of the residual distribution in a model of the observed data.} }
+ Of the 75 observers, 50 chose the data plot as the most different, indicating a significant deviation from the assumptions of the residual distribution in a model of the observed data.} }
 \end{figure}
 
 An alternative approach to detect heteroscedasticity of the level-1 residuals across groups is to use a test based on the standardized measure of dispersion given by
@@ -693,7 +694,7 @@ which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data a
 Table~\ref{tab:pvalues} shows the huge difference in conventional $p$-values to those obtained through simulation based on 10,000 parametric bootstrap runs for the radon data set. There is a clear discrepancy between the two $p$-values, indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.  
 
 \begin{table}[ht]
-\caption{\label{tab:pvalues} A comparison of the naive and the simulation-based version (based on 10,000 parametric bootstrap simulations) of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.} 
+\caption{\label{tab:pvalues} A comparison of the naive and the simulation-based version (based on 10,000 parametric bootstrap simulations) of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent. \dc{What are the simulated p-values?? Are these from the Turk study??}} 
 \centering
 \begin{tabular}{rrrrrrr}
   \hline
@@ -847,7 +848,7 @@ This example also shows \hh{the impact of confounding between the different leve
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} \hh{Lineup of Q-Q plots assessing the distribution of random slopes. For the data plot,  error terms are simulated from a $t_3$ distribution; the null plots show model re-fits of data with normally distributed error terms. 29 out of 70 observers identified the data plot as the most different from the lineup, providing evidence that  we can visually detect a violation of normality of the random effects.}
+	\caption{\label{fig:qqlineup-t} \hh{Lineup of Q-Q plots assessing the distribution of random slopes. For the data plot,  error terms are simulated from a $t_3$ distribution; the null plots show model re-fits of data with normally distributed error terms. Of the 70 observers, 29 identified the data plot as the most different from the lineup, providing evidence that  we can visually detect a violation of normality of the random effects.}
 	}
 	%Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
