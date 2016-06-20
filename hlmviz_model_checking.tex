@@ -37,7 +37,7 @@
 \usepackage[usenames,dvipsnames]{xcolor}
 \newcommand{\hh}[1]{{\color{orange} #1}}
 \newcommand{\al}[1]{{\color{ForestGreen} #1}}
-
+\newcommand{\dc}[1]{{\color{SkyBlue} #1}}
 
 %% For printing in black and white
 %\newcommand{\hh}[1]{{\color{black} #1}}
@@ -86,7 +86,7 @@
 
 \if0\blind
 {
-  \title{\bf  Graphical Diagnostics for Linear Mixed-Effects Models Using Visual Inference}
+  \title{\bf  \dc{The Use of Visual Inference to Improve Linear Mixed-Effects Model Choice and Diagnostics}}
   \author{Adam Loy\thanks{
     The authors gratefully acknowledge funding from the National Science Foundation Grant \#DMS 1007697. All data collection has been conducted with approval from the Institutional Review Board IRB 10-347}\hspace{.2cm}\\
     Department of Mathematics, Lawrence University\\
@@ -120,15 +120,9 @@
 
 \bigskip
 \begin{abstract}
-Linear mixed-effects (LME) models are versatile models that account for dependence structures when data are composed of groups.
-The additional flexibility of random effects models comes at the cost of complicating model exploration and validation
-due to the breakdown of asymptotic results, boundary issues, and  patterns
-in diagnostic plots inherent to model structures. While these issues are well known and adjustments
-have been proposed, they require the analyst to keep track of all the special circumstances that
-may arise. In this paper we illustrate the use of visual inference for diagnosing LME 
-model fits based on graphical tests that can be broadly used in situations where 
-the assumptions of conventional inferential procedures are violated. This approach
-provides a unified framework for diagnosing LME model fits and for model selection.
+\dc{The complexity of linear mixed-effects (LME) models means that traditional diagnostics are rendered less effective. This is due to a breakdown of asymptotic results, boundary issues, and visible patterns in residual plots that are simply due to model components. Some of these issues are well known and adjustments
+have been proposed, but it typically requires that the analyst keep track of all the special circumstances that may arise. In this paper we illustrate a simpler but generally applicable approach to diagnosing linear mixed effects models. We explain how to use new visual inference methods for these purposes. The approach
+provides a unified framework for diagnosing LME model fits and for model selection. A large scale Amazon Turk study was used to validate the methods, and it is illustrated on several commonly available data sets. R code is provided for the analyses. }
 \end{abstract}
 
 {\it Keywords:} Statistical graphics; Lineup protocol; Visual tests; Model diagnostics;  Model selection
@@ -190,6 +184,11 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{R}_i$, and the conditi
 \end{equation}
 %
 
+\begin{figure}
+	\centerline{\includegraphics[width=0.22\textwidth]{residual1.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual2.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual3.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual4.pdf}}
+	\caption{\label{fig:motivation} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model? (We need something like this right at the start.)}
+	}
+\end{figure}
 
 Residuals are central to the exploration of a LME model, similar to the classical linear model with uncorrelated error structure. For LME models residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
 %
@@ -1015,8 +1014,12 @@ To %determine whether
 %\section{Critical Discussion of visual inference results}\label{sec:results}
 %------------------------------------------------------------------------------------
 
+\section{\dc{Protocol}}
+
+\dc{Needs to have the prescriptive steps for using visual inference for model choice and diagnosis. A step-wise recommended approach here. And maybe how to do a Turk study.}
+
 %------------------------------------------------------------------------------------
-\section{Discussion and Conclusion}\label{sec:conclusion}
+\section{\dc{Discussion}}\label{sec:conclusion}
 %------------------------------------------------------------------------------------
 
 We have presented a graphical approach to model selection and diagnosis using lineups constructed by simulation from the model. % fit to the true data. 
