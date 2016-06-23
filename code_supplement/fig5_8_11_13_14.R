@@ -64,12 +64,21 @@ m1.refit <- lapply(m1.sims, refit, object = M1)
 m1.sim.resids <- ldply(m1.refit, function(x) data.frame(x@frame, resid = resid(x)))
 m1.sim.resids$.n <- as.numeric(str_extract(m1.sim.resids$.id, "\\d+"))
 
+resids <- rbind.fill(m1.resid.df, m1.sim.resids)
+
+# Randomizing the panels
+plot.order <- sample.int(20, 20)
+location <- plot.order[1] # location of the true plot
+resids$.id <- rep(plot.order, each = nrow(M1@frame))
+
+
 # Creating the lineup
-location <- sample(20, 1)
-qplot(pressure, resid, data = m1.resid.df, geom = c("point", "smooth")) %+%
-  lineup(true = m1.resid.df, samples = m1.sim.resids, pos=location) +
-  facet_wrap(~ .sample, ncol = 5) +
-  xlab(NULL) + ylab(NULL) + 
+ggplot(resids, aes(x = pressure, y = resid)) + 
+  geom_point() + 
+  geom_smooth(method = "loess") +
+  facet_wrap(~ .id, ncol = 5) +
+  xlab(NULL) + 
+  ylab(NULL) + 
   theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
         axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
