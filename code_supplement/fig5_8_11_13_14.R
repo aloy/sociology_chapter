@@ -10,7 +10,7 @@ checkpoint("2016-06-10")
 
 library(ggplot2)
 library(lme4)     # for modeling
-library(HLMdiag)  # for residuals
+library(HLMdiag)  # for residuals and data set
 library(MEMSS)    # for the Dialyzer data set
 library(nullabor) # for lineups
 library(plyr)
