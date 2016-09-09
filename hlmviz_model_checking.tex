@@ -156,7 +156,7 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 
 %A fundamental step in the statistical modeling process is model validation. When we validate a model we check the agreement between the data and the assumptions made by the model. Statistical models are data generating mechanisms, so there should be large agreement between the data and the model. The natural question to ask during model validation, then, is whether there is enough disagreement between the model and the data to require model reformulation. Notice that model validation requires a string of yes/no questions to be answered, and when necessary follow up questions to pinpoint the deficiency. Traditional tests such as Shapiro-Wilk or Breusch-Pagan can tell us whether there is evidence of a problem, but not the specific details of the problem. To do this a plot is required.
 
-\al{Model checking is an essential step of statistical modeling to ensure the  assumptions necessary for valid inference are upheld. This process includes both the search for contradictions of model assumptions and an assessment of how well the model captures the characteristics of the data. Such investigation can be carried out using test statistics and $p$-values to gauge the strength of evidence, however, such methods indicate only that there is a problem with the model. Graphical diagnostics enable the analyst to detect when there is a problem with the model and what may be the cause of the problem. For complex models the insight provided by graphical diagnostics is especially useful, allowing the analyst to develop intuition and make discoveries about the nature of model violations which would be nearly impossible through purely numeric methods. 
+\al{Model checking is an essential step of statistical modeling to ensure the  assumptions necessary for valid inference are upheld. This process includes both the search for contradictions of model assumptions and the assessment of how well the model captures the characteristics of the data. Such an investigation can be carried out using test statistics and $p$-values to gauge the strength of evidence, however, such methods indicate only that there is a problem with the model. In contrast, graphical diagnostics enable the analyst to detect when there is a problem with the model and what may be the cause of the problem. For complex models the insight provided by graphical diagnostics is especially useful, allowing the analyst to develop intuition and make discoveries about the nature of model violations which would be nearly impossible through purely numeric methods. 
 
 While graphical diagnostics develop intuition and make discoveries, it is easy to misinterpret a single plot, especially when dealing with more complex models such as linear mixed effects (LME) models.
 For example, Figure~\ref{fig:motivation} displays four residual plots used to diagnose LMEs: (left) a normal Q-Q plot of the random slopes; (center) boxplots displaying the error terms by group; (right) a plot of the residuals vs. a predictor. Which of the plots in Figure~\ref{fig:motivation} would you consider indicative of a model violation?
@@ -169,19 +169,21 @@ For example, Figure~\ref{fig:motivation} displays four residual plots used to di
 	\includegraphics[width=0.22\textwidth]{residual3.pdf} \hfill 
 	\includegraphics[width=0.22\textwidth]{residual4.pdf}
 	}
-	\caption{\label{fig:motivation} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model? (We need something like this right at the start.)}
+	\caption{\label{fig:motivation} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model?}
 	}
 \end{figure}
 
 \al{
-Based on our discussions with other statisticians, we have found that all four plots could be deemed indicative of a violation; however, only the plot of the residuals vs. the predictor is truly problematic.  Figure~\ref{fig:motivation} demonstrates that using only a single plot to distinguish between structure introduced by deviations from the model and structure introduced by the model fitting procedure is difficult, especially for more complicated statistical models such as LMEs. The purpose of this paper is to illustrate how visual inference allows us to distinguish between structure introduced by deviations from the model and structure introduced by the model fitting procedure. Additionally, the proposed graphical tests can also be used in situations where the assumptions of conventional inferential procedures are violated. While we focus only on LMEs the discussion is general enough to illustrate how visual inference can be used to overcome similar issues in other model classes. 
+Based on our discussions with other statisticians, we have found that all four plots could be deemed indicative of a violation; however, only the plot of the residuals vs. the predictor is truly problematic.  Figure~\ref{fig:motivation} demonstrates that using only a single plot to distinguish between structure introduced by deviations from the model and structure introduced by the model fitting procedure is difficult, especially for more complicated statistical models such as LMEs. The purpose of this paper is to illustrate how visual inference allows us to distinguish between structure introduced by deviations from the model and structure introduced by the model fitting procedure. Additionally, the proposed graphical tests can be used in situations where the assumptions of conventional inferential procedures are violated. While we focus only on LMEs the discussion is general enough to illustrate how visual inference can be used to overcome similar issues in other model classes. 
+
+\alnote{Do we need to give an example above?}
 
 The remainder of this paper is organized as follows.  
 Section~\ref{sec:vi} provides an introduction to the framework of visual inference and the lineup protocol. 
-Section~\ref{sec:lme}...
- Sections~\ref{sec:select} and \ref{sec:checking} expand on the problems encountered in model selection and model checking, respectively, and presents solutions utilizing visual inference. 
+Section~\ref{sec:lme} introduces problems encountered in model selection and model checking, which are expanded upon in 
+ Sections~\ref{sec:select} and \ref{sec:checking}, respectively, and presents solutions utilizing visual inference. 
 %In Section~\ref{sec:checking} we present graphical tests for model validation. 
-Throughout both sections multiple examples are used, and comparisons between conclusions on model building and fit from the new visual inference approach and existing diagnostic tools are provided. All example data sets are readily available for public use. A short description of each data set can be found in Section~1 of the appendix.
+Throughout Sections~\ref{sec:select} and \ref{sec:checking} multiple examples are used, and comparisons between conclusions on model building and fit from the new visual inference approach and existing diagnostic tools are provided. All example data sets are readily available for public use. A short description of each data set can be found in Section~1 of the appendix.
 }
 
 %In order to draw valid inferences from a statistical model, the necessary assumptions must be met. 
@@ -235,11 +237,11 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{normexam_fanned_lineup16.pdf}
-	\caption{\label{fig:fanned} \dc{One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in the model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 73 observers, 11 identified the data plot as the most different. This is a a sufficiently large number to indicate that the data is recognizably different from the null plots, indicating the need to include a random slopes component in the model.} Further details on data, model and the location of the data plot are given in section~\ref{sec:random}.
+	\caption{\label{fig:fanned} \dc{One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in an LME model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 73 observers, 11 identified the data plot as the most different. This is a a sufficiently large number to indicate that the data is recognizably different from the null plots, indicating the need to include a random slopes component in the model.} Further details on data, model and the location of the data plot are given in section~\ref{sec:random}.
 	}
 \end{figure}
 
-Figure~\ref{fig:fanned} shows an example lineup. Each panel presents  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'.    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring that observers made decisions based purely on the data display. 
+Figure~\ref{fig:fanned} shows an example lineup. Each panel presents  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring that observers made decisions based purely on the data display. 
 %\alnote{Reading J's comments on my dissertation, this is where he asked about more information on the observers. At this point we could point ahead to where we discuss the study further or include a brief explanation of Amazon MTurk to address this comment.}
 
 Based on a human subject study (described in more detail in Section~2 of the appendix) run through the Amazon MTurk service \citep{amazon}, 11 out of 73 observers  chose the  data plot, shown in panel  \#($\sqrt{144} + 4$)\footnote{We encode the panel number as a mathematical expression to pose a cognitive obstacle, allowing the reader to evaluate the lineup before being biased by knowing the answer.}
@@ -273,7 +275,7 @@ where there are $i=1,\ldots,g$ non-overlapping groups, $\bm{X}_i$ and $\bm{Z}_i$
 %Finally, it is assumed that all between group effects have a covariance of zero.
 
 
-Similar to simple linear models, residuals form the diagnostic core of a LME model. But, LME model residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are: (1) the error terms, and (2) the predicted random effects.
+Similar to simple linear models, residuals form the diagnostic core of a LME model. But, LME model residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are: (1) the error terms (i.e.~level-1 residuals), and (2) the predicted random effects (i.e.~level-2 residuals).
 
 
 The use of random effects models comes at the cost of complicating model exploration and validation.
@@ -303,6 +305,8 @@ This problem is especially pronounced for  scatterplots comparing predicted rand
 Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
 
 \end{enumerate}
+
+\alnote{If we are trying to save space, then we might be able to shorten the above point, since section 1 illustrated this issue.}
 
 The above issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case \citep{adam}.
  
@@ -364,7 +368,7 @@ Various approaches to deal with this problem have been suggested in the literatu
 \citet[Section 3.5]{Demidenko2013} presents an exact $F$-test of the  null hypothesis $\mathbf{D} = \mathbf{0}$. Unfortunately, the all-or-nothing inclusion of random effects limits the use of this test in practice.
 %\al{\citet[Section 3.5]{Demidenko2013} presents an alternative approach, utilizing an exact $F$-test, but only for the null hypothesis $\mathbf{D} = \mathbf{0}$.}
 Approximations have been suggested and shown to be useful in many situations \citep{Stram:1994wd, Morrell:1998ua}, but no single approximation holds for all situations. 
-Alternatively, the rule of thumb suggested by \citeauthor{Stram:1994wd} can be utilized with the knowledge that the results may be sub-optimal, leading to either conservative or anti-conservative decisions. 
+Alternatively, the rule of thumb suggested by \citeauthor{Stram:1994wd} can be utilized with the knowledge that the results may be sub-optimal. %, leading to either conservative or anti-conservative decisions. 
 This leads to a need for simulation studies to determine the proper adjustment to the reference distribution in every situation. 
 \end{description}
 
@@ -619,7 +623,7 @@ In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the l
 \hh{If a covariate is discrete, we  have the choice between different ways of visualizing residuals. When assessing the homogeneity of level-1 residuals across groups, we are, by default, in the situation of comparing continuous values across a discrete range. 
   For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the grouping variable (subjects). } 
 \al{Figures~13 and~14 in Section~2.2 of the appendix show the resulting lineups.}
-\hh{The results from the turk study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61) picked out the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots.  }
+\hh{The results from the turk study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61)  identified the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots.  }
 
 \hh{ Very different group sizes make an assessment of homogeneity in the residual variance more complicated, because this imbalance introduces structures in the plot that are largely artificial. }
 %\hh{There are different ways to visually assess homogeneity of residual variance between groups. }
@@ -669,14 +673,16 @@ where $s_i^2$ is the residual variance within each group based on separate ordin
 \end{equation}
 %
 which has an approximate $\chi^2_{g^*-1}$ reference distribution when the data are normal and the group sizes are ``large enough.'' Here we use $g^*$ because ``small'' groups may be excluded from the calculation as they provide less reliable information about the residual variance (assuming that there are enough observations to fit the model), but this is a subjective choice. A common rule of thumb is to exclude groups with samples sizes smaller than 10. If the distributional assumptions are violated, or we do not have large enough group sizes,  the approximation to the $\chi^2$ distribution breaks down. In the methylprednisolone study each subject was observed at most five times, with 19 subjects dropping out of the study early. Due to the small group sizes the $\chi^2$ approximation is inappropriate, forcing the analyst to rely on simulation to construct the sampling distribution of the test statistic, which is not only computationally more demanding than the generation of 19 null plots, but lacks power with small sample sizes. Additionally, we have found the $H$-statistic to be sensitive to the choice of the minimum group size.
-Table~\ref{tab:pvalues} shows the huge difference in conventional $p$-values to those obtained through simulations based on 10,000 parametric bootstrap runs for the radon data set. There is a clear discrepancy between the two $p$-values, indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.  
+Table~\ref{tab:pvalues} shows the huge difference in conventional $p$-values to those obtained through a bootstrap test (based on 10,000 bootstrap $H$-statistics) for the radon data set.
+%simulations based on 10,000 parametric bootstrap runs for the radon data set. 
+There is a clear discrepancy between the two $p$-values, indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.  
 
 \begin{table}[ht]
-\caption{\label{tab:pvalues} A comparison of the naive and the simulation-based version of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. \al{The naive $p$-value refers to the $p$-value obtained using the $\chi^2$ approximation. The simulated $p$-values were calculated from the empirical distribution of the test statistic based on 10,000 simulated statistics obtained using the parametric bootstrap for each minimum group size.} There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent. \dc{What are the simulated p-values?? Are these from the Turk study??} \al{XX Does this help clarify things?}} 
+\caption{\label{tab:pvalues} A comparison of the naive and the bootstrap version of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. \al{The naive $p$-value refers to the $p$-value obtained using the $\chi^2$ approximation. The simulated $p$-values were calculated from the empirical distribution of the $H$-statistic based on 10,000 simulated statistics obtained using the parametric bootstrap for each minimum group size.} There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods. Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent.} 
 \centering
 \begin{tabular}{rrrrrrr}
   \hline
- Minimum group size & $H$ & d.f. & Naive $p$-value  & Simulated $p$-value \\ 
+ Minimum group size & $H$ & d.f. & Naive $p$-value  & Bootstrap $p$-value \\ 
   \hline
 3 & 116.6 & 73 & 0.0009 & 0.9178 \\ 
   4 & 96.8 & 62 & 0.0031 & 0.7980 \\ 
@@ -1011,7 +1017,7 @@ Lineup tests provide us with the framework to test hypotheses and also allow a  
 %\hhnote{now we need to say something on each of the pieces that lineups rely on}
 
 %With independence from asymptotics gained, we have  to pay attention to each of the dependencies of graphical testing a bit more:
-The graphical approach is relatively new and involves working with human observers recruited on the web. There is a vast experience in statistics in engaging subjects in a traditional lab setting where researchers are closely engaged with the experiment. With MTurk, researchers are working with subjects in a long distance relationship, and there are some participants who will try to ``game the system.'' Nevertheless, results are promising, as MTurk experiments have replicated studies conducted in the traditional lab setting~\cite{crump2013}. Specifically, \citet{heer:2010} achieved matching results to those of \citet{cleveland:1984} using MTurk, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
+The graphical approach is relatively new and involves working with human observers recruited on the web. There is a vast experience in statistics in engaging subjects in a traditional lab setting where researchers are closely engaged with the experiment. With MTurk, researchers are working with subjects in a long distance relationship, and there are some participants who will try to ``game the system.'' Nevertheless, results are promising, as MTurk experiments have replicated studies conducted in the traditional lab setting~\citep{crump2013}. Specifically, \citet{heer:2010} achieved matching results to those of \citet{cleveland:1984} using MTurk, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
 %, a replicate of the  study by \citet{cleveland:1984} using the MTurk service \citet{heer:2010} achieved matching results, and \citet{kosara:2010} found similar results between a lab study and one performed using MTurk.
 
 
@@ -1041,7 +1047,7 @@ While we have tried to present a variety of different plots throughout this pape
 
 %Throughout this paper we have provided examples of graphical diagnostics that we have found to be useful. Many situations, such as outlier detection, were not discussed in this paper. This omission was not because we overlooked these diagnostic situations, but because an exhaustive list is impossible. Based on the examples and discussion throughout this paper, and the examples it builds upon \citep{Buja:2009hp, mahbub:2013}, we believe the approach can be easily adapted.
 
-The diagnostics in this paper draw from various sources. Some of the diagnostics presented here are well known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models. An example of a new diagnostic addressing a  practical need are the cyclone plots of Figure~\ref{fig:badcyclone}. The overarching purpose of  these examples is to show visual diagnostics in a wide variety of situations that all need special consideration in the conventional hypothesis testing setting, but that all fit within the same graphical inference framework.  Many situations, such as outlier detection, were not discussed in this paper, but the results also extend to these problems. The reader is encouraged to examine more examples provided by \citet{Buja:2009hp} and \citet{mahbub:2013}, as well as \citet{RoyChowdhury:2014} for biological applications.
+The diagnostics in this paper draw from various sources. Some of the diagnostics presented here are well-known diagnostic  tools, such as Q-Q plots or  scatterplots of residuals with trend lines as suggested by \citet{Cook:1999} for ordinary least squares regression. Some diagnostics are suggestions from the literature specific to mixed effects models. An example of a new diagnostic addressing a  practical need are the cyclone plots of Figure~\ref{fig:badcyclone}. The overarching purpose of  these examples is to show visual diagnostics in a wide variety of situations that all need special consideration in the conventional hypothesis testing setting, but that all fit within the same graphical inference framework.  Many situations, such as outlier detection, were not discussed in this paper, but the results also extend to these problems. The reader is encouraged to examine more examples provided by \citet{Buja:2009hp} and \citet{mahbub:2013}, as well as \citet{RoyChowdhury:2014} for biological applications.
 
 %\hh{We do not intend for this paper to include an exhaustive discussion of all possible tests or testing situations, but rather we include some suggestions of specific diagnostics to alleviate some of the problems inherent to mixed effects models.   We hope to encourage  readers to use their own favorite graphical diagnostics for a lineup of their very own when they next diagnose a model. }
 
@@ -1358,7 +1364,7 @@ Such structures occur, for example, when individuals are naturally grouped by or
 
 For data organized in $g$ groups, consider a continuous response linear mixed-effects model (LME model) for each group $i$, $i=1, \ldots, g$:
 %
-\begin{equation}\label{eq:hlm}
+\begin{equation}
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
