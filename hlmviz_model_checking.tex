@@ -1007,7 +1007,42 @@ To %determine whether
 
 \dc{Needs to have the prescriptive steps for using visual inference for model choice and diagnosis. A step-wise recommended approach here. And maybe how to do a Turk study.}
 
-\alnote{We're running up against the page limit... can this be a supplement, or do we need to push something else out?}
+\al{
+Throughout this paper we have illustrated how visual inference can help select and diagnose LME models. In all of the examples presented, we have followed the same basic protocol:
+
+\begin{enumerate}
+\item {\bf Create lineup data:} Assuming that the proposed model (for diagnostics) or reduced model (for selection) are correct, we use a parametric bootstrap to simulate new responses, refit the model to these simulated responses, and extract the residuals of interest from the proposed model. For each lineup, this process is used to obtain $m-1=19$ simulated data sets.
+
+\item {\bf Render lineups:} Append the observed data set and randomly assign ID numbers to the data sets between 1 and 20. These IDs are used to facet the lineup. Store the ID number for the observed data for later reference.
+
+\item {\bf Evaluate lineups:} Present the lineups to independent observers, instructing them to identify the plot most different from the set and asking them what feature led to their choice. These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. 
+
+\item {\bf Evaluate the strength of evidence:} For a lineup of size $m=20$ that has been evaluated by $K$ independent observers, the number of evaluations of a lineup in which the observer identifies the data plot, $Y$, has a Visual distribution $V_{K,m,s=3}$ as defined by \citet{hofmann:2015}.
+
+\end{enumerate}
+}
+
+\alnote{I'm not sure how far we want to go with this. Heike, can you take this point since you know the procedure best?}
+
+\al{XXX I'm still trying to fit all the pieces together... this paragraph is still rough...
+
+In practice, the modeler will not give every lineup rendered to a panel of independent observers. Rather, during the model building process many lineups will be rendered with the modeler blinded to the true plot. These lineups replace the traditional exploratory and diagnostic plots traditionally used, providing additional ``protection'' against structure introduced through the model fitting procedure. For critical decisions---perhaps, to finalize model selection or diagnose borderline situations---recruiting a number of independent observers is warranted. While we used the MTurk service \citep{amazon}, modelers could also use their colleagues, provided that they are making these evaluations independently.
+}
+
+\al{
+For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 75 different lineups. 
+487 participants were recruited through the MTurk service \citep{amazon}, each participant was asked to evaluate ten lineups, for a total of altogether 4927 evaluations. 
+%For each lineup observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
+%These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. 
+In addition to the plot choice and rationale, the time taken to answer was recorded and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of their ip address). It has been shown that demographics and educational background of observers, while significant, do not have a practical impact on  detection rates of the true plot from a lineup  \citep{majumder:2014}. 
+
+The MTurk service provides access to a large pool of participants, whose demographics reflect those of internet users (i.e.\ relative to the average U.S.\ population, participants are younger and more highly educated; the proportion of female participants is typically around 40\%). To be eligible to participate in the study, we required MTurk workers to have at least 100 completed HITs (Human Intelligence Tasks) with a success rate of at least 90\%.  Assuming that these workers  have a vested interest in their reputation,  we hope that such a selection reduces the rate of participants gaming the system. The pool of MTurk workers is large enough to allow for very fast collection of lineup evaluations; all of the data presented here were collected within a few hours. 
+}
+
+
+\alnote{I'm not sure where the following sentence fits now that this isn't in the appendix. Do we move this to the discussion?}
+While we do not require any statistical training from participants, training in mathematical reasoning has been found to significantly help with performance on lineup tests \cite[see][]{susan:infovis}. 
+
 
 %------------------------------------------------------------------------------------
 \section{\dc{Discussion}}\label{sec:conclusion}
