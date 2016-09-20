@@ -230,7 +230,7 @@ Evaluation by independent observers  allows for the estimation of a $p$-value as
  Let $X$ be the random variable describing  the number  of observers, out of $N$, identifying the data plot. 
 If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.,~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup.
 %inherent to the application of lineups in a human subject study 
-\citep[][introduced visual $p$-values. Details of the calculation for this LME model application are given in Section~\ref{supp::} of the supplement.]{mahbub:2013}
+\citep[][introduced visual $p$-values. Details of the calculation for this LME model application are given in Section~\ref{sec:pvalues} of the supplement.]{mahbub:2013}
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
 
 %with a probability of success of $p = 1/m$\al{---that is,}  $X~\sim~B_{N, p}$. The $p$-value \hh{for this lineup} is then estimated as
@@ -255,7 +255,7 @@ is consistent with the model that generated the data, on which all of the null p
 
 Unlike classical hypothesis tests, visual inference  allows us to collect additional information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data plot over a null plot (see Table~\ref{supp:table2} of the supplement).
+This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data plot over a null plot (see Table~\ref{tab:reasons} of the supplement).
 
 %\alnote{The sentence below needs some rewording}
 %In the example of the first lineup of figure~\ref{fig:fanned} `spread' as the reason for their choice increased observers' chances to pick the data over a null plot. 
@@ -383,7 +383,7 @@ Visual inference provides an alternative to conventional hypothesis tests that d
 To test the significance of a fixed effect, we suggest using a plot comparing a residual quantity from the model without the variable of interest with the values of that variable. 
 The residual used depends on the level at which the variable of interest enters the model: if the variable enters at the observation-level (level-1), then the level-1 residuals are used; if the variable enters at the group-level, then both the level-1 and level-2 residuals are explored as the variable has the potential to explain additional variation at either level of the model.
 Additionally, the type of plot depends on the variable type---if a continuous variable is targeted,  a scatterplot with a smoother is suitable for testing; for a discrete covariate, we make use of side-by-side box plots. 
-In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~\ref{supp::} of the supplement}. The true plot is constructed from the same model, but is fit to the observed data. 
+In this setting, the null plots are generated using the parametric bootstrap  with a model that omits the variable of interest, \al{details of which can be found in Section~\ref{app:nullplots} of the supplement}. The true plot is constructed from the same model, but is fit to the observed data. 
 
 \begin{figure}[h]
 	\centering
@@ -400,7 +400,7 @@ Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In 
 %corresponding to a $p$-value of XXX, 
 with 40.3\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
-to determine whether a child's language development (low, medium, or high) at age two (\hh{plotted on the $x$}-axis)  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Section~\ref{supp::} of the supplement for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
+to determine whether a child's language development (low, medium, or high) at age two (\hh{plotted on the $x$}-axis)  is associated with the development of social skills for children diagnosed with autism spectrum disorder (see Section~\ref{data:autism} of the supplement for details on the data and analysis). Displayed on the $y$-axis are level-1 residuals from a longitudinal model, i.e.,~ the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
 %The underlying data are level-1 residuals from a longitudinal 
 %Lineup testing for the significance of social skills (low, medium, or high) for a longitudinal model investigating investigating the development of social skills from childhood to adolescence for children diagnosed with autism spectrum disorder. Here the level-1 residuals are used to see if the variable accounts for any additional residual variability. 
 
@@ -415,7 +415,7 @@ to determine whether a child's language development (low, medium, or high) at ag
 \subsection{Random effects}\label{sec:random}
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~\ref{supp:} of the supplement for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for each student at a school. 
+The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~\ref{data:GCSE} of the supplement for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for each student at a school. 
 The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only random effect.
 The resulting scores for each school are regressed on LRT scores and model fits are shown as lines.
 %\al{and overlaying linear smoothers for each school.}
@@ -626,7 +626,7 @@ In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the l
 \paragraph{(b) Checking homogeneity of level-1 residual variance between groups:}
 \hh{If a covariate is discrete, we  have the choice between different ways of visualizing residuals. When assessing the homogeneity of level-1 residuals across groups, we are, by default, in the situation of comparing continuous values across a discrete range. 
   For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the grouping variable (subjects). } 
-\al{Figures~13 and~14 in Section~\ref{supp} of the supplement show the resulting lineups.}
+\al{Figures~\ref{homogeneous-1} and~\ref{homogeneous-2}  in Section~\ref{app:morelineups} of the supplement show the resulting lineups.}
 \hh{The results from the turk study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61)  identified the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots.  }
 
 \hh{ Very different group sizes make an assessment of homogeneity in the residual variance more complicated, because this imbalance introduces structures in the plot that are largely artificial. }
@@ -638,7 +638,7 @@ In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the l
 %%While box plots are more powerful, they still require the use of lineups.
 %When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create side-by-side box plots \hh{and order groups according to their interquartile range (IQR). Because of their shape,  we have come to call these plots  \emph{cyclone plots}}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the potential of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~1.3 of the supplement for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
+To overcome this difficulty, we create side-by-side box plots \hh{and order groups according to their interquartile range (IQR). Because of their shape,  we have come to call these plots  \emph{cyclone plots}}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the potential of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:hepatitis} of the supplement for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
 \alnote{We need to be consistent with the supplement/appendix. For submission do we want to say the supplement since that is where those materials are destined?}
 \hhnote{only supplement should be mentioned by now. some of the references still point to nowhere ... going to fix that next}
@@ -713,7 +713,7 @@ This sensitivity to the group size is a clear weakness of the conventional test,
 Performing the simulation-based version of the test in this example results in a $p$-value of 0.0886, providing much weaker evidence for heterogeneity than the visual test. 
 
 %In this situation the conventional test yields a $p$-value of 0.149, if counties with fewer than 10 observations are excluded, thereby agreeing with the visual inference result. However, if only counties with fewer than 5 observations are excluded, the conventional test indicates strong evidence of heterogeneity based on a $p$-value of 0.0017.
-  In contrast, consider Figure~\ref{fig:goodcyclone}, another lineup of cyclone plots.  The data underlying this example are radon measurements across counties in Minnesota (see Section~1.5 of the supplement for details).
+  In contrast, consider Figure~\ref{fig:goodcyclone}, another lineup of cyclone plots.  The data underlying this example are radon measurements across counties in Minnesota (see Section~\ref{data:radon} of the supplement for details).
 Here, level-1 residuals by county are plotted from a model that only includes counties with at least five observations. 
 %Similar \hh{XXX??? -need the $p$-value first! XXX} to the above $p$-value, homogeneity is not rejected based on this lineup.  
 Only one out of  59 participants identified the data plot shown in panel \#$(4^2 - 6)$ from the lineup, providing no evidence against homogeneity. 
@@ -750,7 +750,7 @@ The visual test is not overly sensitive to group sizes. Counties with less than 
 \subsection{Linearity}
 %------------------------------------------------------------------------------------
 
-Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot in panel \#($2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only linear and quadratic terms for transmembrane pressure (see Section~1.4 of the supplement for details about the data). Based on the data panel, it is clear that a higher-order polynomial is required. 
+Scatterplots with smoothers can also be used to check that the relationship between the explanatory variables and response variable is in fact linear. Figure~\ref{fig:linearity} shows such a lineup testing the linearity of an observation-level explanatory variable. Out of 63 observers, 60 identified the true plot in panel \#($2^3 + 2$), providing evidence that the mean structure is misspecified. This example comes from the dialyzer study and considers a model with only linear and quadratic terms for transmembrane pressure (see Section~\ref{data:dialyzer} of the supplement for details about the data). Based on the data panel, it is clear that a higher-order polynomial is required. 
 %\hhnote{we should probably include a higher order polynomial and come up with a new lineup in which the mean structure is captured correctly (or at least better).}
 %\alnote{This is actually what we do in Figure 4, but after the issue with the mean structure is resolved the issue of heteroscedasticity rears its head.}
 %\hhnote{Oh, ok - we should still write up a sentence on this}
@@ -821,7 +821,7 @@ and are independent from the error terms, $\bm{\varepsilon}_i$, which are assume
 %Both lineups present simulated Q-Q plots of predicted random effects following the design of the radon study (see Section~\ref{data:radon} for details), in which group sizes are very unbalanced and there is a high degree of shrinkage. 
 Figures~\ref{fig:qqlineup-1} and \ref{fig:qqlineup-t} illustrate the use of lineups to test the distributional assumptions in a linear mixed-effects model. 
 \hh{The null plots for both of these lineups show Q-Q plots of the predicted random slopes  after re-fitting model (1) to} 
-\al{bootstrap observations generated using the parametric bootstrap as outlined in Section 2.1 of the supplement. Consequently, the null plots represent Q-Q plots of the random slopes for a properly specified model.}
+\al{bootstrap observations generated using the parametric bootstrap as outlined in Section~\ref{app:nullplots} of the supplement. Consequently, the null plots represent Q-Q plots of the random slopes for a properly specified model.}
 \hh{In Figure~\ref{fig:qqlineup-1}, the Q-Q plot of the predicted random slopes of model (1) fit to the radon data was inserted into the lineup, while the lineup in Figure~\ref{fig:qqlineup-t} included a Q-Q plot of the random slopes in model (1) }
 \al{where the random effects were simulated from a multivariate $t_3$-distribution.}
 \hh{In both lineups, Q-Q plots are drawn with lines representing the asymptotic normal distribution and shaded confidence bands. It is obvious that in many of the panels the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with the asymptotic distribution. }
@@ -1136,7 +1136,8 @@ R \citep{R} was used to implement all analyses and methods discussed in this pap
 
 \begin{description}
 
-\item[Description of data sets, experimental setup and results:] The supplement materials include a description of the data sets used throughout this paper, the experimental setup, and the calculation of $p$-values. Additional lineups that were omitted for brevity are also included. (PDF)
+\item[supplement.pdf] The supplement materials include a description of the data sets used throughout this paper, the experimental setup, and the calculation of $p$-values. Additional lineups that were omitted for brevity are also included. (PDF)
+\item[study.csv] \hh{Anonymized  results from the Amazon Turk study. (csv)}
 
 \end{description}
 
