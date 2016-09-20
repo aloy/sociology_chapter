@@ -1,11 +1,14 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
-\usepackage{hyperref}
 \usepackage{graphicx,psfrag,epsf}
 \usepackage{enumerate}
-\usepackage{natbib}
 \usepackage{url} % not crucial - just used below for the URL 
 
+\usepackage{natbib}
+\usepackage{xr}
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+\externaldocument{supplement}
 \pdfminorversion=4
 % NOTE: To produce blinded version, replace "0" with "1" below.
 \newcommand{\blind}{0}
@@ -252,7 +255,7 @@ is consistent with the model that generated the data, on which all of the null p
 
 Unlike classical hypothesis tests, visual inference  allows us to collect additional information on what aspect of the display led each observer to their choice. 
 %Rather than to just reject a null hypothesis 
-This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data plot over a null plot (see Table~2 of the appendix).
+This  information makes it possible to assess which part of the null hypothesis is violated, something not feasible in classical hypothesis tests. For example,  `Spread' as the reason for an observer's choice (over `Outlier', `Trend',  `Asymmetry', or `Other') in Figure~\ref{fig:fanned} was associated with the highest probability of picking the data plot over a null plot (see Table~\ref{supp:table2} of the supplement).
 
 %\alnote{The sentence below needs some rewording}
 %In the example of the first lineup of figure~\ref{fig:fanned} `spread' as the reason for their choice increased observers' chances to pick the data over a null plot. 
