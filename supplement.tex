@@ -109,10 +109,10 @@
 
 \spacingset{1.45}
 
-\tableofcontents
+%\tableofcontents
 \begin{appendix}
 The materials in this document supplement the information presented in the manuscript 
-``Better Diagnostics for Linear Mixed-Effects Models Using Visual Inference.'' Section~\ref{sec:model} gives an overview of the theoretical framework of linear mixed effects models. Section~\ref{sec:datasets} describes the data sets used to illustrate the use of visual inference in the paper.
+``Better Diagnostics for Linear Mixed-Effects Models Using Visual Inference.'' Section~\ref{supp:model} gives an overview of the theoretical framework of linear mixed effects models. Section~\ref{supp:datasets} describes the data sets used to illustrate the use of visual inference in the paper.
 Section~\ref{study} details the experimental setup, generation of null plots, the calculation of $p$-values, and additional lineups that were included in the study, but omitted from the paper for brevity. The figure numbering carries on from the paper for ease of reporting results.
 
 
@@ -121,15 +121,13 @@ Section~\ref{study} details the experimental setup, generation of null plots, th
 %------------------------------------------------------------------------------------
 %\hhnote{We need a good motivating examples early on. Pushing figure 1 to the front might be a solution -- we need to capture the attention right away. Maybe the first cyclone plot is even better, as there's no actual solution in form of a test available. We can then come back to this example throughout the intro of visual inference and the general discussion. It'll help in making the discussion more concrete.}
 
-\al{JUST COPIED AND PASTED THE OLD INTRO HERE FOR NOW}
-
-Linear mixed-effects models \dc{can} account for dependence structures when data are composed of groups.
+Linear mixed-effects models can account for dependence structures when data are composed of groups.
 %---such data structures are especially common in social science research where studies often focus on responses from human subjects. 
-Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). \dc{The models} allow data to be incorporated at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
+Such structures occur, for example, when individuals are naturally grouped by organization (e.g., students within schools), geography (e.g., voters within states), or design (e.g., respondents assigned to  interviewers). The models allow data to be incorporated at both the observation-level (level 1) and the group-level (level 2, or higher) while also accommodating dependencies between individuals within the same group. 
 
 For data organized in $g$ groups, consider a continuous response linear mixed-effects model (LME model) for each group $i$, $i=1, \ldots, g$:
 %
-\begin{equation}
+\begin{equation}\label{eq:hlm}
 	\underset{(n_i \times 1)}{\bm{y}_i} = \underset{(n_i \times p)}{\bm{X}_i} \ \underset{(p \times 1)}{\bm{\beta}} + \underset{(n_i \times q)}{\bm{Z}_i} \ \underset{(q \times 1)}{\bm{b}_i} + \underset{(n_i \times 1)}{\bm{\varepsilon}_i}
 \end{equation}
 %
@@ -152,7 +150,7 @@ where $\bm{V}_i = \bm{Z}_i \bm{DZ}_i\trans + \sigma^2 \bm{R}_i$, and the conditi
 \end{equation}
 %
 
-\dc{Similar to simple linear models, residuals form the diagnostic core of a LME model. But, LME model residual analysis is complicated} by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
+Similar to simple linear models, residuals form the diagnostic core of a LME model. But, LME model residual analysis is complicated by the fact that there are numerous quantities that can be defined as \emph{residuals}, with each residual quantity being associated with different aspects of the model. The two fundamental residuals for model checking considered here are:
 %
 \begin{itemize}
 \item the \emph{level-1 (observation-level) residuals}, ~the conditional residuals or error terms: $\widehat{\bm{\varepsilon}}_i = \bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} - \bm{Z}_i \widehat{\bm{b}}_i$,
@@ -172,68 +170,70 @@ and $\widehat{\bm{b}}_i$ are predictions of the random effects, given as
 	\left(\bm{y}_i - \bm{X}_i \widehat{\bm{\beta}} \right), \ \ \ \ \forall\ i = 1, \ldots, g.
 \end{equation}
 %
-When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). \dc{Figure \ref{fig:motivation} provides several residual plots from our studies, which each might alone indicate some inadequacies in the fitted model.} %
+When $\bm{V}_i$ is unknown, estimates for the covariance matrices are used in the above equations. These estimates are commonly found through maximum likelihood (ML) or restricted maximum likelihood (REML). 
 
-\begin{figure}[!h]
-	\centerline{\includegraphics[width=0.22\textwidth]{residual1.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual2.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual3.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual4.pdf}}
-	\caption{\label{fig:motivation2} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model? (We need something like this right at the start.)}
-	}
-\end{figure}
-
-
-The use of random effects models comes at the cost of complicating model exploration and validation. %For example:
-%\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
-Problems addressed in this paper include:
+% HH: motivation is in main document
+%\dc{Figure \ref{fig:motivation} provides several residual plots from our studies, which each might alone indicate some inadequacies in the fitted model.} %
+%
+%\begin{figure}[!h]
+%	\centerline{\includegraphics[width=0.22\textwidth]{residual1.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual2.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual3.pdf}\hfill\includegraphics[width=0.22\textwidth]{residual4.pdf}}
+%	\caption{\label{fig:motivation2} \dc{Four residual plots from different LME models. Which ones, or all, of these would you consider to indicate structure not captured by the model? (We need something like this right at the start.)}
+%	}
+%\end{figure}
 
 
-\begin{enumerate}
-\item {\em Model selection:}
-\begin{enumerate}
-\item {\em \al{Assessment of asymptotic distributions}:} Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
-For example, the \al{unconditional} empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment \cite[see the supplement of][for supporting simulation results]{adam}.
-
-\item {\em Boundary issues  in the comparison of nested models: } 
-When evaluating the significance of terms in the random effects structure, the likelihood ratio test statistic does not have the usual $\chi^2$ reference distribution if we are testing whether a variance component lies on the boundary of the parameter space. This results in tests for the random effects that tend to be conservative.
-%\cite{Stram:1994wd} argue that using the usual $\chi^2$ reference distribution leads to conservative results, and suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.}
-
-%\item[Incomparability  of nested models due to estimation procedure: ]
-% Comparison of nested models with different fixed effects not possible with REML estimation, too liberal for ML. 
-\end{enumerate}
-
-\alnote{Do we want the reference to fig. 1 in the paragraph below rather than where it is currently referenced?}
-
-\item {\em Model checking:} Residual plots might display noticeable patterns that are artifacts of both the data structure and the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for  scatterplots comparing predicted random effects. Such plots can display points falling along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
-%\hhnote{XXX I'm not quite sure how that would look like}.  
-%\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
-Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
-
-\end{enumerate}
-
-The above issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case \citep{adam}.
- 
-
-%\hh{Why are you going back to lineups now? - it might be better to shift this sentence back by a couple of paragraphs}
-%Lineups for visual inference heavily rely on the types of residuals defined above. %Next, we compare conventional and visual inference for model selection and validation.
-%Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
-
-
-The purpose of this paper is to illustrate the use of visual inference for diagnosing LME model fits, and propose graphical tests that can be broadly used in situations where the assumptions of conventional inferential procedures are violated. This approach harnesses the power of graphical diagnostics and, with the rigor of the visual inference framework, constructs tests that address some of these problems without requiring additional assumptions while providing a unified approach for LME models that  also works  in situations where conventional inference is appropriate.
-% \al{Further, this approach provides a unified testing framework for LME models, even }
-
-
-The remainder of this paper is organized as follows. 
-Section~\ref{sec:vi} provides an introduction to the framework of visual inference and the lineup protocol. Sections~\ref{sec:select} and \ref{sec:checking} expand on the problems encountered in model selection and model checking, respectively, and presents solutions utilizing visual inference. 
-%In Section~\ref{sec:checking} we present graphical tests for model validation. 
-Throughout both sections multiple examples are used, and comparisons between conclusions on model building and fit from the new visual inference approach and existing diagnostic tools are provided. All example data sets are readily available for public use. A short description of each data set can be found in Section~1 of the appendix.
-
-%\alnote{Should we include another pointer to the descriptions of the data sets?}
-%\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
-
-%We also show results of a study investigating the power of three different versions of the familiar Q-Q plot. 
-
-%\todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
-
+%The use of random effects models comes at the cost of complicating model exploration and validation. %For example:
+%%\hh{In this paper we want to address some of these situations and offer validated graphical diagnostics as solutions:}
+%Problems addressed in the paper include:
+%
+%
+%\begin{enumerate}
+%\item {\em Model selection:}
+%\begin{enumerate}
+%\item {\em \al{Assessment of asymptotic distributions}:} Test statistics used for model selection and validation rely on asymptotic reference distributions which often perform poorly in finite sample situations. 
+%For example, the \al{unconditional} empirical distribution of the predicted random effects  does not resemble the theoretical distribution unless strong assumptions are met \citep[Theorem 3.2 and Lemma 3.1]{Jiang:1998vt}. In many finite sample situations these assumptions do not hold, making conventional use of Q-Q plots and tests of the empirical distribution function ineffective for distributional assessment \cite[see the supplement of][for supporting simulation results]{adam}.
+%
+%\item {\em Boundary issues  in the comparison of nested models: } 
+%When evaluating the significance of terms in the random effects structure, the likelihood ratio test statistic does not have the usual $\chi^2$ reference distribution if we are testing whether a variance component lies on the boundary of the parameter space. This results in tests for the random effects that tend to be conservative.
+%%\cite{Stram:1994wd} argue that using the usual $\chi^2$ reference distribution leads to conservative results, and suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.}
+%
+%%\item[Incomparability  of nested models due to estimation procedure: ]
+%% Comparison of nested models with different fixed effects not possible with REML estimation, too liberal for ML. 
+%\end{enumerate}
+%
+%
+%\item {\em Model checking:} Residual plots might display noticeable patterns that are artifacts of both the data structure and the model estimation procedure rather than indications of lack of fit. 
+%This problem is especially pronounced for  scatterplots comparing predicted random effects. Such plots can display points falling along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
+%%\hhnote{XXX I'm not quite sure how that would look like}.  
+%%\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
+%Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
+%
+%\end{enumerate}
+%
+%The above issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case \citep{adam}.
+% 
+%
+%%\hh{Why are you going back to lineups now? - it might be better to shift this sentence back by a couple of paragraphs}
+%%Lineups for visual inference heavily rely on the types of residuals defined above. %Next, we compare conventional and visual inference for model selection and validation.
+%%Below we discuss methods commonly used to check the validity of the assumptions made on model \eqref{eq:hlm} using the level-1 and -2 residuals.
+%
+%
+%The purpose of this paper is to illustrate the use of visual inference for diagnosing LME model fits, and propose graphical tests that can be broadly used in situations where the assumptions of conventional inferential procedures are violated. This approach harnesses the power of graphical diagnostics and, with the rigor of the visual inference framework, constructs tests that address some of these problems without requiring additional assumptions while providing a unified approach for LME models that  also works  in situations where conventional inference is appropriate.
+%% \al{Further, this approach provides a unified testing framework for LME models, even }
+%
+%
+%The remainder of this paper is organized as follows. 
+%Section~\ref{sec:vi} provides an introduction to the framework of visual inference and the lineup protocol. Sections~\ref{sec:select} and \ref{sec:checking} expand on the problems encountered in model selection and model checking, respectively, and presents solutions utilizing visual inference. 
+%%In Section~\ref{sec:checking} we present graphical tests for model validation. 
+%Throughout both sections multiple examples are used, and comparisons between conclusions on model building and fit from the new visual inference approach and existing diagnostic tools are provided. All example data sets are readily available for public use. A short description of each data set can be found in Section~1 of the appendix.
+%
+%%\alnote{Should we include another pointer to the descriptions of the data sets?}
+%%\hhnote{Usually contents of the appendices aren't discussed in the introduction - but we need to extend the description of the paper a little bit more, you're right with that!}
+%
+%%We also show results of a study investigating the power of three different versions of the familiar Q-Q plot. 
+%
+%%\todo[inline]{paragraph on the structure of the paper:  next section deals with visual inference in the framework of hierarchical models, and suggests a series of visual tests as alternative to tests that in the classical setting don't work too well because of easily violated assumptions or nature of the setup. Then we will discuss using power to choose specific designs in the evaluation of distributional assumptions in the familiar graphical setting of the Q-Q plots. }
+%
 
 \section{Data sets}\label{supp:datasets}
 %------------------------------------------------------------------------------------
@@ -422,7 +422,7 @@ During model selection the simpler models are used to generate the null plots us
 %
 to generate the null plots.
 
-\paragraph{Selecting random effects structure.} To use a lineup test to determine whether a random effect should be included in the fitted model we must generate null plots from a model \emph{excluding} the random effect in question. This results in a model of the form of \eqref{eq:hlm} with the column of $\bm{Z}_i$ corresponding to the random effect in question deleted, and a random effects vector $\bm{b}_i$ of length $q-1$. To determine whether it is necessary to allow the random effects to be correlated, the null plots are generated using a model where the covariance matrix of the random effects $\bm{D}$ has zero entries in the appropriate off diagonal entries.
+\paragraph{Selecting random effects structure.} To use a lineup test to determine whether a random effect should be included in the fitted model we must generate null plots from a model \emph{excluding} the random effect in question. This results in a model of the form of~\eqref{eq:hlm} with the column of $\bm{Z}_i$ corresponding to the random effect in question deleted, and a random effects vector $\bm{b}_i$ of length $q-1$. To determine whether it is necessary to allow the random effects to be correlated, the null plots are generated using a model where the covariance matrix of the random effects $\bm{D}$ has zero entries in the appropriate off diagonal entries.
 
 \paragraph{Model checking.} Generating the null plots used for model checking is a direct application of the parametric bootstrap as detailed above to obtain $B$ fitted models from which the appropriate aspects are extracted.
 
