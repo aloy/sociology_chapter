@@ -161,8 +161,8 @@ provides a unified framework for diagnosing LME model fits and for model selecti
 
 
 Model checking is an essential step of statistical modeling to ensure the  assumptions necessary for valid inference are upheld. This process includes both the search for contradictions of model assumptions and an assessment of how well the model captures the characteristics of the data. Such investigation can be carried out using test statistics and $p$-values to gauge the strength of evidence, however, such methods indicate only the degree to which %that 
-there is a problem with the model. Graphical diagnostics enable the analyst to detect not only when there is a problem with the model and where it occurs, but also give some indication  %and 
-what may be the cause of the problem. For complex models the insight provided by graphical diagnostics is especially useful, allowing the analyst to develop intuition and make discoveries about the nature of model violations which would be nearly impossible through purely numeric methods. 
+there is a problem with the model. Graphical diagnostics enable the analyst to detect not only when there is a problem with the model and where it occurs, but also give some indication of  %and 
+what may be the cause of the problem. For complex models the insight provided by graphical diagnostics is especially useful, allowing the analyst to develop intuition and make discoveries about the nature of model violations, which would be nearly impossible through purely numeric methods. 
 
 While graphical diagnostics develop intuition and make discoveries, it is easy to misinterpret a single plot, especially when dealing with more complex models such as linear mixed effects (LME) models.
 For example, Figure~\ref{fig:motivation} displays four residual plots used to diagnose LMEs: (left) a normal Q-Q plot of the random slopes; (center) boxplots displaying the error terms by group; (right) a plot of the residuals vs. a predictor. Which of the plots in Figure~\ref{fig:motivation} would you consider indicative of a model violation?
@@ -180,7 +180,7 @@ For example, Figure~\ref{fig:motivation} displays four residual plots used to di
 \end{figure}
 
 
-Based on our discussions with other statisticians, we have found that all four plots could be deemed indicative of a violation; however, only the plot of the residuals vs.\ the predictor is truly problematic.  Figure~\ref{fig:motivation} demonstrates that using only a single plot to distinguish between structure introduced by deviations from the model and structure introduced by the model fitting procedure is difficult, especially for more complicated statistical models such as LMEs. The purpose of this paper is to illustrate how visual inference allows us to distinguish between structure due to deviations from the model and structure introduced by the model fitting procedure. Additionally, the proposed graphical tests can also be used in situations where the assumptions of conventional inferential procedures are violated. While we focus only on LMEs the discussion is general enough to illustrate how visual inference can be used to overcome similar issues in other model classes. 
+Based on our discussions with other statisticians, we have found that all four plots could be deemed indicative of a violation; however, only the plot of the residuals vs.\ the predictor is truly problematic.  Figure~\ref{fig:motivation} demonstrates that using only a single plot to distinguish between structure introduced by deviations from the model and structure introduced by the model fitting procedure is difficult, especially for more complicated statistical models such as LMEs. The purpose of this paper is to illustrate how visual inference allows us to distinguish between structure due to deviations from the model and structure introduced by the model fitting procedure. Additionally, the proposed graphical tests can be used in situations where the assumptions of conventional inferential procedures are violated. While we focus only on LMEs, the discussion is general enough to illustrate how visual inference can be used to overcome similar issues in other model classes. 
 
 The remainder of this paper is organized as follows.  
 Section~\ref{sec:vi} provides an introduction to the framework of visual inference and the lineup protocol. 
@@ -228,7 +228,7 @@ In the lineup protocol, the plot of the observed data is randomly embedded
 
 Evaluation by independent observers  allows for the estimation of a $p$-value associated with the lineup:
  Let $X$ be the random variable describing  the number  of observers, out of $N$, identifying the data plot. 
-If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers choose the data plot, given that the null hypothesis  is true (i.e.,~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup.
+If $X=x$ is  the number of observers who chose the data plot from the lineup, then the  $p$-value is  the probability that at least $x$ observers chose the data plot, given that the null hypothesis  is true (i.e.,~the  data plot is not any different from the other plots in the lineup). Under the null hypothesis the probability of choosing the true plot is $1/m$ (for a lineup of size $m$), and $X$ is distributed according to a distribution similar to a Binomial distribution $B_{N, 1/m}$, but adjusted for the dependencies between plots in a given lineup.
 %inherent to the application of lineups in a human subject study 
 \citep[][introduced visual $p$-values. Details of the calculation for this LME model application are given in Section~\ref{sec:pvalues} of the supplement.]{mahbub:2013}
 %\alnote{I am debating whether we need a reference to the appendix at the end of the last sentence... but I haven't made a decision yet.}
@@ -241,7 +241,7 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{normexam_fanned_lineup16.pdf}
-	\caption{\label{fig:fanned} One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in an LME model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 73 observers, 11 identified the data plot as the most different. This is a sufficiently large number to indicate that the data is recognizably different from the null plots, indicating the need to include a random slopes component in the model.} Further details on data, model and the location of the data plot are given in section~\ref{sec:random}.
+	\caption{\label{fig:fanned} One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in an LME model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 73 observers, 11 identified the data plot as the most different. This indicates the data are recognizably different from the null plots, indicating the need to include a random slopes component in the model. Further details on data, model and the location of the data plot are given in Section~\ref{sec:random}.}
 \end{figure}
 
 Figure~\ref{fig:fanned} shows an example lineup. Each panel presents  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring that observers made decisions based purely on the data display. 
@@ -302,16 +302,16 @@ When evaluating the significance of terms in the random effects structure, the l
 %\alnote{Do we want the reference to fig. 1 in the paragraph below rather than where it is currently referenced?}
 
 \item {\em Model checking:} As show in Figure~\ref{fig:motivation}, residual plots might display noticeable patterns that are artifacts of both the data structure and the model estimation procedure rather than indications of lack of fit. 
-This problem is especially pronounced for  scatterplots comparing predicted random effects. Such plots can display points falling along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
+%This problem is especially pronounced for  scatterplots comparing predicted random effects. Such plots can display points falling along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
 %\hhnote{XXX I'm not quite sure how that would look like}.  
 %\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
-Additionally,  plots of the error terms often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
+This problem is especially pronounced for plots of the error terms, as they often exhibit patterns that appear to be indicative of heteroscedasticity, but are merely consequences of data imbalances or sparsity.
 
 \end{enumerate}
 
 The above issues are well-known, and in special circumstances adjustments to the methodology have been proposed. For example, \cite{Stram:1994wd} suggest using a 50:50 mixture of $\chi^2_q$ and $\chi^2_{q+1}$ when testing $q$ versus $q + 1$ random effects; however, this adjustment is not successful in all cases.  \cite{Lange:1989uu} suggest using weighted Q-Q plots to assess the distributional assumptions made on the random effects. This approach is effective in settings where the residual variance, $\sigma^2$, is small relative to the variance components for the random effects, but breaks down when this is not the case \citep{adam}.
  
-In the following sections we expand on the problems encountered in model selection and model checking, respectively, and presents solutions utilizing visual inference. 
+In the following sections we expand on the problems encountered in model selection and model checking, respectively, and present solutions utilizing visual inference. 
 
 
 %------------------------------------------------------------------------------------
@@ -413,7 +413,7 @@ Displayed on the $y$-axis are \mbox{level-1} residuals from a longitudinal model
 \subsection{Random effects}\label{sec:random}
 Tests of the random part of a linear mixed-effects model focus on two questions: (1) whether a marginal random effect improves the model and (2) whether allowing the random effects to be correlated improves the model. Different plots must be used to answer each question. To answer the first question, we suggest using plots comparing the response and the explanatory variable of interest using appropriate (often linear) smoothers for each group. Scatterplots comparing the predicted random effects can be used to answer the second question.
 
-The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~\ref{data:GCSE} of the supplement for details).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for each student at a school. 
+The lineup in Figure~\ref{fig:fanned} was chosen to test the relationship between scores from the General Certificate of Secondary Education Exam (GCSEE) and the  standardized London Reading Test (LRT) (see Section~\ref{data:GCSE}).  Each line segment represents one of 65 inner-London schools. The slope of each line is determined by a linear regression relating the two test scores for each student at a school. 
 The question of interest is whether random slopes for LRT scores are required to  represent the relationship between GCSEE and LRT scores ($H_1$). Correspondingly, data for the null plots  were  created by simulating GCSEE scores from a model with the random intercept as its only random effect.
 The resulting scores for each school are regressed on LRT scores and model fits are shown as lines.
 %\al{and overlaying linear smoothers for each school.}
@@ -598,7 +598,7 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 
 \paragraph{(a) Checking homogeneity of level-1 residual variance across covariates:}
 Residual plots are one of the most-often used tools for checking the relationship between residuals and one of the model's covariates. 
-In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~\ref{data:dialyzer} of the supplement). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
+In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~\ref{data:dialyzer}). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
 
 \begin{figure}[hbt]
 	\centering
@@ -624,7 +624,7 @@ The data plot is in panel \#$2^4+3$. Inspecting only the data plot, we see that 
 If a covariate is discrete, we  have the choice between different ways of visualizing residuals. When assessing the homogeneity of level-1 residuals across groups, we are, by default, in the situation of comparing continuous values across a discrete range. 
   For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the grouping variable (subjects). 
 Figures~\ref{homogeneous-1} and~\ref{homogeneous-2}  in Section~\ref{app:morelineups} show the resulting lineups.
-The results from the turk study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61)  identified the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots. 
+The results from the study clearly support that the design matters, and identify the side-by-side boxplot as the far more powerful design: more than one third of all participants (23/61)  identified the data plot from the lineup of boxplots, while only one out of 71 participants chose the data plot from the lineup of dot plots. In particular, more than half of the participants noted the spread as their reason for choosing the data plot from the lineup of boxplots. 
 
  Very different group sizes make an assessment of homogeneity in the residual variance more complicated, because this imbalance introduces structures in the plot that are largely artificial. 
 %\hh{There are different ways to visually assess homogeneity of residual variance between groups. }
@@ -678,7 +678,7 @@ There is a clear discrepancy between the two $p$-values, indicating a need for s
 
 \begin{table}[ht]
 \caption{\label{tab:pvalues} Are error terms homoscedastic? Raudenbush and Bryk's conventional test is highly sensitive to the choice of minimal group size.  %A comparison of the naive and the simulation-based version of the conventional test by Raudenbush and Bryk of homoscedastic error terms across groups for the radon data. 
-The naive $p$-value are obtained using the $\chi^2$ approximation. Bootstrap $p$-values were calculated from the empirical distribution of the test statistic based on 10,000 simulated statistics obtained using the parametric bootstrap for each minimum group size. There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods.% Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent. 
+The naive $p$-values are obtained using the $\chi^2$ approximation. Bootstrap $p$-values were calculated from the empirical distribution of the test statistic based on 10,000 simulated statistics obtained using the parametric bootstrap for each minimum group size. There is a clear discrepancy between the two $p$-values indicating a need for simulation-based methods.% Additionally, the sensitivity of the simulation-based test to the minimum group size is apparent. 
 } 
 \centering
 \begin{tabular}{rrrrrrr}
