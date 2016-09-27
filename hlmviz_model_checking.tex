@@ -22,9 +22,6 @@
 
 
 
-
-
-
 % for citations
 %\usepackage[authoryear]{natbib} % natbib required for JASA
 %\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
@@ -89,7 +86,7 @@
 
 \if0\blind
 {
-  \title{\bf  \dc{Model Choice and Diagnostics for Linear Mixed-Effects Models Using Statistics on Street Corners}}
+  \title{\bf  Model Choice and Diagnostics for Linear Mixed-Effects Models Using Statistics on Street Corners}
   \author{Adam Loy\thanks{
     The authors gratefully acknowledge funding from the National Science Foundation Grant \#DMS 1007697. All data collection has been conducted with approval from the Institutional Review Board IRB 10-347}\hspace{.2cm}\\
     Department of Mathematics, Lawrence University\\
@@ -123,9 +120,11 @@
 
 \bigskip
 \begin{abstract}
-\dc{The complexity of linear mixed-effects (LME) models means that traditional diagnostics are rendered less effective. This is due to a breakdown of asymptotic results, boundary issues, and visible patterns in residual plots that are simply due to model components. Some of these issues are well known and adjustments
-have been proposed, but it typically requires that the analyst keeps track of all the special circumstances that may arise. In this paper we illustrate a simpler but generally applicable approach to diagnosing linear mixed effects models. We explain how to use new visual inference methods for these purposes. The approach
-provides a unified framework for diagnosing LME model fits and for model selection. A large scale Amazon Turk study was used to validate the methods, and it is illustrated on several commonly available data sets. R code is provided for the analyses. }
+The complexity of linear mixed-effects (LME) models means that traditional diagnostics are rendered less effective. This is due to a breakdown of asymptotic results, boundary issues, and visible patterns in residual plots that are introduced by the model fitting process. Some of these issues are well known and adjustments
+have been proposed. Working with LME models  typically requires that the analyst keeps track of all the special circumstances that may arise. In this paper we illustrate a simpler but generally applicable approach to diagnosing LME models. We explain how to use new visual inference methods for these purposes. The approach
+provides a unified framework for diagnosing LME fits and for model selection. 
+We illustrate the use of this approach on several commonly available data sets. 
+A large-scale Amazon Turk study was used to validate the methods. R code is provided for the analyses.
 \end{abstract}
 
 {\it Keywords:} Statistical graphics; Lineup protocol; Visual inference; Model diagnostics;  Model selection
@@ -1000,17 +999,16 @@ This indicates that lineups of Q-Q plots provide an avenue for distributional as
 %\section{Critical Discussion of visual inference results}\label{sec:results}
 %------------------------------------------------------------------------------------
 
-\section{\dc{Protocol}}
+\section{Protocol}
 
 %\dc{Needs to have the prescriptive steps for using visual inference for model choice and diagnosis. A step-wise recommended approach here. And maybe how to do a Turk study.}
 
-\al{
 Throughout this paper we have illustrated how visual inference can help select and diagnose LME models. In all of the examples presented, we have followed the same basic protocol:
 
 \begin{enumerate}
 \item {\bf Create lineup data:} Assuming that the proposed model (for diagnostics) or reduced model (for selection) are correct, we use a parametric bootstrap to simulate new responses, re-fit the model to these simulated responses, and extract the residuals of interest from the proposed model. For each lineup, this process is used to obtain $m-1=19$ simulated null data sets. (See Section~\ref{app:nullplots}.)
 
-\item {\bf Render lineups:}  \hh{Draw small multiples of each of the null data sets and randomly insert the observed data among the nulls. Each plot is labelled by a number from 1 to $m$. These IDs are used for identification  and later evaluation of results. }
+\item {\bf Render lineups:}  Draw small multiples of each of the null data sets and randomly insert the observed data among the nulls. Each plot is labelled by a number from 1 to $m$. These IDs are used for identification  and later evaluation of results.
 %Append the observed data set and randomly assign ID numbers to the data sets between 1 and 20. These IDs are used to facet the lineup. Store the ID number for the observed data for later reference.
 
 \item {\bf Evaluate lineups:} Present the lineups to independent observers, instructing them to identify the plot most different from the set and asking them what feature led to their choice. These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. 
@@ -1018,14 +1016,11 @@ Throughout this paper we have illustrated how visual inference can help select a
 \item {\bf Evaluate the strength of evidence:} For a lineup of size $m=20$ that has been evaluated by $K$ independent observers, the number of evaluations of a lineup in which the observer identifies the data plot, $Y$, has a Visual distribution $V_{K,m,s=3}$ as defined by \citet{hofmann:2015}.
 
 \end{enumerate}
-}
 
 
-\al{
+
 In practice, the modeler will not give every lineup rendered to a panel of independent observers. Rather, during the model building process many lineups will be rendered with the modeler blinded to the true plot. These lineups replace the traditional exploratory and diagnostic plots traditionally used, providing additional ``protection'' against structure introduced through the model fitting procedure. For critical decisions---perhaps, to finalize model selection or diagnose borderline situations---recruiting a number of independent observers is warranted. While we used the MTurk service \citep{amazon}, modelers could also use their colleagues, provided that they are making these evaluations independently.
-}
 
-\al{
 For each of the lineup designs described in the paper we constructed five replicates consisting of the same data plot and different sets of nineteen null plots for a total of 75 different lineups. 
 487 participants were recruited through the MTurk service \citep{amazon}, each participant was asked to evaluate ten lineups, for a total of altogether 4927 evaluations. 
 %For each lineup observers were instructed to identify the plot  most different from the set and asked what feature led them to their choice. 
@@ -1033,7 +1028,6 @@ For each of the lineup designs described in the paper we constructed five replic
 In addition to the plot choice and rationale, the time taken to answer was recorded and  observers were asked for their confidence level (on a scale from 1=weak to 5=high). Observers were also asked to provide their demographics: age category, gender,  education range, and geographic location (from parts of their ip address). It has been shown that demographics and educational background of observers, while significant, do not have a practical impact on  detection rates of the true plot from a lineup  \citep{majumder:2014}. 
 
 The MTurk service provides access to a large pool of participants, whose demographics reflect those of internet users (i.e.\ relative to the average U.S.\ population, participants are younger and more highly educated; the proportion of female participants is typically around 40\%). To be eligible to participate in the study, we required MTurk workers to have at least 100 completed HITs (Human Intelligence Tasks) with a success rate of at least 90\%.  Assuming that these workers  have a vested interest in their reputation,  we hope that such a selection reduces the rate of participants gaming the system. The pool of MTurk workers is large enough to allow for very fast collection of lineup evaluations; all of the data presented here were collected within a few hours. 
-}
 
 
 While we do not require any statistical training from participants, training in mathematical reasoning has been found to significantly help with performance on lineup tests \cite[see][]{susan:infovis}. 
