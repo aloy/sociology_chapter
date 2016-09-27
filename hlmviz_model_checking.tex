@@ -1002,15 +1002,16 @@ This indicates that lineups of Q-Q plots provide an avenue for distributional as
 
 \section{\dc{Protocol}}
 
-\dc{Needs to have the prescriptive steps for using visual inference for model choice and diagnosis. A step-wise recommended approach here. And maybe how to do a Turk study.}
+%\dc{Needs to have the prescriptive steps for using visual inference for model choice and diagnosis. A step-wise recommended approach here. And maybe how to do a Turk study.}
 
 \al{
 Throughout this paper we have illustrated how visual inference can help select and diagnose LME models. In all of the examples presented, we have followed the same basic protocol:
 
 \begin{enumerate}
-\item {\bf Create lineup data:} Assuming that the proposed model (for diagnostics) or reduced model (for selection) are correct, we use a parametric bootstrap to simulate new responses, refit the model to these simulated responses, and extract the residuals of interest from the proposed model. For each lineup, this process is used to obtain $m-1=19$ simulated null data sets. (See Section~\ref{app:nullplots}.)
+\item {\bf Create lineup data:} Assuming that the proposed model (for diagnostics) or reduced model (for selection) are correct, we use a parametric bootstrap to simulate new responses, re-fit the model to these simulated responses, and extract the residuals of interest from the proposed model. For each lineup, this process is used to obtain $m-1=19$ simulated null data sets. (See Section~\ref{app:nullplots}.)
 
-\item {\bf Render lineups:} Append the observed data set and randomly assign ID numbers to the data sets between 1 and 20. These IDs are used to facet the lineup. Store the ID number for the observed data for later reference.
+\item {\bf Render lineups:}  \hh{Draw small multiples of each of the null data sets and randomly insert the observed data among the nulls. Each plot is labelled by a number from 1 to $m$. These IDs are used for identification  and later evaluation of results. }
+%Append the observed data set and randomly assign ID numbers to the data sets between 1 and 20. These IDs are used to facet the lineup. Store the ID number for the observed data for later reference.
 
 \item {\bf Evaluate lineups:} Present the lineups to independent observers, instructing them to identify the plot most different from the set and asking them what feature led to their choice. These choices came in the form of four suggestions (in checkboxes) and one text box for a free-form answer. 
 
