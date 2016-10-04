@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Script generating figures 
+# Script generating figures 6, 9, 12, 14, 15
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ library(gridSVG)
 
 
 #-------------------------------------------------------------------------------
-# Figure 5: Lineup to test for homogeneity
+# Figure 6: Lineup to test for homogeneity
 #-------------------------------------------------------------------------------
 
 # Fitting the quartic LME model
@@ -47,7 +47,7 @@ qplot(pressure, resid, data = m2.resid.df,
         axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
 #-------------------------------------------------------------------------------
-# Figure 8: Lineup to test for linearity
+# Figure 9: Lineup to test for linearity
 #-------------------------------------------------------------------------------
 
 # Fitting the quadratic model
@@ -83,7 +83,7 @@ ggplot(resids, aes(x = pressure, y = resid)) +
         axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
 #-------------------------------------------------------------------------------
-# Figure 11: Lineup to test for homogeneity
+# Figure 12: Lineup to test for homogeneity
 #-------------------------------------------------------------------------------
 
 # Discretizing pressure for boxplots representation
@@ -111,7 +111,7 @@ qplot(x = pressurecat, y = resid, data = fig11_df, geom = "boxplot", fill = pres
 
 
 #-------------------------------------------------------------------------------
-# Figure 13: Lineup to test for homogeneity
+# Figure 14: Lineup to test for homogeneity
 #-------------------------------------------------------------------------------
 
 # Formatting data frame for plotting and sorting Subjects by residual variance
@@ -133,7 +133,7 @@ qplot(subid, resid, data = fig13_df, geom = c("point"), fill=I("grey70"), alpha=
   scale_x_continuous(expand = c(.075,.075))
 
 #-------------------------------------------------------------------------------
-# Figure 14: Lineup to test for homogeneity
+# Figure 15: Lineup to test for homogeneity
 #-------------------------------------------------------------------------------
 
 qplot(Subject, resid, data = m1.resid.df, geom = "boxplot", fill=I("grey70"), alpha=I(0.8)) %+%

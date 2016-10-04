@@ -1,11 +1,12 @@
 -------------------------------------------------------------------------------
 README file corresponding to submitted code for
 
-	"Diagnostics for Linear Mixed-Effects Models Using Visual Inference"	
+"Model Choice and Diagnostics for Linear Mixed-Effects Models Using 
+Statistics on Street Corners"	
 
 by 
 
-	Adam Loy, Heike Hofmann, and Dianne Cook
+Adam Loy, Heike Hofmann, and Dianne Cook
 -------------------------------------------------------------------------------
 FILE					DESCRIPTION
 -------------------------------------------------------------------------------

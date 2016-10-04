@@ -57,7 +57,7 @@ sim_t_hlm <- function(.mod) {
 
 
 # Load the data
-data(radon, "HLMdiag")
+data(radon, package="HLMdiag")
 
 #-------------------------------------------------------------------------------
 # Figure 10: Lineup of Q-Q plots for the random slope

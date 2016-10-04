@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Script generating figures 1, 3, and 4
+# Script generating figures 2, 4, and 5
 #
 # Testing for necessity of a random slope
 #-------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ library(stringr)
 library(gridSVG)
 
 #-------------------------------------------------------------------------------
-# Figure 1
+# Figure 2
 #-------------------------------------------------------------------------------
 ## Initial model
 M1 <- lmer(normexam ~ standLRT + (1 | school), data = Exam)
@@ -68,11 +68,9 @@ qplot(x = standLRT, y = fitted, data = true.fitted, group = school,
   xlab(NULL) + ylab(NULL) +
   theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
         axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
-#	xlab("standardized LRT score") + 
-#	ylab("GCSE exam score")
 
 #-------------------------------------------------------------------------------
-# Figure 3
+# Figure 4
 #-------------------------------------------------------------------------------
 
 ## Adding the random slope and refitting the LME model
@@ -113,7 +111,7 @@ qplot(x = standLRT, y = fitted, data = true.fitted, group = school,
         axis.ticks.x = element_blank(), axis.ticks.y = element_blank())
 
 #-------------------------------------------------------------------------------
-# Figure 4: Testing the need for correlated random effects
+# Figure 5: Testing the need for correlated random effects
 #-------------------------------------------------------------------------------
 # Fitting a model with independent random effects
 M3 <- lmer(normexam ~ standLRT + (standLRT - 1 | school) + (1 | school), data = Exam)
@@ -139,7 +137,7 @@ fig4_df <- nullabor:::add_true(M3.sim.ranef, true.M2.ranef, pos = true_pos)
 
 # Creating the lineup
 ggplot(data = fig4_df, aes(x = `(Intercept)`, y = standLRT)) + 
-  geom_point() +
+  geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE, alpha = 0.4) +
   facet_wrap( ~ .sample, ncol=5) + 
   xlab(NULL) + 
