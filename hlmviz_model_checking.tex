@@ -20,6 +20,9 @@
 \addtolength{\textheight}{1.3in}%
 \addtolength{\topmargin}{-.8in}%
 
+\usepackage{enumitem}
+\setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+
 
 
 % for citations
@@ -300,7 +303,7 @@ When evaluating the significance of terms in the random effects structure, the l
 
 %\alnote{Do we want the reference to fig. 1 in the paragraph below rather than where it is currently referenced?}
 
-\item {\em Model checking:} As show in Figure~\ref{fig:motivation}, residual plots might display noticeable patterns that are artifacts of both the data structure and the model estimation procedure rather than indications of lack of fit. 
+\item {\em Model checking:} As seen in Figure~\ref{fig:motivation}, residual plots might display noticeable patterns that are artifacts of both the data structure and the model estimation procedure rather than indications of lack of fit. 
 %This problem is especially pronounced for  scatterplots comparing predicted random effects. Such plots can display points falling along a line that is oriented in conflict with the estimated correlation between the random effects \cite[see][for an example]{Morrell:2000ve}. 
 %\hhnote{XXX I'm not quite sure how that would look like}.  
 %\alnote{This would look like a scatterplot with the slope oriented in the wrong direction (i.e., in conflict with the estimated correlation from ML or REML). I haven't encountered this in practice, but it is what Morrell and Brant talk about.}
@@ -592,13 +595,13 @@ In the formulation of model \eqref{eq:hlm} we make a number of assumptions that 
 
 
 Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check this assumption we must verify (a) the homogeneity of the within-group residual variance across the levels of all explanatory variables and (b) check that the within-group variance is also constant between groups. Such investigations are often carried out using plots of the level-1 residuals. In order to guard against mis- or over-interpretation of the residual plots, we, again, employ lineups.
-
-
-
-\paragraph{(a) Checking homogeneity of level-1 residual variance across covariates:}
+%
+\hfill\\[5pt]
+\noindent
+\textbf{(a) Checking homogeneity of level-1 residual variance across covariates:}
 Residual plots are one of the most-often used tools for checking the relationship between residuals and one of the model's covariates. 
 In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~\ref{data:dialyzer}). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
-
+%
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.75\textwidth]{dialyzerheterogeneous-19.pdf}
@@ -608,18 +611,19 @@ The data plot is in panel \#$2^4+3$. Inspecting only the data plot, we see that 
 	}
 %	Lineup of 20 scatterplots of level-1 residuals against pressure used to test the assumption of homogeneous level-1 residual variance for the dialyzer study.  Which is the real plot?}
 \end{figure}
-
-
+%
+%
 %Residual scatterplots are useful in checking that level-1 residuals are homoscedastic with respect to the explanatory variables.
-
+%
 %Figure~\ref{fig:constvar2} shows a lineup of 20 plots of the level-1 residuals against pressure in the dialyzer study (see Section~1.4 of the supplement).
 %If any panel of this lineup is considered separately, an analyst may come to the conclusion that the within-group variance decreases as pressure increases \al{XXX I don't see that anymore XXX}; 
 %\hhnote{you're right - this description seems to refer to the wrong lineup ... it should be one of the cyclones or fig~\ref{homogeneous-1}. Should we switch the order of 7 \& 8 and 5 \& 6 ...? }
 %however, inserting the true plot into the lineup forces the analyst to consider this particular feature as inherent to the data structure rather than evidence against a hypothesis of homogenous variance. 
 % In this example, 29 of 85 observers identified the true plot in panel \#($2^4 +3$), providing evidence of heteroscedasticity. 
  %\hhnote{discuss reason that participants gave for their choice.}
-
-\paragraph{(b) Checking homogeneity of level-1 residual variance between groups:}
+\hfill\\[5pt]
+\noindent
+\textbf{(b) Checking homogeneity of level-1 residual variance between groups:}
 If a covariate is discrete, we  have the choice between different ways of visualizing residuals. When assessing the homogeneity of level-1 residuals across groups, we are, by default, in the situation of comparing continuous values across a discrete range. 
   For the example of  the dialyzer study, we employed side-by-side boxplots and side-by-side dotplots to visualize  level-1 residuals against the grouping variable (subjects). 
 Figures~\ref{homogeneous-1} and~\ref{homogeneous-2}  in Section~\ref{app:morelineups} show the resulting lineups.
