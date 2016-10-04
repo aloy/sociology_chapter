@@ -4,6 +4,7 @@ require(vinference)
 require(reshape2)
 require(xtable)
 
+set.seed(20161001)
 turk <- read.csv("../data/study.csv")
 turk <- turk %>% dplyr::mutate(
   correct = response==data_location
@@ -69,9 +70,8 @@ res <- ddply(dreasons, .(exp, pick, choices), summarise, Freq=sum(Freq))
 qt <- ddply(res, .(exp, choices), transform, perc=Freq/sum(Freq)*100)
 qt2 <- dcast(qt, exp+pick~choices, value.var="perc")
 names(qt2)[3:7] <- c("Outlier", "Spread", "Trend", "Asymmetry", "Other")
-print(xtable(subset(qt2, pick=="data")[,-2], digits=c(1,1,1,1,1,1,1)), include.rownames=FALSE, NA.string="0.0")
 
 
 #      *********** Table 2 Supplement ********************
-print(xtable(dt2, digits=c(1,1,1,1,1,1,1,1,0)), include.rownames=FALSE)
+print(xtable(subset(qt2, pick=="data")[,-2], digits=c(1,1,1,1,1,1,1)), include.rownames=FALSE, NA.string="0.0")
 #      *********** Table 2 Supplement ********************
