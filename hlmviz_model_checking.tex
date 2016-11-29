@@ -243,7 +243,7 @@ If $X=x$ is  the number of observers who chose the data plot from the lineup, th
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{normexam_fanned_lineup16.pdf}
-	\caption{\label{fig:fanned} One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in an LME model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 73 observers, 11 identified the data plot as the most different. This indicates the data are recognizably different from the null plots, indicating the need to include a random slopes component in the model. Further details on data, model and the location of the data plot are given in Section~\ref{sec:random}.}
+	\caption{\label{fig:fanned} One of the lineups used in an Amazon Turk study to test for the necessity of random slopes in an LME model. Participants were asked  to identify the most `different' plot and give a reason for their choice. Of the 68 observers, 10 identified the data plot as the most different. This indicates the data are recognizably different from the null plots, indicating the need to include a random slopes component in the model. Further details on data, model and the location of the data plot are given in Section~\ref{sec:random}.}
 \end{figure}
 
 Figure~\ref{fig:fanned} shows an example lineup. Each panel presents  line segments of different lengths  with varying slopes. Observers were asked the question `Which plot is the most different?'    Any  information revealing the context of the data, such as axis labels, units, titles, and legends,  was carefully removed to  avoid subjective bias \citep{meilgaard}, ensuring that observers made decisions based purely on the data display. 
@@ -387,7 +387,7 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{autism2-ordered-10.pdf}
-	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in side-by-side box plots to test significance of a discrete covariate. Of the 74 participants, 65  identified the data plot from the lineup.  This indicates that the covariate is necessary for the model.}}
+	\caption{\label{fig:boxplot-ordered} {Lineup of level-1 residuals in side-by-side box plots to test significance of a discrete covariate. Of the 68 participants, 60  identified the data plot from the lineup.  This indicates that the covariate is necessary for the model.}}
 %	\todo[inline]{I'm starting to get nitpicky again :)
 %	The legend is added (to make the point later that it doesn't help much with the overall pattern), the boxes are a bit transparent (maybe alpha of 0.6?) so the gridlines in the back don't completely disappear and we need to use a different color scheme - the red and the green are not color blind safe. } 
 %	\todo[inline]{Why did you decide to remove the outliers? Are you worried the outliers distract from the pattern? - We could test that!}
@@ -395,9 +395,9 @@ In this setting, the null plots are generated using the parametric bootstrap  wi
 %	Which of the plots is the most different? Which feature led you to your choice?} 
 \end{figure}
 
-Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 74 observers were asked to choose the plot that is the most different from the rest. Sixty five observers identified the data plot in panel \#($2^3 + 2$), 
+Figure~\ref{fig:boxplot-ordered} illustrates the use of this type of lineup. In our study, 68 observers were asked to choose the plot that is the most different from the rest. Sixty  observers identified the data plot in panel \#($2^3 + 2$), 
 %corresponding to a $p$-value of XXX, 
-with 40.3\% pointing to the trend as the distinguishing feature. 
+with over 90\% pointing to the trend as the distinguishing feature. 
 This lineup is chosen
 to determine whether a child's language development (low, medium, or high) at age two (plotted on the $x$-axis)  is associated with the development of social skills for children diagnosed with autism spectrum disorder. %(see Section~\ref{data:autism} of the supplement for details on the data and analysis). 
 Displayed on the $y$-axis are \mbox{level-1} residuals from a longitudinal model, i.e., the grouping in model~\ref{eq:hlm} is given by each individual. Clearly, language development at age two accounts for a significant amount of the remaining residual variability.
@@ -460,14 +460,14 @@ The slopes of the regression lines are indicative of the amount of correlation.
 %Note that with a higher amount of shrinkage in the random effects we start to see more lines with a higher amount of slope. 
  If the correlation between the random effects is not necessary, then the true plot will display little correlation and be indistinguishable from the null plots.
 The lineup allows us to gauge the amount of correlation between the random effects while accounting for the effect of shrinkage in the model, avoiding the over-interpretation of structure in such plots discussed by \cite{Morrell:2000ve}.
-  In Figure~\ref{fig:ranef-corr}, the true plot in panel~\#($10 + \sqrt{25}$) was identified by 41 of the 69 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
+  In Figure~\ref{fig:ranef-corr}, the true plot in panel~\#($10 + \sqrt{25}$) was identified by 36 of the 63 observers, providing very strong evidence in  support of  the additional parameter for correlation between random effects, which agrees with a $p$-value of 0.0041 from the classical likelihood ratio test.
 %  \hhnote{What does the $p$-value of the classical LRT say?}
 %  \alnote{The $p$-value from the classical LRT is 0.0041, agreeing with our conclusion.}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{examcorr-15.pdf}
-	\caption{\label{fig:ranef-corr} Lineup for testing the correlation between random effects. Predicted random intercept values are plotted on $x$ against predictions of the corresponding random slopes on $y$. Of the 69 observers, 41 identified the data plot from the lineup, lending strong support for a non-zero correlation between the random effects.  %Which plot is the most different of the others? What feature in the panel led you to your choice?
+	\caption{\label{fig:ranef-corr} Lineup for testing the correlation between random effects. Predicted random intercept values are plotted on $x$ against predictions of the corresponding random slopes on $y$. Of the 63 observers, 36 identified the data plot from the lineup, lending strong support for a non-zero correlation between the random effects.  %Which plot is the most different of the others? What feature in the panel led you to your choice?
 	}
 \end{figure}
 
@@ -600,7 +600,7 @@ Model~\eqref{eq:hlm} assumes homogeneity of the within-group variance. To check 
 \noindent
 \textbf{(a) Checking homogeneity of level-1 residual variance across covariates:}
 Residual plots are one of the most-often used tools for checking the relationship between residuals and one of the model's covariates. 
-In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~\ref{data:dialyzer}). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 85 evaluations by independent observers the data plot was identified 29 times, providing evidence of heteroscedasticity. 
+In Figure~\ref{fig:constvar2} we employ a lineup of scatterplots plotting  the level-1 residuals against pressure in the dialyzer study  (see Section~\ref{data:dialyzer}). For the null plots we derive residuals from model-refits of properly specified parametric bootstraps of the investigated model. The plot of the observed data is inserted in position \#($2^4 +3$). Out of 80 evaluations by independent observers the data plot was identified 26 times, providing evidence of heteroscedasticity. 
 %
 \begin{figure}[hbt]
 	\centering
@@ -638,7 +638,7 @@ The results from the study clearly support that the design matters, and identify
 %%While box plots are more powerful, they still require the use of lineups.
 %When the plots are considered individually, unbalanced group sizes will cause artificial structure in these plots. 
 %This is to be expected as the variance of the sampling distribution of the level-1 residuals within each group, $\var \left( s_i^2 \right) = \left(2 \left( \sigma_i^2 \right)^2 \right) \big/ (n_i - r_i)$, where $r_i = \mathrm{rank}(\bm{X}_i)$, depends on the group size, $n_i$.
-To overcome this difficulty, we create side-by-side box plots and order groups according to their interquartile range (IQR). Because of their shape,  we have come to call these plots  \emph{cyclone plots}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the potential of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 50 of 75 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
+To overcome this difficulty, we create side-by-side box plots and order groups according to their interquartile range (IQR). Because of their shape,  we have come to call these plots  \emph{cyclone plots}. Figure~\ref{fig:badcyclone} shows a lineup of cyclone plots for 66 patients in a longitudinal study investigating the potential of methylprednisolone to treat patients with severe alcoholic hepatitis (see Section~\ref{data:ahd} for details). The true plot in panel \#($2^3+5$) is easily identified from the field of null plots (by 49 of 73 observers) revealing heteroscedasticity across groups that might not be apparent  in other residual plots.
 
 While the data plot is easily identified, any panel from this lineup considered separately exhibits a structure that might, taken by itself, lead an analyst to the conclusion that the within-group variance varies across the vertical axis. However, placing the true plot into the lineup forces the analyst to consider most of this structure as inherent to the data structure rather than evidence against the hypothesis of homogeneity. The fact that observers are able to identify the data plot indicates that the data plot has additional structure inconsistent with homogeneity. The use of lineups incorporates the comparison of the data to what is expected under a properly specified model, eliminating the subjective interpretations encountered with the use of single plots. 
 
@@ -659,7 +659,7 @@ While the data plot is easily identified, any panel from this lineup considered 
 	\caption{\label{fig:badcyclone} 
 	Lineup of cyclone plots to assess homogeneity of the level-1 residuals between groups. Residual values are plotted in horizontal side-by-side boxplots by groups. The order of the boxplots is determined by the interquartile range of the residuals. %Which of the plots is the most different? Which feature led you to your choice?
 %	Lineup of 20 boxplots (ordered by IQR) of level-1 residuals used to test the assumption of homogeneous level-1 residual variance.  Which is the real plot?
- Of the 75 observers, 50 chose the data plot as the most different, indicating a significant deviation from the assumptions of the residual distribution in a model of the observed data.} 
+ Of the 73 observers, 49 chose the data plot as the most different, indicating a significant deviation from the assumptions of the residual distribution in a model of the observed data.} 
 \end{figure}
 
 An alternative approach to detect heteroscedasticity of the level-1 residuals across groups is to use a test based on the standardized measure of dispersion given by
@@ -758,7 +758,7 @@ Using the same framework we will get test results based on where we are in the m
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{dialyzernonlinear-10.pdf}
-	\caption{\label{fig:linearity} Lineup testing  for nonlinearity of a covariate. Level-1 residuals (on $y$) from a model of the dialyzer data are plotted against pressure settings (on $x$). Pressure is clearly identified (by 60 out of 63 observers) as an important higher-order covariate of the model.  } %Which of the plots is the most different? Which feature led you to your choice?}
+	\caption{\label{fig:linearity} Lineup testing  for nonlinearity of a covariate. Level-1 residuals (on $y$) from a model of the dialyzer data are plotted against pressure settings (on $x$). Pressure is clearly identified (by 60 out of 62 observers) as an important higher-order covariate of the model.  } %Which of the plots is the most different? Which feature led you to your choice?}
 %To check the assumption of linearity we suggest the use of scatterplots with smoothers and boxplots of both the residuals (either level-1 or -2) against the fitted values of an explanatory variable. If the assumption of linearity is upheld, then the residuals plots will exhibit ``random scatter.'' 
 %%As illustrated in the previous section, such plots are also useful in checking for homogeneity of variance, but in that situation different deviations from random scatter are of interest.
 %\alnote{I will write more here.}
@@ -811,7 +811,7 @@ During the model fitting process, however, the predicted random effects are the 
 %	\includegraphics[width=0.8\textwidth]{filebab6182c2e84}
 	\includegraphics[width=0.8\textwidth]{radonqqb2-3-10.pdf}
 	\caption{\label{fig:qqlineup-1}
-	Lineup of Q-Q plots assessing the distribution of the random slope for the radon data. The lines and confidence bands show the asymptotic distribution. Several of the null plots (and the data plot) exhibit strong deviations from the asymptotic normal distribution. Compared to the null plots, the data plot does not stand out: none of the 68 observers identified the data plot as the most different.
+	Lineup of Q-Q plots assessing the distribution of the random slope for the radon data. The lines and confidence bands show the asymptotic distribution. Several of the null plots (and the data plot) exhibit strong deviations from the asymptotic normal distribution. Compared to the null plots, the data plot does not stand out: none of the 65 observers identified the data plot as the most different.
 	}%Which of the plots is the most different? Which feature led you to your choice? }
 \end{figure}
 
@@ -827,9 +827,9 @@ This is particularly pronounced in this example because the radon data consist o
 %Confidence bands based on the normal distribution are applied to each lineup and reveal that the empirical distribution of the predicted random effects---both for the null plots and true plot---does not align with a normal distribution. 
 While the confidence bands show the relationship of the predicted random effects to the hypothesized distribution, this is known to be an ill conceived comparison. %in many situations. 
 However, the main comparison in lineups is not a comparison of the predicted random effects to the normal distribution, but rather a comparison of the empirical distribution of the random effects between the null and observed plots. 
-Consequently,  conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in panel \#($2^4 - 6$) in Figure~\ref{fig:qqlineup-1}  is indistinguishable from the null plots (none of 68 observers identified this plot), providing no evidence of a violation of (asymptotic) normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
+Consequently,  conclusions drawn from the lineups relate to evidence of consistency between the true plot and what is expected under a properly specified model. For example, the true plot in panel \#($2^4 - 6$) in Figure~\ref{fig:qqlineup-1}  is indistinguishable from the null plots (none of 65 observers identified this plot), providing no evidence of a violation of (asymptotic) normality; however, when compared only to the normal distribution, the observed Q-Q plot would %, \al{in our opinion}, 
 be rejected by any standard test for normality (e.g., the $p$-value of the Anderson-Darling test is .0004 for the data panel).
-Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 29 out of 68 observers. Other panels  selected at least four times were \#1, 13, 14, 16, and 18. 
+Panel \#19 was identified  most often from the lineup in Figure~\ref{fig:qqlineup-1}; it was picked by 29 out of 65 observers. Other panels  selected at least four times were \#1, 13, 14, 16, and 18. 
 This example also shows the impact of confounding between the different levels of the mixed effects model on the distribution of the predicted random effects \citep{adam}: even for null plots, where the random effects were generated from a normal distribution before re-fitting the model, the predicted random effects do not look normal. In fact, the Anderson-Darling test of normality rejects the null hypothesis of normality for 16 of the null plots at the 0.05 significance level.
 %16 of the null plots \al{reject the null hypothesis of normality} the Anderson-Darling test of normality at a significance level of 0.05.  
 % \hh{All of the other panels are created from samples from a normal distribution, but after the model fit, they} \al{no longer} \hh{look normal---in fact, 16 of them fail the Anderson-Darling test of normality at a significance level of .05.}
@@ -837,7 +837,7 @@ This example also shows the impact of confounding between the different levels o
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{radontranef-19.pdf}
-	\caption{\label{fig:qqlineup-t} Lineup of Q-Q plots assessing the distribution of random slopes. For the data plot,  the random effects are simulated from a multivariate $t_3$ distribution; the null plots show model re-fits of data with normally distributed random effects. Of the 70 observers, 29 identified the data plot as the most different from the lineup, providing evidence that  we can visually detect a violation of normality of the random effects.
+	\caption{\label{fig:qqlineup-t} Lineup of Q-Q plots assessing the distribution of random slopes. For the data plot,  the random effects are simulated from a multivariate $t_3$ distribution; the null plots show model re-fits of data with normally distributed random effects. Of the 63 observers, 26 identified the data plot as the most different from the lineup, providing evidence that  we can visually detect a violation of normality of the random effects.
 	}
 	%Which of the plots is the most different? Which feature led you to your choice?}
 \end{figure}
@@ -848,7 +848,7 @@ demonstrate that lineups are indeed able to detect distributional violations, we
 %random effects simulated from a $t_3$ distribution---i.e.\ using model~(\ref{eq:hlm}), error terms $\varepsilon \sim t_3$ were simulated and the model was re-fit, deriving a new set of residuals. 
 %For the null plots, error terms were simulated from a normal distribution and the model was re-fit to derive the corresponding residuals. 
 The null plots display Q-Q plots for the random slopes extracted from this simulated model.
- This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty nine out of 70 observers identified the true plot in panel \#($\sqrt{49} + 3\cdot4$), providing evidence %against the null hypothesis of normality.  
+ This lineup is shown in Figure~\ref{fig:qqlineup-t}. Twenty six out of 63 observers identified the true plot in panel \#($\sqrt{49} + 3\cdot4$), providing evidence %against the null hypothesis of normality.  
 that we can visually detect a violation of normality of the random effects in Figure~\ref{fig:qqlineup-t}. 
 % The fact that we can distinguish the true plot from the null plots in Figure~\ref{fig:qqlineup-t} 
 This indicates that lineups of Q-Q plots provide an avenue for distributional assessment where conventional methods fail. Further investigation is needed to explore limitations of this approach. %, as there are undoubtably situations where this approach will be unsuccessful, but this is outside the scope of the current paper.  
