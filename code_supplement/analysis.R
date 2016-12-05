@@ -1,6 +1,7 @@
 #-------------------------------------------------------------------------------
 # Script generating figures and tables in the article
-#
+# "Model Choice and Diagnostics for Linear Mixed-Effects 
+#  Models Using Statistics on Street Corners"
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
